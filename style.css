@@ -260,42 +260,29 @@ main {
 
 .stat-card {
     display: flex;
-
     flex-direction: column;
-
     align-items: center;
-
     padding: 1.25rem 0.5rem;
-
     background: white;
-
     border-radius: 1rem;
-
     box-shadow:
         0 4px 14px
         rgba(0, 0, 0, 0.04);
-
     text-align: center;
 }
 
-
 .stat-icon {
     font-size: 1.5rem;
-
     margin-bottom: 0.5rem;
 }
 
-
-.stat-card strong {
+.stat-value {
     font-size: 1.3rem;
 }
 
-
-.stat-card span:last-child {
+.stat-label {
     margin-top: 0.25rem;
-
     font-size: 0.8rem;
-
     color: #6b7280;
 }
 
@@ -578,7 +565,7 @@ nav {
 }
 
 
-.total-xp span {
+.total-xp > span {
     font-size: 0.8rem;
 
     color: #6b7280;

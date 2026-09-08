@@ -22,11 +22,11 @@
 
         <div class="player-info">
             <div class="level">
-                ⭐ Level 3
+                ⭐ Level <span data-player="level"></span>
             </div>
 
             <div class="coins">
-                🪙 125
+                🪙 <span data-player="coins"></span>
             </div>
         </div>
     </header>
@@ -35,7 +35,7 @@
     <main>
 
         <section class="welcome">
-            <h1>Hello, Alex! 👋</h1>
+            <h1>Hello, <span data-player="name"></span>! 👋</h1>
 
             <p>
                 Ready for another math adventure?
@@ -51,17 +51,17 @@
                         Current Level
                     </span>
 
-                    <h2>⭐ Level 3</h2>
+                    <h2>⭐ Level <span data-player="level"></h2>
                 </div>
 
                 <span class="xp-text">
-                    240 / 300 XP
+                    <span data-player="xp"></span> / <span data-player="nextLevelXP"></span> XP
                 </span>
             </div>
 
 
             <div class="xp-bar">
-                <div class="xp-progress"></div>
+                <div class="xp-progress" data-player="xp-progress"></div>
             </div>
 
         </section>
@@ -87,9 +87,11 @@
                         ⭐
                     </span>
 
-                    <strong>120</strong>
+                    <strong class="stat-value">
+                        <span data-player="xp"></span>
+                    </strong>
 
-                    <span>XP Earned</span>
+                    <span class="stat-label">XP Earned</span>
 
                 </div>
 
@@ -100,12 +102,13 @@
                         🧮
                     </span>
 
-                    <strong>15</strong>
+                    <strong class="stat-value">
+                        <span data-player="problems"></span>
+                    </strong>
 
-                    <span>Problems</span>
+                    <span class="stat-label">Problems</span>
 
                 </div>
-
 
                 <div class="stat-card">
 
@@ -113,59 +116,20 @@
                         🔥
                     </span>
 
-                    <strong>4</strong>
+                    <strong class="stat-value">
+                        <span data-player="streak"></span>
+                    </strong>
 
-                    <span>Day Streak</span>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <section class="section">
-
-            <h2>🎯 Daily Challenge</h2>
-
-
-            <div class="challenge-card">
-
-                <div class="challenge-info">
-
-                    <div class="challenge-icon">
-                        🎯
-                    </div>
-
-                    <div>
-                        <h3>
-                            Solve 10 problems!
-                        </h3>
-
-                        <p>
-                            Earn bonus coins by completing
-                            today's challenge.
-                        </p>
-                    </div>
-
-                </div>
-
-
-                <div class="challenge-progress">
-
-                    <div class="challenge-bar">
-                        <div class="challenge-fill"></div>
-                    </div>
-
-                    <span>
-                        6 / 10
-                    </span>
+                    <span class="stat-label">Day Streak</span>
 
                 </div>
 
             </div>
 
         </section>
+
+
+        
 
     </main>
 
@@ -193,6 +157,10 @@
         </button>
 
     </nav>
+    <script src="js/player.js"></script>
+    <script>
+        updatePlayerDisplay();
+    </script>
 
 </body>
 </html>

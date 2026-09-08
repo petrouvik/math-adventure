@@ -25,13 +25,15 @@
 
         <div class="player-info">
 
+            <div class="player-info">
             <div class="level">
-                ⭐ Level 3
+                ⭐ Level <span data-player="level"></span>
             </div>
 
             <div class="coins">
-                🪙 125
+                🪙 <span data-player="coins"></span>
             </div>
+        </div>
 
         </div>
 
@@ -66,7 +68,7 @@
                     </span>
 
                     <h2>
-                        ⭐ Level 3
+                        ⭐ Level <span data-player="level"></span>
                     </h2>
 
                 </div>
@@ -74,7 +76,7 @@
 
                 <div class="total-xp">
 
-                    <strong>240</strong>
+                    <strong><span data-player="xp"></span></strong>
 
                     <span>Total XP</span>
 
@@ -85,14 +87,14 @@
 
             <div class="xp-bar">
 
-                <div class="xp-progress"></div>
+                <div class="xp-progress" data-player="xp-progress"></div>
 
             </div>
 
 
             <p class="next-level">
 
-                🚀 Only 60 XP until Level 4!
+                🚀 Only <span data-player="xpUntilNext"></span> XP until Level <span data-player="nextLevel"></span>!
 
             </p>
 
@@ -357,6 +359,20 @@
 
             <div class="stats">
 
+                <div class="stat-card">
+
+                    <span class="stat-icon">
+                        ⭐
+                    </span>
+
+                    <strong class="stat-value">
+                        <span data-player="xp"></span>
+                    </strong>
+
+                    <span class="stat-label">XP Earned</span>
+
+                </div>
+
 
                 <div class="stat-card">
 
@@ -364,16 +380,13 @@
                         🧮
                     </span>
 
-                    <strong>
-                        127
+                    <strong class="stat-value">
+                        <span data-player="problems"></span>
                     </strong>
 
-                    <span>
-                        Problems Solved
-                    </span>
+                    <span class="stat-label">Problems</span>
 
                 </div>
-
 
                 <div class="stat-card">
 
@@ -381,33 +394,13 @@
                         🔥
                     </span>
 
-                    <strong>
-                        4
+                    <strong class="stat-value">
+                        <span data-player="streak"></span>
                     </strong>
 
-                    <span>
-                        Day Streak
-                    </span>
+                    <span class="stat-label">Day Streak</span>
 
                 </div>
-
-
-                <div class="stat-card">
-
-                    <span class="stat-icon">
-                        📚
-                    </span>
-
-                    <strong>
-                        1
-                    </strong>
-
-                    <span>
-                        Course Completed
-                    </span>
-
-                </div>
-
 
             </div>
 
@@ -452,6 +445,10 @@
         </button>
 
     </nav>
+    <script src="js/player.js"></script>
+    <script>
+        updatePlayerDisplay();
+    </script>
 
 </body>
 </html>

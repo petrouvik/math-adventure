@@ -12,8 +12,13 @@
         <div class="logo">🧮 Math Adventure</div>
 
         <div class="player-info">
-            <span>⭐ Level 3</span>
-            <span>🪙 125</span>
+            <div class="level">
+                ⭐ Level <span data-player="level"></span>
+            </div>
+
+            <div class="coins">
+                🪙 <span data-player="coins"></span>
+            </div>
         </div>
     </header>
 
@@ -133,6 +138,10 @@
             <span>Shop</span>
         </a>
     </nav>
+    <script src="js/player.js"></script>
+    <script>
+        updatePlayerDisplay();
+    </script>
 
 </body>
 </html>

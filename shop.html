@@ -25,15 +25,13 @@
 
 
         <div class="player-info">
-
             <div class="level">
-                ⭐ Level 3
+                ⭐ Level <span data-player="level"></span>
             </div>
 
             <div class="coins">
-                🪙 125
+                🪙 <span data-player="coins"></span>
             </div>
-
         </div>
 
     </header>
@@ -67,7 +65,7 @@
                 </span>
 
                 <strong>
-                    125
+                    <span data-player="coins"></span>
                 </strong>
 
             </div>
@@ -303,6 +301,10 @@
         </nav>
 
     </main>
+    <script src="js/player.js"></script>
+    <script>
+        updatePlayerDisplay();
+    </script>
 
 </body>
 </html>

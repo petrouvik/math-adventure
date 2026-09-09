@@ -41,16 +41,52 @@ function renderCourseHeader() {
     `;
 }
 function renderLessons() {
-    const container = document.getElementById("lesson-list");
+    const container =
+        document.getElementById("lesson-list");
+
+    container.innerHTML = "";
 
     course.lessons.forEach((lesson, index) => {
-        const card = document.createElement("div");
+        const completed =
+            isLessonCompleted(
+                course.id,
+                lesson.id
+            );
+
+        const unlocked =
+            isLessonUnlocked(
+                course.id,
+                lesson.id
+            );
+
+        const card =
+            document.createElement("div");
 
         card.className = "lesson-card";
 
+        if (completed) {
+            card.classList.add("completed");
+        } else if (!unlocked) {
+            card.classList.add("locked");
+        }
+
+        let numberContent;
+        let buttonContent;
+
+        if (completed) {
+            numberContent = "✓";
+            buttonContent = "Review";
+        } else if (unlocked) {
+            numberContent = index + 1;
+            buttonContent = "Start";
+        } else {
+            numberContent = "🔒";
+            buttonContent = "Locked";
+        }
+
         card.innerHTML = `
             <div class="lesson-number">
-                ${index + 1}
+                ${numberContent}
             </div>
 
             <div class="lesson-info">
@@ -61,8 +97,9 @@ function renderLessons() {
             <button
                 class="lesson-button"
                 data-lesson="${lesson.id}"
+                ${!unlocked ? "disabled" : ""}
             >
-                Start
+                ${buttonContent}
             </button>
         `;
 

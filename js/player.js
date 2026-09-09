@@ -5,7 +5,8 @@ const DEFAULT_PLAYER = {
     xp: 950,
     coins: 444,
     problems: 777,
-    streak: 333
+    streak: 333,
+    completedLessons: []
 };
 
 
@@ -89,4 +90,60 @@ function rewardLessonCompletion(problemCount) {
     savePlayer(player);
 
     return player;
+}
+
+function getLessonKey(courseId, lessonId) {
+    return `${courseId}:${lessonId}`;
+}
+
+function isLessonCompleted(courseId, lessonId) {
+    const player = getPlayer();
+
+    return player.completedLessons.includes(
+        getLessonKey(courseId, lessonId)
+    );
+}
+function completeLesson(courseId, lessonId) {
+    const player = getPlayer();
+
+    const key =
+        getLessonKey(courseId, lessonId);
+
+    if (player.completedLessons.includes(key)) {
+        return false;
+    }
+
+    player.completedLessons.push(key);
+
+    savePlayer(player);
+
+    return true;
+}
+function isLessonUnlocked(courseId, lessonId) {
+    const course = COURSES[courseId];
+
+    if (!course) {
+        return false;
+    }
+
+    const lessonIndex =
+        course.lessons.findIndex(
+            lesson => lesson.id === lessonId
+        );
+
+    if (lessonIndex === -1) {
+        return false;
+    }
+
+    if (lessonIndex === 0) {
+        return true;
+    }
+
+    const previousLesson =
+        course.lessons[lessonIndex - 1];
+
+    return isLessonCompleted(
+        courseId,
+        previousLesson.id
+    );
 }

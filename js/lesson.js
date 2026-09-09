@@ -45,6 +45,11 @@ function renderLesson() {
         return;
     }
 
+    if (!isLessonUnlocked(courseId, lessonId)) {
+        renderLessonLocked();
+        return;
+    }
+
     renderLessonHeader();
 
     if (lesson.type === "explanation") {
@@ -55,7 +60,28 @@ function renderLesson() {
         renderPracticeLesson();
     }
 }
+function renderLessonLocked() {
+    document.getElementById("lesson-content").innerHTML = `
+        <section class="lesson-locked">
+            <h2>Lesson Locked 🔒</h2>
+
+            <p>
+                Complete the previous lesson to unlock this one.
+            </p>
+
+            <button
+                class="next-button"
+                type="button"
+                onclick="window.location.href='course.html?id=${course.id}'"
+            >
+                Back to Course
+            </button>
+        </section>
+    `;
+}
+
 function renderExplanationLesson() {
+
     const container = document.getElementById("lesson-content");
 
     container.innerHTML = `
@@ -89,6 +115,8 @@ function renderExplanationLesson() {
         }
 
     });
+
+    completeLesson(courseId, lessonId);
 }
 function renderTextBlock(container, item) {
     const element = document.createElement("section");
@@ -280,6 +308,8 @@ function finishLesson() {
         lessonState.problems.length
     );
 
+    completeLesson(courseId, lessonId);
+
     const progressContainer =
         document.getElementById("lesson-progress");
 
@@ -370,3 +400,4 @@ function renderPracticeProgress() {
         </div>
     `;
 }
+

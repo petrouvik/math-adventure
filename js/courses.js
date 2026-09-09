@@ -6,7 +6,33 @@ const COURSES = {
         icon: "#",
 
         lessons: [
-            
+            {
+                id: "numbers-intro",
+
+                title: "What is Addition?",
+
+                description: "Learn what addition means.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "Addition means putting two or more groups together."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "3 + 2 = 5",
+                        explanation: "If you have 3 apples and get 2 more apples, you have 5 apples altogether."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The + symbol means add, and the = symbol means equals."
+                    }
+                ]
+            }
         ]
     },
 

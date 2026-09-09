@@ -131,7 +131,8 @@ const lessonState = {
     problems: [],
     currentProblem: 0,
     correctAnswers: 0,
-    incorrectAnswers: 0
+    incorrectAnswers: 0,
+    completed: false
 };
 
 
@@ -269,6 +270,16 @@ function nextProblem() {
 
 
 function finishLesson() {
+    if (lessonState.completed) {
+        return;
+    }
+
+    lessonState.completed = true;
+
+    rewardLessonCompletion(
+        lessonState.problems.length
+    );
+
     const progressContainer =
         document.getElementById("lesson-progress");
 
@@ -298,6 +309,10 @@ function finishLesson() {
                 </strong>
                 problems correct.
             </p>
+            <div class="lesson-rewards">
+                <p>⭐ +50 XP</p>
+                <p>🪙 +10 Coins</p>
+            </div>
 
             <button
                 class="next-button"

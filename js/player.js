@@ -13,7 +13,9 @@ function getPlayer() {
     const stored = localStorage.getItem(PLAYER_STORAGE_KEY);
 
     if (!stored) {
-        return { ...DEFAULT_PLAYER };
+        const player = { ...DEFAULT_PLAYER };
+        savePlayer(player);
+        return player;
     }
 
     return JSON.parse(stored);
@@ -76,52 +78,15 @@ function updatePlayerDisplay() {
             element.style.width = `${getLevelPercentage(player.xp)}%`;
         });
 }
-// function updatePlayerDisplay() {
-//     const player = getPlayer();
 
-//     const levelElement = document.getElementById("player-level");
-//     const coinsElement = document.getElementById("player-coins");
-//     const xpElement = document.getElementById("player-xp");
-//     const nameElement = document.getElementById("player-name");
-//     const nextLevelElement = document.getElementById("player-next-level");
-//     const levelPercentageElement = document.getElementById("player-level-percentage");
-//     const streakElement = document.getElementById("player-streak");
-//     const problemsElement = document.getElementById("player-problems");
-//     const xpProgressElement = document.querySelector(".xp-progress");
+function rewardLessonCompletion(problemCount) {
+    const player = getPlayer();
 
-//     if (levelElement) {
-//         levelElement.textContent = getLevel(player.xp);
-//     }
+    player.xp += 50;
+    player.coins += 10;
+    player.problems += problemCount;
 
-//     if (coinsElement) {
-//         coinsElement.textContent = player.coins;
-//     }
+    savePlayer(player);
 
-//     if (xpElement) {
-//         xpElement.textContent = player.xp;
-//     }
-
-//     if(nameElement){
-//         nameElement.textContent = player.name;
-//     }
-
-//     if(nextLevelElement){
-//         nextLevelElement.textContent = getNextLevelXP(player.xp);
-//     }
-
-//     if(levelPercentageElement){
-//         levelPercentageElement.textContent = getLevelPercentage(player.xp);
-//     }
-
-//     if(streakElement){
-//         streakElement.textContent = player.streak;
-//     }
-
-//     if (problemsElement) {
-//         problemsElement.textContent = player.problems;
-//     }
-
-//     if (xpProgressElement) {
-//         xpProgressElement.style.width = `${getLevelPercentage(player.xp)}%`;
-//     }
-// }
+    return player;
+}

@@ -7,6 +7,15 @@ const INTERACTIONS = {
                 callbacks
             );
         }
+    },
+    "multiple-choice": {
+        render(container, problem, callbacks) {
+            renderMultipleChoice(
+                container,
+                problem,
+                callbacks
+            );
+        }
     }
 };
 
@@ -127,4 +136,88 @@ function renderNumberInput(
 
 
     input.focus();
+}
+function renderMultipleChoice(
+    container,
+    problem,
+    callbacks
+) {
+    container.innerHTML = `
+        <section class="problem-card">
+            <p class="problem-instruction">
+                What is the answer?
+            </p>
+
+            <div class="problem">
+                <span>${problem.prompt}</span>
+            </div>
+
+            <div class="choices"></div>
+
+            <p class="answer-feedback"></p>
+
+            <div class="answer-explanation"></div>
+        </section>
+    `;
+
+    const choicesContainer =
+        container.querySelector(".choices");
+
+    const feedback =
+        container.querySelector(".answer-feedback");
+
+    const explanation =
+        container.querySelector(".answer-explanation");
+
+
+    problem.choices.forEach(choice => {
+        const button =
+            document.createElement("button");
+
+        button.type = "button";
+        button.className = "choice-button";
+        button.textContent = choice;
+
+        button.addEventListener(
+            "click",
+            () => checkAnswer(choice)
+        );
+
+        choicesContainer.appendChild(button);
+    });
+
+
+    function checkAnswer(answer) {
+        if (answer === problem.answer) {
+            feedback.textContent =
+                "Correct! 🎉";
+
+            feedback.className =
+                "answer-feedback correct";
+
+            choicesContainer
+                .querySelectorAll(".choice-button")
+                .forEach(button => {
+                    button.disabled = true;
+                });
+
+            callbacks.onCorrect(
+                problem,
+                answer
+            );
+
+        } else {
+            feedback.textContent =
+                "Not quite. Try again!";
+
+            feedback.className =
+                "answer-feedback incorrect";
+
+            callbacks.onIncorrect(
+                problem,
+                answer,
+                explanation
+            );
+        }
+    }
 }

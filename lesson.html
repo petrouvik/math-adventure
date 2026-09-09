@@ -3,121 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Adding to 20 - Math Adventure</title>
+
+    <title>Math Adventure</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
     <header class="top-bar">
-        <div class="logo">🧮 Math Adventure</div>
+
+        <div class="logo">
+            🧮 Math Adventure
+        </div>
 
         <div class="player-info">
+
             <div class="level">
-                ⭐ Level <span data-player="level"></span>
+                ⭐ Level
+                <span data-player="level"></span>
             </div>
 
             <div class="coins">
-                🪙 <span data-player="coins"></span>
+                🪙
+                <span data-player="coins"></span>
             </div>
+
         </div>
+
     </header>
 
 
     <main class="lesson-page">
 
-        <a href="course.html" class="back-link">← Addition</a>
-
-        <div class="lesson-header">
-            <div>
-                <p class="lesson-label">Lesson 3</p>
-                <h1>Adding to 20</h1>
-            </div>
-
-            <span class="lesson-count">3 / 10</span>
-        </div>
+        <a
+            href="learn.html"
+            class="back-link"
+            id="back-to-course"
+        >
+            ← Back
+        </a>
 
 
-        <!-- Lesson progress -->
-        <div class="lesson-progress-bar">
-            <div
-                class="lesson-progress-fill"
-                style="width: 30%;"
-            ></div>
-        </div>
+        <div
+            class="lesson-header"
+            id="lesson-header"
+        ></div>
 
 
-        <!-- Problem -->
-        <section class="problem-card">
+        <!-- Lesson content goes here -->
 
-            <p class="problem-instruction">
-                What is the answer?
-            </p>
-
-            <div class="problem">
-                <span>7 + 5</span>
-                <span>=</span>
-                <span class="question-mark">?</span>
-            </div>
-
-            <div class="answer-area">
-                <input
-                    type="number"
-                    class="answer-input"
-                    placeholder="?"
-                    aria-label="Your answer"
-                >
-
-                <button class="check-button">
-                    Check Answer
-                </button>
-            </div>
-
-        </section>
-
-
-        <!-- Example explanation.
-             This would normally be hidden until the
-             student submits an incorrect answer. -->
-        <section class="explanation-card">
-
-            <div class="explanation-icon">💡</div>
-
-            <div>
-                <h2>Let's solve it together!</h2>
-
-                <p>Start with <strong>7</strong>.</p>
-
-                <p>Count <strong>5</strong> more:</p>
-
-                <div class="counting">
-                    <span>8</span>
-                    <span>→</span>
-                    <span>9</span>
-                    <span>→</span>
-                    <span>10</span>
-                    <span>→</span>
-                    <span>11</span>
-                    <span>→</span>
-                    <span>12</span>
-                </div>
-
-                <p>
-                    So <strong>7 + 5 = 12</strong>.
-                </p>
-            </div>
-
-        </section>
-
-
-        <!-- Next button -->
-        <button class="next-button">
-            Next Problem →
-        </button>
+        <div id="lesson-content"></div>
 
     </main>
 
 
     <nav class="bottom-nav">
+
         <a href="index.html">
             🏠
             <span>Home</span>
@@ -137,10 +79,25 @@
             🎨
             <span>Shop</span>
         </a>
+
     </nav>
+
+
     <script src="js/player.js"></script>
+
+    <script src="js/courses.js"></script>
+
+    <script src="js/generators.js"></script>
+
+    <script src="js/interactions.js"></script>
+
+    <script src="js/explanations.js"></script>
+
+    <script src="js/lesson.js"></script>
+
     <script>
         updatePlayerDisplay();
+        renderLesson();
     </script>
 
 </body>

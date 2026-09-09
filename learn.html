@@ -29,159 +29,7 @@
             <p>Choose a topic and start learning!</p>
         </div>
 
-        <section class="courses">
-
-            <div class="course-card">
-                <div class="course-icon">🔢</div>
-
-                <div class="course-content">
-                    <h2>Numbers</h2>
-                    <p>Learn about numbers and how they work.</p>
-
-                    <div class="course-progress">
-                        <div class="progress-info">
-                            <span>Progress</span>
-                            <span>100%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 100%;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="course-button">Completed</button>
-            </div>
-
-
-            <div class="course-card">
-                <div class="course-icon">➕</div>
-
-                <div class="course-content">
-                    <h2>Addition</h2>
-                    <p>Learn how to add numbers together.</p>
-
-                    <div class="course-progress">
-                        <div class="progress-info">
-                            <span>Progress</span>
-                            <span>60%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 60%;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="course-button">Continue</button>
-            </div>
-
-
-            <div class="course-card">
-                <div class="course-icon">➖</div>
-
-                <div class="course-content">
-                    <h2>Subtraction</h2>
-                    <p>Learn how to subtract numbers.</p>
-
-                    <div class="course-progress">
-                        <div class="progress-info">
-                            <span>Progress</span>
-                            <span>35%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 35%;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="course-button">Continue</button>
-            </div>
-
-
-            <div class="course-card">
-                <div class="course-icon">✖️</div>
-
-                <div class="course-content">
-                    <h2>Multiplication</h2>
-                    <p>Learn multiplication and times tables.</p>
-
-                    <div class="course-progress">
-                        <div class="progress-info">
-                            <span>Progress</span>
-                            <span>20%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 20%;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="course-button">Continue</button>
-            </div>
-
-
-            <div class="course-card locked">
-                <div class="course-icon">➗</div>
-
-                <div class="course-content">
-                    <h2>Division</h2>
-                    <p>Learn how to divide numbers.</p>
-
-                    <div class="course-progress">
-                        <div class="progress-info">
-                            <span>Locked</span>
-                            <span>🔒</span>
-                        </div>
-                    </div>
-                </div>
-
-                <span class="unlock-text">Complete Multiplication</span>
-            </div>
-
-
-            <div class="course-card">
-                <div class="course-icon">🏛️</div>
-
-                <div class="course-content">
-                    <h2>Roman Numerals</h2>
-                    <p>Discover numbers used by the ancient Romans.</p>
-
-                    <div class="course-progress">
-                        <div class="progress-info">
-                            <span>Progress</span>
-                            <span>0%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="course-button">Start</button>
-            </div>
-
-
-            <div class="course-card">
-                <div class="course-icon">📐</div>
-
-                <div class="course-content">
-                    <h2>Geometry</h2>
-                    <p>Explore shapes, angles, and measurements.</p>
-
-                    <div class="course-progress">
-                        <div class="progress-info">
-                            <span>Progress</span>
-                            <span>0%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" style="width: 0%;"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <button class="course-button">Start</button>
-            </div>
-
-        </section>
+        <section class="courses" id="courses"></section>
 
     </main>
 
@@ -192,8 +40,12 @@
         <a href="shop.html">🎨<span>Shop</span></a>
     </nav>
     <script src="js/player.js"></script>
+    <script src="js/courses.js"></script>
+    <script src="js/learn.js"></script>
+
     <script>
         updatePlayerDisplay();
+        renderCourses();
     </script>
 
 </body>

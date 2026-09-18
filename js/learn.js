@@ -30,13 +30,15 @@ function renderCourses() {
         card.className = "course-card";
 
         card.innerHTML = `
-            <div class="course-icon">
-                ${course.icon}
+            <div class="course-header">
+                <div class="course-icon">
+                    ${course.icon}
+                </div>
+
+                <h2>${course.title}</h2>
             </div>
 
             <div class="course-content">
-                <h2>${course.title}</h2>
-
                 <p>${course.description}</p>
 
                 <div class="course-progress">

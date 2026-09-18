@@ -35,10 +35,22 @@
     padding: 1.25rem;
 
     display: flex;
-    align-items: center;
-    gap: 1.25rem;
+    flex-direction: column;
+
+    gap: 1rem;
 
     box-shadow: var(--shadow);
+}
+
+.course-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.course-header h2 {
+    margin: 0;
+    font-size: 1.2rem;
 }
 
 .course-icon {
@@ -48,6 +60,7 @@
 
     background: var(--color-secondary);
     color: var(--color-primary);
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,13 +70,7 @@
 }
 
 .course-content {
-    flex: 1;
     min-width: 0;
-}
-
-.course-content h2 {
-    margin: 0 0 0.3rem;
-    font-size: 1.2rem;
 }
 
 .course-content p {
@@ -73,7 +80,6 @@
 
     font-size: 0.9rem;
 }
-
 
 /* Course Progress */
 
@@ -187,19 +193,12 @@
 
 @media (max-width: 600px) {
     .course-card {
-        align-items: flex-start;
-        flex-wrap: wrap;
-    }
-
-    .course-content {
-        min-width: calc(100% - 76px);
+        gap: 0.9rem;
     }
 
     .course-button {
-        margin-left: 76px;
-    }
-
-    .unlock-text {
-        margin-left: 76px;
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1rem;
     }
 }

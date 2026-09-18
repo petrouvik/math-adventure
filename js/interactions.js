@@ -89,6 +89,9 @@ function renderNumberInput(
         const answer = Number(value);
         checkAnswerAchievement(answer);
 
+        // Hide the mobile keyboard after submitting.
+        input.blur();
+
         if (answer === problem.answer) {
             feedback.textContent =
                 "Correct! 🎉";
@@ -116,6 +119,13 @@ function renderNumberInput(
                 answer,
                 explanation
             );
+
+            requestAnimationFrame(() => {
+                explanation.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+            });
         }
     }
 
@@ -135,6 +145,14 @@ function renderNumberInput(
             }
         }
     );
+    input.addEventListener("focus", () => {
+        setTimeout(() => {
+            input.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }, 300);
+    });
 
 
     input.focus();

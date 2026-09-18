@@ -168,56 +168,60 @@
 }
 
 
-/* Explanation */
+/* =========================
+   EXPLANATION
+========================= */
 
 .explanation-card {
-    display: flex;
-    gap: 1rem;
+    margin-top: 1.25rem;
+    padding: 1.25rem;
 
     background: var(--color-highlight-background);
 
+    border: 2px solid var(--color-highlight);
     border-radius: 1rem;
 
-    padding: 1.25rem;
-
-    margin-top: 1rem;
+    color: var(--color-text);
 }
 
-.explanation-icon {
-    font-size: 1.8rem;
-    flex-shrink: 0;
-}
-
-.explanation-card h2 {
+.explanation-card h3 {
     margin: 0 0 1rem;
+
+    color: var(--color-text);
+
     font-size: 1.1rem;
 }
 
 .explanation-card p {
-    margin: 0 0 0.7rem;
+    margin: 0 0 0.8rem;
+
+    color: var(--color-text);
+
     line-height: 1.5;
 }
 
-.counting {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+.explanation-card p:last-child {
+    margin-bottom: 0;
+}
 
+.explanation-card strong {
+    color: var(--color-primary);
+}
+
+.counting-example {
     margin: 1rem 0;
-    padding: 0.8rem;
+    padding: 1rem;
 
     background: var(--color-surface);
 
-    border-radius: 0.7rem;
+    border-radius: 0.75rem;
 
+    color: var(--color-text);
+
+    font-size: 1.15rem;
     font-weight: bold;
+    text-align: center;
 }
-
-.counting span {
-    white-space: nowrap;
-}
-
 
 /* Next */
 

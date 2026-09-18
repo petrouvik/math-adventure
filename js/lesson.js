@@ -229,6 +229,11 @@ function handleCorrect(problem, answer) {
     lessonState.correctAnswers++;
 
     renderNextButton();
+
+    document
+        .querySelector(".next-button")
+        ?.focus();
+
 }
 
 

@@ -1,0 +1,54 @@
+/* -------------------------
+   MAIN
+------------------------- */
+
+main {
+    width: 100%;
+
+    max-width: 800px;
+
+    margin: auto;
+
+    padding:
+        2rem
+        1rem
+        6rem;
+}
+
+/* -------------------------
+   PAGE HEADER
+------------------------- */
+
+.page-header {
+    margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+    margin-bottom: 0.4rem;
+}
+
+.page-header p {
+    margin: 0;
+
+    color: #6b7280;
+}
+
+/* -------------------------
+   BACK LINK
+------------------------- */
+
+.back-link {
+    display: inline-block;
+
+    margin-bottom: 1rem;
+
+    color: #5964e8;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}

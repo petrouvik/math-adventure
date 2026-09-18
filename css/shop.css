@@ -1,0 +1,243 @@
+/* -------------------------
+   SHOP BALANCE
+------------------------- */
+
+.shop-balance {
+    display: flex;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    padding: 1rem 1.25rem;
+
+    background: white;
+
+    border-radius: 1rem;
+
+    box-shadow:
+        0 4px 14px
+        rgba(0, 0, 0, 0.04);
+}
+
+
+.balance-icon {
+    font-size: 2rem;
+}
+
+
+.balance-label {
+    display: block;
+
+    color: #6b7280;
+
+    font-size: 0.8rem;
+}
+
+
+.shop-balance strong {
+    display: block;
+
+    margin-top: 0.15rem;
+
+    font-size: 1.4rem;
+}
+
+
+/* -------------------------
+   THEME GRID
+------------------------- */
+
+.theme-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 1rem;
+}
+
+
+/* -------------------------
+   THEME CARD
+------------------------- */
+
+.theme-card {
+    overflow: hidden;
+
+    background: white;
+
+    border-radius: 1rem;
+
+    box-shadow:
+        0 4px 14px
+        rgba(0, 0, 0, 0.04);
+}
+
+
+.theme-card.selected {
+    outline:
+        3px solid #5964e8;
+}
+
+
+.theme-card.locked {
+    opacity: 0.65;
+}
+
+
+/* -------------------------
+   THEME PREVIEW
+------------------------- */
+
+.theme-preview {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    gap: 0.4rem;
+
+    height: 150px;
+
+    font-size: 2rem;
+
+    font-weight: bold;
+}
+
+
+.theme-preview span:last-child {
+    font-size: 1rem;
+}
+
+
+/* -------------------------
+   PREVIEW THEMES
+------------------------- */
+
+.default-theme {
+    background: #f4f7fb;
+}
+
+
+.rainbow-theme {
+    background:
+        linear-gradient(
+            135deg,
+            #ffd6d6,
+            #fff1b8,
+            #d7f9d0,
+            #d8edff
+        );
+}
+
+
+.ocean-theme {
+    background:
+        linear-gradient(
+            135deg,
+            #c7f0ff,
+            #9edcf5
+        );
+}
+
+
+.space-theme {
+    background:
+        linear-gradient(
+            135deg,
+            #25245c,
+            #17172e
+        );
+
+    color: white;
+}
+
+
+.sakura-theme {
+    background:
+        linear-gradient(
+            135deg,
+            #ffe1eb,
+            #f7c8d8
+        );
+}
+
+
+/* -------------------------
+   THEME INFO
+------------------------- */
+
+.theme-info {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 0.5rem;
+
+    padding: 1rem;
+}
+
+
+.theme-info h3 {
+    margin:
+        0
+        0
+        0.25rem;
+}
+
+
+.theme-info p {
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 0.8rem;
+}
+
+
+.theme-price,
+.theme-status,
+.theme-lock {
+    flex-shrink: 0;
+
+    font-size: 0.85rem;
+
+    font-weight: bold;
+}
+
+
+.theme-status {
+    color: #38a169;
+}
+
+
+.theme-price {
+    color: #5964e8;
+}
+
+
+.theme-lock {
+    color: #7b8494;
+}
+
+
+/* -------------------------
+   MOBILE
+------------------------- */
+
+@media (max-width: 600px) {
+
+    .theme-grid {
+        grid-template-columns: 1fr;
+    }
+
+
+    .theme-preview {
+        height: 130px;
+    }
+
+}

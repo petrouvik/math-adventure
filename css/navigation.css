@@ -1,0 +1,115 @@
+/* -------------------------
+   HEADER
+------------------------- */
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 1rem 1.5rem;
+
+    background: white;
+
+    border-bottom:
+        1px solid #e6eaf0;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.logo-icon {
+    font-size: 1.6rem;
+}
+
+.player-info {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.level,
+.coins {
+    padding: 0.5rem 0.75rem;
+
+    background: #f4f5f8;
+
+    border-radius: 999px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+/* -------------------------
+   BOTTOM NAVIGATION
+------------------------- */
+
+nav {
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+
+    display: flex;
+    justify-content: space-around;
+
+    padding: 0.5rem 0.25rem;
+
+    background: white;
+
+    border-top: 1px solid #e6eaf0;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 0.25rem;
+
+    border: none;
+    background: transparent;
+
+    color: #7b8494;
+
+    font-size: 0.8rem;
+
+    cursor: pointer;
+}
+
+.nav-item span {
+    font-size: 1.3rem;
+}
+
+.nav-item.active {
+    color: #5964e8;
+    font-weight: bold;
+}
+
+
+/* -------------------------
+   MOBILE
+------------------------- */
+
+@media (max-width: 500px) {
+    header {
+        padding: 0.9rem 1rem;
+    }
+
+    .logo {
+        font-size: 1rem;
+    }
+
+    .level {
+        display: none;
+    }
+}

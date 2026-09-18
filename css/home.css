@@ -1,0 +1,192 @@
+/* -------------------------
+   WELCOME
+------------------------- */
+
+.welcome {
+    margin-bottom: 1.5rem;
+}
+
+.welcome h1 {
+    margin-bottom: 0.4rem;
+
+    font-size: 2rem;
+}
+
+.welcome p {
+    margin: 0;
+
+    color: #6b7280;
+}
+
+
+/* -------------------------
+   XP CARD
+------------------------- */
+
+.xp-card {
+    padding: 1.5rem;
+
+    background: white;
+
+    border-radius: 1.25rem;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0, 0, 0, 0.05);
+}
+
+
+.xp-header {
+    display: flex;
+
+    justify-content: space-between;
+    align-items: center;
+
+    margin-bottom: 1rem;
+}
+
+
+.small-label {
+    font-size: 0.8rem;
+
+    color: #7b8494;
+}
+
+
+.xp-header h2 {
+    margin:
+        0.25rem
+        0
+        0;
+}
+
+
+.xp-text {
+    font-weight: bold;
+
+    color: #6b7280;
+}
+
+
+.xp-bar {
+    height: 0.9rem;
+
+    overflow: hidden;
+
+    background: #e8ebf0;
+
+    border-radius: 999px;
+}
+
+
+.xp-progress {
+    width: 80%;
+    height: 100%;
+
+    background: #f6c445;
+
+    border-radius: inherit;
+}
+
+
+/* -------------------------
+   CONTINUE BUTTON
+------------------------- */
+
+.continue-button {
+    width: 100%;
+
+    margin-top: 1rem;
+
+    padding: 1.1rem;
+
+    border: none;
+
+    border-radius: 1rem;
+
+    background: #5964e8;
+
+    color: white;
+
+    font-size: 1.1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 12px
+        rgba(89, 100, 232, 0.25);
+
+    transition:
+        transform 0.15s,
+        background 0.15s;
+}
+
+
+.continue-button:hover {
+    background: #4853d6;
+
+    transform:
+        translateY(-2px);
+}
+
+
+.button-icon {
+    margin-right: 0.4rem;
+}
+
+
+/* -------------------------
+   SECTIONS
+------------------------- */
+
+.section {
+    margin-top: 2.5rem;
+}
+
+.section h2 {
+    margin-bottom: 1rem;
+}
+
+
+
+
+
+
+/* -------------------------
+   MOBILE
+------------------------- */
+
+@media (max-width: 500px) {
+
+    .welcome h1 {
+        font-size: 1.6rem;
+    }
+
+
+    .xp-header {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 0.75rem;
+    }
+
+
+    .stats {
+        gap: 0.5rem;
+    }
+
+
+    .stat-card {
+        padding:
+            1rem
+            0.25rem;
+    }
+
+
+    .stat-card strong {
+        font-size: 1.1rem;
+    }
+
+}

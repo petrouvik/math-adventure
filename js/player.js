@@ -13,7 +13,16 @@ const DEFAULT_PLAYER = {
     completedLessons: [],
     
     dailyProgress: {},
-    completedLessons: []
+    completedLessons: [],
+
+    achievements: [],
+    achievementData:{
+        dailyLessons: {},
+        dailyCourses: {},
+        consecutivePerfectLessons: 0,
+        recentLessons: []
+    }
+
 };
 
 
@@ -60,7 +69,7 @@ function getLevelPercentage(xp) {
 function updatePlayerDisplay() {
     const player = getPlayer();
     const todayProgress = getTodayProgress();
-    
+
     const values = {
         level: getLevel(player.xp),
         coins: player.coins,
@@ -165,6 +174,36 @@ function isLessonUnlocked(courseId, lessonId) {
     return isLessonCompleted(
         courseId,
         previousLesson.id
+    );
+}
+function isCourseCompleted(course) {
+    return course.lessons.every(lesson =>
+        isLessonCompleted(course.id, lesson.id)
+    );
+    
+}
+function getCourseProgress(course) {
+    if (!course || course.lessons.length === 0) {
+        return 0;
+    }
+
+    const completedLessons =
+        course.lessons.filter(lesson =>
+            isLessonCompleted(course.id, lesson.id)
+        ).length;
+
+    return Math.floor(
+        (completedLessons / course.lessons.length) * 100
+    );
+}
+
+function isCourseCompleted(course) {
+    if (!course || course.lessons.length === 0) {
+        return false;
+    }
+
+    return course.lessons.every(lesson =>
+        isLessonCompleted(course.id, lesson.id)
     );
 }
 function getTodayDate() {

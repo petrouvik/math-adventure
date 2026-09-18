@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
@@ -26,10 +27,8 @@
             <span>Math Adventure</span>
         </div>
 
-
         <div class="player-info">
 
-            <div class="player-info">
             <div class="level">
                 ⭐ Level <span data-player="level"></span>
             </div>
@@ -37,7 +36,6 @@
             <div class="coins">
                 🪙 <span data-player="coins"></span>
             </div>
-        </div>
 
         </div>
 
@@ -77,10 +75,11 @@
 
                 </div>
 
-
                 <div class="total-xp">
 
-                    <strong><span data-player="xp"></span></strong>
+                    <strong>
+                        <span data-player="xp"></span>
+                    </strong>
 
                     <span>Total XP</span>
 
@@ -91,14 +90,20 @@
 
             <div class="xp-bar">
 
-                <div class="xp-progress" data-player="xp-progress"></div>
+                <div
+                    class="xp-progress"
+                    data-player="xp-progress"
+                ></div>
 
             </div>
 
 
             <p class="next-level">
 
-                🚀 Only <span data-player="xpUntilNext"></span> XP until Level <span data-player="nextLevel"></span>!
+                🚀 Only
+                <span data-player="xpUntilNext"></span>
+                XP until Level
+                <span data-player="nextLevel"></span>!
 
             </p>
 
@@ -111,167 +116,10 @@
 
             <h2>📚 Learning Progress</h2>
 
-
-            <div class="course-list">
-
-
-                <!-- ADDITION -->
-
-                <div class="course-card">
-
-                    <div class="course-header">
-
-                        <div>
-
-                            <span class="course-icon">
-                                🔢
-                            </span>
-
-                            <span class="course-name">
-                                Addition
-                            </span>
-
-                        </div>
-
-
-                        <span class="course-status completed">
-
-                            ✓ Complete
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="course-bar">
-
-                        <div
-                            class="course-progress complete"
-                        ></div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- SUBTRACTION -->
-
-                <div class="course-card">
-
-                    <div class="course-header">
-
-                        <div>
-
-                            <span class="course-icon">
-                                ➖
-                            </span>
-
-                            <span class="course-name">
-                                Subtraction
-                            </span>
-
-                        </div>
-
-
-                        <span class="course-status">
-
-                            60%
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="course-bar">
-
-                        <div
-                            class="course-progress subtraction-progress"
-                        ></div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- MULTIPLICATION -->
-
-                <div class="course-card">
-
-                    <div class="course-header">
-
-                        <div>
-
-                            <span class="course-icon">
-                                ✖️
-                            </span>
-
-                            <span class="course-name">
-                                Multiplication
-                            </span>
-
-                        </div>
-
-
-                        <span class="course-status">
-
-                            20%
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="course-bar">
-
-                        <div
-                            class="course-progress multiplication-progress"
-                        ></div>
-
-                    </div>
-
-                </div>
-
-
-                <!-- DIVISION -->
-
-                <div class="course-card">
-
-                    <div class="course-header">
-
-                        <div>
-
-                            <span class="course-icon">
-                                ➗
-                            </span>
-
-                            <span class="course-name">
-                                Division
-                            </span>
-
-                        </div>
-
-
-                        <span class="course-status">
-
-                            Not started
-
-                        </span>
-
-                    </div>
-
-
-                    <div class="course-bar">
-
-                        <div
-                            class="course-progress"
-                        ></div>
-
-                    </div>
-
-                </div>
-
-
-            </div>
+            <div
+                class="course-list"
+                id="course-progress"
+            ></div>
 
         </section>
 
@@ -282,74 +130,17 @@
 
             <h2>🏅 Achievements</h2>
 
+            <div
+                class="achievements"
+                id="achievement-progress"
+            ></div>
 
-            <div class="achievements">
-
-
-                <div class="achievement-card unlocked">
-
-                    <span class="achievement-icon">
-                        🏅
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            First Steps
-                        </h3>
-
-                        <p>
-                            Solve your first 10 problems.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="achievement-card unlocked">
-
-                    <span class="achievement-icon">
-                        ⭐
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            Math Explorer
-                        </h3>
-
-                        <p>
-                            Complete your first course.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-                <div class="achievement-card locked">
-
-                    <span class="achievement-icon">
-                        🔒
-                    </span>
-
-                    <div>
-
-                        <h3>
-                            Number Wizard
-                        </h3>
-
-                        <p>
-                            Solve 100 problems.
-                        </p>
-
-                    </div>
-
-                </div>
-
-
-            </div>
+            <button
+                class="show-more-button"
+                id="achievement-show-more"
+            >
+                Show more
+            </button>
 
         </section>
 
@@ -359,7 +150,6 @@
         <section class="section">
 
             <h2>📊 Your Stats</h2>
-
 
             <div class="stats">
 
@@ -373,7 +163,9 @@
                         <span data-player="xp"></span>
                     </strong>
 
-                    <span class="stat-label">XP Earned</span>
+                    <span class="stat-label">
+                        XP Earned
+                    </span>
 
                 </div>
 
@@ -388,9 +180,12 @@
                         <span data-player="problems"></span>
                     </strong>
 
-                    <span class="stat-label">Problems</span>
+                    <span class="stat-label">
+                        Problems
+                    </span>
 
                 </div>
+
 
                 <div class="stat-card">
 
@@ -402,7 +197,9 @@
                         <span data-player="streak"></span>
                     </strong>
 
-                    <span class="stat-label">Day Streak</span>
+                    <span class="stat-label">
+                        Day Streak
+                    </span>
 
                 </div>
 
@@ -436,10 +233,14 @@
         </a>
 
     </nav>
+
+
     <script src="js/player.js"></script>
-    <script>
-        updatePlayerDisplay();
-    </script>
+    <script src="js/courses.js"></script>
+    <script src="js/course.js"></script>
+    <script src="js/achievements.js"></script>
+    <script src="js/progress.js"></script>
 
 </body>
+
 </html>

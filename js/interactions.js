@@ -87,6 +87,7 @@ function renderNumberInput(
         }
 
         const answer = Number(value);
+        checkAnswerAchievement(answer);
 
         if (answer === problem.answer) {
             feedback.textContent =

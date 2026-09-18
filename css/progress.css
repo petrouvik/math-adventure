@@ -245,6 +245,35 @@
 .achievement-card.locked {
     opacity: 0.55;
 }
+.show-more-button {
+    display: block;
+    margin: 20px auto 0;
+
+    padding: 10px 24px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #f0f0f0;
+    color: #444;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        transform 0.1s ease;
+}
+
+.show-more-button:hover {
+    background: #e4e4e4;
+}
+
+.show-more-button:active {
+    transform: scale(0.97);
+}
 
 
 /* -------------------------

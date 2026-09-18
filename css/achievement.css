@@ -1,0 +1,39 @@
+.achievement-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 14px 18px;
+
+    background: white;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    transform: translateX(120%);
+    transition: transform 0.3s ease;
+
+    z-index: 1000;
+}
+
+.achievement-notification.show {
+    transform: translateX(0);
+}
+
+.achievement-notification-icon {
+    font-size: 32px;
+}
+
+.achievement-notification-label {
+    font-size: 12px;
+    color: #777;
+}
+
+.achievement-notification-title {
+    font-weight: bold;
+    font-size: 16px;
+}

@@ -311,6 +311,14 @@ function finishLesson() {
     completeLesson(courseId, lessonId);
 
     updateStreak();
+
+    const unlockedAchievements =
+    checkAllAchievements(
+        courseId,
+        lessonId,
+        lessonState.incorrectAnswers > 0
+    );
+    showAchievementNotifications(unlockedAchievements);
     
     const progressContainer =
         document.getElementById("lesson-progress");

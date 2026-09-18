@@ -17,7 +17,7 @@
 
 .page-header p {
     margin: 0;
-    color: #6b7280;
+    color: var(--color-muted-text);
 }
 
 
@@ -30,7 +30,7 @@
 }
 
 .course-card {
-    background: white;
+    background: var(--color-surface);
     border-radius: 1rem;
     padding: 1.25rem;
 
@@ -38,14 +38,15 @@
     align-items: center;
     gap: 1.25rem;
 
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow);
 }
 
 .course-icon {
     width: 60px;
     height: 60px;
     border-radius: 1rem;
-    background: #f0f2ff;
+
+    background: var(--color-secondary);
 
     display: flex;
     align-items: center;
@@ -67,7 +68,9 @@
 
 .course-content p {
     margin: 0 0 0.8rem;
-    color: #6b7280;
+
+    color: var(--color-muted-text);
+
     font-size: 0.9rem;
 }
 
@@ -93,7 +96,7 @@
     border: none;
 
     font-size: 0.8rem;
-    color: #6b7280;
+    color: var(--color-muted-text);
 }
 
 .course-progress-info span {
@@ -109,7 +112,7 @@
 
 .course-progress-info span:last-child {
     font-weight: 600;
-    color: #374151;
+    color: var(--color-secondary-text);
 }
 
 .course-progress-bar {
@@ -120,7 +123,8 @@
     margin: 0;
     padding: 0;
 
-    background: #e8ebf2;
+    background: var(--color-progress-background);
+
     border-radius: 999px;
     overflow: hidden;
 }
@@ -133,7 +137,8 @@
     margin: 0;
     padding: 0;
 
-    background: #5964e8;
+    background: var(--color-primary);
+
     border-radius: 999px;
 }
 
@@ -142,8 +147,9 @@
 
 .course-button {
     border: none;
-    background: #5964e8;
-    color: white;
+
+    background: var(--color-primary);
+    color: var(--color-primary-text);
 
     padding: 0.65rem 1rem;
     border-radius: 0.7rem;
@@ -156,7 +162,7 @@
 }
 
 .course-button:hover {
-    background: #4853d6;
+    filter: brightness(0.9);
 }
 
 
@@ -167,11 +173,11 @@
 }
 
 .course-card.locked .course-icon {
-    background: #eeeeee;
+    background: var(--color-secondary);
 }
 
 .unlock-text {
-    color: #6b7280;
+    color: var(--color-muted-text);
     font-size: 0.8rem;
     white-space: nowrap;
 }

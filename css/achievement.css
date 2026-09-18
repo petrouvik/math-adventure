@@ -13,12 +13,12 @@
     border-radius: 12px;
 
     background:
-        linear-gradient(white, white) padding-box,
+        linear-gradient(var(--color-surface), var(--color-surface)) padding-box,
         linear-gradient(
             90deg,
-            #e0e0e0,
-            #5964e8,
-            #e0e0e0
+            var(--color-border),
+            var(--color-primary),
+            var(--color-border)
         ) border-box;
 
     background-size:
@@ -27,8 +27,7 @@
 
     animation: achievement-border-flow 2s linear infinite;
 
-    box-shadow:
-        0 4px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: var(--shadow);
 
     transform: translateX(120%);
     transition: transform 0.3s ease;
@@ -53,13 +52,15 @@
             300% 0%;
     }
 }
+
 .achievement-notification-label {
     font-size: 11px;
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 1.2px;
 
-    color: #5964e8;
+    color: var(--color-primary);
+
     margin-bottom: 2px;
 }
 
@@ -68,11 +69,12 @@
     font-weight: 800;
     line-height: 1.2;
 
-    color: #222;
+    color: var(--color-text);
 
     text-shadow:
         0 1px 0 rgba(255, 255, 255, 0.8);
 }
+
 .achievement-notification-icon {
     display: flex;
     align-items: center;

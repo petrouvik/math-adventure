@@ -11,13 +11,11 @@
 
     padding: 1rem 1.25rem;
 
-    background: white;
+    background: var(--color-surface);
 
     border-radius: 1rem;
 
-    box-shadow:
-        0 4px 14px
-        rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow);
 }
 
 
@@ -29,7 +27,7 @@
 .balance-label {
     display: block;
 
-    color: #6b7280;
+    color: var(--color-muted-text);
 
     font-size: 0.8rem;
 }
@@ -65,19 +63,17 @@
 .theme-card {
     overflow: hidden;
 
-    background: white;
+    background: var(--color-surface);
 
     border-radius: 1rem;
 
-    box-shadow:
-        0 4px 14px
-        rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow);
 }
 
 
 .theme-card.selected {
     outline:
-        3px solid #5964e8;
+        3px solid var(--color-primary);
 }
 
 
@@ -193,7 +189,7 @@
 .theme-info p {
     margin: 0;
 
-    color: #6b7280;
+    color: var(--color-muted-text);
 
     font-size: 0.8rem;
 }
@@ -211,17 +207,17 @@
 
 
 .theme-status {
-    color: #38a169;
+    color: var(--color-success);
 }
 
 
 .theme-price {
-    color: #5964e8;
+    color: var(--color-primary);
 }
 
 
 .theme-lock {
-    color: #7b8494;
+    color: var(--color-muted-text);
 }
 
 

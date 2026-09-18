@@ -5,13 +5,11 @@
 .level-card {
     padding: 1.5rem;
 
-    background: white;
+    background: var(--color-surface);
 
     border-radius: 1.25rem;
 
-    box-shadow:
-        0 6px 20px
-        rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
 }
 
 
@@ -50,7 +48,7 @@
 .total-xp > span {
     font-size: 0.8rem;
 
-    color: #6b7280;
+    color: var(--color-muted-text);
 }
 
 
@@ -62,7 +60,7 @@
 
     text-align: center;
 
-    color: #5964e8;
+    color: var(--color-primary);
 
     font-weight: bold;
 }
@@ -84,13 +82,11 @@
 .course-card {
     padding: 1rem;
 
-    background: white;
+    background: var(--color-surface);
 
     border-radius: 1rem;
 
-    box-shadow:
-        0 4px 14px
-        rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow);
 }
 
 
@@ -126,12 +122,12 @@
 .course-status {
     font-size: 0.85rem;
 
-    color: #6b7280;
+    color: var(--color-muted-text);
 }
 
 
 .course-status.completed {
-    color: #38a169;
+    color: var(--color-success);
 
     font-weight: bold;
 }
@@ -143,7 +139,7 @@
 
     overflow: hidden;
 
-    background: #e8ebf0;
+    background: var(--color-progress-background);
 
     border-radius: 999px;
 }
@@ -153,7 +149,7 @@
     width: 0%;
     height: 100%;
 
-    background: #5964e8;
+    background: var(--color-primary);
 
     border-radius: inherit;
 }
@@ -196,13 +192,11 @@
 
     padding: 1rem;
 
-    background: white;
+    background: var(--color-surface);
 
     border-radius: 1rem;
 
-    box-shadow:
-        0 4px 14px
-        rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow);
 }
 
 
@@ -217,7 +211,7 @@
 
     flex-shrink: 0;
 
-    background: #f4f5f8;
+    background: var(--color-secondary);
 
     border-radius: 0.75rem;
 
@@ -236,7 +230,7 @@
 .achievement-card p {
     margin: 0;
 
-    color: #6b7280;
+    color: var(--color-muted-text);
 
     font-size: 0.9rem;
 }
@@ -245,6 +239,8 @@
 .achievement-card.locked {
     opacity: 0.55;
 }
+
+
 .show-more-button {
     display: block;
     margin: 20px auto 0;
@@ -254,8 +250,8 @@
     border: none;
     border-radius: 10px;
 
-    background: #f0f0f0;
-    color: #444;
+    background: var(--color-secondary);
+    color: var(--color-secondary-text);
 
     font-size: 15px;
     font-weight: 600;
@@ -268,7 +264,7 @@
 }
 
 .show-more-button:hover {
-    background: #e4e4e4;
+    filter: brightness(0.95);
 }
 
 .show-more-button:active {

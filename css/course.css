@@ -10,7 +10,7 @@
 /* Course header */
 
 .course-header-card {
-    background: white;
+    background: var(--color-surface);
     border-radius: 1.25rem;
     padding: 1.5rem;
 
@@ -18,7 +18,7 @@
     align-items: center;
     gap: 1.25rem;
 
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
 
     margin-bottom: 2rem;
 }
@@ -27,7 +27,7 @@
     width: 80px;
     height: 80px;
 
-    background: #f0f2ff;
+    background: var(--color-secondary);
     border-radius: 1.25rem;
 
     display: flex;
@@ -45,7 +45,7 @@
 
 .course-header-card p {
     margin: 0;
-    color: #6b7280;
+    color: var(--color-muted-text);
     line-height: 1.5;
 }
 
@@ -64,7 +64,7 @@
 }
 
 .lesson-card {
-    background: white;
+    background: var(--color-surface);
     border-radius: 1rem;
     padding: 1rem;
 
@@ -72,7 +72,7 @@
     align-items: center;
     gap: 1rem;
 
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+    box-shadow: var(--shadow);
 }
 
 
@@ -83,7 +83,7 @@
     height: 48px;
 
     border-radius: 50%;
-    background: #eef0f5;
+    background: var(--color-secondary);
 
     display: flex;
     align-items: center;
@@ -109,7 +109,7 @@
 
 .lesson-info p {
     margin: 0;
-    color: #6b7280;
+    color: var(--color-muted-text);
     font-size: 0.85rem;
 }
 
@@ -120,7 +120,7 @@
     height: 7px;
     max-width: 300px;
 
-    background: #e8ebf2;
+    background: var(--color-progress-background);
     border-radius: 999px;
 
     overflow: hidden;
@@ -130,7 +130,7 @@
 
 .lesson-progress-fill {
     height: 100%;
-    background: #5964e8;
+    background: var(--color-primary);
     border-radius: 999px;
 }
 
@@ -139,7 +139,7 @@
     margin-top: 0.3rem;
 
     font-size: 0.75rem;
-    color: #6b7280;
+    color: var(--color-muted-text);
 }
 
 
@@ -147,8 +147,8 @@
 
 .lesson-button {
     border: none;
-    background: #5964e8;
-    color: white;
+    background: var(--color-primary);
+    color: var(--color-primary-text);
 
     padding: 0.6rem 1rem;
     border-radius: 0.7rem;
@@ -161,31 +161,31 @@
 }
 
 .lesson-button:hover {
-    background: #4853d6;
+    filter: brightness(0.9);
 }
 
 .completed-button {
-    background: #e8f5ee;
-    color: #2f855a;
+    background: var(--color-secondary);
+    color: var(--color-success);
 }
 
 .completed-button:hover {
-    background: #d9eee2;
+    filter: brightness(0.95);
 }
 
 
 /* Current lesson */
 
 .lesson-card.current {
-    border: 2px solid #5964e8;
+    border: 2px solid var(--color-primary);
 }
 
 
 /* Completed lesson */
 
 .lesson-card.completed .lesson-number {
-    background: #e8f5ee;
-    color: #2f855a;
+    background: var(--color-secondary);
+    color: var(--color-success);
 }
 
 
@@ -196,11 +196,11 @@
 }
 
 .lesson-card.locked .lesson-number {
-    background: #eeeeee;
+    background: var(--color-secondary);
 }
 
 .lesson-lock {
-    color: #6b7280;
+    color: var(--color-muted-text);
     font-size: 0.75rem;
 }
 

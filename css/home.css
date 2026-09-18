@@ -15,7 +15,7 @@
 .welcome p {
     margin: 0;
 
-    color: #6b7280;
+    color: var(--color-muted-text);
 }
 
 
@@ -26,13 +26,11 @@
 .xp-card {
     padding: 1.5rem;
 
-    background: white;
+    background: var(--color-surface);
 
     border-radius: 1.25rem;
 
-    box-shadow:
-        0 6px 20px
-        rgba(0, 0, 0, 0.05);
+    box-shadow: var(--shadow);
 }
 
 
@@ -49,7 +47,7 @@
 .small-label {
     font-size: 0.8rem;
 
-    color: #7b8494;
+    color: var(--color-muted-text);
 }
 
 
@@ -64,7 +62,7 @@
 .xp-text {
     font-weight: bold;
 
-    color: #6b7280;
+    color: var(--color-muted-text);
 }
 
 
@@ -73,7 +71,7 @@
 
     overflow: hidden;
 
-    background: #e8ebf0;
+    background: var(--color-progress-background);
 
     border-radius: 999px;
 }
@@ -83,7 +81,7 @@
     width: 80%;
     height: 100%;
 
-    background: #f6c445;
+    background: var(--color-highlight);
 
     border-radius: inherit;
 }
@@ -104,9 +102,9 @@
 
     border-radius: 1rem;
 
-    background: #5964e8;
+    background: var(--color-primary);
 
-    color: white;
+    color: var(--color-primary-text);
 
     font-size: 1.1rem;
     font-weight: bold;
@@ -115,7 +113,7 @@
 
     box-shadow:
         0 5px 12px
-        rgba(89, 100, 232, 0.25);
+        color-mix(in srgb, var(--color-primary) 25%, transparent);
 
     transition:
         transform 0.15s,
@@ -124,7 +122,7 @@
 
 
 .continue-button:hover {
-    background: #4853d6;
+    filter: brightness(0.9);
 
     transform:
         translateY(-2px);
@@ -147,10 +145,6 @@
 .section h2 {
     margin-bottom: 1rem;
 }
-
-
-
-
 
 
 /* -------------------------

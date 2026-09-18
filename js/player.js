@@ -2,10 +2,17 @@ const PLAYER_STORAGE_KEY = "mathAdventurePlayer";
 
 const DEFAULT_PLAYER = {
     name: "Player",
+    
     xp: 0,
     coins: 0,
     problems: 0,
+    
     streak: 0,
+    lastActivityDate: null,
+    
+    completedLessons: [],
+    
+    dailyProgress: {},
     completedLessons: []
 };
 
@@ -52,7 +59,8 @@ function getLevelPercentage(xp) {
 
 function updatePlayerDisplay() {
     const player = getPlayer();
-
+    const todayProgress = getTodayProgress();
+    
     const values = {
         level: getLevel(player.xp),
         coins: player.coins,
@@ -63,8 +71,9 @@ function updatePlayerDisplay() {
         streak: player.streak,
         problems: player.problems,
         nextLevel: getLevel(player.xp) + 1,
-        xpUntilNext: getNextLevelXP(player.xp) - player.xp
-
+        xpUntilNext: getNextLevelXP(player.xp) - player.xp,
+        todayXP: todayProgress.xp,
+        todayProblems: todayProgress.problems,
     };
 
     for (const [key, value] of Object.entries(values)) {
@@ -82,10 +91,21 @@ function updatePlayerDisplay() {
 
 function rewardLessonCompletion(problemCount) {
     const player = getPlayer();
+    const today = getTodayDate();
+
+    if (!player.dailyProgress[today]) {
+        player.dailyProgress[today] = {
+            xp: 0,
+            problems: 0
+        };
+    }
 
     player.xp += 50;
     player.coins += 10;
     player.problems += problemCount;
+
+    player.dailyProgress[today].xp += 50;
+    player.dailyProgress[today].problems += problemCount;
 
     savePlayer(player);
 
@@ -146,4 +166,70 @@ function isLessonUnlocked(courseId, lessonId) {
         courseId,
         previousLesson.id
     );
+}
+function getTodayDate() {
+    const date = new Date();
+
+    return [
+        date.getFullYear(),
+        String(date.getMonth() + 1).padStart(2, "0"),
+        String(date.getDate()).padStart(2, "0")
+    ].join("-");
+}
+function getDaysBetween(date1, date2) {
+    const first = new Date(`${date1}T00:00:00`);
+    const second = new Date(`${date2}T00:00:00`);
+
+    const difference =
+        Math.abs(second - first);
+
+    return Math.round(
+        difference / (1000 * 60 * 60 * 24)
+    );
+}
+function updateStreak() {
+    const player = getPlayer();
+
+    const today = getTodayDate();
+
+    if (!player.lastActivityDate) {
+        player.streak = 1;
+        player.lastActivityDate = today;
+
+        savePlayer(player);
+
+        return player.streak;
+    }
+
+    if (player.lastActivityDate === today) {
+        return player.streak;
+    }
+
+    const daysSinceActivity =
+        getDaysBetween(
+            player.lastActivityDate,
+            today
+        );
+
+    if (daysSinceActivity === 1) {
+        player.streak++;
+    } else {
+        player.streak = 1;
+    }
+
+    player.lastActivityDate = today;
+
+    savePlayer(player);
+
+    return player.streak;
+}
+
+function getTodayProgress() {
+    const player = getPlayer();
+    const today = getTodayDate();
+
+    return player.dailyProgress[today] || {
+        xp: 0,
+        problems: 0
+    };
 }

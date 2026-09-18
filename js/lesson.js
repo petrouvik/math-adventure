@@ -310,6 +310,8 @@ function finishLesson() {
 
     completeLesson(courseId, lessonId);
 
+    updateStreak();
+    
     const progressContainer =
         document.getElementById("lesson-progress");
 

@@ -332,8 +332,8 @@ function finishLesson() {
         document.getElementById("lesson-progress");
 
     if (progressContainer) {
-        progressContainer.querySelector(".progress-fill").style.width =
-            "100%";
+        progressContainer.querySelector(".lesson-progress-fill").style.width =
+    "100%";
 
         progressContainer.querySelector(".progress-info span:last-child")
             .textContent = "100%";
@@ -410,9 +410,9 @@ function renderPracticeProgress() {
             <span>${progress}%</span>
         </div>
 
-        <div class="progress-bar">
+        <div class="lesson-progress-bar">
             <div
-                class="progress-fill"
+                class="lesson-progress-fill"
                 style="width: ${progress}%"
             ></div>
         </div>

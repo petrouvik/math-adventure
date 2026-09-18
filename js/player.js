@@ -2,10 +2,10 @@ const PLAYER_STORAGE_KEY = "mathAdventurePlayer";
 
 const DEFAULT_PLAYER = {
     name: "Player",
-    xp: 950,
-    coins: 444,
-    problems: 777,
-    streak: 333,
+    xp: 0,
+    coins: 0,
+    problems: 0,
+    streak: 0,
     completedLessons: []
 };
 

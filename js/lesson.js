@@ -319,6 +319,9 @@ function finishLesson() {
         lessonState.incorrectAnswers > 0
     );
     showAchievementNotifications(unlockedAchievements);
+
+    const unlockedThemes = unlockAvailableThemes()
+    
     
     const progressContainer =
         document.getElementById("lesson-progress");

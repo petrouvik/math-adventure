@@ -1,48 +1,4 @@
 /* -------------------------
-   SHOP BALANCE
-------------------------- */
-
-.shop-balance {
-    display: flex;
-
-    align-items: center;
-
-    gap: 1rem;
-
-    padding: 1rem 1.25rem;
-
-    background: var(--color-surface);
-
-    border-radius: 1rem;
-
-    box-shadow: var(--shadow);
-}
-
-
-.balance-icon {
-    font-size: 2rem;
-}
-
-
-.balance-label {
-    display: block;
-
-    color: var(--color-muted-text);
-
-    font-size: 0.8rem;
-}
-
-
-.shop-balance strong {
-    display: block;
-
-    margin-top: 0.15rem;
-
-    font-size: 1.4rem;
-}
-
-
-/* -------------------------
    THEME GRID
 ------------------------- */
 
@@ -50,9 +6,9 @@
     display: grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(auto-fit, minmax(280px, 1fr));
 
-    gap: 1rem;
+    gap: 20px;
 }
 
 
@@ -65,100 +21,151 @@
 
     background: var(--color-surface);
 
-    border-radius: 1rem;
+    border: 2px solid var(--color-border);
+    border-radius: 14px;
 
     box-shadow: var(--shadow);
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
+.theme-card:hover {
+    transform: translateY(-3px);
+
+    box-shadow:
+        0 7px 20px
+        rgba(0, 0, 0, 0.12);
+}
 
 .theme-card.selected {
-    outline:
-        3px solid var(--color-primary);
+    border-color: var(--color-primary);
 }
-
 
 .theme-card.locked {
-    opacity: 0.65;
+    cursor: default;
 }
 
+.theme-card.locked:hover {
+    transform: none;
+}
 
-/* -------------------------
-   THEME PREVIEW
-------------------------- */
 
 .theme-preview {
-    display: flex;
+    position: relative;
 
+    min-height: 190px;
+
+    padding: 18px;
+
+    display: flex;
     flex-direction: column;
 
-    justify-content: center;
+    gap: 12px;
+
+    background: var(--preview-background);
+    color: var(--preview-text);
+}
+
+.theme-preview-label {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+
+    padding: 4px 7px;
+
+    border-radius: 5px;
+
+    background: var(--preview-primary);
+    color: var(--preview-primary-text);
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 0.8px;
+}
+
+.theme-preview-header {
+    display: flex;
     align-items: center;
 
-    gap: 0.4rem;
+    gap: 8px;
 
-    height: 150px;
+    padding-right: 60px;
 
-    font-size: 2rem;
-
-    font-weight: bold;
+    font-size: 16px;
 }
 
+.theme-preview-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-.theme-preview span:last-child {
-    font-size: 1rem;
+    width: 30px;
+    height: 30px;
+
+    font-size: 22px;
 }
 
+.theme-preview-card {
+    padding: 14px;
 
-/* -------------------------
-   PREVIEW THEMES
-------------------------- */
+    background: var(--preview-surface);
 
-.default-theme {
-    background: #f4f7fb;
-}
-
-
-.rainbow-theme {
-    background:
-        linear-gradient(
-            135deg,
-            #ffd6d6,
-            #fff1b8,
-            #d7f9d0,
-            #d8edff
-        );
-}
-
-
-.ocean-theme {
-    background:
-        linear-gradient(
-            135deg,
-            #c7f0ff,
-            #9edcf5
-        );
-}
-
-
-.space-theme {
-    background:
-        linear-gradient(
-            135deg,
-            #25245c,
-            #17172e
+    border: 1px solid
+        color-mix(
+            in srgb,
+            var(--preview-text) 15%,
+            transparent
         );
 
-    color: white;
+    border-radius: 8px;
+
+    box-shadow:
+        0 3px 8px
+        rgba(0, 0, 0, 0.08);
+
+    font-size: 13px;
 }
 
+.theme-preview-bar {
+    height: 7px;
 
-.sakura-theme {
-    background:
-        linear-gradient(
-            135deg,
-            #ffe1eb,
-            #f7c8d8
-        );
+    margin-top: 10px;
+
+    overflow: hidden;
+
+    background: var(--preview-progress-background);
+
+    border-radius: 999px;
+}
+
+.theme-preview-bar div {
+    width: 65%;
+    height: 100%;
+
+    background: var(--preview-primary);
+
+    border-radius: 999px;
+}
+
+.theme-preview-stat {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin-top: 10px;
+
+    color: var(--preview-text);
+
+    font-size: 11px;
+}
+
+.theme-preview-stat strong {
+    color: var(--preview-primary);
 }
 
 
@@ -167,73 +174,130 @@
 ------------------------- */
 
 .theme-info {
+    min-height: 86px;
+
+    padding: 15px 17px;
+
     display: flex;
-
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
 
-    gap: 0.5rem;
+    gap: 15px;
 
-    padding: 1rem;
+    background: var(--color-surface);
 }
-
 
 .theme-info h3 {
-    margin:
-        0
-        0
-        0.25rem;
-}
+    margin: 0 0 4px;
 
+    font-size: 17px;
+}
 
 .theme-info p {
     margin: 0;
 
     color: var(--color-muted-text);
 
-    font-size: 0.8rem;
-}
-
-
-.theme-price,
-.theme-status,
-.theme-lock {
-    flex-shrink: 0;
-
-    font-size: 0.85rem;
-
-    font-weight: bold;
-}
-
-
-.theme-status {
-    color: var(--color-success);
-}
-
-
-.theme-price {
-    color: var(--color-primary);
-}
-
-
-.theme-lock {
-    color: var(--color-muted-text);
+    font-size: 13px;
+    line-height: 1.4;
 }
 
 
 /* -------------------------
-   MOBILE
+   THEME STATUS
 ------------------------- */
 
-@media (max-width: 600px) {
+.theme-status {
+    flex-shrink: 0;
 
-    .theme-grid {
-        grid-template-columns: 1fr;
-    }
+    font-size: 13px;
+    font-weight: 700;
 
+    color: var(--color-primary);
 
-    .theme-preview {
-        height: 130px;
-    }
+    white-space: nowrap;
+}
 
+.theme-card.locked .theme-status {
+    color: var(--color-muted-text);
+}
+
+.theme-card.selected .theme-status {
+    color: var(--color-success);
+}
+/* -------------------------
+   SHOP BALANCE
+------------------------- */
+
+.shop-balance {
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    margin-bottom: 25px;
+    padding: 16px 20px;
+
+    background: var(--color-surface);
+
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+
+    box-shadow: var(--shadow);
+}
+
+.balance-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 10px;
+
+    background: var(--color-highlight-background);
+
+    font-size: 27px;
+}
+
+.shop-balance > div {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2px;
+}
+
+.balance-label {
+    color: var(--color-muted-text);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.shop-balance strong {
+    color: var(--color-text);
+
+    font-size: 22px;
+}
+
+.theme-card.purchasable {
+    cursor: pointer;
+}
+
+.theme-card.purchasable:hover {
+    border-color: var(--color-primary);
+}
+
+.theme-card.cannot-afford {
+    cursor: default;
+    opacity: 0.65;
+}
+
+.theme-card.cannot-afford:hover {
+    transform: none;
+    box-shadow: var(--shadow);
 }

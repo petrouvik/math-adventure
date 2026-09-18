@@ -21,7 +21,10 @@ const DEFAULT_PLAYER = {
         dailyCourses: {},
         consecutivePerfectLessons: 0,
         recentLessons: []
-    }
+    },
+
+    theme: "default",
+    unlockedThemes: ["default"]
 
 };
 

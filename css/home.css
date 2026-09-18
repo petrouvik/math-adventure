@@ -4,10 +4,14 @@
 
 .welcome {
     margin-bottom: 1.5rem;
+
+    color: var(--color-text);
 }
 
 .welcome h1 {
     margin-bottom: 0.4rem;
+
+    color: var(--color-text);
 
     font-size: 2rem;
 }
@@ -27,6 +31,8 @@
     padding: 1.5rem;
 
     background: var(--color-surface);
+
+    color: var(--color-text);
 
     border-radius: 1.25rem;
 
@@ -56,6 +62,8 @@
         0.25rem
         0
         0;
+
+    color: var(--color-text);
 }
 
 
@@ -140,10 +148,15 @@
 
 .section {
     margin-top: 2.5rem;
+
+    color: var(--color-text);
 }
+
 
 .section h2 {
     margin-bottom: 1rem;
+
+    color: var(--color-text);
 }
 
 

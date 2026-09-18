@@ -6,6 +6,7 @@
     padding: 1.5rem;
 
     background: var(--color-surface);
+    color: var(--color-text);
 
     border-radius: 1.25rem;
 
@@ -28,6 +29,8 @@
         0.25rem
         0
         0;
+
+    color: var(--color-text);
 }
 
 
@@ -41,6 +44,8 @@
 
 
 .total-xp strong {
+    color: var(--color-text);
+
     font-size: 1.5rem;
 }
 
@@ -83,6 +88,7 @@
     padding: 1rem;
 
     background: var(--color-surface);
+    color: var(--color-text);
 
     border-radius: 1rem;
 
@@ -115,6 +121,8 @@
 
 
 .course-name {
+    color: var(--color-text);
+
     font-weight: bold;
 }
 
@@ -193,6 +201,7 @@
     padding: 1rem;
 
     background: var(--color-surface);
+    color: var(--color-text);
 
     border-radius: 1rem;
 
@@ -224,6 +233,8 @@
         0
         0
         0.25rem;
+
+    color: var(--color-text);
 }
 
 
@@ -263,9 +274,11 @@
         transform 0.1s ease;
 }
 
+
 .show-more-button:hover {
     filter: brightness(0.95);
 }
+
 
 .show-more-button:active {
     transform: scale(0.97);

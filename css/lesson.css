@@ -60,6 +60,7 @@
 
 .problem-card {
     background: var(--color-surface);
+    color: var(--color-text);
 
     border-radius: 1.25rem;
 
@@ -77,6 +78,7 @@
 }
 
 .problem {
+    color: var(--color-text);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,6 +117,17 @@
 
     background: var(--color-surface);
     color: var(--color-text);
+}
+/* Chrome, Edge, Safari */
+.answer-input::-webkit-outer-spin-button,
+.answer-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+.answer-input[type="number"] {
+    -moz-appearance: textfield;
 }
 
 .answer-input:focus {
@@ -578,4 +591,102 @@
 .choice-button:disabled {
     cursor: default;
     opacity: 0.7;
+}
+/* -------------------------
+   LESSON COMPLETE
+------------------------- */
+
+.lesson-complete {
+    padding: 2rem;
+
+    background: var(--color-surface);
+    color: var(--color-text);
+
+    border-radius: 1.25rem;
+
+    box-shadow: var(--shadow);
+
+    text-align: center;
+}
+
+
+.lesson-complete h2 {
+    margin:
+        0
+        0
+        1rem;
+
+    color: var(--color-text);
+}
+
+
+.lesson-complete p {
+    margin:
+        0
+        0
+        1rem;
+
+    color: var(--color-text);
+}
+
+
+.lesson-complete strong {
+    color: var(--color-primary);
+}
+
+
+.lesson-rewards {
+    margin:
+        1.5rem
+        0;
+
+    padding: 1rem;
+
+    background: var(--color-highlight-background);
+
+    border:
+        1px solid
+        var(--color-highlight);
+
+    border-radius: 1rem;
+}
+
+
+.lesson-rewards p {
+    margin: 0.4rem 0;
+
+    color: var(--color-text);
+
+    font-weight: bold;
+}
+
+
+.next-button {
+    padding:
+        0.8rem
+        1.5rem;
+
+    border: none;
+
+    border-radius: 0.75rem;
+
+    background: var(--color-primary);
+    color: var(--color-primary-text);
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s,
+        filter 0.15s;
+}
+
+
+.next-button:hover {
+    filter: brightness(0.9);
+
+    transform:
+        translateY(-2px);
 }

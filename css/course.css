@@ -28,6 +28,7 @@
     height: 80px;
 
     background: var(--color-secondary);
+    color: var(--color-primary);
     border-radius: 1.25rem;
 
     display: flex;

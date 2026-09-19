@@ -1,4 +1,13 @@
 const EXPLANATIONS = {
+    "even-odd": {
+        render(container, explanation, problem) {
+            renderEvenOddExplanation(
+                container,
+                explanation,
+                problem
+            );
+        }
+    },
     counting: {
         render(container, explanation, problem) {
             renderCountingExplanation(
@@ -8,9 +17,27 @@ const EXPLANATIONS = {
             );
         }
     },
+    "decomposition":{
+        render(container, explanation, problem) {
+            renderDecompositionExplanation(
+                container,
+                explanation,
+                problem
+            );
+        }
+    },
     "counting-back": {
         render(container, explanation, problem) {
             renderCountingBackExplanation(
+                container,
+                explanation,
+                problem
+            );
+        }
+    },
+    "subtraction-decomposition": {
+        render(container, explanation, problem) {
+            renderSubtractionDecompositionExplanation(
                 container,
                 explanation,
                 problem
@@ -108,6 +135,103 @@ function renderCountingExplanation(
         </div>
     `;
 }
+function renderDecompositionExplanation(
+    container,
+    explanation,
+    problem
+) {
+    const larger = explanation.larger;
+    const smaller = explanation.smaller;
+
+    const swapped =
+        problem.left !== larger;
+
+    // Break the smaller number so that the first
+    // part brings the larger number to a multiple of 10.
+    const toNextTen =
+        10 - (larger % 10);
+
+    const firstPart =
+        toNextTen < smaller
+            ? toNextTen
+            : smaller;
+
+    const secondPart =
+        smaller - firstPart;
+
+    let steps;
+
+    if (secondPart === 0) {
+        steps = `
+            <p class="counting-example">
+                ${larger} + ${firstPart} = ${larger + firstPart}
+            </p>
+        `;
+    } else {
+        steps = `
+            <p class="counting-example">
+                ${larger} + ${firstPart}
+                = ${larger + firstPart}
+            </p>
+            <p>
+                Then we add the remaining ${secondPart}:
+            </p>
+
+            <p class="counting-example">
+                ${larger + firstPart} + ${secondPart}
+                = ${problem.answer}
+            </p>
+        `;
+    }
+
+    container.innerHTML = `
+        <div class="explanation-card">
+            <h3>Let's see how! 💡</h3>
+
+            ${
+                swapped
+                    ? `
+                        <p>
+                            We can swap the numbers because addition
+                            gives the same result in either order:
+                        </p>
+
+                        <p class="counting-example">
+                            ${problem.left} + ${problem.right}
+                            =
+                            ${larger} + ${smaller}
+                        </p>
+                    `
+                    : ""
+            }
+
+            ${
+                secondPart === 0
+                    ? `
+                        <p>
+                            We can add ${smaller} directly to ${larger}:
+                        </p>
+                    `
+                    : `
+                        <p>
+                            Let's break ${smaller} into
+                            ${firstPart} and ${secondPart}
+                            to make the addition easier:
+                        </p>
+                    `
+            }
+
+            ${steps}
+
+            <p>
+                So
+                <strong>${problem.prompt}</strong>
+                equals
+                <strong>${problem.answer}</strong>.
+            </p>
+        </div>
+    `;
+}
 function renderCountingBackExplanation(
     container,
     explanation,
@@ -134,6 +258,75 @@ function renderCountingBackExplanation(
             <p class="counting-example">
                 ${numbers.join(" → ")}
             </p>
+
+            <p>
+                So
+                <strong>${problem.prompt}</strong>
+                equals
+                <strong>${problem.answer}</strong>.
+            </p>
+        </div>
+    `;
+}
+function renderSubtractionDecompositionExplanation(
+    container,
+    explanation,
+    problem
+) {
+    const start = explanation.start;
+    const amount = explanation.amount;
+
+    // How much we need to subtract to reach
+    // the nearest lower multiple of 10.
+    const toPreviousTen =
+        start % 10;
+
+    const firstPart =
+        toPreviousTen > 0 && toPreviousTen < amount
+            ? toPreviousTen
+            : amount;
+
+    const secondPart =
+        amount - firstPart;
+
+    const firstResult =
+        start - firstPart;
+
+    let steps;
+
+    if (secondPart === 0) {
+        steps = `
+            <p class="counting-example">
+                ${start} − ${firstPart}
+                = ${firstResult}
+            </p>
+        `;
+    } else {
+        steps = `
+            <p class="counting-example">
+                ${start} − ${firstPart}
+                = ${firstResult}
+            </p>
+            <p>
+                Then we subtract the remaining ${secondPart}:
+            </p>
+            <p class="counting-example">
+                ${firstResult} − ${secondPart}
+                = ${problem.answer}
+            </p>
+        `;
+    }
+
+    container.innerHTML = `
+        <div class="explanation-card">
+            <h3>Let's see how! 💡</h3>
+
+            <p>
+                Instead of counting backwards one number at a time,
+                we can break ${amount} into smaller parts.
+            </p>
+
+            ${steps}
 
             <p>
                 So
@@ -461,6 +654,83 @@ function renderArabicToRomanExplanation(
                 in Roman numerals is
                 <strong>${roman}</strong>.
             </p>
+        </div>
+    `;
+}
+
+function renderEvenOddExplanation(
+    container,
+    explanation,
+    problem
+) {
+    const number = explanation.number;
+    const answer = explanation.answer;
+    const lastDigit = number % 10;
+
+    const evenLastDigits = [0, 2, 4, 6, 8];
+
+    let content;
+
+    if (number < 20) {
+        const pairs = Math.floor(number / 2);
+        const hasRemainder = number % 2 !== 0;
+
+        content = `
+            <p>
+                We can group ${number} objects into pairs:
+            </p>
+
+            <p class="counting-example">
+                ${"●● ".repeat(pairs)}
+                ${hasRemainder ? "●" : ""}
+            </p>
+
+            <p>
+                ${
+                    hasRemainder
+                        ? `There is one object left over, so <strong>${number}</strong> is odd.`
+                        : `There are no objects left over, so <strong>${number}</strong> is even.`
+                }
+            </p>
+        `;
+    } else {
+        const isEven = evenLastDigits.includes(lastDigit);
+
+        content = `
+            <p>
+                For larger numbers, we don't need to count every object.
+                We can simply look at the last digit.
+            </p>
+
+            <p class="counting-example">
+                ${number} → last digit: ${lastDigit}
+            </p>
+
+            <p>
+                Numbers ending in
+                <strong>0, 2, 4, 6, or 8</strong>
+                are even.
+            </p>
+
+            <p>
+                Numbers ending in
+                <strong>1, 3, 5, 7, or 9</strong>
+                are odd.
+            </p>
+
+            <p>
+                Since ${number} ends in <strong>${lastDigit}</strong>,
+                <strong>${number}</strong> is
+                <strong>${answer.toLowerCase()}</strong>.
+            </p>
+        `;
+    }
+
+    container.innerHTML = `
+        <div class="explanation-card">
+            <h3>Let's see how! 💡</h3>
+
+            ${content}
         </div>
     `;
 }

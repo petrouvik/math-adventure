@@ -1,170 +1,160 @@
-const ROMAN_SYMBOLS = [
-    { value: 1000, symbol: "M" },
-    { value: 900, symbol: "CM" },
-    { value: 500, symbol: "D" },
-    { value: 400, symbol: "CD" },
-    { value: 100, symbol: "C" },
-    { value: 90, symbol: "XC" },
-    { value: 50, symbol: "L" },
-    { value: 40, symbol: "XL" },
-    { value: 10, symbol: "X" },
-    { value: 9, symbol: "IX" },
-    { value: 5, symbol: "V" },
-    { value: 4, symbol: "IV" },
-    { value: 1, symbol: "I" }
-];
-ROMAN_NUMERAL_SYMBOLS = [
-    { value: 1000, symbol: "M" },
-    { value: 500, symbol: "D" },
-    { value: 100, symbol: "C" },
-    { value: 50, symbol: "L" },
-    { value: 10, symbol: "X" },
-    { value: 5, symbol: "V" },
-    { value: 1, symbol: "I" } 
-]
-const ROMAN_VALUES = {
-    I: 1,
-    V: 5,
-    X: 10,
-    L: 50,
-    C: 100,
-    D: 500,
-    M: 1000
-};
-function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
+function generateNumberReadingProblem(settings) {
+    const number =
+        Math.floor(
+            Math.random() *
+            (settings.max - settings.min + 1)
+        ) + settings.min;
 
-        [array[i], array[j]] = [array[j], array[i]];
-    }
+    const answer = numberToWords(number);
 
-    return array;
-}
+    const decoys = [];
 
+    let offset = 1;
 
-function arabicToRoman(number) {
-    let result = "";
-
-    for (const { value, symbol } of ROMAN_SYMBOLS) {
-        while (number >= value) {
-            result += symbol;
-            number -= value;
-        }
-    }
-
-    return result;
-}
-
-
-function romanToArabic(roman) {
-    let result = 0;
-
-    for (let i = 0; i < roman.length; i++) {
-        const current = ROMAN_VALUES[roman[i]];
-        const next = ROMAN_VALUES[roman[i + 1]];
-
-        if (next && current < next) {
-            result -= current;
-        } else {
-            result += current;
-        }
-    }
-
-    return result;
-}
-
-function hasRomanSubtraction(number) {
-    const roman = arabicToRoman(number);
-
-    return (
-        roman.includes("IV") ||
-        roman.includes("IX") ||
-        roman.includes("XL") ||
-        roman.includes("XC") ||
-        roman.includes("CD") ||
-        roman.includes("CM")
-    );
-}
-function arabicToRomanAdditive(number) {
-    let result = "";
-
-    const symbols = [
-        { value: 1000, symbol: "M" },
-        { value: 500, symbol: "D" },
-        { value: 100, symbol: "C" },
-        { value: 50, symbol: "L" },
-        { value: 10, symbol: "X" },
-        { value: 5, symbol: "V" },
-        { value: 1, symbol: "I" }
-    ];
-
-    for (const { value, symbol } of symbols) {
-        while (number >= value) {
-            result += symbol;
-            number -= value;
-        }
-    }
-
-    return result;
-}
-
-const ROMAN_SUBTRACTION_PAIRS = [
-    { subtractive: "IV", additive: "IIII" },
-    { subtractive: "IX", additive: "VIIII" },
-    { subtractive: "XL", additive: "XXXX" },
-    { subtractive: "XC", additive: "LXXXX" },
-    { subtractive: "CD", additive: "CCCC" },
-    { subtractive: "CM", additive: "DCCCC" }
-];
-
-function generatePartialSubtractionDecoy(roman) {
-    const applicablePairs =
-        ROMAN_SUBTRACTION_PAIRS.filter(
-            pair => roman.includes(pair.subtractive)
-        );
-
-    if (applicablePairs.length === 0) {
-        return null;
-    }
-
-    const pair =
-        applicablePairs[
-            Math.floor(
-                Math.random() * applicablePairs.length
-            )
+    while (decoys.length < 3) {
+        const candidates = [
+            number - offset,
+            number + offset
         ];
 
-    return roman.replace(
-        pair.subtractive,
-        pair.additive
-    );
+        for (const candidate of candidates) {
+            if (
+                candidate < settings.min ||
+                candidate > settings.max
+            ) {
+                continue;
+            }
+
+            const word = numberToWords(candidate);
+
+            if (
+                word !== answer &&
+                !decoys.includes(word)
+            ) {
+                decoys.push(word);
+            }
+
+            if (decoys.length === 3) {
+                break;
+            }
+        }
+
+        offset++;
+    }
+
+    const choices = [
+        answer,
+        ...decoys
+    ];
+
+    shuffle(choices);
+
+    return {
+        prompt: `What number is ${number}?`,
+        answer,
+        choices,
+
+        explanation: {
+            type: "number-reading",
+            number,
+            words: answer
+        }
+    };
 }
-function generateOverSubtractionDecoy(number) {
-    const roman = arabicToRoman(number);
 
-    const lastSymbol = roman[roman.length - 1];
+function generateNumberReadingProblems(settings, count) {
+    const problems = [];
 
-    if (!lastSymbol) {
-        return null;
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateNumberReadingProblem(settings)
+        );
     }
 
-    const value = ROMAN_VALUES[lastSymbol];
+    return problems;
+}
 
-    // Find a larger symbol already present.
-    const largerIndex = [...roman].findIndex(
-        symbol => ROMAN_VALUES[symbol] > value
-    );
+function generatePredecessorSuccessorProblem(settings) {
+    const number =
+        Math.floor(
+            Math.random() *
+            (settings.max - settings.min + 1)
+        ) + settings.min;
 
-    if (largerIndex === -1) {
-        return null;
+    const predecessor =
+        Math.random() < 0.5;
+
+    const answer = predecessor
+        ? number - 1
+        : number + 1;
+
+    return {
+        prompt: predecessor
+            ? `predecessor of ${number}`
+            : `successor of ${number}`,
+
+        answer,
+
+        explanation: {
+            type: "predecessor-successor",
+            number,
+            answer,
+            predecessor
+        }
+    };
+}
+
+function generatePredecessorSuccessorProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generatePredecessorSuccessorProblem(settings)
+        );
     }
 
-    return (
-        roman.slice(0, largerIndex) +
-        roman.slice(largerIndex + 1, -1) +
-        lastSymbol +
-        roman[largerIndex]
-    );
+    return problems;
+}
+
+function generateEvenOddProblem(settings) {
+    const number =
+        Math.floor(
+            Math.random() *
+            (settings.max - settings.min + 1)
+        ) + settings.min;
+
+    const answer =
+        number % 2 === 0
+            ? "Even"
+            : "Odd";
+
+    return {
+        prompt: `Is ${number} even or odd?`,
+        answer,
+
+        choices: [
+            "Even",
+            "Odd"
+        ],
+
+        explanation: {
+            type: "even-odd",
+            number,
+            answer
+        }
+    };
+}
+
+function generateEvenOddProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateEvenOddProblem(settings)
+        );
+    }
+
+    return problems;
 }
 
 function generateAdditionProblem(settings) {
@@ -178,21 +168,34 @@ function generateAdditionProblem(settings) {
         Math.random() * (max - left)
     ) + 1;
 
+    const smaller = Math.min(left, right);
+    const larger = Math.max(left, right);
+
+    let explanation;
+
+    if (smaller <= 3) {
+        explanation = {
+            type: "counting",
+            start: larger,
+            amount: smaller
+        };
+    } else {
+        explanation = {
+            type: "decomposition",
+            larger,
+            smaller
+        };
+    }
+
     return {
         left,
         right,
         operator: "+",
         prompt: `${left} + ${right}`,
         answer: left + right,
-
-        explanation: {
-            type: "counting",
-            start: left,
-            amount: right
-        }
+        explanation
     };
 }
-
 
 function generateAdditionProblems(settings, count) {
     const problems = [];
@@ -205,6 +208,7 @@ function generateAdditionProblems(settings, count) {
 
     return problems;
 }
+
 function generateSubtractionProblem(settings) {
     const max = settings.max;
 
@@ -214,18 +218,26 @@ function generateSubtractionProblem(settings) {
     const right =
         Math.floor(Math.random() * left) + 1;
 
+    const explanation =
+        right <= 3
+            ? {
+                type: "counting-back",
+                start: left,
+                amount: right
+            }
+            : {
+                type: "subtraction-decomposition",
+                start: left,
+                amount: right
+            };
+
     return {
         left,
         right,
         operator: "−",
         prompt: `${left} − ${right}`,
         answer: left - right,
-
-        explanation: {
-            type: "counting-back",
-            start: left,
-            amount: right
-        }
+        explanation
     };
 }
 
@@ -319,6 +331,7 @@ function generateDivisionProblems(settings, count) {
 
     return problems;
 }
+
 function generateRomanSymbolProblem() {
     const selected =
         ROMAN_NUMERAL_SYMBOLS[
@@ -356,6 +369,7 @@ function generateRomanSymbolProblem() {
         }
     };
 }
+
 function generateRomanSymbolProblems(settings, count) {
     const problems = [];
 
@@ -367,6 +381,7 @@ function generateRomanSymbolProblems(settings, count) {
 
     return problems;
 }
+
 function generateRomanAdditionProblem(settings) {
     let number;
 
@@ -406,6 +421,7 @@ function generateRomanAdditionProblems(settings, count) {
 
     return problems;
 }
+
 function generateRomanToArabicProblem(settings) {
     const number =
         Math.floor(
@@ -426,6 +442,7 @@ function generateRomanToArabicProblem(settings) {
         }
     };
 }
+
 function generateRomanToArabicProblems(settings, count) {
     const problems = [];
 
@@ -548,7 +565,32 @@ function generateArabicToRomanProblems(settings, count) {
     return problems;
 }
 
+
 const GENERATORS = {
+    "number-reading": {
+        generate(settings, count) {
+            return generateNumberReadingProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "predecessor-successor": {
+        generate(settings, count) {
+            return generatePredecessorSuccessorProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "even-odd": {
+        generate(settings, count) {
+            return generateEvenOddProblems(
+                settings,
+                count
+            );
+        }
+    },
     addition: {
         generate(settings, count) {
             return generateAdditionProblems(

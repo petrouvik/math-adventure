@@ -2,36 +2,197 @@ const COURSES = {
     numbers: {
         id: "numbers",
         title: "Numbers",
-        description: "Learn about numbers and how they work.",
+        description: "Learn what numbers are, how to read and write them, and how to work with even and odd numbers.",
         icon: "#",
 
         lessons: [
             {
                 id: "numbers-intro",
 
-                title: "What is Addition?",
+                title: "What Are Numbers?",
 
-                description: "Learn what addition means.",
+                description: "Learn what numbers mean and how to read and write them.",
 
                 type: "explanation",
 
                 content: [
                     {
                         type: "text",
-                        text: "Addition means putting two or more groups together."
+                        text: "Numbers help us count and describe how many things there are."
                     },
 
                     {
                         type: "example",
-                        expression: "3 + 2 = 5",
-                        explanation: "If you have 3 apples and get 2 more apples, you have 5 apples altogether."
+                        expression: "5",
+                        explanation: "This number means five. We can use it to describe five objects."
                     },
 
                     {
                         type: "text",
-                        text: "The + symbol means add, and the = symbol means equals."
+                        text: "Numbers can be written using digits. For example, the number five is written as 5."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "12",
+                        explanation: "This number is read as twelve."
+                    },
+
+                    {
+                        type: "text",
+                        text: "We can read numbers and write them using their number names."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "7 → seven",
+                        explanation: "The digit 7 represents the number seven."
                     }
                 ]
+            },
+
+            {
+                id: "numbers-reading",
+
+                title: "Reading Numbers",
+
+                description: "Practice reading numbers from 0 to 100.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "number-reading",
+                    interaction: "multiple-choice",
+
+                    settings: {
+                        min: 0,
+                        max: 100
+                    },
+
+                    problemCount: 10
+                }
+            },
+
+            {
+                id: "numbers-predecessor-successor-intro",
+
+                title: "Before and After",
+
+                description: "Learn about the predecessor and successor of a number.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "Every number has a number that comes immediately before it and a number that comes immediately after it."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "4, 5, 6",
+                        explanation: "The number before 5 is 4, and the number after 5 is 6."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The number immediately before a number is called its predecessor. The number immediately after it is called its successor."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "5 → predecessor: 4, successor: 6",
+                        explanation: "The predecessor of 5 is 4, while its successor is 6."
+                    }
+                ]
+            },
+
+            {
+                id: "numbers-predecessor-successor",
+
+                title: "Predecessor and Successor",
+
+                description: "Practice finding the number before and after another number.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "predecessor-successor",
+                    interaction: "number-input",
+
+                    settings: {
+                        min: 1,
+                        max: 99
+                    },
+
+                    problemCount: 10
+                }
+            },
+
+            {
+                id: "numbers-even-odd-intro",
+
+                title: "Even and Odd Numbers",
+
+                description: "Learn the difference between even and odd numbers.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "An even number can be split into pairs with nothing left over."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "6 → ●● ●● ●●",
+                        explanation: "Six objects can be grouped into three pairs, so 6 is even."
+                    },
+
+                    {
+                        type: "text",
+                        text: "An odd number cannot be split into pairs without one object being left over."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "5 → ●● ●● ●",
+                        explanation: "Five objects make two pairs with one object left over, so 5 is odd."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The even numbers from 0 to 10 are 0, 2, 4, 6, 8, and 10."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The odd numbers from 0 to 10 are 1, 3, 5, 7, and 9."
+                    }
+                ]
+            },
+
+            {
+                id: "numbers-even-odd",
+
+                title: "Even or Odd?",
+
+                description: "Practice identifying even and odd numbers.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "even-odd",
+                    interaction: "multiple-choice",
+
+                    settings: {
+                        min: 0,
+                        max: 100
+                    },
+
+                    problemCount: 10
+                }
             }
         ]
     },
@@ -762,6 +923,52 @@ const COURSES = {
                     {
                         type: "text",
                         text: "We'll learn more about shapes, angles, lengths, and other parts of geometry in future lessons."
+                    },
+                    {
+                        type: "image-example",
+
+                        title: "Adding groups together",
+
+                        svg: `
+                            <svg viewBox="0 0 400 300">
+                                <polygon
+                                    points="200,40 80,250 320,250"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="4"
+                                />
+
+                                <circle cx="200" cy="40" r="6" fill="currentColor"/>
+                                <circle cx="80" cy="250" r="6" fill="currentColor"/>
+                                <circle cx="320" cy="250" r="6" fill="currentColor"/>
+
+                                <text
+                                    x="200"
+                                    y="25"
+                                    fill="currentColor"
+                                    font-size="20"
+                                    text-anchor="middle"
+                                >A</text>
+
+                                <text
+                                    x="60"
+                                    y="270"
+                                    fill="currentColor"
+                                    font-size="20"
+                                    text-anchor="middle"
+                                >B</text>
+
+                                <text
+                                    x="340"
+                                    y="270"
+                                    fill="currentColor"
+                                    font-size="20"
+                                    text-anchor="middle"
+                                >C</text>
+                            </svg>
+                        `,
+
+                        explanation: "We have 3 apples and add 2 more apples."
                     }
                 ]
             }

@@ -705,3 +705,60 @@
     transform:
         translateY(-2px);
 }
+
+.lesson-example-image {
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+    padding: 1rem;
+
+    background: var(--color-info-background);
+    color: var(--color-text);
+    border-radius: 0.75rem;
+}
+
+.lesson-example-image svg {
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+.lesson-image-example-card {
+    background: var(--color-surface);
+    color: var(--color-text);
+    border-radius: 1rem;
+    padding: 1.25rem;
+    box-shadow: var(--shadow);
+}
+
+.lesson-image-example-card h3 {
+    margin: 0 0 1rem;
+    color: var(--color-text);
+    font-size: 1.1rem;
+}
+
+.lesson-image-example-card .example-label {
+    margin-bottom: 0.75rem;
+    color: var(--color-primary);
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.lesson-example-image {
+    width: 100%;
+    margin: 1rem 0;
+    text-align: center;
+}
+
+.lesson-example-image svg {
+    display: inline-block;
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+}
+
+.lesson-image-example-card .example-explanation {
+    margin: 0;
+    color: var(--color-text);
+    line-height: 1.5;
+}

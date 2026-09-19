@@ -113,6 +113,9 @@ function renderExplanationLesson() {
         if (item.type === "example") {
             renderExampleBlock(contentContainer, item);
         }
+        if (item.type === "image-example") {
+            renderImageExampleBlock(contentContainer, item);
+        }
 
     });
 
@@ -154,7 +157,32 @@ function renderExampleBlock(container, item) {
 
     container.appendChild(element);
 }
+function renderImageExampleBlock(container, item) {
+    const element = document.createElement("section");
 
+    element.className = "lesson-image-example-card";
+
+    element.innerHTML = `
+        <div class="example-label">
+            ✨ Example
+        </div>
+
+        ${item.title
+            ? `<h3>${item.title}</h3>`
+            : ""
+        }
+
+        <div class="lesson-example-image">
+            ${item.svg}
+        </div>
+
+        <p class="example-explanation">
+            ${item.explanation}
+        </p>
+    `;
+
+    container.appendChild(element);
+}
 const lessonState = {
     problems: [],
     currentProblem: 0,

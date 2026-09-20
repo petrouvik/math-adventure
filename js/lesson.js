@@ -242,6 +242,20 @@ function renderCurrentProblem() {
 
     renderPracticeProgress();
 
+    const hint =
+        document.getElementById("practice-hint");
+
+    hint.innerHTML = "";
+
+    if (lesson.practice.solveOnPaper) {
+        hint.textContent =
+            "✏️ Grab your pencil and solve it on paper. You've got this!";
+
+        hint.className = "paper-hint";
+    } else {
+        hint.className = "";
+    }
+
     interaction.render(
         document.getElementById("lesson-content"),
         problem,

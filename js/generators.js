@@ -1054,6 +1054,202 @@ function generateNumberGroupsProblems(settings, count) {
 
     return problems;
 }
+
+function generateAdvancedAdditionProblem(settings) {
+    const {
+        min = 100,
+        max = 10000,
+        sameLength = true,
+        carryCount = null,
+        carryThroughZero = false
+    } = settings;
+
+    for (let attempt = 0; attempt < 10000; attempt++) {
+        let top;
+        let bottom;
+
+        /*
+         * Generate numbers with the requested number of digits.
+         */
+        if (sameLength) {
+            const minDigits =
+                String(min).length;
+
+            const maxDigits =
+                String(max).length;
+
+            const digits =
+                Math.floor(
+                    Math.random() *
+                    (maxDigits - minDigits + 1)
+                ) + minDigits;
+
+            const lower =
+                Math.max(
+                    min,
+                    Math.pow(10, digits - 1)
+                );
+
+            const upper =
+                Math.min(
+                    max,
+                    Math.pow(10, digits) - 1
+                );
+
+            top =
+                Math.floor(
+                    Math.random() *
+                    (upper - lower + 1)
+                ) + lower;
+
+            bottom =
+                Math.floor(
+                    Math.random() *
+                    (upper - lower + 1)
+                ) + lower;
+        } else {
+            top =
+                Math.floor(
+                    Math.random() *
+                    (max - min + 1)
+                ) + min;
+
+            bottom =
+                Math.floor(
+                    Math.random() *
+                    (max - min + 1)
+                ) + min;
+        }
+
+        /*
+         * Make sure the result is also within the allowed range.
+         */
+        const result = top + bottom;
+
+        if (result > max) {
+            continue;
+        }
+
+        /*
+         * Compute the carries.
+         */
+        const carries =
+            computeCarries(top, bottom);
+
+        const numberOfCarries =
+            carries.filter(Boolean).length;
+
+        /*
+         * Check carry-count requirements.
+         */
+        if (carryCount !== null) {
+            if (typeof carryCount === "number") {
+                if (numberOfCarries !== carryCount) {
+                    continue;
+                }
+            } else {
+                if (
+                    carryCount.min !== undefined &&
+                    numberOfCarries < carryCount.min
+                ) {
+                    continue;
+                }
+
+                if (
+                    carryCount.max !== undefined &&
+                    numberOfCarries > carryCount.max
+                ) {
+                    continue;
+                }
+            }
+        }
+
+        /*
+         * Check whether a carry passes through
+         * a column containing a zero.
+         *
+         * A carry passes into a column if the previous
+         * column generated a carry. We require one of
+         * the digits in that column to be zero.
+         */
+        if (carryThroughZero) {
+            const topStr =
+                String(top);
+
+            const bottomStr =
+                String(bottom);
+
+            const maxLength =
+                Math.max(
+                    topStr.length,
+                    bottomStr.length
+                );
+
+            const topPadded =
+                topStr.padStart(maxLength, "0");
+
+            const bottomPadded =
+                bottomStr.padStart(maxLength, "0");
+
+            let found = false;
+
+            for (let i = maxLength - 1; i > 0; i--) {
+                const carryIntoColumn =
+                    carries[maxLength - 1 - i];
+
+                if (!carryIntoColumn) {
+                    continue;
+                }
+
+                if (
+                    topPadded[i] === "0" ||
+                    bottomPadded[i] === "0"
+                ) {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                continue;
+            }
+        }
+
+        return {
+            prompt: `${top.toLocaleString()} + ${bottom.toLocaleString()}`,
+            answer: result,
+
+            explanation: {
+                type: "advanced-addition",
+                top,
+                bottom,
+                result,
+                carries
+            }
+        };
+    }
+
+    /*
+     * If we somehow cannot find a number satisfying
+     * the requested constraints, fail explicitly.
+     */
+    throw new Error(
+        "Could not generate an advanced addition problem with the requested settings."
+    );
+}
+
+
+function generateAdvancedAdditionProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateAdvancedAdditionProblem(settings)
+        );
+    }
+
+    return problems;
+}
 const GENERATORS = {
     "number-reading": {
         generate(settings, count) {
@@ -1182,6 +1378,15 @@ const GENERATORS = {
                 count
             );
         }
+    },
+    "advanced-addition": {
+        generate(settings, count) {
+            return generateAdvancedAdditionProblems(
+                settings,
+                count
+            );
+        }
     }
+
 
 };

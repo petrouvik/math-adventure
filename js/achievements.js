@@ -69,6 +69,7 @@ function checkCourseAchievements(player) {
     if (isCourseCompleted(COURSES["roman-numerals"])) track("course-roman-numerals");
     if (isCourseCompleted(COURSES.geometry)) track("course-geometry");
     if (isCourseCompleted(COURSES["advanced-numbers"])) track("course-advanced-numbers")
+        if (isCourseCompleted(COURSES["advanced-addition"])) track("course-advanced-addition")
     const completedCourses = courses.filter(
         course => isCourseCompleted(course)
     ).length;
@@ -482,6 +483,15 @@ const ACHIEVEMENTS = [
         title: "IT'S OVER ONE THOUSAAAND!",
         description: "Finish the Advanced Numbers course.",
         icon: "🔢",
+        category: "progression",
+        hidden: false
+    },
+
+    {
+        id: "course-advanced-addition",
+        title: "Keep calm and carry the ones",
+        description: "Finish the Advanced Addition course.",
+        icon: "+",
         category: "progression",
         hidden: false
     },

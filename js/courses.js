@@ -1342,6 +1342,528 @@ const COURSES = {
             }
         ]
     },
+    "advanced-addition": {
+        id: "advanced-addition",
+        title: "Advanced Addition",
+        description: "Learn how to add large numbers using the written addition algorithm.",
+        icon: "+",
+
+        lessons: [
+            {
+                id: "advanced-addition-no-carry",
+
+                title: "Adding Without Carrying",
+
+                description: "Learn how to add numbers column by column when no carrying is needed.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "When numbers become larger, we can add them by writing one number underneath the other. This is called column addition."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The most important rule is to line up numbers by place value. Ones go under ones, tens go under tens, hundreds go under hundreds, and so on."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "243",
+                            "125",
+                            "368",
+                            []
+                        ),
+                        explanation: "First, add the ones: 3 + 5 = 8. Then add the tens: 4 + 2 = 6. Finally, add the hundreds: 2 + 1 = 3. The answer is 368."
+                    },
+
+                    {
+                        type: "text",
+                        text: "We always start with the rightmost column, which is the ones column. Then we move to the left one column at a time."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "3421",
+                            "1253",
+                            "4674",
+                            []
+                        ),
+                        explanation: "We add the ones, then the tens, then the hundreds, and finally the thousands. Since none of the columns makes 10 or more, we do not need to carry (we will see what carrying means soon)."
+                    },
+
+                    {
+                        type: "text",
+                        text: "This same method works no matter how many columns the numbers have. We simply continue from right to left."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-addition-no-carry-practice",
+
+                title: "Practice: No Carrying",
+
+                description: "Practice adding numbers without carrying.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "advanced-addition",
+                    interaction: "number-input",
+
+                    settings: {
+                        max: 10000,
+                        sameLength: true,
+                        carryCount: 0
+                    },
+
+                    problemCount: 10,
+                    solveOnPaper: true
+                }
+            },
+
+            {
+                id: "advanced-addition-one-carry",
+
+                title: "Adding With One Carry",
+
+                description: "Learn what to do when one column adds up to 10 or more.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "Sometimes the digits in a column add up to 10 or more. When that happens, we cannot write the whole number in that column."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "247",
+                            "135",
+                            "382",
+                            [1]
+                        ),
+                        explanation: "Start with the ones: 7 + 5 = 12. We write the 2 in the ones place and carry the 1 into the tens column."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The carried 1 represents one extra ten. When we move to the tens column, we must remember to add that carried 1."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "247",
+                            "135",
+                            "382",
+                            [1]
+                        ),
+                        explanation: "Now add the tens: 4 + 3 + 1 = 8. Finally, add the hundreds: 2 + 1 = 3. The answer is 382."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Whenever a column gives us 10 or more, write the ones digit in that column and carry the remaining ten into the next column."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "356",
+                            "127",
+                            "483",
+                            [1]
+                        ),
+                        explanation: "6 + 7 = 13, so we write 3 and carry 1. Then 5 + 2 + 1 = 8. The hundreds column is 3 + 1 = 4, giving us 483."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-addition-one-carry-practice",
+
+                title: "Practice: One Carry",
+
+                description: "Practice addition problems that require one carry.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "advanced-addition",
+                    interaction: "number-input",
+
+                    settings: {
+                        max: 10000,
+                        sameLength: true,
+                        carryCount: 1
+                    },
+
+                    problemCount: 10,
+                    solveOnPaper: true
+                }
+            },
+
+            {
+                id: "advanced-addition-multiple-carries",
+
+                title: "Adding With Multiple Carries",
+
+                description: "Learn how to carry through several columns.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "A calculation can require carrying in more than one column. The process is exactly the same: solve one column, write its ones digit, and carry the extra ten to the next column."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "587",
+                            "694",
+                            "1281",
+                            [1,1,1]
+                        ),
+                        explanation: "Start with the ones: 7 + 4 = 11. Write 1 and carry 1. Then add the tens: 8 + 9 + 1 = 18. Write 8 and carry 1 again. Finally, 5 + 6 + 1 = 12. This gives us 1,281."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Notice that a carry from one column becomes part of the calculation in the next column. We must never forget to include it."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "4682",
+                            "3759",
+                            "8441",
+                            [1,1,1]
+                        ),
+                        explanation: "Several columns require carrying. We work from right to left, carrying to the next column whenever the sum is 10 or more."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Even if every column requires a carry, the method does not change. Keep moving from right to left until every column has been added."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "999",
+                            "888",
+                            "1887",
+                            [1,1,1]
+                        ),
+                        explanation: "Here every column produces a carry. The ones give 17, the tens give 18 after including the carried 1, and the hundreds give 18 as well. The final answer is 1,887."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-addition-multiple-carries-practice",
+
+                title: "Practice: Multiple Carries",
+
+                description: "Practice addition problems that require several carries.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "advanced-addition",
+                    interaction: "number-input",
+
+                    settings: {
+                        max: 10000,
+                        sameLength: true,
+                        carryCount: {
+                            min: 2
+                        }
+                    },
+
+                    problemCount: 10
+                }
+            },
+
+            {
+                id: "advanced-addition-carry-through-zero",
+
+                title: "Carrying Through Zeros",
+
+                description: "Learn how to handle zeros when a carry moves through a column.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "Sometimes a carry reaches a column containing zero. We still follow the same procedure, but the zero cannot add anything by itself."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "109",
+                            "1",
+                            "110",
+                            [1]
+                        ),
+                        explanation: "The ones are 9 + 1 = 10. We write 0 in the ones place and carry 1 into the tens column. The tens column contains 0, so 0 + 0 + 1 = 1. The answer is 110."
+                    },
+
+                    {
+                        type: "text",
+                        text: "A carry can also continue through several zero columns. Each zero simply receives the carried 1."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "999",
+                            "1",
+                            "1000",
+                            [1,1,1]
+                        ),
+                        explanation: "The ones give 10, so we write 0 and carry 1. The tens then give 10, so we write 0 and carry 1 again. The same thing happens in the hundreds. The final carry creates a new thousands place, giving 1,000."
+                    },
+
+                    {
+                        type: "text",
+                        text: "This is an important example because the answer has more digits than either number we started with."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "4999",
+                            "1",
+                            "5000",
+                            [1,1,1]
+                        ),
+                        explanation: "The 1 travels through the ones, tens, and hundreds columns before reaching the thousands column. The result is 5,000."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Do not skip a column just because its digit is zero. Every column still has a place-value position, and every carry must move through it."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-addition-carry-through-zero-practice",
+
+                title: "Practice: Carrying Through Zeros",
+
+                description: "Practice addition problems where carries pass through zero.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "advanced-addition",
+                    interaction: "number-input",
+
+                    settings: {
+                        max: 10000,
+                        carryThroughZero: true
+                    },
+
+                    problemCount: 10
+                }
+            },
+
+            {
+                id: "advanced-addition-different-lengths",
+
+                title: "Adding Different-Length Numbers",
+
+                description: "Learn how to add numbers that do not have the same number of digits.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "The two numbers do not need to have the same number of digits. We simply line them up by place value."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "4826",
+                            "397",
+                            "5223",
+                            [1,1,1]
+                        ),
+                        explanation: "The 7 goes under the ones place, the 9 under the tens place, and the 3 under the hundreds place. There is nothing under the thousands place of 397, so that place contributes zero."
+                    },
+
+                    {
+                        type: "text",
+                        text: "It can help to imagine the shorter number with zeros added to its left. For example, 397 can be thought of as 0,397."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "4826",
+                            "397",
+                            "5223",
+                            [1,1,1]
+                        ),
+                        explanation: "Think of the problem as 4,826 + 0,397. Now every digit has a matching place: ones with ones, tens with tens, hundreds with hundreds, and thousands with thousands."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The shorter number does not need to be changed. The important thing is that its digits are placed in the correct columns."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "58",
+                            "12746",
+                            "12804",
+                            [1,1]
+                        ),
+                        explanation: "Here 58 is much shorter than 12,746. The 8 belongs under the ones and the 5 belongs under the tens. The empty places to the left simply contribute nothing."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Once the numbers are aligned correctly, the addition algorithm is exactly the same as before."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-addition-different-lengths-practice",
+
+                title: "Practice: Different Lengths",
+
+                description: "Practice adding numbers with different numbers of digits.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "advanced-addition",
+                    interaction: "number-input",
+
+                    settings: {
+                        max: 10000,
+                        sameLength: false
+                    },
+
+                    problemCount: 10
+                }
+            },
+
+            {
+                id: "advanced-addition-large-numbers",
+
+                title: "Adding Large Numbers",
+
+                description: "Put everything together and add numbers up to one million.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "You now know the complete written addition algorithm. It works for numbers of any size because the procedure never changes."
+                    },
+
+                    {
+                        type: "text",
+                        text: "For large numbers, continue aligning the digits by place value and work from the ones column toward the left."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "384729",
+                            "76845",
+                            "461574",
+                            [1,0,1,1,1]
+                        ),
+                        explanation: "Even though the numbers are much larger, we still solve the same way: start with the ones, carry when necessary, and continue one column at a time."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The same method works when the numbers have hundreds of thousands or millions."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "384729",
+                            "76845",
+                            "461574",
+                            [1,0,1,1,1]
+                        ),
+                        explanation: "There is no new trick to learn for larger numbers. The thousands and hundred-thousands columns are handled exactly like the smaller columns."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createAdditionSvg(
+                            "999999",
+                            "1",
+                            "1000000",
+                            [1,1,1,1,1,1]
+                        ),
+                        explanation: "Here a single 1 causes carries through every existing column. The final carry creates a new millions place, giving 1,000,000."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Remember the complete procedure: line up the numbers by place value, start on the right, add each column, write the digit in that column, carry when necessary, and continue to the left."
+                    },
+
+                    {
+                        type: "text",
+                        text: "You do not need a different method for bigger numbers. Once you know the algorithm, you can use the same steps again and again."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-addition-large-numbers-practice",
+
+                title: "Practice: Large Numbers",
+
+                description: "Practice adding numbers up to one million using the complete algorithm.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "advanced-addition",
+                    interaction: "number-input",
+
+                    settings: {
+                        min: 1,
+                        max: 1000000,
+                        sameLength: false
+                    },
+
+                    problemCount: 10
+                }
+            }
+        ]
+    },
 
     geometry: {
         id: "geometry",
@@ -1374,44 +1896,12 @@ const COURSES = {
 
                         title: "Adding groups together",
 
-                        svg: `
-                            <svg viewBox="0 0 400 300">
-                                <polygon
-                                    points="200,40 80,250 320,250"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="4"
-                                />
-
-                                <circle cx="200" cy="40" r="6" fill="currentColor"/>
-                                <circle cx="80" cy="250" r="6" fill="currentColor"/>
-                                <circle cx="320" cy="250" r="6" fill="currentColor"/>
-
-                                <text
-                                    x="200"
-                                    y="25"
-                                    fill="currentColor"
-                                    font-size="20"
-                                    text-anchor="middle"
-                                >A</text>
-
-                                <text
-                                    x="60"
-                                    y="270"
-                                    fill="currentColor"
-                                    font-size="20"
-                                    text-anchor="middle"
-                                >B</text>
-
-                                <text
-                                    x="340"
-                                    y="270"
-                                    fill="currentColor"
-                                    font-size="20"
-                                    text-anchor="middle"
-                                >C</text>
-                            </svg>
-                        `,
+                        svg: createAdditionSvg(
+                            "352414",
+                            "221449",
+                            "?",
+                            [1,2,3,4,5]
+                        ),
 
                         explanation: "We have 3 apples and add 2 more apples."
                     }

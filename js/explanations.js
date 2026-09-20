@@ -97,7 +97,16 @@ const EXPLANATIONS = {
                 problem
             );
         }
-    }
+    },
+    "advanced-addition":  {
+        render(container, explanation, problem) {
+            renderAdvancedAdditionExplanation(
+                container,
+                explanation,
+                problem
+            );
+        }
+    },
 };
 function renderCountingExplanation(
     container,
@@ -731,6 +740,142 @@ function renderEvenOddExplanation(
             <h3>Let's see how! 💡</h3>
 
             ${content}
+        </div>
+    `;
+}
+
+function renderAdvancedAdditionExplanation(container, top, bottom) {
+    // Accept the old call shape too: renderAdvancedAdditionExplanation(container, explanation, problem)
+    if (typeof top === "object" && top !== null) {
+        ({ top, bottom } = top);
+    }
+
+    const topStr = String(top);
+    const bottomStr = String(bottom);
+
+    const maxDigits = Math.max(topStr.length, bottomStr.length);
+
+    const topPadded = topStr.padStart(maxDigits, "0");
+    const bottomPadded = bottomStr.padStart(maxDigits, "0");
+
+    const steps = [];
+
+    steps.push({
+        title: "Set up the problem",
+        text:
+            "Line up the numbers by place value. " +
+            "Ones go under ones, tens under tens, and so on.",
+        svg: createAdditionSvg(topStr, bottomStr, "", [])
+    });
+
+    let partialResultString = "";
+    let carry = 0;
+    const revealedCarries = [];
+
+    for (
+        let i = maxDigits - 1;
+        i >= 0;
+        i--
+    ) {
+        const position =
+            maxDigits - 1 - i;
+
+        const topDigit =
+            Number(topPadded[i]);
+
+        const bottomDigit =
+            Number(bottomPadded[i]);
+
+        const sum =
+            topDigit +
+            bottomDigit +
+            carry;
+
+        const resultDigit =
+            sum % 10;
+
+        const newCarry =
+            Math.floor(sum / 10);
+
+        const place =
+            getAdditionPlaceName(position);
+
+        partialResultString =
+            String(resultDigit) + partialResultString;
+
+        const isOverflowColumn =
+            position === maxDigits - 1;
+
+        const calculation =
+            carry > 0
+                ? `${topDigit} + ${bottomDigit} + ${carry} = ${sum}`
+                : `${topDigit} + ${bottomDigit} = ${sum}`;
+
+        let text =
+            `${calculation}. ` +
+            `Write ${resultDigit} in the ${place} place.`;
+
+        if (newCarry > 0) {
+            text +=
+                ` Carry ${newCarry} to the next column.`;
+        }
+
+        if (!isOverflowColumn && newCarry > 0) {
+            revealedCarries[position] = newCarry;
+        }
+
+        steps.push({
+            title:
+                `Add the ${place} column`,
+            text,
+            svg: createAdditionSvg(
+                topStr,
+                bottomStr,
+                partialResultString,
+                revealedCarries.slice()
+            )
+        });
+
+        carry = newCarry;
+    }
+
+    if (carry > 0) {
+        const finalResult =
+            String(carry) + partialResultString;
+
+        const finalCarries = revealedCarries.slice();
+        finalCarries[maxDigits - 1] = carry;
+
+        steps.push({
+            title: "Finish the addition",
+            text:
+                `The final carry becomes a new digit. ` +
+                `The answer is ${Number(finalResult).toLocaleString()}.`,
+            svg: createAdditionSvg(topStr, bottomStr, finalResult, finalCarries)
+        });
+    } else {
+        steps.push({
+            title: "Finish the addition",
+            text:
+                `The answer is ${Number(partialResultString).toLocaleString()}.`,
+            svg: createAdditionSvg(topStr, bottomStr, partialResultString, revealedCarries.slice())
+        });
+    }
+
+    container.innerHTML = `
+        <div class="explanation-card">
+            <h3>Let's solve it step by step</h3>
+            <div class="addition-explanation-steps">
+                ${steps.map(step => `
+                    <div class="addition-explanation-step">
+                        <h4>${step.title}</h4>
+                        <div class="addition-explanation-svg">
+                            ${step.svg}
+                        </div>
+                        <p>${step.text}</p>
+                    </div>
+                `).join("")}
+            </div>
         </div>
     `;
 }

@@ -240,3 +240,18 @@ function getOrdinalSuffix(number) {
             return "th";
     }
 }
+
+
+function getAdditionPlaceName(position) {
+    const places = [
+        "ones",
+        "tens",
+        "hundreds",
+        "thousands",
+        "ten-thousands",
+        "hundred-thousands",
+        "millions"
+    ];
+
+    return places[position] || "next";
+}

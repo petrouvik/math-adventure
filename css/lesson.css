@@ -742,16 +742,15 @@
 }
 
 .lesson-example-image {
-    width: 100%;
-    margin: 1rem 0;
-    text-align: center;
+    display: flex;
+    justify-content: center;
 }
 
 .lesson-example-image svg {
-    display: inline-block;
-    width: 100%;
-    max-width: 500px;
+    display: block;
+    width: 180px;
     height: auto;
+    max-width: 100%;
 }
 
 .lesson-image-example-card .example-explanation {
@@ -769,4 +768,25 @@
 .place-value-digit {
     color: var(--color-primary);
     text-decoration: underline;
+}
+.paper-hint {
+    margin: 0 0 1rem;
+    padding: 0.75rem 1rem;
+    background: var(--color-highlight-background);
+    border-radius: 0.75rem;
+    color: var(--color-text);
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+.addition-explanation-svg {
+    display: flex;
+    justify-content: center;
+}
+
+.addition-explanation-svg svg {
+    display: block;
+    width: 180px;
+    height: auto;
+    max-width: 100%;
 }

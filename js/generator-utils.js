@@ -1,50 +1,4 @@
-function numberToWords(number) {
-    const ones = [
-        "zero",
-        "one",
-        "two",
-        "three",
-        "four",
-        "five",
-        "six",
-        "seven",
-        "eight",
-        "nine",
-        "ten",
-        "eleven",
-        "twelve",
-        "thirteen",
-        "fourteen",
-        "fifteen",
-        "sixteen",
-        "seventeen",
-        "eighteen",
-        "nineteen"
-    ];
 
-    const tens = [
-        "",
-        "",
-        "twenty",
-        "thirty",
-        "forty",
-        "fifty",
-        "sixty",
-        "seventy",
-        "eighty",
-        "ninety"
-    ];
-
-    if (number < 20) {
-        return ones[number];
-    }
-
-    if (number % 10 === 0) {
-        return tens[number / 10];
-    }
-
-    return `${tens[Math.floor(number / 10)]}-${ones[number % 10]}`;
-}
 
 const ROMAN_SYMBOLS = [
     { value: 1000, symbol: "M" },
@@ -214,50 +168,75 @@ function generateOverSubtractionDecoy(number) {
         roman[largerIndex]
     );
 }
-function numberToWords(number) {
-    const ones = [
-        "zero",
-        "one",
-        "two",
-        "three",
-        "four",
-        "five",
-        "six",
-        "seven",
-        "eight",
-        "nine",
-        "ten",
-        "eleven",
-        "twelve",
-        "thirteen",
-        "fourteen",
-        "fifteen",
-        "sixteen",
-        "seventeen",
-        "eighteen",
-        "nineteen"
-    ];
+function numberToWords(n) {
+  const ones = ['zero','one','two','three','four','five','six','seven','eight','nine','ten',
+    'eleven','twelve','thirteen','fourteen','fifteen','sixteen','seventeen','eighteen','nineteen'];
+  const tens = ['','','twenty','thirty','forty','fifty','sixty','seventy','eighty','ninety'];
 
-    const tens = [
-        "",
-        "",
-        "twenty",
-        "thirty",
-        "forty",
-        "fifty",
-        "sixty",
-        "seventy",
-        "eighty",
-        "ninety"
-    ];
+  function chunk(n) { // handles 0-999
+    if (n < 20) return ones[n];
+    if (n < 100) return tens[Math.floor(n / 10)] + (n % 10 ? '-' + ones[n % 10] : '');
+    return ones[Math.floor(n / 100)] + ' hundred' + (n % 100 ? ' ' + chunk(n % 100) : '');
+  }
 
-    if (number < 20) {
-        return ones[number];
+  if (n === 0) return 'zero';
+
+  const scales = ['', ' thousand', ' million', ' billion'];
+  let words = '';
+  let scaleIndex = 0;
+
+  while (n > 0) {
+    const part = n % 1000;
+    if (part !== 0) {
+      words = chunk(part) + scales[scaleIndex] + (words ? ' ' + words : '');
+    }
+    n = Math.floor(n / 1000);
+    scaleIndex++;
+  }
+
+  return words;
+}
+
+
+function getGroupType(groupSize) {
+    if (groupSize === 10) {
+        return "ten";
     }
 
-    if (number % 10 === 0) {
-        return tens[number / 10];
+    if (groupSize === 100) {
+        return "hundred";
     }
 
-    return `${tens[Math.floor(number / 10)]}-${ones[number % 10]}`;
+    return "thousand";
+}
+
+
+function getGroupName(groupNumber, groupSize) {
+    const type = getGroupType(groupSize);
+
+    return `${groupNumber}${getOrdinalSuffix(groupNumber)} ${type}`;
+}
+
+
+function getOrdinalSuffix(number) {
+    if (
+        number % 100 >= 11 &&
+        number % 100 <= 13
+    ) {
+        return "th";
+    }
+
+    switch (number % 10) {
+        case 1:
+            return "st";
+
+        case 2:
+            return "nd";
+
+        case 3:
+            return "rd";
+
+        default:
+            return "th";
+    }
 }

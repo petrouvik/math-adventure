@@ -897,6 +897,451 @@ const COURSES = {
             }
         ]
     },
+    
+    "advanced-numbers": {
+        id: "advanced-numbers",
+        title: "Advanced Numbers",
+        description: "Learn to read, write, compare, and understand numbers up to one million.",
+        icon: "#",
+
+        lessons: [
+            {
+                id: "advanced-numbers-reading",
+
+                title: "Reading Large Numbers",
+
+                description: "Learn how to read numbers up to one million.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "As numbers get larger, we group their digits into groups of three. These groups help us read large numbers more easily."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "1 234",
+                        explanation: "We read this as one thousand two hundred thirty-four."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The first group contains the ones, tens, and hundreds. The next group contains thousands."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "42 305",
+                        explanation: "We read this as forty-two thousand three hundred five."
+                    },
+
+                    {
+                        type: "text",
+                        text: "A group of three digits can contain zeros. We do not say the names of places whose digits are all zero."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "507 021",
+                        explanation: "We read this as five hundred seven thousand twenty-one. We do not say 'zero hundreds' or 'zero tens'."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The largest number in this course is one million: 1 000 000. <br>When you've mastered this course, learning to to read and write even bigger numbers will not be a problem for you."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-numbers-reading-practice",
+
+                title: "Reading Large Numbers",
+
+                description: "Practice reading numbers up to one million.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "number-reading",
+                    interaction: "multiple-choice",
+
+                    settings: {
+                        min: 0,
+                        max: 1000000
+                    },
+
+                    problemCount: 10
+                }
+            },
+
+            {
+                id: "advanced-numbers-writing",
+
+                title: "Writing Large Numbers",
+
+                description: "Learn how to turn number names into digits.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "We can also go the other way: instead of reading a number written with digits, we can write the digits when we hear or read the number name."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "three thousand two hundred fifteen → 3,215",
+                        explanation: "Three thousand means 3,000, and two hundred fifteen means 215. Together they make 3,215."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Pay attention to groups of thousands. A zero may be needed when a place inside a number has no value."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "forty-two thousand five → 42,005",
+                        explanation: "There are 42 thousands and 5 ones. There are no hundreds or tens, so those places contain zeros."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "six hundred thousand eighty → 600,080",
+                        explanation: "There are 600,000 and 80, so the hundreds and tens inside the thousands group are represented by zeros."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-numbers-writing-practice",
+
+                title: "Writing Large Numbers",
+
+                description: "Practice writing large numbers from their names.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "number-writing",
+                    interaction: "number-input",
+
+                    settings: {
+                        min: 0,
+                        max: 1000000
+                    },
+
+                    problemCount: 10
+                }
+            },
+
+            {
+                id: "advanced-numbers-comparison",
+
+                title: "Comparing Numbers",
+
+                description: "Learn how to tell which of two numbers is greater or smaller.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "We can compare two numbers to find out whether one is greater than, smaller than, or equal to the other. The sign '<' means 'less than', and the sign '>' means 'greater 'than'. If you have trouble memorizing which is which, you can remember that the sign points toward the smaller number."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "8 > 5",
+                        explanation: "Eight is greater than five. The sign points toward the smaller number, number 5."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "3 < 7",
+                        explanation: "Three is smaller than seven. The sign points toward the smaller number, number 3."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "6 = 6",
+                        explanation: "Both numbers have the same value, so they are equal."
+                    },
+
+                    {
+                        type: "text",
+                        text: "When comparing large numbers, first look at how many digits they have. A number with more digits is greater."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "9,999 < 10,000",
+                        explanation: "9,999 has four digits, while 10,000 has five digits, so 10,000 is greater."
+                    },
+
+                    {
+                        type: "text",
+                        text: "If both numbers have the same number of digits, compare the digits from left to right. The first different digit tells us which number is greater."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "42,315 > 41,999",
+                        explanation: "Both numbers have five digits. Their first digits are the same, but 2 is greater than 1 in the thousands place, so 42,315 is greater."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-numbers-comparison-practice",
+
+                title: "Comparing Numbers",
+
+                description: "Practice comparing numbers using <, >, and =.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "number-comparison",
+                    interaction: "multiple-choice",
+
+                    settings: {
+                        min: 0,
+                        max: 1000000
+                    },
+
+                    problemCount: 10
+                }
+            },
+
+            {
+                id: "advanced-numbers-place-value",
+
+                title: "Place Value",
+
+                description: "Learn what each digit is worth depending on its position.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "A digit's value depends on where it is in a number. This is called place value."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "5,432",
+                        explanation: "The 5 is worth 5,000, the 4 is worth 400, the 3 is worth 30, and the 2 is worth 2."
+                    },
+
+                    {
+                        type: "text",
+                        text: "From right to left, the places are ones, tens, hundreds, thousands, ten-thousands, hundred-thousands, and millions."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "325,407",
+                        explanation: "3 is in the hundred-thousands place, 2 is in the ten-thousands place, 5 is in the thousands place, 4 is in the hundreds place, 0 is in the tens place, and 7 is in the ones place."
+                    },
+
+                    {
+                        type: "text",
+                        text: "A zero can hold a place even when there are no units of that size."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "4,052",
+                        explanation: "The 0 is in the hundreds place. There are no hundreds, but the zero keeps the other digits in their correct positions."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-numbers-place-value-practice",
+
+                title: "Place Value",
+
+                description: "Practice identifying the value and position of digits.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "place-value",
+                    interaction: "multiple-choice",
+
+                    settings: {
+                        min: 0,
+                        max: 1000000
+                    },
+
+                    problemCount: 10
+                }
+            },
+
+            {
+                id: "advanced-numbers-expanded-form",
+
+                title: "Expanded Form",
+
+                description: "Learn how to break large numbers into their place values.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "We can break a number apart into the value of each of its digits. This is called expanded form."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "3,527 = 3,000 + 500 + 20 + 7",
+                        explanation: "Each digit is separated according to its place value."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Places containing zero do not need to be written in the expanded form."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "4,052 = 4,000 + 50 + 2",
+                        explanation: "There are no hundreds, so we leave the zero hundreds out."
+                    },
+
+                    {
+                        type: "text",
+                        text: "We can also put an expanded number back together by adding all of its parts."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "20,000 + 3,000 + 400 + 6 = 23,406",
+                        explanation: "Adding the parts gives us the original number."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-numbers-expanded-form-practice",
+
+                title: "Expanded Form",
+
+                description: "Practice putting expanded numbers back together.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "expanded-form",
+                    interaction: "number-input",
+
+                    settings: {
+                        min: 0,
+                        max: 1000000
+                    },
+
+                    problemCount: 10
+                }
+            },
+
+            {
+                id: "advanced-numbers-number-groups",
+
+                title: "Tens, Hundreds, and Thousands",
+
+                description: "Learn which group of tens, hundreds, or thousands a number belongs to.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "We can divide numbers into groups to make their position easier to understand. For example, the first hundred contains the numbers from 1 to 100."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "1–100 → first hundred",
+                        explanation: "Every number from 1 through 100 belongs to the first hundred."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "101–200 → second hundred",
+                        explanation: "Every number from 101 through 200 belongs to the second hundred. Therefore, 104 is in the second hundred."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The same idea can be used with thousands."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "1–1,000 → first thousand",
+                        explanation: "Every number from 1 through 1,000 belongs to the first thousand."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "833 → first thousand",
+                        explanation: "833 is between 1 and 1,000, so it belongs to the first thousand."
+                    },
+
+                    {
+                        type: "text",
+                        text: "We can also divide numbers into groups of ten. The first ten contains 1 through 10, the second ten contains 11 through 20, and so on."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "34 → fourth ten",
+                        explanation: "The fourth ten contains 31 through 40, so 34 belongs to the fourth ten."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Once we know the group, we can also find its smallest and largest number."
+                    },
+
+                    {
+                        type: "example",
+                        expression: "second hundred → 101–200",
+                        explanation: "The smallest number in the second hundred is 101, and the largest is 200."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-numbers-number-groups-practice",
+
+                title: "Number Groups",
+
+                description: "Practice finding the tens, hundreds, and thousands that contain a number.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "number-groups",
+                    interaction: "multiple-choice",
+
+                    settings: {
+                        max: 1000000
+                    },
+
+                    problemCount: 10
+                }
+            }
+        ]
+    },
 
     geometry: {
         id: "geometry",

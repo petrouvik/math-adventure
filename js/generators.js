@@ -8,36 +8,105 @@ function generateNumberReadingProblem(settings) {
     const answer = numberToWords(number);
 
     const decoys = [];
+    const usedNumbers = new Set([number]);
 
-    let offset = 1;
+    function addDecoy(candidate) {
+        if (
+            candidate < settings.min ||
+            candidate > settings.max ||
+            usedNumbers.has(candidate)
+        ) {
+            return;
+        }
 
-    while (decoys.length < 3) {
-        const candidates = [
-            number - offset,
-            number + offset
-        ];
+        usedNumbers.add(candidate);
+        decoys.push(numberToWords(candidate));
+    }
 
-        for (const candidate of candidates) {
-            if (
-                candidate < settings.min ||
-                candidate > settings.max
-            ) {
+    /*
+     * Change individual digits.
+     *
+     * Example:
+     * 42305
+     *
+     * Changing one digit can produce:
+     * 52305
+     * 43305
+     * 42405
+     * 42315
+     * 42306
+     */
+    const digits = String(number).split("");
+
+    for (let i = 0; i < digits.length; i++) {
+        const digit = Number(digits[i]);
+
+        for (const change of [-1, 1]) {
+            const newDigit = digit + change;
+
+            if (newDigit < 0 || newDigit > 9) {
                 continue;
             }
 
-            const word = numberToWords(candidate);
+            const newDigits = [...digits];
+            newDigits[i] = newDigit;
 
-            if (
-                word !== answer &&
-                !decoys.includes(word)
-            ) {
-                decoys.push(word);
+            const candidate = Number(newDigits.join(""));
+
+            addDecoy(candidate);
+
+            if (decoys.length === 3) {
+                break;
+            }
+        }
+
+        if (decoys.length === 3) {
+            break;
+        }
+    }
+
+    /*
+     * If changing adjacent digits wasn't enough,
+     * try changing digits by larger amounts.
+     */
+    if (decoys.length < 3) {
+        for (let i = 0; i < digits.length; i++) {
+            const digit = Number(digits[i]);
+
+            for (let newDigit = 0; newDigit <= 9; newDigit++) {
+                if (newDigit === digit) {
+                    continue;
+                }
+
+                const newDigits = [...digits];
+                newDigits[i] = newDigit;
+
+                const candidate = Number(newDigits.join(""));
+
+                addDecoy(candidate);
+
+                if (decoys.length === 3) {
+                    break;
+                }
             }
 
             if (decoys.length === 3) {
                 break;
             }
         }
+    }
+
+    /*
+     * Final fallback:
+     * numbers near the correct answer.
+     *
+     * This mainly matters for very small ranges.
+     */
+    let offset = 1;
+
+    while (decoys.length < 3) {
+        addDecoy(number - offset);
+        addDecoy(number + offset);
 
         offset++;
     }
@@ -151,6 +220,39 @@ function generateEvenOddProblems(settings, count) {
     for (let i = 0; i < count; i++) {
         problems.push(
             generateEvenOddProblem(settings)
+        );
+    }
+
+    return problems;
+}
+
+function generateNumberWritingProblem(settings) {
+    const number =
+        Math.floor(
+            Math.random() *
+            (settings.max - settings.min + 1)
+        ) + settings.min;
+
+    const words = numberToWords(number);
+
+    return {
+        prompt: words,
+        answer: number,
+
+        explanation: {
+            type: "number-writing",
+            number,
+            words
+        }
+    };
+}
+
+function generateNumberWritingProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateNumberWritingProblem(settings)
         );
     }
 
@@ -565,7 +667,393 @@ function generateArabicToRomanProblems(settings, count) {
     return problems;
 }
 
+function generateNumberComparisonProblem(settings) {
+    const left =
+        Math.floor(
+            Math.random() *
+            (settings.max - settings.min + 1)
+        ) + settings.min;
 
+    let right =
+        Math.floor(
+            Math.random() *
+            (settings.max - settings.min + 1)
+        ) + settings.min;
+
+    const relationRandom = Math.random();
+
+    if (relationRandom < 0.2) {
+        // Equal
+        right = left;
+    } else if (relationRandom < 0.6) {
+        // Make left smaller
+        right = Math.max(
+            settings.min,
+            left - Math.floor(Math.random() * 100 + 1)
+        );
+    } else {
+        // Make left larger
+        right = Math.min(
+            settings.max,
+            left + Math.floor(Math.random() * 100 + 1)
+        );
+    }
+
+    let answer;
+
+    if (left < right) {
+        answer = "<";
+    } else if (left > right) {
+        answer = ">";
+    } else {
+        answer = "=";
+    }
+
+    return {
+        prompt: `${left} <span class="question-mark">?</span> ${right}`,
+        answer,
+
+        choices: [
+            "<",
+            ">",
+            "="
+        ],
+
+        explanation: {
+            type: "number-comparison",
+            left,
+            right,
+            answer
+        }
+    };
+}
+
+function generateNumberComparisonProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateNumberComparisonProblem(settings)
+        );
+    }
+
+    return problems;
+}
+function generatePlaceValueProblem(settings) {
+    const number =
+        Math.floor(
+            Math.random() *
+            (settings.max - settings.min + 1)
+        ) + settings.min;
+
+    const digits = String(number)
+        .split("")
+        .map(Number);
+
+    const possibleIndices = digits
+        .map((digit, index) => ({ digit, index }))
+        .filter(item => item.digit !== 0);
+
+    const selected =
+        possibleIndices[
+            Math.floor(
+                Math.random() * possibleIndices.length
+            )
+        ];
+
+    const digit = selected.digit;
+    const digitIndex = selected.index;
+
+    const power =
+        digits.length - digitIndex - 1;
+
+    const value =
+        digit * Math.pow(10, power);
+
+    const choices = [value];
+
+    // Other possible values for this digit.
+    const possibleValues = [];
+
+    for (let i = 0; i < digits.length; i++) {
+        const possibleValue =
+            digit * Math.pow(
+                10,
+                digits.length - i - 1
+            );
+
+        if (
+            possibleValue !== value &&
+            !possibleValues.includes(possibleValue)
+        ) {
+            possibleValues.push(possibleValue);
+        }
+    }
+
+    // Fill remaining choices if necessary.
+    for (let i = 1; possibleValues.length < 3; i++) {
+        const possibleValue = digit * i;
+
+        if (
+            possibleValue !== value &&
+            !possibleValues.includes(possibleValue)
+        ) {
+            possibleValues.push(possibleValue);
+        }
+    }
+
+    shuffle(possibleValues);
+
+    choices.push(
+        ...possibleValues.slice(0, 3)
+    );
+
+    shuffle(choices);
+
+    const formattedNumber =
+    number
+        .toLocaleString()
+        .split("")
+        .map(character => character)
+        .join("");
+
+    let digitCounter = 0;
+
+    const highlightedNumber =
+        formattedNumber
+            .split("")
+            .map(character => {
+                if (character === ",") {
+                    return character;
+                }
+
+                const html =
+                    digitCounter === digitIndex
+                        ? `<strong class="place-value-digit">${character}</strong>`
+                        : character;
+
+                digitCounter++;
+
+                return html;
+            })
+            .join("");
+    return {
+        prompt: `What is the value of the highlighted digit in ${highlightedNumber}?`,
+        answer: value,
+        choices,
+
+        explanation: {
+            type: "place-value",
+            number,
+            digit,
+            digitIndex,
+            value,
+            position: power
+        }
+    };
+}
+
+function generatePlaceValueProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generatePlaceValueProblem(settings)
+        );
+    }
+
+    return problems;
+}
+
+function generateExpandedFormProblem(settings) {
+    const number =
+        Math.floor(
+            Math.random() *
+            (settings.max - settings.min + 1)
+        ) + settings.min;
+
+    const digits = String(number).split("");
+
+    const parts = [];
+
+    digits.forEach((digit, index) => {
+        const value =
+            Number(digit) *
+            Math.pow(10, digits.length - index - 1);
+
+        if (value !== 0) {
+            parts.push(value);
+        }
+    });
+
+    return {
+        prompt: parts
+            .map(part => part.toLocaleString())
+            .join(" + "),
+
+        answer: number,
+
+        explanation: {
+            type: "expanded-form",
+            number,
+            parts
+        }
+    };
+}
+
+function generateExpandedFormProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateExpandedFormProblem(settings)
+        );
+    }
+
+    return problems;
+}
+
+function generateNumberGroupsProblem(settings) {
+    const groupSizes = [
+        10,
+        100,
+        1000
+    ];
+
+    const groupSize =
+        groupSizes[
+            Math.floor(Math.random() * groupSizes.length)
+        ];
+
+    // Only use the first 20 groups.
+    const maxGroup = Math.min(
+        20,
+        Math.floor(settings.max / groupSize)
+    );
+
+    const groupNumber =
+        Math.floor(
+            Math.random() * maxGroup
+        ) + 1;
+
+    const groupStart =
+        (groupNumber - 1) * groupSize + 1;
+
+    const groupEnd =
+        groupNumber * groupSize;
+
+    const number =
+        Math.floor(
+            Math.random() *
+            (groupEnd - groupStart + 1)
+        ) + groupStart;
+
+    const questionType =
+        Math.floor(Math.random() * 3);
+
+    let prompt;
+    let answer;
+    let choices;
+
+    // Which number is the smallest?
+    if (questionType === 0) {
+        prompt =
+            `Which number is the smallest in the ${getGroupName(groupNumber, groupSize)}?`;
+
+        answer = groupStart;
+
+        choices = [
+            groupStart,
+            groupStart + 1,
+            groupEnd - 1,
+            groupEnd
+        ];
+    }
+
+    // Which number is the largest?
+    else if (questionType === 1) {
+        prompt =
+            `Which number is the largest in the ${getGroupName(groupNumber, groupSize)}?`;
+
+        answer = groupEnd;
+
+        choices = [
+            groupStart,
+            groupStart + 1,
+            groupEnd - 1,
+            groupEnd
+        ];
+    }
+
+    // In which group does the number belong?
+    else {
+        answer =
+            getGroupName(groupNumber, groupSize);
+
+        prompt =
+            `In which group does ${number.toLocaleString()} belong?`;
+
+        choices = [
+            answer
+        ];
+
+        const possibleGroups = [];
+
+        // Use nearby groups as distractors.
+        for (const offset of [-2, -1, 1, 2]) {
+            const otherGroup =
+                groupNumber + offset;
+
+            if (
+                otherGroup < 1 ||
+                otherGroup > maxGroup
+            ) {
+                continue;
+            }
+
+            possibleGroups.push(
+                getGroupName(otherGroup, groupSize)
+            );
+        }
+
+        shuffle(possibleGroups);
+
+        choices.push(
+            ...possibleGroups.slice(0, 3)
+        );
+    }
+
+    shuffle(choices);
+
+    return {
+        prompt,
+        answer,
+        choices,
+
+        explanation: {
+            type: "number-groups",
+            number,
+            groupNumber,
+            groupSize,
+            groupStart,
+            groupEnd,
+            questionType
+        }
+    };
+}
+
+
+function generateNumberGroupsProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateNumberGroupsProblem(settings)
+        );
+    }
+
+    return problems;
+}
 const GENERATORS = {
     "number-reading": {
         generate(settings, count) {
@@ -586,6 +1074,14 @@ const GENERATORS = {
     "even-odd": {
         generate(settings, count) {
             return generateEvenOddProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "number-writing": {
+        generate(settings, count) {
+            return generateNumberWritingProblems(
                 settings,
                 count
             );
@@ -654,5 +1150,38 @@ const GENERATORS = {
                 count
             );
         }
+    },
+    "number-comparison": {
+        generate(settings, count) {
+            return generateNumberComparisonProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "place-value": {
+        generate(settings, count) {
+            return generatePlaceValueProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "expanded-form": {
+        generate(settings, count) {
+            return generateExpandedFormProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "number-groups": {
+        generate(settings, count) {
+            return generateNumberGroupsProblems(
+                settings,
+                count
+            );
+        }
     }
+
 };

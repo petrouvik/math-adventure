@@ -39,8 +39,10 @@ function renderNumberInput(
 
             <div class="answer-area">
                 <input
-                    type="number"
+                    type="text"
                     class="answer-input"
+                    inputmode="numeric"
+                    autocomplete="off"
                     placeholder="?"
                     aria-label="Your answer"
                 >
@@ -72,7 +74,7 @@ function renderNumberInput(
         container.querySelector(".answer-explanation");
 
 
-    function checkAnswer() {
+   function checkAnswer() {
         const value =
             input.value.trim();
 
@@ -86,7 +88,11 @@ function renderNumberInput(
             return;
         }
 
-        const answer = Number(value);
+        const normalizedValue =
+            value.replace(/[,\s]/g, "");
+
+        const answer =
+            Number(normalizedValue);
         checkAnswerAchievement(answer);
 
         // Hide the mobile keyboard after submitting.

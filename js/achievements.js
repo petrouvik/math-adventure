@@ -68,7 +68,7 @@ function checkCourseAchievements(player) {
     if (isCourseCompleted(COURSES.division)) track("course-division");
     if (isCourseCompleted(COURSES["roman-numerals"])) track("course-roman-numerals");
     if (isCourseCompleted(COURSES.geometry)) track("course-geometry");
-
+    if (isCourseCompleted(COURSES["advanced-numbers"])) track("course-advanced-numbers")
     const completedCourses = courses.filter(
         course => isCourseCompleted(course)
     ).length;
@@ -473,6 +473,15 @@ const ACHIEVEMENTS = [
         title: "Add, subtract, multiply, divide, repeat",
         description: "Finish all basic arithmetic courses.",
         icon: "🧮",
+        category: "progression",
+        hidden: false
+    },
+    
+    {
+        id: "course-advanced-numbers",
+        title: "IT'S OVER ONE THOUSAAAND!",
+        description: "Finish the Advanced Numbers course.",
+        icon: "🔢",
         category: "progression",
         hidden: false
     },

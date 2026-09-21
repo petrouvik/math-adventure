@@ -69,7 +69,8 @@ function checkCourseAchievements(player) {
     if (isCourseCompleted(COURSES["roman-numerals"])) track("course-roman-numerals");
     if (isCourseCompleted(COURSES.geometry)) track("course-geometry");
     if (isCourseCompleted(COURSES["advanced-numbers"])) track("course-advanced-numbers")
-        if (isCourseCompleted(COURSES["advanced-addition"])) track("course-advanced-addition")
+    if (isCourseCompleted(COURSES["advanced-addition"])) track("course-advanced-addition")
+    if (isCourseCompleted(COURSES["advanced-subtraction"])) track("course-advanced-subtraction")
     const completedCourses = courses.filter(
         course => isCourseCompleted(course)
     ).length;
@@ -492,6 +493,15 @@ const ACHIEVEMENTS = [
         title: "Keep calm and carry the ones",
         description: "Finish the Advanced Addition course.",
         icon: "+",
+        category: "progression",
+        hidden: false
+    },
+
+    {
+        id: "course-advanced-subtraction",
+        title: "To borrow or not to borrow",
+        description: "Finish the Advanced Subtraction course.",
+        icon: "−",
         category: "progression",
         hidden: false
     },

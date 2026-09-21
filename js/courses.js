@@ -265,7 +265,9 @@ const COURSES = {
                     interaction: "number-input",
 
                     settings: {
-                        max: 20
+                        max: 20,
+                        min: 1,
+                        carryProbability: 0.75
                     },
 
                     problemCount: 10
@@ -344,7 +346,9 @@ const COURSES = {
                     interaction: "number-input",
 
                     settings: {
-                        max: 20
+                        max: 19,
+                        min: 1,
+                        borrowProbability: 0.75
                     },
 
                     problemCount: 10

@@ -260,43 +260,119 @@ function generateNumberWritingProblems(settings, count) {
 }
 
 function generateAdditionProblem(settings) {
-    const max = settings.max;
+    const {
+        min = 1,
+        max,
+        carryProbability = 0
+    } = settings;
 
-    const left = Math.floor(
-        Math.random() * (max - 1)
-    ) + 1;
+    for (let attempt = 0; attempt < 1000; attempt++) {
+        const wantsCarry =
+            Math.random() < carryProbability;
 
-    const right = Math.floor(
-        Math.random() * (max - left)
-    ) + 1;
+        let left;
+        let right;
 
-    const smaller = Math.min(left, right);
-    const larger = Math.max(left, right);
+        if (wantsCarry) {
+            /*
+             * Choose the ones digits so that
+             * their sum is at least 10.
+             */
+            const leftMin =
+                Math.max(min, 1);
 
-    let explanation;
+            left =
+                Math.floor(
+                    Math.random() *
+                    (max - leftMin + 1)
+                ) + leftMin;
 
-    if (smaller <= 3) {
-        explanation = {
-            type: "counting",
-            start: larger,
-            amount: smaller
-        };
-    } else {
-        explanation = {
-            type: "decomposition",
-            larger,
-            smaller
+            /*
+             * The right number must be large enough
+             * to make the ones digits carry.
+             */
+            const leftOnes =
+                left % 10;
+
+            const minimumRight =
+                10 - leftOnes;
+
+            if (minimumRight > max) {
+                continue;
+            }
+
+            right =
+                Math.floor(
+                    Math.random() *
+                    (max - minimumRight + 1)
+                ) + minimumRight;
+        } else {
+            left =
+                Math.floor(
+                    Math.random() *
+                    (max - min + 1)
+                ) + min;
+
+            right =
+                Math.floor(
+                    Math.random() *
+                    (max - min + 1)
+                ) + min;
+        }
+
+        /*
+         * Make sure the answer stays within max.
+         */
+        if (left + right > max) {
+            continue;
+        }
+
+        const smaller =
+            Math.min(left, right);
+
+        const larger =
+            Math.max(left, right);
+
+        /*
+         * Verify whether this problem actually
+         * requires carrying in the ones column.
+         */
+        const hasCarry =
+            (left % 10) + (right % 10) >= 10;
+
+        if (wantsCarry !== hasCarry) {
+            continue;
+        }
+
+        let explanation;
+
+        if (smaller <= 3) {
+            explanation = {
+                type: "counting",
+                start: larger,
+                amount: smaller
+            };
+        } else {
+            explanation = {
+                type: "decomposition",
+                larger,
+                smaller
+            };
+        }
+
+        return {
+            left,
+            right,
+            operator: "+",
+            prompt: `${left} + ${right}`,
+            answer: left + right,
+            explanation
         };
     }
 
-    return {
-        left,
-        right,
-        operator: "+",
-        prompt: `${left} + ${right}`,
-        answer: left + right,
-        explanation
-    };
+    throw new Error(
+        "Could not generate an addition problem with the requested settings."
+    );
 }
 
 function generateAdditionProblems(settings, count) {
@@ -312,35 +388,114 @@ function generateAdditionProblems(settings, count) {
 }
 
 function generateSubtractionProblem(settings) {
-    const max = settings.max;
+    const {
+        min = 1,
+        max,
+        borrowProbability = 0
+    } = settings;
 
-    const left =
-        Math.floor(Math.random() * (max - 1)) + 1;
+    for (let attempt = 0; attempt < 1000; attempt++) {
+        let left;
+        let right;
 
-    const right =
-        Math.floor(Math.random() * left) + 1;
+        /*
+         * Decide whether this problem should
+         * require borrowing in the ones column.
+         */
+        const wantsBorrow =
+            Math.random() < borrowProbability;
 
-    const explanation =
-        right <= 3
-            ? {
-                type: "counting-back",
-                start: left,
-                amount: right
+        if (wantsBorrow) {
+            /*
+             * Choose a left number whose ones digit
+             * is smaller than the right number's ones digit.
+             */
+            left =
+                Math.floor(
+                    Math.random() *
+                    (max - min + 1)
+                ) + min;
+
+            const leftOnes =
+                left % 10;
+
+            /*
+             * We need a right number whose ones
+             * digit is larger than left's ones digit.
+             */
+            const minimumRight =
+                leftOnes + 1;
+
+            if (minimumRight > left) {
+                continue;
             }
-            : {
-                type: "subtraction-decomposition",
-                start: left,
-                amount: right
-            };
 
-    return {
-        left,
-        right,
-        operator: "−",
-        prompt: `${left} − ${right}`,
-        answer: left - right,
-        explanation
-    };
+            right =
+                Math.floor(
+                    Math.random() *
+                    (left - minimumRight + 1)
+                ) + minimumRight;
+        } else {
+            /*
+             * Generate an ordinary subtraction problem.
+             */
+            left =
+                Math.floor(
+                    Math.random() *
+                    (max - min + 1)
+                ) + min;
+
+            right =
+                Math.floor(
+                    Math.random() * left
+                ) + 1;
+        }
+
+        /*
+         * Make sure the result is still within
+         * the requested range.
+         */
+        if (left - right < min) {
+            continue;
+        }
+
+        /*
+         * Check whether this problem actually
+         * requires a borrow in the ones column.
+         */
+        const hasBorrow =
+            (left % 10) < (right % 10);
+
+        if (wantsBorrow !== hasBorrow) {
+            continue;
+        }
+
+        const explanation =
+            right <= 3
+                ? {
+                    type: "counting-back",
+                    start: left,
+                    amount: right
+                }
+                : {
+                    type: "subtraction-decomposition",
+                    start: left,
+                    amount: right
+                };
+
+        return {
+            left,
+            right,
+            operator: "−",
+            prompt: `${left} − ${right}`,
+            answer: left - right,
+            explanation
+        };
+    }
+
+    throw new Error(
+        "Could not generate a subtraction problem with the requested settings."
+    );
 }
 
 function generateSubtractionProblems(settings, count) {

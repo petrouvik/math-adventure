@@ -320,3 +320,16 @@ function computeBorrows(top, bottom) {
 
     return borrows;
 }
+function getSubtractionPlaceName(position) {
+    const places = [
+        "ones",
+        "tens",
+        "hundreds",
+        "thousands",
+        "ten-thousands",
+        "hundred-thousands",
+        "millions"
+    ];
+
+    return places[position] || "next";
+}

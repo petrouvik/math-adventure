@@ -790,3 +790,15 @@
     height: auto;
     max-width: 100%;
 }
+
+.subtraction-explanation-svg {
+    display: flex;
+    justify-content: center;
+}
+
+.subtraction-explanation-svg svg {
+    display: block;
+    width: 180px;
+    height: auto;
+    max-width: 100%;
+}

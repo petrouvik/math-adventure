@@ -107,6 +107,15 @@ const EXPLANATIONS = {
             );
         }
     },
+    "advanced-subtraction":  {
+        render(container, explanation, problem) {
+            renderAdvancedSubtractionExplanation(
+                container,
+                explanation,
+                problem
+            );
+        }
+    },
 };
 function renderCountingExplanation(
     container,
@@ -872,6 +881,193 @@ function renderAdvancedAdditionExplanation(container, top, bottom) {
                         <div class="addition-explanation-svg">
                             ${step.svg}
                         </div>
+                        <p>${step.text}</p>
+                    </div>
+                `).join("")}
+            </div>
+        </div>
+    `;
+}
+
+function renderAdvancedSubtractionExplanation(
+    container,
+    top,
+    bottom
+) {
+    // Accept the old call shape too:
+    // renderAdvancedSubtractionExplanation(
+    //     container,
+    //     explanation,
+    //     problem
+    // )
+    if (typeof top === "object" && top !== null) {
+        ({ top, bottom } = top);
+    }
+
+    const topStr = String(top);
+    const bottomStr = String(bottom);
+
+    const maxDigits =
+        Math.max(
+            topStr.length,
+            bottomStr.length
+        );
+
+    const topPadded =
+        topStr.padStart(maxDigits, "0");
+
+    const bottomPadded =
+        bottomStr.padStart(maxDigits, "0");
+
+    const steps = [];
+
+    steps.push({
+        title: "Set up the problem",
+        text:
+            "Line up the numbers by place value. " +
+            "Ones go under ones, tens under tens, and so on.",
+        svg: createSubtractionSvg(
+            topStr,
+            bottomStr,
+            "",
+            []
+        )
+    });
+
+    /*
+     * These represent the actual changes caused
+     * by borrowing.
+     *
+     * borrows[position] means that we borrowed
+     * from the column at position + 1.
+     */
+    const revealedBorrows = [];
+
+    const partialResult =
+        Array(maxDigits).fill("");
+
+    /*
+     * This is the amount that has been borrowed
+     * from the current column by the column to
+     * its right.
+     */
+    let borrow = 0;
+
+    for (
+        let i = maxDigits - 1;
+        i >= 0;
+        i--
+    ) {
+        const position =
+            maxDigits - 1 - i;
+
+        const originalTopDigit =
+            Number(topPadded[i]);
+
+        const bottomDigit =
+            Number(bottomPadded[i]);
+
+        /*
+         * Apply a borrow that came from the
+         * column to the right.
+         */
+        let topDigit =
+            originalTopDigit - borrow;
+
+        /*
+         * If the current digit is too small,
+         * borrow from the next column.
+         */
+        let newBorrow = 0;
+
+        if (topDigit < bottomDigit) {
+            newBorrow = 1;
+
+            /*
+             * We effectively receive 10 in this
+             * column, but we do not display that
+             * as a changed top digit.
+             */
+            topDigit += 10;
+
+            /*
+             * The small borrow marker belongs
+             * above the column to the left.
+             */
+            if (i > 0) {
+                revealedBorrows[position] = 1;
+            }
+        }
+
+        const resultDigit =
+            topDigit - bottomDigit;
+
+        partialResult[i] =
+            String(resultDigit);
+
+        const place =
+            getSubtractionPlaceName(position);
+
+        let text;
+
+        if (newBorrow) {
+            text =
+                `${originalTopDigit} is too small to subtract ` +
+                `${bottomDigit}. ` +
+                `Borrow 1 from the ${getSubtractionPlaceName(position + 1)} place. ` +
+                `This gives us 10 more in the ${place} place, ` +
+                `so we can subtract ${topDigit} − ${bottomDigit} = ${resultDigit}.`;
+        } else if (borrow) {
+            text =
+                `The ${place} place has already given 1 to the column on its right. ` +
+                `Now we have ${topDigit} − ${bottomDigit} = ${resultDigit}.`;
+        } else {
+            text =
+                `${topDigit} − ${bottomDigit} = ${resultDigit}. ` +
+                `Write ${resultDigit} in the ${place} place.`;
+        }
+
+        steps.push({
+            title:
+                `Subtract the ${place} column`,
+            text,
+            svg: createSubtractionSvg(
+                topStr,
+                bottomStr,
+                partialResult.join(""),
+                revealedBorrows.slice()
+            )
+        });
+
+        borrow = newBorrow;
+    }
+
+    steps.push({
+        title: "Finish the subtraction",
+        text:
+            `The answer is ` +
+            `${Number(partialResult.join("")).toLocaleString()}.`,
+        svg: createSubtractionSvg(
+            topStr,
+            bottomStr,
+            partialResult.join(""),
+            revealedBorrows.slice()
+        )
+    });
+
+    container.innerHTML = `
+        <div class="explanation-card">
+            <h3>Let's solve it step by step</h3>
+
+            <div class="subtraction-explanation-steps">
+                ${steps.map(step => `
+                    <div class="subtraction-explanation-step">
+                        <h4>${step.title}</h4>
+
+                        <div class="subtraction-explanation-svg">
+                            ${step.svg}
+                        </div>
+
                         <p>${step.text}</p>
                     </div>
                 `).join("")}

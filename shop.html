@@ -18,6 +18,7 @@
 
 </head>
 
+
 <body>
 
     <header>
@@ -29,13 +30,19 @@
 
 
         <div class="player-info">
+
             <div class="level">
-                ⭐ Level <span data-player="level"></span>
+                ⭐
+                <span data-i18n="shop.level"></span>
+                <span data-player="level"></span>
             </div>
 
+
             <div class="coins">
-                🪙 <span data-player="coins"></span>
+                🪙
+                <span data-player="coins"></span>
             </div>
+
         </div>
 
     </header>
@@ -47,11 +54,9 @@
 
         <section class="page-header">
 
-            <h1>🎨 Theme Shop</h1>
+            <h1 data-i18n="shop.title"></h1>
 
-            <p>
-                Customize your Math Adventure!
-            </p>
+            <p data-i18n="shop.subtitle"></p>
 
         </section>
 
@@ -62,11 +67,14 @@
 
             <span class="balance-icon">🪙</span>
 
+
             <div>
 
-                <span class="balance-label">
-                    Your Coins
-                </span>
+                <span
+                    class="balance-label"
+                    data-i18n="shop.yourCoins"
+                ></span>
+
 
                 <strong>
                     <span data-player="coins"></span>
@@ -79,41 +87,69 @@
 
         <section class="section">
 
-            <h2>✨ Themes</h2>
+            <h2 data-i18n="shop.themes"></h2>
 
-            <div class="theme-grid" id="theme-list"></div>
+            <div
+                class="theme-grid"
+                id="theme-list"
+            ></div>
 
         </section>
 
+    </main>
 
-        <nav>
 
-        <a href="index.html" class="nav-item">
+    <nav>
+
+        <a
+            href="index.html"
+            class="nav-item"
+        >
             <span>🏠</span>
-            Home
+            <span data-i18n="navigation.home"></span>
         </a>
 
-        <a href="learn.html" class="nav-item">
+
+        <a
+            href="learn.html"
+            class="nav-item"
+        >
             <span>📚</span>
-            Learn
+            <span data-i18n="navigation.learn"></span>
         </a>
 
-        <a href="progress.html" class="nav-item">
+
+        <a
+            href="progress.html"
+            class="nav-item"
+        >
             <span>🏆</span>
-            Progress
+            <span data-i18n="navigation.progress"></span>
         </a>
 
-        <a href="shop.html" class="nav-item active">
+
+        <a
+            href="shop.html"
+            class="nav-item active"
+        >
             <span>🎁</span>
-            Shop
+            <span data-i18n="navigation.shop"></span>
         </a>
 
     </nav>
 
-    </main>
+
+    <script src="js/translations/en.js"></script>
+    <script src="js/translations/sr.js"></script>
+    <script src="js/i18n.js"></script>
+
     <script src="js/player.js"></script>
     <script src="js/themes.js"></script>
     <script src="js/shop.js"></script>
+    <script>
+        applyTranslations();
+    </script>
 
 </body>
+
 </html>

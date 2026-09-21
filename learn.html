@@ -1,77 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Learn - Math Adventure</title>
-    
+
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/navigation.css">
     <link rel="stylesheet" href="css/learn.css">
+
 </head>
+
+
 <body>
 
     <header class="top-bar">
+
         <div class="logo">
-            <span class="logo-icon">🧮</span>
-            <span>Math Adventure</span>
+
+            <span class="logo-icon">
+                🧮
+            </span>
+
+            <span>
+                Math Adventure
+            </span>
+
         </div>
+
 
         <div class="player-info">
+
             <div class="level">
-                ⭐ Level <span data-player="level"></span>
+
+                ⭐
+                <span data-i18n="learn.level"></span>
+                <span data-player="level"></span>
+
             </div>
 
+
             <div class="coins">
-                🪙 <span data-player="coins"></span>
+
+                🪙
+                <span data-player="coins"></span>
+
             </div>
+
         </div>
+
     </header>
+
 
     <main class="learn-page">
 
         <div class="page-header">
-            <h1>📚 Learn</h1>
-            <p>Choose a topic and start learning!</p>
+
+            <h1 data-i18n="learn.title"></h1>
+
+            <p data-i18n="learn.subtitle"></p>
+
         </div>
 
-        <section class="courses" id="courses"></section>
+
+        <section
+            class="courses"
+            id="courses"
+        ></section>
 
     </main>
 
+
     <nav>
 
-        <a href="index.html" class="nav-item">
+        <a
+            href="index.html"
+            class="nav-item"
+        >
             <span>🏠</span>
-            Home
+            <span data-i18n="navigation.home"></span>
         </a>
 
-        <a href="learn.html" class="nav-item active">
+
+        <a
+            href="learn.html"
+            class="nav-item active"
+        >
             <span>📚</span>
-            Learn
+            <span data-i18n="navigation.learn"></span>
         </a>
 
-        <a href="progress.html" class="nav-item">
+
+        <a
+            href="progress.html"
+            class="nav-item"
+        >
             <span>🏆</span>
-            Progress
+            <span data-i18n="navigation.progress"></span>
         </a>
 
-        <a href="shop.html" class="nav-item">
+
+        <a
+            href="shop.html"
+            class="nav-item"
+        >
             <span>🎁</span>
-            Shop
+            <span data-i18n="navigation.shop"></span>
         </a>
 
     </nav>
+
+
+    <script src="js/translations/en.js"></script>
+    <script src="js/translations/sr.js"></script>
+    <script src="js/i18n.js"></script>
+
     <script src="js/player.js"></script>
     <script src="js/image-utils.js"></script>
     <script src="js/courses.js"></script>
     <script src="js/learn.js"></script>
+
     <script>
+
         updatePlayerDisplay();
         renderCourses();
+        applyTranslations();
+
     </script>
+
     <script src="js/themes.js"></script>
 
 </body>
+
 </html>

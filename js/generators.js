@@ -1250,6 +1250,207 @@ function generateAdvancedAdditionProblems(settings, count) {
 
     return problems;
 }
+
+function generateAdvancedSubtractionProblem(settings) {
+    const {
+        min = 100,
+        max = 10000,
+        sameLength = true,
+        borrowCount = null,
+        borrowThroughZero = false
+    } = settings;
+
+    for (let attempt = 0; attempt < 10000; attempt++) {
+        let top;
+        let bottom;
+
+        /*
+         * Generate numbers with the requested number of digits.
+         */
+        if (sameLength) {
+            const minDigits =
+                String(min).length;
+
+            const maxDigits =
+                String(max).length;
+
+            const digits =
+                Math.floor(
+                    Math.random() *
+                    (maxDigits - minDigits + 1)
+                ) + minDigits;
+
+            const lower =
+                Math.max(
+                    min,
+                    Math.pow(10, digits - 1)
+                );
+
+            const upper =
+                Math.min(
+                    max,
+                    Math.pow(10, digits) - 1
+                );
+
+            top =
+                Math.floor(
+                    Math.random() *
+                    (upper - lower + 1)
+                ) + lower;
+
+            bottom =
+                Math.floor(
+                    Math.random() *
+                    (upper - lower + 1)
+                ) + lower;
+        } else {
+            top =
+                Math.floor(
+                    Math.random() *
+                    (max - min + 1)
+                ) + min;
+
+            bottom =
+                Math.floor(
+                    Math.random() *
+                    (max - min + 1)
+                ) + min;
+        }
+
+        /*
+         * Subtraction requires the top number
+         * to be at least as large as the bottom number.
+         */
+        if (top < bottom) {
+            [top, bottom] = [bottom, top];
+        }
+
+        const result = top - bottom;
+
+        /*
+         * Compute the borrows.
+         */
+        const borrows =
+            computeBorrows(top, bottom);
+
+        const numberOfBorrows =
+            borrows.filter(Boolean).length;
+
+        /*
+         * Check borrow-count requirements.
+         */
+        if (borrowCount !== null) {
+            if (typeof borrowCount === "number") {
+                if (numberOfBorrows !== borrowCount) {
+                    continue;
+                }
+            } else {
+                if (
+                    borrowCount.min !== undefined &&
+                    numberOfBorrows < borrowCount.min
+                ) {
+                    continue;
+                }
+
+                if (
+                    borrowCount.max !== undefined &&
+                    numberOfBorrows > borrowCount.max
+                ) {
+                    continue;
+                }
+            }
+        }
+
+        /*
+         * Check whether borrowing passes through
+         * a column containing zero.
+         */
+        if (borrowThroughZero) {
+            const topStr =
+                String(top);
+
+            const bottomStr =
+                String(bottom);
+
+            const maxLength =
+                Math.max(
+                    topStr.length,
+                    bottomStr.length
+                );
+
+            const topPadded =
+                topStr.padStart(maxLength, "0");
+
+            let found = false;
+
+            /*
+             * A borrow passes through a zero when
+             * we need to borrow from a column whose
+             * digit is zero.
+             *
+             * For example:
+             *
+             *     5 0 2
+             *   - 1 7 8
+             *
+             * The ones need a borrow, but the tens
+             * contains zero, so the borrow must pass
+             * through that zero.
+             */
+            for (let i = maxLength - 2; i >= 0; i--) {
+                const borrowIntoColumn =
+                    borrows[maxLength - 1 - i];
+
+                if (!borrowIntoColumn) {
+                    continue;
+                }
+
+                if (topPadded[i] === "0") {
+                    found = true;
+                    break;
+                }
+            }
+
+            if (!found) {
+                continue;
+            }
+        }
+
+        return {
+            prompt: `${top.toLocaleString()} − ${bottom.toLocaleString()}`,
+            answer: result,
+
+            explanation: {
+                type: "advanced-subtraction",
+                top,
+                bottom,
+                result,
+                borrows
+            }
+        };
+    }
+
+    /*
+     * If we somehow cannot find a number satisfying
+     * the requested constraints, fail explicitly.
+     */
+    throw new Error(
+        "Could not generate an advanced subtraction problem with the requested settings."
+    );
+}
+
+
+function generateAdvancedSubtractionProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateAdvancedSubtractionProblem(settings)
+        );
+    }
+
+    return problems;
+}
 const GENERATORS = {
     "number-reading": {
         generate(settings, count) {
@@ -1382,6 +1583,14 @@ const GENERATORS = {
     "advanced-addition": {
         generate(settings, count) {
             return generateAdvancedAdditionProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "advanced-subtraction": {
+        generate(settings, count) {
+            return generateAdvancedSubtractionProblems(
                 settings,
                 count
             );

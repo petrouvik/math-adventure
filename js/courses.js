@@ -1342,6 +1342,7 @@ const COURSES = {
             }
         ]
     },
+
     "advanced-addition": {
         id: "advanced-addition",
         title: "Advanced Addition",
@@ -1860,6 +1861,578 @@ const COURSES = {
                     },
 
                     problemCount: 10
+                }
+            }
+        ]
+    },
+
+    "advanced-subtraction": {
+        id: "advanced-subtraction",
+        title: "Advanced Subtraction",
+        description: "Learn how to subtract large numbers using the written subtraction algorithm.",
+        icon: "−",
+
+        lessons: [
+            {
+                id: "advanced-subtraction-no-borrowing",
+
+                title: "Subtracting Without Borrowing",
+
+                description: "Learn how to subtract numbers column by column when no borrowing is needed.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "When numbers become larger, we can subtract them by writing one number underneath the other. This is called column subtraction."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The most important rule is to line up the numbers by place value. Ones go under ones, tens go under tens, hundreds go under hundreds, and so on."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createSubtractionSvg(
+                            "568",
+                            "243",
+                            "325",
+                            []
+                        ),
+                        explanation: "First, subtract the ones: 8 − 3 = 5. Then subtract the tens: 6 − 4 = 2. Finally, subtract the hundreds: 5 − 2 = 3. The answer is 325."
+                    },
+
+                    {
+                        type: "text",
+                        text: "We always start with the rightmost column, which is the ones column. Then we move to the left one column at a time."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createSubtractionSvg(
+                            "7842",
+                            "3511",
+                            "4331",
+                            []
+                        ),
+                        explanation: "We subtract the ones, then the tens, then the hundreds, and finally the thousands. Every top digit is large enough to subtract the digit underneath it, so no borrowing is needed."
+                    },
+
+                    {
+                        type: "text",
+                        text: "This same method works no matter how many columns the numbers have. We simply continue from right to left."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-subtraction-no-borrowing-practice",
+
+                title: "Practice: No Borrowing",
+
+                description: "Practice subtracting numbers without borrowing.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "advanced-subtraction",
+                    interaction: "number-input",
+
+                    settings: {
+                        max: 9999,
+                        sameLength: true,
+                        borrowCount: 0
+                    },
+
+                    problemCount: 10,
+                    solveOnPaper: true
+                }
+            },
+
+            {
+                id: "advanced-subtraction-one-borrowing",
+
+                title: "Subtracting With One Borrow",
+
+                description: "Learn what to do when a top digit is too small to subtract.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "Sometimes the top digit in a column is smaller than the digit underneath it. We cannot subtract the smaller digit from it, so we need to borrow from the next column."
+                    },
+
+                    {
+                        type: "text",
+                        text: "When we borrow, we take 1 from the digit immediately to the left and add 10 to the current digit. This gives us enough to subtract. We write how much we have borrowed above the column that we have borrowed from."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createSubtractionSvg(
+                            "52",
+                            "27",
+                            "25",
+                            [1]
+                        ),
+                        explanation: "Start with the ones: 2 is smaller than 7, so we need to borrow. We take 1 ten from the 5 tens, leaving 4 tens. That borrowed ten becomes 10 ones, so the 2 ones become 12 ones."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Now we can subtract the ones: 12 − 7 = 5. Then subtract the tens (do not forget that we have borrowed from the 5 so it becomes a 4): 4 − 2 = 2. The answer is 25."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createSubtractionSvg(
+                            "63",
+                            "28",
+                            "35",
+                            [1]
+                        ),
+                        explanation: "The ones column needs a borrow because 3 is smaller than 8. Borrow 1 ten from 6, leaving 5 tens, and turn the 3 ones into 13 ones. Then 13 − 8 = 5 and 5 − 2 = 3, giving 35."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Borrowing does not change the value of the number. We are simply taking one ten and changing it into ten ones so that we can subtract."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Whenever a top digit is too small, look to the next column on the left. Borrow 1 from that column, add 10 to the current column, and then continue subtracting."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-subtraction-one-borrowing-practice",
+
+                title: "Practice: One Borrow",
+
+                description: "Practice subtraction problems that require one borrow.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "advanced-subtraction",
+                    interaction: "number-input",
+
+                    settings: {
+                        max: 10000,
+                        sameLength: true,
+                        borrowCount: 1
+                    },
+
+                    problemCount: 10,
+                    solveOnPaper: true
+                }
+            },
+
+            {
+                id: "advanced-subtraction-multiple-borrowings",
+
+                title: "Subtracting With Multiple Borrows",
+
+                description: "Learn how to borrow in several columns.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "A subtraction problem can require borrowing in more than one column. The process is always the same: when a top digit is too small, borrow 1 from the next column and add 10 to the current column."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createSubtractionSvg(
+                            "743",
+                            "286",
+                            "457",
+                            [1, 1]
+                        ),
+                        explanation: "Start with the ones: 3 is smaller than 6, so borrow 1 ten. The 3 becomes 13 and the 4 becomes 3. Now 13 − 6 = 7. In the tens column, 3 is smaller than 8, so borrow 1 hundred. The 3 becomes 13 and the 7 becomes 6. Then 13 − 8 = 5. Finally, 6 − 2 = 4. The answer is 457."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Notice that a borrow changes the digit in the column to the left. That change must be remembered when we reach that column."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createSubtractionSvg(
+                            "8652",
+                            "4378",
+                            "4274",
+                            [1, 1, 1]
+                        ),
+                        explanation: "Several columns require borrowing. We start on the right and work left. Each time the top digit is too small, we borrow 1 from the next column before subtracting."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Borrowing can happen in consecutive columns. Even when several columns need a borrow, we never change the order: always work from right to left."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createSubtractionSvg(
+                            "9321",
+                            "4876",
+                            "4445",
+                            [1, 1, 1]
+                        ),
+                        explanation: "The ones require a borrow, then the tens require another borrow, and the hundreds require another borrow. After each borrow, we use the changed digit when we move to the next column."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The important thing is to keep track of every borrow. A borrowed ten is used in the current column, while the column we borrowed from becomes 1 smaller."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-subtraction-multiple-borrowings-practice",
+
+                title: "Practice: Multiple Borrows",
+
+                description: "Practice subtraction problems that require several borrows.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "advanced-subtraction",
+                    interaction: "number-input",
+
+                    settings: {
+                        max: 10000,
+                        sameLength: true,
+                        borrowCount: {
+                            min: 2
+                        }
+                    },
+
+                    problemCount: 10,
+                    solveOnPaper: true
+                }
+            },
+
+            {
+    id: "advanced-subtraction-borrow-through-zero",
+
+    title: "Borrowing Through Zeros",
+
+    description: "Learn how to borrow when zeros appear in the next column.",
+
+    type: "explanation",
+
+    content: [
+        {
+            type: "text",
+            text: "Sometimes we need to borrow, but the next column contains 0. We can still use the same borrowing rule."
+        },
+
+        {
+            type: "text",
+            text: "When we borrow, we take 1 from the column to the left and turn it into 10 in the current column. The column we borrowed from now has 1 less."
+        },
+
+        {
+            type: "example",
+            expression: createSubtractionSvg(
+                "52",
+                "27",
+                "25",
+                [1]
+            ),
+            explanation: "Start with the ones: 2 is smaller than 7, so we borrow 1 ten. The 2 becomes 12, and the 5 tens becomes 4 tens. Now we can subtract 12 − 7 = 5."
+        },
+
+        {
+            type: "text",
+            text: "Now suppose the next column contains 0. We still borrow from that column. We simply remember that it has given away 1, and we continue to the left."
+        },
+
+        {
+            type: "example",
+            expression: createSubtractionSvg(
+                "502",
+                "178",
+                "324",
+                [1, 1]
+            ),
+            explanation: "Start with the ones: 2 is smaller than 8, so we borrow from the tens column. The 2 becomes 12. The tens column has given away 1, so we remember that it has 1 less available when we reach it."
+        },
+
+        {
+            type: "text",
+            text: "Now move to the tens column. It started with 0, but it has already given away 1. It therefore needs to borrow from the hundreds column before we can subtract."
+        },
+
+        {
+            type: "example",
+            expression: createSubtractionSvg(
+                "502",
+                "178",
+                "324",
+                [1, 1]
+            ),
+            explanation: "Borrow 1 hundred for the tens column. That gives us 10 tens. One of those tens is used to make up for the earlier borrow, leaving 9 tens. Now we can subtract 9 − 7 = 2."
+        },
+
+        {
+            type: "text",
+            text: "Finally, the hundreds column has given away 1 hundred, so the 5 becomes 4. We subtract 4 − 1 = 3. The answer is 324."
+        },
+
+        {
+            type: "text",
+            text: "Notice that we never had to calculate with anything unusual. We simply remembered that a column which has already given away 1 has one less available when we reach it."
+        },
+
+        {
+            type: "example",
+            expression: createSubtractionSvg(
+                "1000",
+                "1",
+                "999",
+                [1, 1, 1]
+            ),
+            explanation: "Start with the ones. We need to borrow, so we take 1 from the tens column. The ones become 10, and we remember that the tens column has given away 1."
+        },
+
+        {
+            type: "text",
+            text: "Now move to the tens. That column started with 0 and has already given away 1, so it also needs to borrow. We take 1 from the hundreds column. The tens now have 10, but one of those tens has already been used for the ones column, leaving 9."
+        },
+
+        {
+            type: "text",
+            text: "The same thing happens in the hundreds column. It borrows from the thousands column, leaving 9 hundreds after passing one ten to the tens column."
+        },
+
+        {
+            type: "text",
+            text: "Now we can finish from right to left: 10 − 1 = 9, then 9 − 0 = 9, then 9 − 0 = 9. The answer is 999."
+        },
+
+        {
+            type: "text",
+            text: "The important idea is simple: if you need to borrow, always borrow from the next column. If that column has already given something away, remember that it has 1 less when you reach it. Keep moving left until every column can be solved."
+        }
+    ]
+},
+
+            {
+                id: "advanced-subtraction-borrow-through-zero-practice",
+
+                title: "Practice: Borrowing Through Zeros",
+
+                description: "Practice subtraction problems where borrowing passes through zero.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "advanced-subtraction",
+                    interaction: "number-input",
+
+                    settings: {
+                        max: 10000,
+                        borrowThroughZero: true
+                    },
+
+                    problemCount: 10,
+                    solveOnPaper: true
+                }
+            },
+
+            {
+                id: "advanced-subtraction-different-lengths",
+
+                title: "Subtracting Different-Length Numbers",
+
+                description: "Learn how to subtract numbers that do not have the same number of digits.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "The two numbers do not need to have the same number of digits. We simply line them up by place value."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createSubtractionSvg(
+                            "4826",
+                            "397",
+                            "4429",
+                            [1]
+                        ),
+                        explanation: "The 7 goes under the ones place, the 9 under the tens place, and the 3 under the hundreds place. The thousands place of 397 is empty, so there is nothing to subtract from the thousands digit of 4,826."
+                    },
+
+                    {
+                        type: "text",
+                        text: "It can help to imagine the shorter number with zeros added to its left. For example, 397 can be thought of as 0,397."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createSubtractionSvg(
+                            "4826",
+                            "397",
+                            "4429",
+                            [1]
+                        ),
+                        explanation: "Think of the problem as 4,826 − 0,397. Now every digit has a matching place: ones with ones, tens with tens, hundreds with hundreds, and thousands with thousands."
+                    },
+
+                    {
+                        type: "text",
+                        text: "The shorter number does not need to be changed. The important thing is that its digits are placed in the correct columns."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createSubtractionSvg(
+                            "12746",
+                            "58",
+                            "12688",
+                            [1, 1]
+                        ),
+                        explanation: "Here 58 is much shorter than 12,746. The 8 belongs under the ones and the 5 belongs under the tens. The empty places to the left simply contribute nothing."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Once the numbers are aligned correctly, the subtraction algorithm is exactly the same as before. We still start on the right and borrow whenever the top digit is too small."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-subtraction-different-lengths-practice",
+
+                title: "Practice: Different Lengths",
+
+                description: "Practice subtracting numbers with different numbers of digits.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "advanced-subtraction",
+                    interaction: "number-input",
+
+                    settings: {
+                        max: 10000,
+                        sameLength: false
+                    },
+
+                    problemCount: 10,
+                    solveOnPaper: true
+                }
+            },
+
+            {
+                id: "advanced-subtraction-large-numbers",
+
+                title: "Subtracting Large Numbers",
+
+                description: "Put everything together and subtract numbers up to one million.",
+
+                type: "explanation",
+
+                content: [
+                    {
+                        type: "text",
+                        text: "You now know the complete written subtraction algorithm. It works for numbers of any size because the procedure stays the same."
+                    },
+
+                    {
+                        type: "text",
+                        text: "For large numbers, continue aligning the digits by place value and work from the ones column toward the left. Borrow whenever the top digit is too small."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createSubtractionSvg(
+                            "684729",
+                            "276845",
+                            "407884",
+                            [1, 1, 1]
+                        ),
+                        explanation: "Even though the numbers are much larger, we still solve the same way: start with the ones, borrow when necessary, and continue one column at a time toward the left."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Large numbers can contain zeros, different digit lengths, and several borrowing steps. None of these require a new algorithm."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createSubtractionSvg(
+                            "800000",
+                            "1",
+                            "799999",
+                            [1, 1, 1, 1, 1]
+                        ),
+                        explanation: "The ones need a borrow, but every column between the ones and the hundred-thousands contains zero. We borrow from the 8 and pass the borrowing through the zero columns. The result is 799,999."
+                    },
+
+                    {
+                        type: "example",
+                        expression: createSubtractionSvg(
+                            "1000000",
+                            "1",
+                            "999999",
+                            [1, 1, 1, 1, 1, 1]
+                        ),
+                        explanation: "Here we subtract 1 from one million. The borrow travels through every zero column until it reaches the ones. The result is 999,999."
+                    },
+
+                    {
+                        type: "text",
+                        text: "Remember the complete procedure: line up the numbers by place value, start on the right, subtract each column, borrow when the top digit is too small, and continue to the left."
+                    },
+
+                    {
+                        type: "text",
+                        text: "You do not need a different method for bigger numbers. Once you know the algorithm, you can use the same steps again and again."
+                    }
+                ]
+            },
+
+            {
+                id: "advanced-subtraction-large-numbers-practice",
+
+                title: "Practice: Large Numbers",
+
+                description: "Practice subtracting numbers up to one million using the complete algorithm.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "advanced-subtraction",
+                    interaction: "number-input",
+
+                    settings: {
+                        min: 1,
+                        max: 1000000,
+                        sameLength: false
+                    },
+
+                    problemCount: 10,
+                    solveOnPaper: true
                 }
             }
         ]

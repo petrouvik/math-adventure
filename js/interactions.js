@@ -8,6 +8,7 @@ const INTERACTIONS = {
             );
         }
     },
+
     "multiple-choice": {
         render(container, problem, callbacks) {
             renderMultipleChoice(
@@ -27,8 +28,9 @@ function renderNumberInput(
 ) {
     container.innerHTML = `
         <section class="problem-card">
+
             <p class="problem-instruction">
-                What is the answer?
+                ${t("lesson.whatIsTheAnswer")}
             </p>
 
             <div class="problem">
@@ -38,26 +40,29 @@ function renderNumberInput(
             </div>
 
             <div class="answer-area">
+
                 <input
                     type="text"
                     class="answer-input"
                     inputmode="numeric"
                     autocomplete="off"
                     placeholder="?"
-                    aria-label="Your answer"
+                    aria-label="${t("lesson.yourAnswer")}"
                 >
 
                 <button
                     class="check-button"
                     type="button"
                 >
-                    Check Answer
+                    ${t("lesson.checkAnswer")}
                 </button>
+
             </div>
 
             <p class="answer-feedback"></p>
 
             <div class="answer-explanation"></div>
+
         </section>
     `;
 
@@ -74,13 +79,15 @@ function renderNumberInput(
         container.querySelector(".answer-explanation");
 
 
-   function checkAnswer() {
+    function checkAnswer() {
+
         const value =
             input.value.trim();
 
         if (value === "") {
+
             feedback.textContent =
-                "Please enter an answer!";
+                t("lesson.enterAnswer");
 
             feedback.className =
                 "answer-feedback incorrect";
@@ -93,14 +100,16 @@ function renderNumberInput(
 
         const answer =
             Number(normalizedValue);
+
         checkAnswerAchievement(answer);
 
         // Hide the mobile keyboard after submitting.
         input.blur();
 
         if (answer === problem.answer) {
+
             feedback.textContent =
-                "Correct! 🎉";
+                t("lesson.correct");
 
             feedback.className =
                 "answer-feedback correct";
@@ -114,8 +123,9 @@ function renderNumberInput(
             );
 
         } else {
+
             feedback.textContent =
-                "Not quite. Try again!";
+                t("lesson.tryAgain");
 
             feedback.className =
                 "answer-feedback incorrect";
@@ -127,10 +137,12 @@ function renderNumberInput(
             );
 
             requestAnimationFrame(() => {
+
                 explanation.scrollIntoView({
                     behavior: "smooth",
                     block: "center"
                 });
+
             });
         }
     }
@@ -145,24 +157,39 @@ function renderNumberInput(
     input.addEventListener(
         "keydown",
         event => {
+
             if (event.key === "Enter") {
+
                 event.preventDefault();
+
                 checkAnswer();
             }
+
         }
     );
-    input.addEventListener("focus", () => {
-        setTimeout(() => {
-            input.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-        }, 300);
-    });
+
+
+    input.addEventListener(
+        "focus",
+        () => {
+
+            setTimeout(() => {
+
+                input.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            }, 300);
+
+        }
+    );
 
 
     input.focus();
 }
+
+
 function renderMultipleChoice(
     container,
     problem,
@@ -170,8 +197,9 @@ function renderMultipleChoice(
 ) {
     container.innerHTML = `
         <section class="problem-card">
+
             <p class="problem-instruction">
-                What is the answer?
+                ${t("lesson.whatIsTheAnswer")}
             </p>
 
             <div class="problem">
@@ -183,6 +211,7 @@ function renderMultipleChoice(
             <p class="answer-feedback"></p>
 
             <div class="answer-explanation"></div>
+
         </section>
     `;
 
@@ -197,12 +226,17 @@ function renderMultipleChoice(
 
 
     problem.choices.forEach(choice => {
+
         const button =
             document.createElement("button");
 
         button.type = "button";
-        button.className = "choice-button";
-        button.textContent = choice;
+
+        button.className =
+            "choice-button";
+
+        button.textContent =
+            choice;
 
         button.addEventListener(
             "click",
@@ -214,17 +248,23 @@ function renderMultipleChoice(
 
 
     function checkAnswer(answer) {
+
         if (answer === problem.answer) {
+
             feedback.textContent =
-                "Correct! 🎉";
+                t("lesson.correct");
 
             feedback.className =
                 "answer-feedback correct";
 
             choicesContainer
-                .querySelectorAll(".choice-button")
+                .querySelectorAll(
+                    ".choice-button"
+                )
                 .forEach(button => {
+
                     button.disabled = true;
+
                 });
 
             callbacks.onCorrect(
@@ -233,8 +273,9 @@ function renderMultipleChoice(
             );
 
         } else {
+
             feedback.textContent =
-                "Not quite. Try again!";
+                t("lesson.tryAgain");
 
             feedback.className =
                 "answer-feedback incorrect";

@@ -9,10 +9,16 @@ function renderCourseProgress() {
     container.innerHTML = "";
 
     Object.values(COURSES).forEach(course => {
-        const progress = getCourseProgress(course);
-        const completed = isCourseCompleted(course);
 
-        const card = document.createElement("div");
+        const progress =
+            getCourseProgress(course);
+
+        const completed =
+            isCourseCompleted(course);
+
+        const card =
+            document.createElement("div");
+
         card.className = "course-card";
 
         card.innerHTML = `
@@ -31,7 +37,9 @@ function renderCourseProgress() {
                 </div>
 
                 <span class="course-status ${completed ? "completed" : ""}">
-                    ${completed ? "✓ Complete" : `${progress}%`}
+                    ${completed
+                        ? t("progress.complete")
+                        : `${progress}%`}
                 </span>
 
             </div>
@@ -49,9 +57,12 @@ function renderCourseProgress() {
         container.appendChild(card);
     });
 }
+
+
 const ACHIEVEMENTS_PER_PAGE = 6;
 
 let showingAllAchievements = false;
+
 
 function renderAchievementProgress() {
     const container =
@@ -66,38 +77,53 @@ function renderAchievementProgress() {
 
     const player = getPlayer();
 
-    const achievements = showingAllAchievements
-        ? ACHIEVEMENTS
-        : ACHIEVEMENTS.slice(0, ACHIEVEMENTS_PER_PAGE);
+    const achievements =
+        showingAllAchievements
+            ? ACHIEVEMENTS
+            : ACHIEVEMENTS.slice(
+                0,
+                ACHIEVEMENTS_PER_PAGE
+            );
 
     container.innerHTML = "";
 
     achievements.forEach(achievement => {
 
         const unlocked =
-            isAchievementUnlocked(achievement.id, player);
+            isAchievementUnlocked(
+                achievement.id,
+                player
+            );
 
         const hidden =
             achievement.hidden && !unlocked;
 
-        const icon = hidden
-            ? "❓"
-            : unlocked
-                ? achievement.icon
-                : "🔒";
+        const icon =
+            hidden
+                ? "❓"
+                : unlocked
+                    ? achievement.icon
+                    : "🔒";
 
-        const title = hidden
-            ? "Hidden Achievement"
-            : achievement.title;
+        const title =
+            hidden
+                ? t("progress.hiddenAchievement")
+                : t(achievement.title);
 
-        const description = hidden
-            ? "Keep exploring to discover this achievement!"
-            : achievement.description;
+        const description =
+            hidden
+                ? t("progress.hiddenAchievementDescription")
+                : t(achievement.description);
 
-        const card = document.createElement("div");
+        const card =
+            document.createElement("div");
 
         card.className =
-            `achievement-card ${unlocked ? "unlocked" : "locked"}`;
+            `achievement-card ${
+                unlocked
+                    ? "unlocked"
+                    : "locked"
+            }`;
 
         card.innerHTML = `
             <span class="achievement-icon">
@@ -114,31 +140,42 @@ function renderAchievementProgress() {
         container.appendChild(card);
     });
 
+
     if (showingAllAchievements) {
-        button.textContent = "Show less";
+
+        button.textContent =
+            t("progress.showLess");
+
     } else {
-        button.textContent = "Show more";
+
+        button.textContent =
+            t("progress.showMore");
     }
+
 
     button.style.display =
         ACHIEVEMENTS.length > ACHIEVEMENTS_PER_PAGE
             ? "block"
             : "none";
 }
+
+
 function renderProgressPage() {
     updatePlayerDisplay();
 
     renderCourseProgress();
     renderAchievementProgress();
+
     document
-    .getElementById("achievement-show-more")
-    .addEventListener("click", () => {
+        .getElementById("achievement-show-more")
+        .addEventListener("click", () => {
 
-        showingAllAchievements =
-            !showingAllAchievements;
+            showingAllAchievements =
+                !showingAllAchievements;
 
-        renderAchievementProgress();
-    });
+            renderAchievementProgress();
+        });
 }
+
 
 renderProgressPage();

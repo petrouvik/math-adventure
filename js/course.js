@@ -1,30 +1,43 @@
-const params = new URLSearchParams(window.location.search);
+const params = new URLSearchParams(
+    window.location.search
+);
+
 const courseId = params.get("id");
 
 const course = COURSES[courseId];
+
+
 function renderCourse() {
+
     if (!course) {
         return;
     }
 
     renderCourseHeader();
     renderLessons();
+
     document.addEventListener("click", event => {
-        const button = event.target.closest(".lesson-button");
+
+        const button =
+            event.target.closest(".lesson-button");
 
         if (!button) {
             return;
         }
 
-        const lessonId = button.dataset.lesson;
+        const lessonId =
+            button.dataset.lesson;
 
         window.location.href =
             `lesson.html?course=${course.id}&lesson=${lessonId}`;
     });
 }
 
+
 function renderCourseHeader() {
-    const header = document.getElementById("course-header");
+
+    const header =
+        document.getElementById("course-header");
 
     header.innerHTML = `
         <div class="large-course-icon">
@@ -32,21 +45,25 @@ function renderCourseHeader() {
         </div>
 
         <div>
-            <h1>${course.title}</h1>
+            <h1>${t(course.title)}</h1>
 
             <p>
-                ${course.description}
+                ${t(course.description)}
             </p>
         </div>
     `;
 }
+
+
 function renderLessons() {
+
     const container =
         document.getElementById("lesson-list");
 
     container.innerHTML = "";
 
     course.lessons.forEach((lesson, index) => {
+
         const completed =
             isLessonCompleted(
                 course.id,
@@ -66,23 +83,31 @@ function renderLessons() {
 
         if (completed) {
             card.classList.add("completed");
+
         } else if (!unlocked) {
             card.classList.add("locked");
         }
+
 
         let numberContent;
         let buttonContent;
 
         if (completed) {
+
             numberContent = "✓";
-            buttonContent = "Review";
+            buttonContent = t("course.review");
+
         } else if (unlocked) {
+
             numberContent = index + 1;
-            buttonContent = "Start";
+            buttonContent = t("course.start");
+
         } else {
+
             numberContent = "🔒";
-            buttonContent = "Locked";
+            buttonContent = t("course.locked");
         }
+
 
         card.innerHTML = `
             <div class="lesson-number">
@@ -90,8 +115,8 @@ function renderLessons() {
             </div>
 
             <div class="lesson-info">
-                <h3>${lesson.title}</h3>
-                <p>${lesson.description}</p>
+                <h3>${t(lesson.title)}</h3>
+                <p>${t(lesson.description)}</p>
             </div>
 
             <button

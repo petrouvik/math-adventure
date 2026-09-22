@@ -119,7 +119,9 @@ function generateNumberReadingProblem(settings) {
     shuffle(choices);
 
     return {
-        prompt: `What number is ${number}?`,
+        prompt: tf("generators.numberReading.prompt", {
+            number
+        }),
         answer,
         choices,
 
@@ -159,8 +161,12 @@ function generatePredecessorSuccessorProblem(settings) {
 
     return {
         prompt: predecessor
-            ? `predecessor of ${number}`
-            : `successor of ${number}`,
+            ? tf("generators.predecessorSuccessor.predecessor", {
+                number
+            })
+            : tf("generators.predecessorSuccessor.successor", {
+                number
+            }),
 
         answer,
 
@@ -194,16 +200,19 @@ function generateEvenOddProblem(settings) {
 
     const answer =
         number % 2 === 0
-            ? "Even"
-            : "Odd";
+            ? t("generators.evenOdd.even")
+            : t("generators.evenOdd.odd");
 
     return {
-        prompt: `Is ${number} even or odd?`,
+        prompt: tf("generators.evenOdd.prompt", {
+            number
+        }),
+
         answer,
 
         choices: [
-            "Even",
-            "Odd"
+            t("generators.evenOdd.even"),
+            t("generators.evenOdd.odd")
         ],
 
         explanation: {
@@ -613,7 +622,9 @@ function generateRomanSymbolProblem() {
     shuffle(choices);
 
     return {
-        prompt: `What number does ${selected.symbol} represent?`,
+        prompt: tf("generators.romanSymbol.prompt", {
+            symbol: selected.symbol
+        }),
 
         answer: selected.value,
 
@@ -798,7 +809,9 @@ function generateArabicToRomanProblem(settings) {
     shuffle(choices);
 
     return {
-        prompt: `${number} in Roman numerals is...`,
+        prompt: tf("generators.arabicToRoman.prompt", {
+            number
+        }),
         answer,
         choices,
 
@@ -993,7 +1006,9 @@ function generatePlaceValueProblem(settings) {
             })
             .join("");
     return {
-        prompt: `What is the value of the highlighted digit in ${highlightedNumber}?`,
+        prompt: tf("generators.placeValue.prompt", {
+            number: highlightedNumber
+        }),
         answer: value,
         choices,
 
@@ -1113,7 +1128,9 @@ function generateNumberGroupsProblem(settings) {
     // Which number is the smallest?
     if (questionType === 0) {
         prompt =
-            `Which number is the smallest in the ${getGroupName(groupNumber, groupSize)}?`;
+            tf("generators.numberGroups.smallest", {
+                group: getGroupName(groupNumber, groupSize)
+            });
 
         answer = groupStart;
 
@@ -1128,7 +1145,9 @@ function generateNumberGroupsProblem(settings) {
     // Which number is the largest?
     else if (questionType === 1) {
         prompt =
-            `Which number is the largest in the ${getGroupName(groupNumber, groupSize)}?`;
+            tf("generators.numberGroups.largest", {
+                group: getGroupName(groupNumber, groupSize)
+            });
 
         answer = groupEnd;
 
@@ -1146,7 +1165,9 @@ function generateNumberGroupsProblem(settings) {
             getGroupName(groupNumber, groupSize);
 
         prompt =
-            `In which group does ${number.toLocaleString()} belong?`;
+            tf("generators.numberGroups.whichGroup", {
+                number: number.toLocaleString()
+            });
 
         choices = [
             answer

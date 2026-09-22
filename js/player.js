@@ -13,7 +13,6 @@ const DEFAULT_PLAYER = {
     completedLessons: [],
     
     dailyProgress: {},
-    completedLessons: [],
 
     achievements: [],
     achievementData:{
@@ -179,12 +178,7 @@ function isLessonUnlocked(courseId, lessonId) {
         previousLesson.id
     );
 }
-function isCourseCompleted(course) {
-    return course.lessons.every(lesson =>
-        isLessonCompleted(course.id, lesson.id)
-    );
-    
-}
+
 function getCourseProgress(course) {
     if (!course || course.lessons.length === 0) {
         return 0;

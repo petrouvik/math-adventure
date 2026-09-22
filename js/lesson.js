@@ -9,37 +9,48 @@ const lesson = course?.lessons.find(
     lesson => lesson.id === lessonId
 );
 
-function renderLessonHeader() {
-    const header = document.getElementById("lesson-header");
 
-    const lessonIndex = course.lessons.findIndex(
-        item => item.id === lesson.id
-    );
+function renderLessonHeader() {
+    const header =
+        document.getElementById("lesson-header");
+
+    const lessonIndex =
+        course.lessons.findIndex(
+            item => item.id === lesson.id
+        );
 
     header.innerHTML = `
         <div>
             <p class="lesson-label">
-                Lesson ${lessonIndex + 1}
+                ${tf("lesson.lessonNumber", {
+                    number: lessonIndex + 1
+                })}
             </p>
 
             <h1>
-                ${lesson.title}
+                ${t(lesson.title)}
             </h1>
         </div>
     `;
 }
 
+
 document.title =
-    `${lesson.title} - Math Adventure`;
+    `${t(lesson.title)} - Math Adventure`;
 
-const backLink = document.getElementById("back-to-course");
 
-backLink.href = `course.html?id=${course.id}`;
+const backLink =
+    document.getElementById("back-to-course");
+
+backLink.href =
+    `course.html?id=${course.id}`;
 
 backLink.textContent =
-    `← ${course.title}`;
+    `← ${t(course.title)}`;
+
 
 function renderLesson() {
+
     if (!course || !lesson) {
         renderLessonNotFound();
         return;
@@ -60,13 +71,19 @@ function renderLesson() {
         renderPracticeLesson();
     }
 }
+
+
 function renderLessonLocked() {
+
     document.getElementById("lesson-content").innerHTML = `
         <section class="lesson-locked">
-            <h2>Lesson Locked 🔒</h2>
+
+            <h2>
+                ${t("lesson.lessonLocked")} 🔒
+            </h2>
 
             <p>
-                Complete the previous lesson to unlock this one.
+                ${t("lesson.completePrevious")}
             </p>
 
             <button
@@ -74,76 +91,116 @@ function renderLessonLocked() {
                 type="button"
                 onclick="window.location.href='course.html?id=${course.id}'"
             >
-                Back to Course
+                ${t("lesson.backToCourse")}
             </button>
+
         </section>
     `;
 }
 
+
 function renderExplanationLesson() {
 
-    const container = document.getElementById("lesson-content");
+    const container =
+        document.getElementById("lesson-content");
 
     container.innerHTML = `
         <div class="explanation-lesson">
+
             <div class="explanation-intro">
-                <div class="explanation-intro-icon">💡</div>
+
+                <div class="explanation-intro-icon">
+                    💡
+                </div>
 
                 <div>
-                    <h2>Let's learn!</h2>
+                    <h2>
+                        ${t("lesson.letsLearn")}
+                    </h2>
+
                     <p>
-                        Take your time and explore the examples below.
+                        ${t("lesson.exploreExamples")}
                     </p>
                 </div>
+
             </div>
 
             <div class="explanation-content"></div>
+
         </div>
     `;
 
     const contentContainer =
-        container.querySelector(".explanation-content");
+        container.querySelector(
+            ".explanation-content"
+        );
 
     lesson.content.forEach(item => {
 
         if (item.type === "text") {
-            renderTextBlock(contentContainer, item);
+            renderTextBlock(
+                contentContainer,
+                item
+            );
         }
 
         if (item.type === "example") {
-            renderExampleBlock(contentContainer, item);
+            renderExampleBlock(
+                contentContainer,
+                item
+            );
         }
+
         if (item.type === "image-example") {
-            renderImageExampleBlock(contentContainer, item);
+            renderImageExampleBlock(
+                contentContainer,
+                item
+            );
         }
 
     });
 
     completeLesson(courseId, lessonId);
 }
-function renderTextBlock(container, item) {
-    const element = document.createElement("section");
 
-    element.className = "lesson-text-card";
+
+function renderTextBlock(
+    container,
+    item
+) {
+    const element =
+        document.createElement("section");
+
+    element.className =
+        "lesson-text-card";
 
     element.innerHTML = `
         <div class="text-card-icon">
             📖
         </div>
 
-        <p>${item.text}</p>
+        <p>
+            ${t(item.text)}
+        </p>
     `;
 
     container.appendChild(element);
 }
-function renderExampleBlock(container, item) {
-    const element = document.createElement("section");
 
-    element.className = "lesson-example-card";
+
+function renderExampleBlock(
+    container,
+    item
+) {
+    const element =
+        document.createElement("section");
+
+    element.className =
+        "lesson-example-card";
 
     element.innerHTML = `
         <div class="example-label">
-            ✨ Example
+            ✨ ${t("lesson.example")}
         </div>
 
         <div class="lesson-example-expression">
@@ -151,25 +208,33 @@ function renderExampleBlock(container, item) {
         </div>
 
         <p class="example-explanation">
-            ${item.explanation}
+            ${t(item.explanation)}
         </p>
     `;
 
     container.appendChild(element);
 }
-function renderImageExampleBlock(container, item) {
-    const element = document.createElement("section");
 
-    element.className = "lesson-image-example-card";
+
+function renderImageExampleBlock(
+    container,
+    item
+) {
+    const element =
+        document.createElement("section");
+
+    element.className =
+        "lesson-image-example-card";
 
     element.innerHTML = `
         <div class="example-label">
-            ✨ Example
+            ✨ ${t("lesson.example")}
         </div>
 
-        ${item.title
-            ? `<h3>${item.title}</h3>`
-            : ""
+        ${
+            item.title
+                ? `<h3>${t(item.title)}</h3>`
+                : ""
         }
 
         <div class="lesson-example-image">
@@ -177,12 +242,14 @@ function renderImageExampleBlock(container, item) {
         </div>
 
         <p class="example-explanation">
-            ${item.explanation}
+            ${t(item.explanation)}
         </p>
     `;
 
     container.appendChild(element);
 }
+
+
 const lessonState = {
     problems: [],
     currentProblem: 0,
@@ -193,14 +260,18 @@ const lessonState = {
 
 
 function renderPracticeLesson() {
+
     const generator =
         GENERATORS[
             lesson.practice.generator
         ];
 
     if (!generator) {
-        document.getElementById("lesson-content").textContent =
-            "Problem generator not found.";
+
+        document
+            .getElementById("lesson-content")
+            .textContent =
+                t("lesson.generatorNotFound");
 
         return;
     }
@@ -217,20 +288,25 @@ function renderPracticeLesson() {
     lessonState.currentProblem = 0;
     lessonState.correctAnswers = 0;
     lessonState.incorrectAnswers = 0;
+    lessonState.completed = false;
 
     renderCurrentProblem();
 }
 
 
 function renderCurrentProblem() {
+
     const interaction =
         INTERACTIONS[
             lesson.practice.interaction
         ];
 
     if (!interaction) {
-        document.getElementById("lesson-content").textContent =
-            "Practice interaction not found.";
+
+        document
+            .getElementById("lesson-content")
+            .textContent =
+                t("lesson.interactionNotFound");
 
         return;
     }
@@ -248,11 +324,15 @@ function renderCurrentProblem() {
     hint.innerHTML = "";
 
     if (lesson.practice.solveOnPaper) {
-        hint.textContent =
-            "✏️ Grab your pencil and solve it on paper. You've got this!";
 
-        hint.className = "paper-hint";
+        hint.textContent =
+            t("lesson.paperHint");
+
+        hint.className =
+            "paper-hint";
+
     } else {
+
         hint.className = "";
     }
 
@@ -267,7 +347,10 @@ function renderCurrentProblem() {
 }
 
 
-function handleCorrect(problem, answer) {
+function handleCorrect(
+    problem,
+    answer
+) {
     lessonState.correctAnswers++;
 
     renderNextButton();
@@ -275,11 +358,14 @@ function handleCorrect(problem, answer) {
     document
         .querySelector(".next-button")
         ?.focus();
-
 }
 
 
-function handleIncorrect(problem, answer, explanationContainer) {
+function handleIncorrect(
+    problem,
+    answer,
+    explanationContainer
+) {
     lessonState.incorrectAnswers++;
 
     renderExplanation(
@@ -288,12 +374,15 @@ function handleIncorrect(problem, answer, explanationContainer) {
     );
 }
 
+
 function renderExplanation(
     container,
     problem
 ) {
     const explanation =
-        EXPLANATIONS[problem.explanation.type];
+        EXPLANATIONS[
+            problem.explanation.type
+        ];
 
     if (!explanation) {
         return;
@@ -306,9 +395,13 @@ function renderExplanation(
     );
 }
 
+
 function renderNextButton() {
+
     const container =
-        document.getElementById("lesson-content");
+        document.getElementById(
+            "lesson-content"
+        );
 
     const isLastProblem =
         lessonState.currentProblem ===
@@ -317,27 +410,36 @@ function renderNextButton() {
     const button =
         document.createElement("button");
 
-    button.className = "next-button";
-    button.type = "button";
+    button.className =
+        "next-button";
+
+    button.type =
+        "button";
 
     button.textContent =
         isLastProblem
-            ? "Finish Lesson"
-            : "Next Problem";
+            ? t("lesson.finishLesson")
+            : t("lesson.nextProblem");
 
-    button.addEventListener("click", () => {
-        if (isLastProblem) {
-            finishLesson();
-        } else {
-            nextProblem();
+    button.addEventListener(
+        "click",
+        () => {
+
+            if (isLastProblem) {
+                finishLesson();
+            } else {
+                nextProblem();
+            }
+
         }
-    });
+    );
 
     container.appendChild(button);
 }
 
 
 function nextProblem() {
+
     lessonState.currentProblem++;
 
     renderCurrentProblem();
@@ -345,6 +447,7 @@ function nextProblem() {
 
 
 function finishLesson() {
+
     if (lessonState.completed) {
         return;
     }
@@ -355,53 +458,82 @@ function finishLesson() {
         lessonState.problems.length
     );
 
-    completeLesson(courseId, lessonId);
+    completeLesson(
+        courseId,
+        lessonId
+    );
 
     updateStreak();
 
     const unlockedAchievements =
-    checkAllAchievements(
-        courseId,
-        lessonId,
-        lessonState.incorrectAnswers > 0
-    );
-    showAchievementNotifications(unlockedAchievements);
+        checkAllAchievements(
+            courseId,
+            lessonId,
+            lessonState.incorrectAnswers > 0
+        );
 
-    const unlockedThemes = unlockAvailableThemes()
-    
-    
+    showAchievementNotifications(
+        unlockedAchievements
+    );
+
+    const unlockedThemes =
+        unlockAvailableThemes();
+
     const progressContainer =
-        document.getElementById("lesson-progress");
+        document.getElementById(
+            "lesson-progress"
+        );
 
     if (progressContainer) {
-        progressContainer.querySelector(".lesson-progress-fill").style.width =
-    "100%";
 
-        progressContainer.querySelector(".progress-info span:last-child")
+        progressContainer
+            .querySelector(
+                ".lesson-progress-fill"
+            )
+            .style.width = "100%";
+
+        progressContainer
+            .querySelector(
+                ".progress-info span:last-child"
+            )
             .textContent = "100%";
     }
 
     const container =
-        document.getElementById("lesson-content");
+        document.getElementById(
+            "lesson-content"
+        );
 
     container.innerHTML = `
         <section class="lesson-complete">
-            <h2>Lesson Complete! 🎉</h2>
+
+            <h2>
+                ${t("lesson.lessonComplete")} 🎉
+            </h2>
 
             <p>
-                You got
-                <strong>
-                    ${lessonState.correctAnswers}
-                </strong>
-                out of
-                <strong>
-                    ${lessonState.problems.length}
-                </strong>
-                problems correct.
+                ${tf("lesson.problemsCorrect", {
+                    correct:
+                        lessonState.correctAnswers,
+                    total:
+                        lessonState.problems.length
+                })}
             </p>
+
             <div class="lesson-rewards">
-                <p>⭐ +50 XP</p>
-                <p>🪙 +10 Coins</p>
+
+                <p>
+                    ⭐ ${tf("lesson.xpReward", {
+                        xp: 50
+                    })}
+                </p>
+
+                <p>
+                    🪙 ${tf("lesson.coinReward", {
+                        coins: 10
+                    })}
+                </p>
+
             </div>
 
             <button
@@ -409,14 +541,16 @@ function finishLesson() {
                 type="button"
                 onclick="window.location.href='course.html?id=${course.id}'"
             >
-                Back to Course
+                ${t("lesson.backToCourse")}
             </button>
+
         </section>
     `;
 }
 
 
 function renderPracticeProgress() {
+
     const current =
         lessonState.currentProblem + 1;
 
@@ -432,9 +566,12 @@ function renderPracticeProgress() {
         );
 
     let progressContainer =
-        document.getElementById("lesson-progress");
+        document.getElementById(
+            "lesson-progress"
+        );
 
     if (!progressContainer) {
+
         progressContainer =
             document.createElement("div");
 
@@ -448,16 +585,27 @@ function renderPracticeProgress() {
 
     progressContainer.innerHTML = `
         <div class="progress-info">
-            <span>Problem ${current} / ${total}</span>
-            <span>${progress}%</span>
+
+            <span>
+                ${tf("lesson.problemProgress", {
+                    current,
+                    total
+                })}
+            </span>
+
+            <span>
+                ${progress}%
+            </span>
+
         </div>
 
         <div class="lesson-progress-bar">
+
             <div
                 class="lesson-progress-fill"
                 style="width: ${progress}%"
             ></div>
+
         </div>
     `;
 }
-

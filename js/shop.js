@@ -53,7 +53,7 @@ function renderThemes() {
             <div class="theme-preview">
 
                 <span class="theme-preview-label">
-                    PREVIEW
+                    ${t("shop.preview")}
                 </span>
 
                 <div class="theme-preview-header">
@@ -63,7 +63,7 @@ function renderThemes() {
                     </span>
 
                     <strong>
-                        ${theme.name}
+                        ${t(theme.name)}
                     </strong>
 
                 </div>
@@ -80,7 +80,10 @@ function renderThemes() {
                     </div>
 
                     <div class="theme-preview-stat">
-                        <span>Progress</span>
+                        <span>
+                            ${t("shop.progress")}
+                        </span>
+
                         <strong>65%</strong>
                     </div>
 
@@ -94,11 +97,11 @@ function renderThemes() {
                 <div>
 
                     <h3>
-                        ${theme.name}
+                        ${t(theme.name)}
                     </h3>
 
                     <p>
-                        ${theme.description}
+                        ${t(theme.description)}
                     </p>
 
                 </div>
@@ -150,11 +153,13 @@ function renderThemes() {
 
         if (selected) {
 
-            status.textContent = "✓ Selected";
+            status.textContent =
+                t("shop.selected");
 
         } else if (unlocked) {
 
-            status.textContent = "Use theme";
+            status.textContent =
+                t("shop.useTheme");
 
             card.addEventListener("click", () => {
 
@@ -204,7 +209,7 @@ function renderThemes() {
                 case "level":
 
                     status.textContent =
-                        `🔒 Level ${theme.unlock.value}`;
+                        `🔒 ${t("shop.level")} ${theme.unlock.value}`;
 
                     break;
 
@@ -212,7 +217,7 @@ function renderThemes() {
                 case "achievement":
 
                     status.textContent =
-                        "🔒 Achievement";
+                        t("shop.achievement");
 
                     break;
 
@@ -220,7 +225,7 @@ function renderThemes() {
                 default:
 
                     status.textContent =
-                        "🔒 Locked";
+                        t("shop.locked");
             }
         }
 

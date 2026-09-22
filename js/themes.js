@@ -7,8 +7,8 @@ const THEMES = [
     {
         id: "default",
 
-        name: "Classic",
-        description: "The original Math Adventure theme.",
+        name: "themes.default.name",
+        description: "themes.default.description",
         icon: "🧮",
 
         colors: {
@@ -59,8 +59,8 @@ const THEMES = [
     {
         id: "ocean",
 
-        name: "Ocean",
-        description: "A calm theme inspired by the sea.",
+        name: "themes.ocean.name",
+        description: "themes.ocean.description",
         icon: "🌊",
 
         colors: {
@@ -108,8 +108,8 @@ const THEMES = [
     {
         id: "candy",
 
-        name: "Candy",
-        description: "A sweet and colorful theme.",
+        name: "themes.candy.name",
+        description: "themes.candy.description",
         icon: "🍬",
 
         colors: {
@@ -157,8 +157,8 @@ const THEMES = [
     {
         id: "matrix",
 
-        name: "Matrix",
-        description: "Enter the mathematical machine.",
+        name: "themes.matrix.name",
+        description: "themes.matrix.description",
         icon: "💻",
 
         colors: {
@@ -205,8 +205,8 @@ const THEMES = [
 
     {
     id: "earth",
-    name: "Earth",
-    description: "A colorful adventure across oceans, continents, and skies.",
+    name: "themes.earth.name",
+    description: "themes.earth.description",
     icon: "🌍",
     colors: {
         background: "#0877a8",
@@ -252,8 +252,8 @@ const THEMES = [
     {
         id: "winter",
 
-        name: "Winter",
-        description: "A crisp and bright winter wonderland.",
+        name: "themes.winter.name",
+        description: "themes.winter.description",
         icon: "❄️",
 
         colors: {
@@ -305,8 +305,8 @@ const THEMES = [
     {
         id: "forest",
 
-        name: "Forest",
-        description: "A fresh green theme for exploring the world of numbers.",
+        name: "themes.forest.name",
+        description: "themes.forest.description",
         icon: "🌲",
 
         colors: {
@@ -354,8 +354,8 @@ const THEMES = [
     {
         id: "monochrome",
 
-        name: "Monochrome",
-        description: "Simple, clean, and completely colorless.",
+        name: "themes.monochrome.name",
+        description: "themes.monochrome.description",
         icon: "⚫",
 
         colors: {
@@ -402,8 +402,8 @@ const THEMES = [
 
     {
         id: "rainbow",
-        name: "Rainbow",
-        description: "A bright, colorful theme with every color in the spectrum.",
+        name: "themes.rainbow.name",
+        description: "themes.rainbow.description",
         icon: "🌈",
         colors: {
             background: "linear-gradient(135deg, #fff0f6 0%, #fff7df 25%, #efffea 50%, #e8f7ff 75%, #f1ebff 100%)",
@@ -441,8 +441,8 @@ const THEMES = [
 
     {
         id: "fire",
-        name: "Fire",
-        description: "A blazing theme for mastering lesson after lesson.",
+        name: "themes.fire.name",
+        description: "themes.fire.description",
         icon: "🔥",
         colors: {
             background: "#1a0804",
@@ -477,8 +477,8 @@ const THEMES = [
     {
         id: "night",
 
-        name: "Night",
-        description: "For those who keep learning after dark.",
+        name: "themes.night.name",
+        description: "themes.night.description",
         icon: "🌙",
 
         colors: {
@@ -530,8 +530,8 @@ const THEMES = [
     {
         id: "red",
 
-        name: "Red",
-        description: "Bold, energetic, and impossible to miss.",
+        name: "themes.red.name",
+        description: "themes.red.description",
         icon: "🔴",
 
         colors: {
@@ -569,8 +569,8 @@ const THEMES = [
     {
         id: "orange",
 
-        name: "Orange",
-        description: "Warm, bright, and full of energy.",
+        name: "themes.orange.name",
+        description: "themes.orange.description",
         icon: "🟠",
 
         colors: {
@@ -608,8 +608,8 @@ const THEMES = [
     {
         id: "yellow",
 
-        name: "Yellow",
-        description: "Brighten up your math adventure.",
+        name: "themes.yellow.name",
+        description: "themes.yellow.description",
         icon: "🟡",
 
         colors: {
@@ -647,8 +647,8 @@ const THEMES = [
     {
         id: "green",
 
-        name: "Green",
-        description: "A simple and refreshing green theme.",
+        name: "themes.green.name",
+        description: "themes.green.description",
         icon: "🟢",
 
         colors: {
@@ -686,8 +686,8 @@ const THEMES = [
     {
         id: "blue",
 
-        name: "Blue",
-        description: "Cool, calm, and focused.",
+        name: "themes.blue.name",
+        description: "themes.blue.description",
         icon: "🔵",
 
         colors: {
@@ -725,8 +725,8 @@ const THEMES = [
     {
         id: "purple",
 
-        name: "Purple",
-        description: "A rich and playful purple theme.",
+        name: "themes.purple.name",
+        description: "themes.purple.description",
         icon: "🟣",
 
         colors: {
@@ -760,6 +760,7 @@ const THEMES = [
         }
     }
 ];
+
 function getTheme(themeId) {
     return THEMES.find(theme => theme.id === themeId);
 }

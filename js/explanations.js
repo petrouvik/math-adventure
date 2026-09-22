@@ -133,11 +133,13 @@ function renderCountingExplanation(
 
     container.innerHTML = `
         <div class="explanation-card">
-            <h3>Let's see how! 💡</h3>
+            <h3>${t("explanations.seeHow")} 💡</h3>
 
             <p>
-                Start at ${start} and count
-                ${amount} more:
+                ${tf("explanations.counting.start", {
+                    start,
+                    amount
+                })}
             </p>
 
             <p class="counting-example">
@@ -145,14 +147,16 @@ function renderCountingExplanation(
             </p>
 
             <p>
-                So
+                ${t("explanations.result.so")}
                 <strong>${problem.prompt}</strong>
-                equals
+                ${t("explanations.result.equals")}
                 <strong>${problem.answer}</strong>.
             </p>
         </div>
     `;
 }
+
+
 function renderDecompositionExplanation(
     container,
     explanation,
@@ -164,8 +168,6 @@ function renderDecompositionExplanation(
     const swapped =
         problem.left !== larger;
 
-    // Break the smaller number so that the first
-    // part brings the larger number to a multiple of 10.
     const toNextTen =
         10 - (larger % 10);
 
@@ -191,8 +193,11 @@ function renderDecompositionExplanation(
                 ${larger} + ${firstPart}
                 = ${larger + firstPart}
             </p>
+
             <p>
-                Then we add the remaining ${secondPart}:
+                ${tf("explanations.decomposition.addRemaining", {
+                    amount: secondPart
+                })}
             </p>
 
             <p class="counting-example">
@@ -204,14 +209,13 @@ function renderDecompositionExplanation(
 
     container.innerHTML = `
         <div class="explanation-card">
-            <h3>Let's see how! 💡</h3>
+            <h3>${t("explanations.seeHow")} 💡</h3>
 
             ${
                 swapped
                     ? `
                         <p>
-                            We can swap the numbers because addition
-                            gives the same result in either order:
+                            ${t("explanations.decomposition.swap")}
                         </p>
 
                         <p class="counting-example">
@@ -227,14 +231,19 @@ function renderDecompositionExplanation(
                 secondPart === 0
                     ? `
                         <p>
-                            We can add ${smaller} directly to ${larger}:
+                            ${tf("explanations.decomposition.addDirectly", {
+                                smaller,
+                                larger
+                            })}
                         </p>
                     `
                     : `
                         <p>
-                            Let's break ${smaller} into
-                            ${firstPart} and ${secondPart}
-                            to make the addition easier:
+                            ${tf("explanations.decomposition.breakNumber", {
+                                smaller,
+                                firstPart,
+                                secondPart
+                            })}
                         </p>
                     `
             }
@@ -242,14 +251,16 @@ function renderDecompositionExplanation(
             ${steps}
 
             <p>
-                So
+                ${t("explanations.result.so")}
                 <strong>${problem.prompt}</strong>
-                equals
+                ${t("explanations.result.equals")}
                 <strong>${problem.answer}</strong>.
             </p>
         </div>
     `;
 }
+
+
 function renderCountingBackExplanation(
     container,
     explanation,
@@ -266,11 +277,13 @@ function renderCountingBackExplanation(
 
     container.innerHTML = `
         <div class="explanation-card">
-            <h3>Let's see how! 💡</h3>
+            <h3>${t("explanations.seeHow")} 💡</h3>
 
             <p>
-                Start at ${start} and count
-                ${amount} backwards:
+                ${tf("explanations.countingBack.start", {
+                    start,
+                    amount
+                })}
             </p>
 
             <p class="counting-example">
@@ -278,14 +291,16 @@ function renderCountingBackExplanation(
             </p>
 
             <p>
-                So
+                ${t("explanations.result.so")}
                 <strong>${problem.prompt}</strong>
-                equals
+                ${t("explanations.result.equals")}
                 <strong>${problem.answer}</strong>.
             </p>
         </div>
     `;
 }
+
+
 function renderSubtractionDecompositionExplanation(
     container,
     explanation,
@@ -294,8 +309,6 @@ function renderSubtractionDecompositionExplanation(
     const start = explanation.start;
     const amount = explanation.amount;
 
-    // How much we need to subtract to reach
-    // the nearest lower multiple of 10.
     const toPreviousTen =
         start % 10;
 
@@ -325,9 +338,13 @@ function renderSubtractionDecompositionExplanation(
                 ${start} − ${firstPart}
                 = ${firstResult}
             </p>
+
             <p>
-                Then we subtract the remaining ${secondPart}:
+                ${tf("explanations.subtractionDecomposition.subtractRemaining", {
+                    amount: secondPart
+                })}
             </p>
+
             <p class="counting-example">
                 ${firstResult} − ${secondPart}
                 = ${problem.answer}
@@ -337,24 +354,27 @@ function renderSubtractionDecompositionExplanation(
 
     container.innerHTML = `
         <div class="explanation-card">
-            <h3>Let's see how! 💡</h3>
+            <h3>${t("explanations.seeHow")} 💡</h3>
 
             <p>
-                Instead of counting backwards one number at a time,
-                we can break ${amount} into smaller parts.
+                ${tf("explanations.subtractionDecomposition.breakNumber", {
+                    amount
+                })}
             </p>
 
             ${steps}
 
             <p>
-                So
+                ${t("explanations.result.so")}
                 <strong>${problem.prompt}</strong>
-                equals
+                ${t("explanations.result.equals")}
                 <strong>${problem.answer}</strong>.
             </p>
         </div>
     `;
 }
+
+
 function renderRepeatedAdditionExplanation(
     container,
     explanation,
@@ -371,11 +391,14 @@ function renderRepeatedAdditionExplanation(
 
     container.innerHTML = `
         <div class="explanation-card">
-            <h3>Let's see how! 💡</h3>
+            <h3>${t("explanations.seeHow")} 💡</h3>
 
             <p>
-                ${problem.prompt} means adding
-                ${number} ${amount} times:
+                ${tf("explanations.repeatedAddition.means", {
+                    prompt: problem.prompt,
+                    number,
+                    amount
+                })}
             </p>
 
             <p class="counting-example">
@@ -384,14 +407,15 @@ function renderRepeatedAdditionExplanation(
             </p>
 
             <p>
-                So
+                ${t("explanations.result.so")}
                 <strong>${problem.prompt}</strong>
-                equals
+                ${t("explanations.result.equals")}
                 <strong>${problem.answer}</strong>.
             </p>
         </div>
     `;
 }
+
 
 function renderDivisionExplanation(
     container,
@@ -414,12 +438,13 @@ function renderDivisionExplanation(
 
     container.innerHTML = `
         <div class="explanation-card">
-            <h3>Let's see how! 💡</h3>
+            <h3>${t("explanations.seeHow")} 💡</h3>
 
             <p>
-                You can solve
-                <strong>${problem.prompt}</strong>
-                by repeatedly taking away ${divisor}:
+                ${tf("explanations.division.repeatedSubtraction", {
+                    prompt: problem.prompt,
+                    divisor
+                })}
             </p>
 
             <p class="counting-example">
@@ -427,16 +452,18 @@ function renderDivisionExplanation(
             </p>
 
             <p>
-                We took away ${divisor}
-                <strong>${quotient} times</strong>
-                before reaching 0.
+                ${tf("explanations.division.tookAway", {
+                    divisor,
+                    quotient
+                })}
             </p>
 
             <hr>
 
             <p>
-                You can also use the
-                <strong>${divisor} times table</strong>:
+                ${tf("explanations.division.timesTable", {
+                    divisor
+                })}
             </p>
 
             <p class="counting-example">
@@ -444,7 +471,7 @@ function renderDivisionExplanation(
             </p>
 
             <p>
-                Therefore,
+                ${t("explanations.division.therefore")}
                 <strong>${problem.prompt}</strong>
                 =
                 <strong>${problem.answer}</strong>.
@@ -452,6 +479,8 @@ function renderDivisionExplanation(
         </div>
     `;
 }
+
+
 function renderRomanSymbolExplanation(
     container,
     explanation,
@@ -464,13 +493,13 @@ function renderRomanSymbolExplanation(
 
     container.innerHTML = `
         <div class="explanation-card">
-            <h3>Let's learn! 💡</h3>
+            <h3>${t("explanations.learn")} 💡</h3>
 
             <p>
-                The Roman numeral
-                <strong>${symbol}</strong>
-                represents the number
-                <strong>${value}</strong>.
+                ${tf("explanations.romanSymbol.represents", {
+                    symbol,
+                    value
+                })}
             </p>
 
             <p class="counting-example">
@@ -478,12 +507,12 @@ function renderRomanSymbolExplanation(
             </p>
 
             <p>
-                Remember: Roman numerals use special
-                symbols to represent numbers.
+                ${t("explanations.romanSymbol.remember")}
             </p>
         </div>
     `;
 }
+
 
 function renderRomanAdditionExplanation(
     container,
@@ -503,12 +532,12 @@ function renderRomanAdditionExplanation(
 
     container.innerHTML = `
         <div class="explanation-card">
-            <h3>Let's see how! 💡</h3>
+            <h3>${t("explanations.seeHow")} 💡</h3>
 
             <p>
-                The symbols in
-                <strong>${roman}</strong>
-                are all added together:
+                ${tf("explanations.romanAddition.symbolsAdded", {
+                    roman
+                })}
             </p>
 
             <p class="counting-example">
@@ -521,14 +550,622 @@ function renderRomanAdditionExplanation(
             </p>
 
             <p>
-                So
-                <strong>${roman}</strong>
-                equals
-                <strong>${number}</strong>.
+                ${tf("explanations.romanAddition.result", {
+                    roman,
+                    number
+                })}
             </p>
         </div>
     `;
 }
+
+
+function renderRomanToArabicExplanation(
+    container,
+    explanation,
+    problem
+) {
+    const {
+        roman,
+        number
+    } = explanation;
+
+    const symbols = [...roman];
+
+    const values = symbols.map(
+        symbol => ROMAN_VALUES[symbol]
+    );
+
+    const terms = symbols.map(
+        (symbol, index) => {
+            const value = ROMAN_VALUES[symbol];
+            const nextValue =
+                index + 1 < values.length
+                    ? values[index + 1]
+                    : null;
+
+            if (nextValue !== null && value < nextValue) {
+                return `− ${value}`;
+            }
+
+            return `+ ${value}`;
+        }
+    );
+
+    const calculation =
+        terms
+            .join(" ")
+            .replace("+ ", "");
+
+    container.innerHTML = `
+        <div class="explanation-card">
+            <h3>${t("explanations.seeHow")} 💡</h3>
+
+            <p>
+                ${tf("explanations.romanToArabic.convert", {
+                    roman
+                })}
+            </p>
+
+            <p class="counting-example">
+                ${symbols.join(" ")}
+            </p>
+
+            <p>
+                ${t("explanations.romanToArabic.rule")}
+            </p>
+
+            <p class="counting-example">
+                ${calculation}
+            </p>
+
+            <p>
+                ${tf("explanations.romanToArabic.result", {
+                    roman,
+                    number
+                })}
+            </p>
+        </div>
+    `;
+}
+
+
+function renderArabicToRomanExplanation(
+    container,
+    explanation,
+    problem
+) {
+    const {
+        number,
+        roman
+    } = explanation;
+
+    const symbols = [...roman];
+
+    const values = symbols.map(
+        symbol => ROMAN_VALUES[symbol]
+    );
+
+    const terms = [];
+
+    for (let i = 0; i < symbols.length; i++) {
+        const current = values[i];
+        const next = values[i + 1];
+
+        if (next !== undefined && current < next) {
+            terms.push({
+                text: `${symbols[i]}${symbols[i + 1]}`,
+                value: next - current
+            });
+
+            i++;
+        } else {
+            terms.push({
+                text: symbols[i],
+                value: current
+            });
+        }
+    }
+
+    const decomposition = terms
+        .map(term => `${term.text} = ${term.value}`)
+        .join(" + ");
+
+    const numeral = terms
+        .map(term => term.text)
+        .join("");
+
+    container.innerHTML = `
+        <div class="explanation-card">
+            <h3>${t("explanations.seeHow")} 💡</h3>
+
+            <p>
+                ${tf("explanations.arabicToRoman.build", {
+                    number
+                })}
+            </p>
+
+            <p class="counting-example">
+                ${decomposition}
+            </p>
+
+            <p>
+                ${t("explanations.arabicToRoman.combine")}
+            </p>
+
+            <p class="counting-example">
+                ${numeral}
+            </p>
+
+            <p>
+                ${tf("explanations.arabicToRoman.result", {
+                    number,
+                    roman
+                })}
+            </p>
+        </div>
+    `;
+}
+
+
+function renderEvenOddExplanation(
+    container,
+    explanation,
+    problem
+) {
+    const number = explanation.number;
+    const answer = explanation.answer;
+    const lastDigit = number % 10;
+
+    const evenLastDigits = [0, 2, 4, 6, 8];
+
+    let content;
+
+    if (number < 20) {
+        const pairs = Math.floor(number / 2);
+        const hasRemainder = number % 2 !== 0;
+
+        content = `
+            <p>
+                ${tf("explanations.evenOdd.groupPairs", {
+                    number
+                })}
+            </p>
+
+            <p class="counting-example">
+                ${"●● ".repeat(pairs)}
+                ${hasRemainder ? "●" : ""}
+            </p>
+
+            <p>
+                ${
+                    hasRemainder
+                        ? tf("explanations.evenOdd.oneLeft", {
+                            number
+                        })
+                        : tf("explanations.evenOdd.noneLeft", {
+                            number
+                        })
+                }
+            </p>
+        `;
+    } else {
+        const isEven =
+            evenLastDigits.includes(lastDigit);
+
+        content = `
+            <p>
+                ${t("explanations.evenOdd.largerNumbers")}
+            </p>
+
+            <p class="counting-example">
+                ${number} → ${tf(
+                    "explanations.evenOdd.lastDigit",
+                    { lastDigit }
+                )}
+            </p>
+
+            <p>
+                ${t("explanations.evenOdd.evenNumbers")}
+            </p>
+
+            <p>
+                ${t("explanations.evenOdd.oddNumbers")}
+            </p>
+
+            <p>
+                ${tf("explanations.evenOdd.conclusion", {
+                    number,
+                    lastDigit,
+                    answer: answer.toLowerCase()
+                })}
+            </p>
+        `;
+    }
+
+    container.innerHTML = `
+        <div class="explanation-card">
+            <h3>${t("explanations.seeHow")} 💡</h3>
+
+            ${content}
+        </div>
+    `;
+}
+
+
+function renderAdvancedAdditionExplanation(
+    container,
+    top,
+    bottom
+) {
+    if (typeof top === "object" && top !== null) {
+        ({ top, bottom } = top);
+    }
+
+    const topStr = String(top);
+    const bottomStr = String(bottom);
+
+    const maxDigits =
+        Math.max(
+            topStr.length,
+            bottomStr.length
+        );
+
+    const topPadded =
+        topStr.padStart(maxDigits, "0");
+
+    const bottomPadded =
+        bottomStr.padStart(maxDigits, "0");
+
+    const steps = [];
+
+    steps.push({
+        title: t("explanations.advancedAddition.setupTitle"),
+        text: t("explanations.advancedAddition.setupText"),
+        svg: createAdditionSvg(
+            topStr,
+            bottomStr,
+            "",
+            []
+        )
+    });
+
+    let partialResultString = "";
+    let carry = 0;
+    const revealedCarries = [];
+
+    for (
+        let i = maxDigits - 1;
+        i >= 0;
+        i--
+    ) {
+        const position =
+            maxDigits - 1 - i;
+
+        const topDigit =
+            Number(topPadded[i]);
+
+        const bottomDigit =
+            Number(bottomPadded[i]);
+
+        const sum =
+            topDigit +
+            bottomDigit +
+            carry;
+
+        const resultDigit =
+            sum % 10;
+
+        const newCarry =
+            Math.floor(sum / 10);
+
+        const place =
+            getAdditionPlaceName(position);
+
+        partialResultString =
+            String(resultDigit) + partialResultString;
+
+        const isOverflowColumn =
+            position === maxDigits - 1;
+
+        const calculation =
+            carry > 0
+                ? `${topDigit} + ${bottomDigit} + ${carry} = ${sum}`
+                : `${topDigit} + ${bottomDigit} = ${sum}`;
+
+        let text =
+            `${calculation}. ` +
+            tf("explanations.advancedAddition.writeDigit", {
+                resultDigit,
+                place
+            });
+
+        if (newCarry > 0) {
+            text += " " +
+                tf("explanations.advancedAddition.carry", {
+                    newCarry
+                });
+        }
+
+        if (!isOverflowColumn && newCarry > 0) {
+            revealedCarries[position] = newCarry;
+        }
+
+        steps.push({
+            title: tf(
+                "explanations.advancedAddition.columnTitle",
+                { place }
+            ),
+            text,
+            svg: createAdditionSvg(
+                topStr,
+                bottomStr,
+                partialResultString,
+                revealedCarries.slice()
+            )
+        });
+
+        carry = newCarry;
+    }
+
+    if (carry > 0) {
+        const finalResult =
+            String(carry) + partialResultString;
+
+        const finalCarries =
+            revealedCarries.slice();
+
+        finalCarries[maxDigits - 1] = carry;
+
+        steps.push({
+            title:
+                t("explanations.advancedAddition.finishTitle"),
+
+            text:
+                tf("explanations.advancedAddition.finalCarry", {
+                    answer: Number(finalResult).toLocaleString()
+                }),
+
+            svg: createAdditionSvg(
+                topStr,
+                bottomStr,
+                finalResult,
+                finalCarries
+            )
+        });
+    } else {
+        steps.push({
+            title:
+                t("explanations.advancedAddition.finishTitle"),
+
+            text:
+                tf("explanations.advancedAddition.answer", {
+                    answer: Number(
+                        partialResultString
+                    ).toLocaleString()
+                }),
+
+            svg: createAdditionSvg(
+                topStr,
+                bottomStr,
+                partialResultString,
+                revealedCarries.slice()
+            )
+        });
+    }
+
+    container.innerHTML = `
+        <div class="explanation-card">
+            <h3>${t("explanations.solveStepByStep")}</h3>
+
+            <div class="addition-explanation-steps">
+                ${steps.map(step => `
+                    <div class="addition-explanation-step">
+                        <h4>${step.title}</h4>
+
+                        <div class="addition-explanation-svg">
+                            ${step.svg}
+                        </div>
+
+                        <p>${step.text}</p>
+                    </div>
+                `).join("")}
+            </div>
+        </div>
+    `;
+}
+
+
+function renderAdvancedSubtractionExplanation(
+    container,
+    top,
+    bottom
+) {
+    if (typeof top === "object" && top !== null) {
+        ({ top, bottom } = top);
+    }
+
+    const topStr = String(top);
+    const bottomStr = String(bottom);
+
+    const maxDigits =
+        Math.max(
+            topStr.length,
+            bottomStr.length
+        );
+
+    const topPadded =
+        topStr.padStart(maxDigits, "0");
+
+    const bottomPadded =
+        bottomStr.padStart(maxDigits, "0");
+
+    const steps = [];
+
+    steps.push({
+        title:
+            t("explanations.advancedSubtraction.setupTitle"),
+
+        text:
+            t("explanations.advancedSubtraction.setupText"),
+
+        svg: createSubtractionSvg(
+            topStr,
+            bottomStr,
+            "",
+            []
+        )
+    });
+
+    const revealedBorrows = [];
+
+    const partialResult =
+        Array(maxDigits).fill("");
+
+    let borrow = 0;
+
+    for (
+        let i = maxDigits - 1;
+        i >= 0;
+        i--
+    ) {
+        const position =
+            maxDigits - 1 - i;
+
+        const originalTopDigit =
+            Number(topPadded[i]);
+
+        const bottomDigit =
+            Number(bottomPadded[i]);
+
+        let topDigit =
+            originalTopDigit - borrow;
+
+        let newBorrow = 0;
+
+        if (topDigit < bottomDigit) {
+            newBorrow = 1;
+
+            topDigit += 10;
+
+            if (i > 0) {
+                revealedBorrows[position] = 1;
+            }
+        }
+
+        const resultDigit =
+            topDigit - bottomDigit;
+
+        partialResult[i] =
+            String(resultDigit);
+
+        const place =
+            getSubtractionPlaceName(position);
+
+        let text;
+
+        if (newBorrow) {
+            text =
+                tf(
+                    "explanations.advancedSubtraction.borrow",
+                    {
+                        originalTopDigit,
+                        bottomDigit,
+                        place,
+                        borrowedPlace:
+                            getSubtractionPlaceName(
+                                position + 1
+                            ),
+                        topDigit,
+                        resultDigit
+                    }
+                );
+        } else if (borrow) {
+            text =
+                tf(
+                    "explanations.advancedSubtraction.afterBorrow",
+                    {
+                        place,
+                        topDigit,
+                        bottomDigit,
+                        resultDigit
+                    }
+                );
+        } else {
+            text =
+                tf(
+                    "explanations.advancedSubtraction.subtract",
+                    {
+                        topDigit,
+                        bottomDigit,
+                        resultDigit,
+                        place
+                    }
+                );
+        }
+
+        steps.push({
+            title: tf(
+                "explanations.advancedSubtraction.columnTitle",
+                { place }
+            ),
+
+            text,
+
+            svg: createSubtractionSvg(
+                topStr,
+                bottomStr,
+                partialResult.join(""),
+                revealedBorrows.slice()
+            )
+        });
+
+        borrow = newBorrow;
+    }
+
+    steps.push({
+        title:
+            t("explanations.advancedSubtraction.finishTitle"),
+
+        text:
+            tf(
+                "explanations.advancedSubtraction.answer",
+                {
+                    answer: Number(
+                        partialResult.join("")
+                    ).toLocaleString()
+                }
+            ),
+
+        svg: createSubtractionSvg(
+            topStr,
+            bottomStr,
+            partialResult.join(""),
+            revealedBorrows.slice()
+        )
+    });
+
+    container.innerHTML = `
+        <div class="explanation-card">
+            <h3>${t("explanations.solveStepByStep")}</h3>
+
+            <div class="subtraction-explanation-steps">
+                ${steps.map(step => `
+                    <div class="subtraction-explanation-step">
+                        <h4>${step.title}</h4>
+
+                        <div class="subtraction-explanation-svg">
+                            ${step.svg}
+                        </div>
+
+                        <p>${step.text}</p>
+                    </div>
+                `).join("")}
+            </div>
+        </div>
+    `;
+}
+
 function renderRomanToArabicExplanation(
     container,
     explanation,

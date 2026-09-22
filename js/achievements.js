@@ -230,7 +230,7 @@ async function showAchievementNotifications(achievements) {
 
     for (const achievement of achievements) {
         icon.textContent = achievement.icon;
-        title.textContent = achievement.title;
+        title.textContent = t(achievement.title);
 
         notification.classList.add("show");
 
@@ -254,8 +254,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "xp-100",
-        title: "XP, here I come",
-        description: "Earn 100 total XP.",
+        title: "achievements.xp100.title",
+        description: "achievements.xp100.description",
         icon: "⭐",
         category: "progression",
         hidden: false
@@ -263,8 +263,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "xp-500",
-        title: "XP stands for eXperience Points...",
-        description: "Earn 500 total XP.",
+        title: "achievements.xp500.title",
+        description: "achievements.xp500.description",
         icon: "⭐",
         category: "progression",
         hidden: false
@@ -272,8 +272,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "xp-1000",
-        title: "..or maybe just eXtra Practice",
-        description: "Earn 1,000 total XP.",
+        title: "achievements.xp1000.title",
+        description: "achievements.xp1000.description",
         icon: "🌟",
         category: "progression",
         hidden: false
@@ -281,8 +281,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "xp-5000",
-        title: "Holy moly that's a lot of XP",
-        description: "Earn 5,000 total XP.",
+        title: "achievements.xp5000.title",
+        description: "achievements.xp5000.description",
         icon: "🏆",
         category: "progression",
         hidden: false
@@ -295,8 +295,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "problems-50",
-        title: "No problemo",
-        description: "Solve 50 problems.",
+        title: "achievements.problems50.title",
+        description: "achievements.problems50.description",
         icon: "🧩",
         category: "progression",
         hidden: false
@@ -304,8 +304,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "problems-200",
-        title: "There's always a problem",
-        description: "Solve 200 problems.",
+        title: "achievements.problems200.title",
+        description: "achievements.problems200.description",
         icon: "🧩",
         category: "progression",
         hidden: false
@@ -313,8 +313,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "problems-1000",
-        title: "Problem-solving machine",
-        description: "Solve 1,000 problems.",
+        title: "achievements.problems1000.title",
+        description: "achievements.problems1000.description",
         icon: "🧩",
         category: "progression",
         hidden: false
@@ -327,8 +327,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "streak-2",
-        title: "Back for more",
-        description: "Learn on 2 consecutive days.",
+        title: "achievements.streak2.title",
+        description: "achievements.streak2.description",
         icon: "🔥",
         category: "progression",
         hidden: false
@@ -336,8 +336,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "streak-7",
-        title: "Ooh, hot, hot",
-        description: "Maintain a 7-day learning streak.",
+        title: "achievements.streak7.title",
+        description: "achievements.streak7.description",
         icon: "🔥",
         category: "progression",
         hidden: false
@@ -345,8 +345,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "streak-14",
-        title: "Flaming",
-        description: "Maintain a 14-day learning streak.",
+        title: "achievements.streak14.title",
+        description: "achievements.streak14.description",
         icon: "🔥",
         category: "progression",
         hidden: false
@@ -354,8 +354,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "streak-30",
-        title: "Phoenix",
-        description: "Maintain a 30-day learning streak.",
+        title: "achievements.streak30.title",
+        description: "achievements.streak30.description",
         icon: "🔥",
         category: "progression",
         hidden: false
@@ -368,8 +368,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "lessons-1",
-        title: "First steps",
-        description: "Finish your first lesson.",
+        title: "achievements.lessons1.title",
+        description: "achievements.lessons1.description",
         icon: "📖",
         category: "progression",
         hidden: false
@@ -377,8 +377,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "lessons-10",
-        title: "I. Need. Lessons.",
-        description: "Finish 10 lessons.",
+        title: "achievements.lessons10.title",
+        description: "achievements.lessons10.description",
         icon: "📚",
         category: "progression",
         hidden: false
@@ -391,8 +391,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "course-numbers",
-        title: "Numbertastic",
-        description: "Finish the Numbers course.",
+        title: "achievements.courseNumbers.title",
+        description: "achievements.courseNumbers.description",
         icon: "🔢",
         category: "progression",
         hidden: false
@@ -400,8 +400,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "course-addition",
-        title: "Summator",
-        description: "Finish the Addition course.",
+        title: "achievements.courseAddition.title",
+        description: "achievements.courseAddition.description",
         icon: "+",
         category: "progression",
         hidden: false
@@ -409,8 +409,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "course-subtraction",
-        title: "Deductor",
-        description: "Finish the Subtraction course.",
+        title: "achievements.courseSubtraction.title",
+        description: "achievements.courseSubtraction.description",
         icon: "−",
         category: "progression",
         hidden: false
@@ -418,17 +418,17 @@ const ACHIEVEMENTS = [
 
     {
         id: "course-multiplication",
-        title: "Times tables are easy",
-        description: "Finish the Multiplication course.",
+        title: "achievements.courseMultiplication.title",
+        description: "achievements.courseMultiplication.description",
         icon: "×",
         category: "progression",
         hidden: false
     },
-    
+
     {
         id: "course-division",
-        title: "Divide and conquer",
-        description: "Finish the Division course.",
+        title: "achievements.courseDivision.title",
+        description: "achievements.courseDivision.description",
         icon: "÷",
         category: "progression",
         hidden: false
@@ -436,8 +436,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "course-roman-numerals",
-        title: "Veni, vidi, vici",
-        description: "Finish the Roman Numerals course.",
+        title: "achievements.courseRomanNumerals.title",
+        description: "achievements.courseRomanNumerals.description",
         icon: "🏛️",
         category: "progression",
         hidden: false
@@ -445,8 +445,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "course-geometry",
-        title: "Geometry smash",
-        description: "Finish the Geometry course.",
+        title: "achievements.courseGeometry.title",
+        description: "achievements.courseGeometry.description",
         icon: "📐",
         category: "progression",
         hidden: false
@@ -454,8 +454,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "course-first",
-        title: "On course for knowledge",
-        description: "Finish your first course.",
+        title: "achievements.courseFirst.title",
+        description: "achievements.courseFirst.description",
         icon: "🎓",
         category: "progression",
         hidden: false
@@ -463,8 +463,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "courses-all",
-        title: "Of course you're the best",
-        description: "Finish all available courses.",
+        title: "achievements.coursesAll.title",
+        description: "achievements.coursesAll.description",
         icon: "👑",
         category: "progression",
         hidden: false
@@ -472,17 +472,17 @@ const ACHIEVEMENTS = [
 
     {
         id: "courses-basic-arithmetic",
-        title: "Add, subtract, multiply, divide, repeat",
-        description: "Finish all basic arithmetic courses.",
+        title: "achievements.coursesBasicArithmetic.title",
+        description: "achievements.coursesBasicArithmetic.description",
         icon: "🧮",
         category: "progression",
         hidden: false
     },
-    
+
     {
         id: "course-advanced-numbers",
-        title: "IT'S OVER ONE THOUSAAAND!",
-        description: "Finish the Advanced Numbers course.",
+        title: "achievements.courseAdvancedNumbers.title",
+        description: "achievements.courseAdvancedNumbers.description",
         icon: "🔢",
         category: "progression",
         hidden: false
@@ -490,8 +490,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "course-advanced-addition",
-        title: "Keep calm and carry the ones",
-        description: "Finish the Advanced Addition course.",
+        title: "achievements.courseAdvancedAddition.title",
+        description: "achievements.courseAdvancedAddition.description",
         icon: "+",
         category: "progression",
         hidden: false
@@ -499,8 +499,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "course-advanced-subtraction",
-        title: "To borrow or not to borrow",
-        description: "Finish the Advanced Subtraction course.",
+        title: "achievements.courseAdvancedSubtraction.title",
+        description: "achievements.courseAdvancedSubtraction.description",
         icon: "−",
         category: "progression",
         hidden: false
@@ -513,8 +513,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "lessons-10-one-day",
-        title: "Not now, mom. I'm doing math!",
-        description: "Complete 10 lessons on the same day.",
+        title: "achievements.lessons10OneDay.title",
+        description: "achievements.lessons10OneDay.description",
         icon: "⚡",
         category: "one-time",
         hidden: false
@@ -522,8 +522,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "perfect-lesson",
-        title: "Perfection.",
-        description: "Complete a lesson without making a mistake.",
+        title: "achievements.perfectLesson.title",
+        description: "achievements.perfectLesson.description",
         icon: "💯",
         category: "one-time",
         hidden: false
@@ -531,8 +531,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "comeback",
-        title: "When we fall, we get up.",
-        description: "Complete a lesson after making a mistake.",
+        title: "achievements.comeback.title",
+        description: "achievements.comeback.description",
         icon: "💪",
         category: "one-time",
         hidden: false
@@ -540,8 +540,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "perfect-5-in-row",
-        title: "Mistakes? I don't know what mistakes are.",
-        description: "Complete 5 lessons in a row without making a mistake.",
+        title: "achievements.perfect5InRow.title",
+        description: "achievements.perfect5InRow.description",
         icon: "🏅",
         category: "one-time",
         hidden: false
@@ -554,8 +554,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "pi-day",
-        title: "i 8 π",
-        description: "Complete a lesson on Pi Day.",
+        title: "achievements.piDay.title",
+        description: "achievements.piDay.description",
         icon: "🥧",
         category: "quirky",
         hidden: false
@@ -563,8 +563,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "three-courses-one-day",
-        title: "Jack of all trades",
-        description: "Complete lessons from 3 different courses on the same day.",
+        title: "achievements.threeCoursesOneDay.title",
+        description: "achievements.threeCoursesOneDay.description",
         icon: "🌈",
         category: "quirky",
         hidden: false
@@ -572,8 +572,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "same-lesson-5-times",
-        title: "Muscle memory",
-        description: "Complete the same lesson 5 times in a row.",
+        title: "achievements.sameLesson5Times.title",
+        description: "achievements.sameLesson5Times.description",
         icon: "🔄",
         category: "quirky",
         hidden: false
@@ -581,8 +581,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "night-lesson",
-        title: "Nightly maths",
-        description: "Complete a lesson between 21:00 and 04:00.",
+        title: "achievements.nightLesson.title",
+        description: "achievements.nightLesson.description",
         icon: "🌙",
         category: "quirky",
         hidden: true
@@ -590,8 +590,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "early-lesson",
-        title: "Early bird catches the lesson",
-        description: "Complete a lesson between 04:00 and 07:30.",
+        title: "achievements.earlyLesson.title",
+        description: "achievements.earlyLesson.description",
         icon: "🌅",
         category: "quirky",
         hidden: true
@@ -599,8 +599,8 @@ const ACHIEVEMENTS = [
 
     {
         id: "answer-42",
-        title: "The answer to everything (not really)",
-        description: "Enter 42 into an answer input.",
+        title: "achievements.answer42.title",
+        description: "achievements.answer42.description",
         icon: "🥚",
         category: "quirky",
         hidden: true

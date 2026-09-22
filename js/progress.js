@@ -31,7 +31,7 @@ function renderCourseProgress() {
                     </span>
 
                     <span class="course-name">
-                        ${course.title}
+                        ${t(course.title)}
                     </span>
 
                 </div>

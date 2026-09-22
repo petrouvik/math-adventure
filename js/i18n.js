@@ -51,7 +51,7 @@ function tf(key, values) {
 
     for (const [name, value] of Object.entries(values)) {
 
-        text = text.replace(
+        text = text.replaceAll(
             `{${name}}`,
             value
         );

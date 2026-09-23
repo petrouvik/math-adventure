@@ -228,7 +228,13 @@ const TRANSLATIONS_SR = {
             "+{coins} novčića",
 
         problemProgress:
-            "Zadatak {current} / {total}"
+            "Zadatak {current} / {total}",
+        
+        problemsSolved:
+            "Rešio si {solved} od {total} zadataka.",
+
+        firstTryCorrect:
+            "{correct} od {total} zadataka rešeno je tačno iz prvog pokušaja."
     },
 
     // ========================================

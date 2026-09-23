@@ -268,7 +268,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.1
             },
 
 
@@ -291,7 +292,9 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                }, 
+
+                difficultyMultiplier: 1.25
             }
         ]
     },
@@ -354,7 +357,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.1
             },
 
 
@@ -378,7 +382,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.25
             }
         ]
     },
@@ -444,7 +449,8 @@ const COURSES = {
                 },
 
                 problemCount: 10
-            }
+            },
+            difficultyMultiplier: 1.3
         },
 
         {
@@ -467,7 +473,8 @@ const COURSES = {
                 },
 
                 problemCount: 10
-            }
+            },
+            difficultyMultiplier: 1.3
         },
 
         {
@@ -490,7 +497,8 @@ const COURSES = {
                 },
 
                 problemCount: 10
-            }
+            },
+            difficultyMultiplier: 1.3
         },
 
         {
@@ -513,7 +521,8 @@ const COURSES = {
                 },
 
                 problemCount: 10
-            }
+            },
+            difficultyMultiplier: 1.3
         },
 
         {
@@ -536,7 +545,8 @@ const COURSES = {
                 },
 
                 problemCount: 10
-            }
+            },
+            difficultyMultiplier: 1.5
         },
 
         {
@@ -559,7 +569,8 @@ const COURSES = {
                 },
 
                 problemCount: 10
-            }
+            },
+            difficultyMultiplier: 1.5
         },
 
         {
@@ -582,7 +593,8 @@ const COURSES = {
                 },
 
                 problemCount: 10
-            }
+            },
+            difficultyMultiplier: 1.5
         },
 
         {
@@ -605,7 +617,8 @@ const COURSES = {
                 },
 
                 problemCount: 10
-            }
+            },
+            difficultyMultiplier: 1.5
         },
 
         {
@@ -628,7 +641,8 @@ const COURSES = {
                 },
 
                 problemCount: 10
-            }
+            },
+            difficultyMultiplier: 1.2
         },
 
         {
@@ -654,7 +668,8 @@ const COURSES = {
                 },
 
                 problemCount: 10
-            }
+            },
+            difficultyMultiplier: 1.5
         }
     ]
     },
@@ -720,7 +735,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.5
             },
 
             {
@@ -743,7 +759,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.5
             },
 
             {
@@ -766,7 +783,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.6
             },
 
             {
@@ -792,7 +810,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.6
             }
         ]
     },
@@ -858,7 +877,8 @@ const COURSES = {
                     settings: {},
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.2
             },
 
             {
@@ -918,7 +938,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.3
             },
 
             {
@@ -1024,7 +1045,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.5
             },
 
             {
@@ -1048,7 +1070,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.4
             }
         ]
     },
@@ -1142,7 +1165,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.75
             },
 
             {
@@ -1206,7 +1230,9 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+
+                difficultyMultiplier: 1.75
             },
 
             {
@@ -1295,7 +1321,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.6
             },
 
             {
@@ -1370,7 +1397,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.4
             },
 
             {
@@ -1448,7 +1476,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.4
             },
 
             {
@@ -1555,7 +1584,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 1.8
             }
         ]
     },
@@ -1658,7 +1688,8 @@ const COURSES = {
 
                     problemCount: 10,
                     solveOnPaper: true
-                }
+                },
+                difficultyMultiplier: 2.0
             },
 
             {
@@ -1756,7 +1787,8 @@ const COURSES = {
 
                     problemCount: 10,
                     solveOnPaper: true
-                }
+                },
+                difficultyMultiplier: 2.2
             },
 
             {
@@ -1856,7 +1888,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 2.4
             },
 
             {
@@ -1958,7 +1991,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 2.4
             },
 
             {
@@ -2060,7 +2094,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                },
+                difficultyMultiplier: 2.4
             },
 
             {
@@ -2169,7 +2204,8 @@ const COURSES = {
                     },
 
                     problemCount: 10
-                }
+                }, 
+                difficultyMultiplier: 2.8
             }
         ]
     },
@@ -2269,7 +2305,8 @@ const COURSES = {
 
                     problemCount: 10,
                     solveOnPaper: true
-                }
+                },
+                difficultyMultiplier: 2.0
             },
 
             {
@@ -2363,7 +2400,8 @@ const COURSES = {
 
                     problemCount: 10,
                     solveOnPaper: true
-                }
+                },
+                difficultyMultiplier: 2.2
             },
 
             {
@@ -2465,7 +2503,8 @@ const COURSES = {
 
                     problemCount: 10,
                     solveOnPaper: true
-                }
+                },
+                difficultyMultiplier: 2.4
             },
 
             {
@@ -2612,7 +2651,8 @@ const COURSES = {
 
                     problemCount: 10,
                     solveOnPaper: true
-                }
+                },
+                difficultyMultiplier: 2.4
             },
 
             {
@@ -2711,7 +2751,8 @@ const COURSES = {
 
                     problemCount: 10,
                     solveOnPaper: true
-                }
+                },
+                difficultyMultiplier: 2.4
             },
 
             {
@@ -2817,7 +2858,8 @@ const COURSES = {
 
                     problemCount: 10,
                     solveOnPaper: true
-                }
+                },
+                difficultyMultiplier: 2.8
             }
         ]
     },

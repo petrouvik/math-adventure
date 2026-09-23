@@ -191,7 +191,13 @@ const TRANSLATIONS_EN = {
         coinReward: "+{coins} Coins",
 
         problemProgress:
-            "Problem {current} / {total}"
+            "Problem {current} / {total}",
+
+        problemsSolved:
+            "You solved {solved} of {total} problems.",
+
+        firstTryCorrect:
+            "{correct} of {total} were correct on the first try."
     },
 
     // ========================================

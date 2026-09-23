@@ -100,27 +100,52 @@ function updatePlayerDisplay() {
         });
 }
 
-function rewardLessonCompletion(problemCount) {
-    const player = getPlayer();
-    const today = getTodayDate();
+function rewardLessonCompletion({
+    problemCount,
+    firstTryCorrect,
+    difficultyMultiplier
+}) {
+    const baseXP =
+        problemCount * 5;
 
-    if (!player.dailyProgress[today]) {
-        player.dailyProgress[today] = {
-            xp: 0,
-            problems: 0
-        };
-    }
+    const baseCoins =
+        problemCount;
 
-    player.xp += 50;
-    player.coins += 10;
+    const firstTryBonusXP =
+        firstTryCorrect * 2;
+
+    const firstTryBonusCoins =
+        firstTryCorrect;
+
+    const xp =
+        Math.round(
+            (
+                baseXP +
+                firstTryBonusXP
+            ) * difficultyMultiplier
+        );
+
+    const coins =
+        Math.round(
+            (
+                baseCoins +
+                firstTryBonusCoins
+            ) * difficultyMultiplier
+        );
+
+    const player =
+        getPlayer();
+
+    player.xp += xp;
+    player.coins += coins;
     player.problems += problemCount;
-
-    player.dailyProgress[today].xp += 50;
-    player.dailyProgress[today].problems += problemCount;
 
     savePlayer(player);
 
-    return player;
+    return {
+        xp,
+        coins
+    };
 }
 
 function getLessonKey(courseId, lessonId) {

@@ -253,8 +253,7 @@ function renderImageExampleBlock(
 const lessonState = {
     problems: [],
     currentProblem: 0,
-    correctAnswers: 0,
-    incorrectAnswers: 0,
+    attempts: [],
     completed: false
 };
 
@@ -286,8 +285,7 @@ function renderPracticeLesson() {
         );
 
     lessonState.currentProblem = 0;
-    lessonState.correctAnswers = 0;
-    lessonState.incorrectAnswers = 0;
+    lessonState.attempts = new Array(lessonState.problems.length).fill(0);
     lessonState.completed = false;
 
     renderCurrentProblem();
@@ -351,7 +349,9 @@ function handleCorrect(
     problem,
     answer
 ) {
-    lessonState.correctAnswers++;
+    lessonState.attempts[
+        lessonState.currentProblem
+    ]++;
 
     renderNextButton();
 
@@ -366,7 +366,9 @@ function handleIncorrect(
     answer,
     explanationContainer
 ) {
-    lessonState.incorrectAnswers++;
+    lessonState.attempts[
+        lessonState.currentProblem
+    ]++;
 
     renderExplanation(
         explanationContainer,
@@ -446,6 +448,30 @@ function nextProblem() {
 }
 
 
+function getLessonStats() {
+
+    const total =
+        lessonState.problems.length;
+
+    const firstTryCorrect =
+        lessonState.attempts.filter(
+            attempts => attempts === 1
+        ).length;
+
+    const incorrectAttempts =
+        lessonState.attempts.reduce(
+            (total, attempts) =>
+                total + Math.max(0, attempts - 1),
+            0
+        );
+
+    return {
+        total,
+        firstTryCorrect,
+        incorrectAttempts
+    };
+}
+
 function finishLesson() {
 
     if (lessonState.completed) {
@@ -454,9 +480,16 @@ function finishLesson() {
 
     lessonState.completed = true;
 
-    rewardLessonCompletion(
-        lessonState.problems.length
-    );
+    const stats =
+        getLessonStats();
+
+    const rewards =
+        rewardLessonCompletion({
+            problemCount: stats.total,
+            firstTryCorrect: stats.firstTryCorrect,
+            difficultyMultiplier:
+                lesson.difficultyMultiplier ?? 1
+        });
 
     completeLesson(
         courseId,
@@ -469,15 +502,14 @@ function finishLesson() {
         checkAllAchievements(
             courseId,
             lessonId,
-            lessonState.incorrectAnswers > 0
+            stats.incorrectAttempts > 0
         );
 
     showAchievementNotifications(
         unlockedAchievements
     );
 
-    const unlockedThemes =
-        unlockAvailableThemes();
+    unlockAvailableThemes();
 
     const progressContainer =
         document.getElementById(
@@ -512,11 +544,16 @@ function finishLesson() {
             </h2>
 
             <p>
-                ${tf("lesson.problemsCorrect", {
-                    correct:
-                        lessonState.correctAnswers,
-                    total:
-                        lessonState.problems.length
+                ${tf("lesson.problemsSolved", {
+                    solved: stats.total,
+                    total: stats.total
+                })}
+            </p>
+
+            <p>
+                ${tf("lesson.firstTryCorrect", {
+                    correct: stats.firstTryCorrect,
+                    total: stats.total
                 })}
             </p>
 
@@ -524,13 +561,13 @@ function finishLesson() {
 
                 <p>
                     ⭐ ${tf("lesson.xpReward", {
-                        xp: 50
+                        xp: rewards.xp
                     })}
                 </p>
 
                 <p>
                     🪙 ${tf("lesson.coinReward", {
-                        coins: 10
+                        coins: rewards.coins
                     })}
                 </p>
 

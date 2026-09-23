@@ -549,13 +549,7 @@ const TRANSLATIONS_SR = {
                         "Brojevi se mogu zapisivati ciframa. Na primer, broj pet se piše kao 5.",
 
                     example2:
-                        "Ovaj broj se čita kao dvanaest. Piše se pomoću cifre 1 i cifre 2.",
-
-                    text3:
-                        "Brojeve možemo čitati i zapisivati njihovim nazivima.",
-
-                    example3:
-                        "Cifra 7 predstavlja broj sedam."
+                        "Ovaj broj se čita kao dvanaest. Piše se pomoću cifre 1 i cifre 2."
                 }
             },
 
@@ -874,7 +868,7 @@ const TRANSLATIONS_SR = {
 
             facts2To5: {
 
-                title: "Činjenice deljenja 2–5",
+                title: "Deljenje 2–5",
 
                 description:
                     "Vežbaj deljenje koristeći tablice množenja od 2 do 5."
@@ -882,7 +876,7 @@ const TRANSLATIONS_SR = {
 
             facts6To10: {
 
-                title: "Činjenice deljenja 6–10",
+                title: "Deljenje 6–10",
 
                 description:
                     "Vežbaj deljenje koristeći tablice množenja od 6 do 10."
@@ -1083,16 +1077,13 @@ const TRANSLATIONS_SR = {
                         "Možemo i obrnuto: umesto da čitamo broj zapisan ciframa, možemo da zapišemo cifre kada čujemo ili pročitamo naziv broja.",
 
                     example1:
-                        "Tri hiljade znači 3 000, a dvesta petnaest znači 215. Zajedno daju 3 215.",
+                        "Recimo da treba da napišemo broj tri hiljade dvesta petnaest. Tri hiljade znači 3 000, a dvesta petnaest znači 215. Zajedno daju 3 215.",
 
                     text2:
                         "Obrati pažnju na grupe hiljada. Nula može biti potrebna kada neko mesto u broju nema vrednost.",
 
                     example2:
-                        "Imamo 42 hiljade i 5 jedinica. Nema stotina ni desetica, pa se na tim mestima nalaze nule.",
-
-                    example3:
-                        "Imamo 600 000 i 80, pa su stotine i desetice u grupi hiljada predstavljene nulama."
+                        "Recimo da treba da napišemo broj četrdeset dve hiljade pet. Imamo 42 hiljade i 5 jedinica. Nema stotina ni desetica, pa se na tim mestima nalaze nule."
                 }
             },
 
@@ -1818,9 +1809,9 @@ const TRANSLATIONS_SR = {
 
         numberGroups: {
             smallest:
-                "Koji je najmanji broj u {group}?",
+                "{group} - koji je njen najmanji broj?",
             largest:
-                "Koji je najveći broj u {group}?",
+                "{group} - koji je njen najveći broj?",
             whichGroup:
                 "Kojoj grupi pripada broj {number}?"
         }

@@ -513,13 +513,7 @@ const TRANSLATIONS_EN = {
                         "Numbers can be written using digits. For example, the number five is written as 5.",
 
                     example2:
-                        "This number is read as twelve.",
-
-                    text3:
-                        "We can read numbers and write them using their number names.",
-
-                    example3:
-                        "The digit 7 represents the number seven."
+                        "This number is read as twelve."
                 }
             },
 
@@ -1047,10 +1041,7 @@ const TRANSLATIONS_EN = {
                         "Pay attention to groups of thousands. A zero may be needed when a place inside a number has no value.",
 
                     example2:
-                        "There are 42 thousands and 5 ones. There are no hundreds or tens, so those places contain zeros.",
-
-                    example3:
-                        "There are 600,000 and 80, so the hundreds and tens inside the thousands group are represented by zeros."
+                        "There are 42 thousands and 5 ones. There are no hundreds or tens, so those places contain zeros."
                 }
             },
 

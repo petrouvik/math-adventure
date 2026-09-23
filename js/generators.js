@@ -479,15 +479,19 @@ function generateSubtractionProblem(settings) {
             continue;
         }
 
+        const canDecompose =
+            left % 10 !== 0 &&
+            Math.floor(left / 10) !== Math.floor((left - right) / 10);
+
         const explanation =
-            right <= 3
+            canDecompose
                 ? {
-                    type: "counting-back",
+                    type: "subtraction-decomposition",
                     start: left,
                     amount: right
                 }
                 : {
-                    type: "subtraction-decomposition",
+                    type: "counting-back",
                     start: left,
                     amount: right
                 };

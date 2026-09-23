@@ -40,18 +40,6 @@ const COURSES = {
                         expression: "12",
                         explanation:
                             "courses.numbers.numbersIntro.content.example2"
-                    },
-
-                    {
-                        type: "text",
-                        text: "courses.numbers.numbersIntro.content.text3"
-                    },
-
-                    {
-                        type: "example",
-                        expression: "7 → seven",
-                        explanation:
-                            "courses.numbers.numbersIntro.content.example3"
                     }
                 ]
             },
@@ -112,7 +100,7 @@ const COURSES = {
 
                     {
                         type: "example",
-                        expression: "5 → predecessor: 4, successor: 6",
+                        expression: "4, 5, 6",
                         explanation:
                             "courses.numbers.predecessorSuccessorIntro.content.example2"
                     }
@@ -297,7 +285,7 @@ const COURSES = {
                     interaction: "number-input",
 
                     settings: {
-                        max: 20,
+                        max: 19,
                         min: 1,
                         carryProbability: 0.75
                     },
@@ -1177,7 +1165,7 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "three thousand two hundred fifteen → 3,215",
+                            "3 215",
                         explanation:
                             "courses.advancedNumbers.writing.content.example1"
                     },
@@ -1191,17 +1179,9 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "forty-two thousand five → 42,005",
+                            "42,005",
                         explanation:
                             "courses.advancedNumbers.writing.content.example2"
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            "six hundred thousand eighty → 600,080",
-                        explanation:
-                            "courses.advancedNumbers.writing.content.example3"
                     }
                 ]
             },
@@ -1491,7 +1471,7 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "1–100 → first hundred",
+                            "1–100",
                         explanation:
                             "courses.advancedNumbers.numberGroups.content.example1"
                     },
@@ -1499,7 +1479,7 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "101–200 → second hundred",
+                            "101–200",
                         explanation:
                             "courses.advancedNumbers.numberGroups.content.example2"
                     },
@@ -1513,7 +1493,7 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "1–1,000 → first thousand",
+                            "1–1,000",
                         explanation:
                             "courses.advancedNumbers.numberGroups.content.example3"
                     },
@@ -1521,7 +1501,7 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "833 → first thousand",
+                            "833",
                         explanation:
                             "courses.advancedNumbers.numberGroups.content.example4"
                     },
@@ -1535,7 +1515,7 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "34 → fourth ten",
+                            "34",
                         explanation:
                             "courses.advancedNumbers.numberGroups.content.example5"
                     },
@@ -1549,7 +1529,7 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "second hundred → 101–200",
+                            "101–200",
                         explanation:
                             "courses.advancedNumbers.numberGroups.content.example6"
                     }

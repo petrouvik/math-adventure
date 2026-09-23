@@ -391,180 +391,154 @@ function numberToWordsEn(n) {
 }
 
 
+/**
+ * numberToWordsSr(n)
+ * -------------------
+ * Converts an integer into Serbian words, with correct grammatical
+ * agreement for the "magnitude nouns" hiljada (thousand), milion
+ * (million) and milijarda (billion).
+ *
+ * WHY THIS IS TRICKIER THAN A FLAT LOOKUP TABLE
+ * ----------------------------------------------
+ * 1. Gender agreement: "jedan" (1) and "dva" (2) are the only cardinal
+ *    numbers that inflect for gender in modern standard Serbian.
+ *      - milion is masculine  -> jedan, dva   (unchanged)
+ *      - hiljada is feminine  -> jedna, dve
+ *      - milijarda is feminine -> jedna, dve
+ *    ("tri", "četiri", "pet"... do NOT change with gender.)
+ *
+ * 2. Noun-form agreement (the Slavic "paucal" pattern). The magnitude
+ *    noun itself takes a different form depending on the count:
+ *      - count ends in 1, but count % 100 != 11   -> singular form
+ *      - count ends in 2-4, but count % 100 not in 12-14 -> paucal form
+ *      - everything else (0, 5-9, and 11-19)      -> plural/genitive form
+ *
+ *    hiljada:   hiljada / hiljade / hiljada   (irregular: gen. pl. looks
+ *               like nom. sg. - "pet hiljada", not "pet hiljadi")
+ *    milion:    milion  / miliona / miliona
+ *    milijarda: milijarda / milijarde / milijardi
+ *
+ * 3. Bare ("accusative-as-amount") form for an exact count of 1.
+ *    hiljada, milion and milijarda are regular nouns, and Serbian uses
+ *    the accusative singular adverbially to state "exactly one of
+ *    this magnitude", the same way it does for "sto" (hundred):
+ *      1 000           -> "hiljadu"   (not "jedna hiljada")
+ *      1 000 000       -> "milion"    (not "jedan milion";
+ *                          accusative sg. of a masc. inanimate noun
+ *                          happens to look like the nominative)
+ *      1 000 000 000   -> "milijardu" (not "jedna milijarda")
+ *    This applies whenever that magnitude's *group* equals 1, regardless
+ *    of the remaining digits (compare: the year 1984 is "hiljadu
+ *    devetsto osamdeset četvrta", not "jedna hiljada...").
+ *
+ * Supported range: 0 to 999,999,999,999 (i.e. up to "999 milijardi
+ * 999 miliona 999 hiljada 999").
+ */
 function numberToWordsSr(n) {
+  if (typeof n !== 'number' || !Number.isFinite(n) || !Number.isInteger(n)) {
+    throw new TypeError('numberToWordsSr expects an integer');
+  }
+  if (n < 0) {
+    return 'minus ' + numberToWordsSr(-n);
+  }
+  const MAX = 999999999999;
+  if (n > MAX) {
+    throw new RangeError(`numberToWordsSr only supports values up to ${MAX}`);
+  }
+  if (n === 0) return 'nula';
 
-    const ones = [
-        "nula",
-        "jedan",
-        "dva",
-        "tri",
-        "četiri",
-        "pet",
-        "šest",
-        "sedam",
-        "osam",
-        "devet",
-        "deset",
-        "jedanaest",
-        "dvanaest",
-        "trinaest",
-        "četrnaest",
-        "petnaest",
-        "šesnaest",
-        "sedamnaest",
-        "osamnaest",
-        "devetnaest"
-    ];
+  // --- word tables -----------------------------------------------------
 
-    const tens = [
-        "",
-        "",
-        "dvadeset",
-        "trideset",
-        "četrdeset",
-        "pedeset",
-        "šezdeset",
-        "sedamdeset",
-        "osamdeset",
-        "devedeset"
-    ];
+  const ONES_M = [
+    'nula', 'jedan', 'dva', 'tri', 'četiri', 'pet', 'šest', 'sedam', 'osam',
+    'devet', 'deset', 'jedanaest', 'dvanaest', 'trinaest', 'četrnaest',
+    'petnaest', 'šesnaest', 'sedamnaest', 'osamnaest', 'devetnaest'
+  ];
+  // Only "jedan" and "dva" have distinct feminine forms; everything
+  // else (including the teens, which never inflect for gender) is shared.
+  const ONES_F = ONES_M.slice();
+  ONES_F[1] = 'jedna';
+  ONES_F[2] = 'dve';
 
-    const hundreds = [
-        "",
-        "sto",
-        "dvesta",
-        "trista",
-        "četiristo",
-        "petsto",
-        "šeststo",
-        "sedamsto",
-        "osamsto",
-        "devetsto"
-    ];
+  const TENS = [
+    '', '', 'dvadeset', 'trideset', 'četrdeset', 'pedeset', 'šezdeset',
+    'sedamdeset', 'osamdeset', 'devedeset'
+  ];
 
-    function chunk(n) {
-        const parts = [];
+  // These are fixed compound words in Serbian (not "tri sto") and never
+  // inflect, regardless of the gender of whatever they end up modifying.
+  const HUNDREDS = [
+    '', 'sto', 'dvesta', 'trista', 'četiristo', 'petsto', 'šeststo',
+    'sedamsto', 'osamsto', 'devetsto'
+  ];
 
-        if (n >= 100) {
-            parts.push(
-                hundreds[Math.floor(n / 100)]
-            );
-
-            n %= 100;
-        }
-
-        if (n >= 20) {
-            parts.push(
-                tens[Math.floor(n / 10)]
-            );
-
-            n %= 10;
-        }
-
-        if (n > 0) {
-            parts.push(ones[n]);
-        }
-
-        return parts.join(" ");
-    }
-
-    function thousandForm(n) {
-        if (n % 100 >= 11 && n % 100 <= 19) {
-            return "hiljada";
-        }
-
-        const lastDigit = n % 10;
-
-        if (lastDigit === 1) {
-            return "hiljada";
-        }
-
-        if (
-            lastDigit >= 2 &&
-            lastDigit <= 4
-        ) {
-            return "hiljade";
-        }
-
-        return "hiljada";
-    }
-
-    function thousandPrefix(n) {
-        /*
-         * Serbian uses:
-         *
-         * 1.000  → hiljadu
-         * 2.000  → dve hiljade
-         * 3.000  → tri hiljade
-         * 4.000  → četiri hiljade
-         */
-        if (n === 1) {
-            return "hiljadu";
-        }
-
-        if (n === 2) {
-            return "dve hiljade";
-        }
-
-        return `${chunk(n)} ${thousandForm(n)}`;
-    }
-
-    if (n === 0) {
-        return "nula";
-    }
-
+  // gender: 'm' (masculine) or 'f' (feminine) - selects jedan/jedna, dva/dve
+  function chunkWords(num, gender) {
+    const ones = gender === 'f' ? ONES_F : ONES_M;
     const parts = [];
+    let r = num;
 
-    const billions =
-        Math.floor(n / 1_000_000_000);
+    if (r >= 100) {
+      parts.push(HUNDREDS[Math.floor(r / 100)]);
+      r %= 100;
+    }
+    if (r >= 20) {
+      parts.push(TENS[Math.floor(r / 10)]);
+      r %= 10;
+    }
+    if (r > 0) {
+      parts.push(ones[r]);
+    }
+    return parts.join(' ');
+  }
 
-    n %= 1_000_000_000;
+  // Returns 0 (singular), 1 (paucal), or 2 (plural/genitive) per the
+  // Slavic agreement pattern described above.
+  function formIndex(count) {
+    const lastTwo = count % 100;
+    if (lastTwo >= 11 && lastTwo <= 19) return 2; // 11-19 always "plural"
+    const last = count % 10;
+    if (last === 1) return 0;
+    if (last >= 2 && last <= 4) return 1;
+    return 2;
+  }
 
-    const millions =
-        Math.floor(n / 1_000_000);
+  // Each magnitude: its value, grammatical gender, the three noun forms
+  // ([singular, paucal, plural]), and the special bare word used when
+  // the count is exactly 1.
+  const MAGNITUDES = [
+    { value: 1000000000, gender: 'f', forms: ['milijarda', 'milijarde', 'milijardi'], bareOne: 'milijardu' },
+    { value: 1000000, gender: 'm', forms: ['milion', 'miliona', 'miliona'], bareOne: 'milion' },
+    { value: 1000, gender: 'f', forms: ['hiljada', 'hiljade', 'hiljada'], bareOne: 'hiljadu' }
+  ];
 
-    n %= 1_000_000;
+  const parts = [];
+  let remainder = n;
 
-    const thousands =
-        Math.floor(n / 1_000);
+  for (const mag of MAGNITUDES) {
+    const count = Math.floor(remainder / mag.value);
+    remainder %= mag.value;
+    if (count === 0) continue;
 
-    n %= 1_000;
-
-    if (billions > 0) {
-        parts.push(
-            `${chunk(billions)} milijardi`
-        );
+    if (count === 1) {
+      parts.push(mag.bareOne);
+      continue;
     }
 
-    if (millions > 0) {
-        if (millions === 1) {
-            parts.push("milion");
-        } else if (
-            millions % 100 >= 11 &&
-            millions % 100 <= 19
-        ) {
-            parts.push(`${chunk(millions)} miliona`);
-        } else if (
-            millions % 10 >= 2 &&
-            millions % 10 <= 4
-        ) {
-            parts.push(`${chunk(millions)} miliona`);
-        } else {
-            parts.push(`${chunk(millions)} miliona`);
-        }
-    }
+    const fIdx = formIndex(count);
+    const noun = mag.forms[fIdx];
+    // Gender only ever matters when the chunk actually ends in "jedan"
+    // or "dva" (fIdx 0 or 1); in the fIdx===2 band neither ever appears,
+    // so the gender choice there is moot.
+    const numeralWords = chunkWords(count, fIdx === 2 ? 'm' : mag.gender);
+    parts.push(`${numeralWords} ${noun}`);
+  }
 
-    if (thousands > 0) {
-        parts.push(
-            thousandPrefix(thousands)
-        );
-    }
+  if (remainder > 0 || parts.length === 0) {
+    parts.push(chunkWords(remainder, 'm'));
+  }
 
-    if (n > 0) {
-        parts.push(chunk(n));
-    }
-
-    return parts.join(" ");
+  return parts.join(' ').replace(/\s+/g, ' ').trim();
 }
 
 function getGroupName(groupNumber, groupSize) {

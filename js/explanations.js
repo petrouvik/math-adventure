@@ -668,7 +668,7 @@ function renderArabicToRomanExplanation(
     }
 
     const decomposition = terms
-        .map(term => `${term.text} = ${term.value}`)
+        .map(term => `${term.text}(${term.value})`)
         .join(" + ");
 
     const numeral = terms

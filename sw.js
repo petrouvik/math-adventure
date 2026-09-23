@@ -112,7 +112,12 @@ self.addEventListener(
         event.respondWith(
 
             caches
-                .match(event.request)
+                .match(
+                    event.request,
+                    {
+                        ignoreSearch: true
+                    }
+                )
                 .then(cachedResponse => {
 
                     if (cachedResponse) {

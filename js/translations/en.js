@@ -1,4 +1,31 @@
 const TRANSLATIONS_EN = {
+    // ========================================
+    // Settings
+    // ========================================
+
+    settings: {
+        level: "Level",
+
+        title: "Settings",
+        subtitle: "Customize your Math Adventure experience!",
+
+        profile: "👤 Profile",
+        name: "Name",
+        nameDescription: "Choose the name you'd like to use.",
+
+        language: "🌐 Language",
+
+        appearance: "🎨 Appearance",
+        theme: "Theme",
+        themeDescription: "Choose a theme for your adventure.",
+
+        data: "💾 Data",
+        reset: "Reset Progress",
+        resetDescription: "Delete your progress and start over.",
+        resetConfirm: "Are you sure you want to reset all progress?",
+        resetConfirmButton:"Reset"
+        
+    },
 
     // ========================================
     // Navigation
@@ -25,7 +52,9 @@ const TRANSLATIONS_EN = {
         todaysProgress:"Today's Progress",
         xpEarned: "XP Earned",
         problems: "Problems",
-        dayStreak: "Day Streak"
+        dayStreak: "Day Streak",
+        settings: "Settings",
+        settingsDescription: "Customize your adventure."
     },
 
     // ========================================

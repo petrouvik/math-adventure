@@ -1,0 +1,496 @@
+/* -------------------------
+   PAGE HEADER
+------------------------- */
+
+.settings-page-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    margin-bottom: 2rem;
+}
+
+
+.settings-page-header h1 {
+    margin: 0;
+
+    color: var(--color-text);
+
+    font-size: 2rem;
+}
+
+
+.settings-page-header p {
+    margin:
+        0.35rem
+        0
+        0;
+
+    color: var(--color-muted-text);
+}
+
+
+/* -------------------------
+   BACK BUTTON
+------------------------- */
+
+.back-button {
+    width: 2.75rem;
+    height: 2.75rem;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 0.8rem;
+
+    background: var(--color-surface);
+
+    color: var(--color-text);
+
+    text-decoration: none;
+
+    font-size: 1.4rem;
+
+    box-shadow: var(--shadow);
+
+    transition:
+        transform 0.15s,
+        filter 0.15s;
+}
+
+
+.back-button:hover {
+    filter: brightness(0.97);
+
+    transform:
+        translateX(-2px);
+}
+
+
+/* -------------------------
+   PROFILE CARD
+------------------------- */
+
+.profile-card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    padding: 1.25rem;
+
+    margin-bottom: 2.5rem;
+
+    background: var(--color-surface);
+
+    border-radius: 1.25rem;
+
+    box-shadow: var(--shadow);
+}
+
+
+.profile-avatar {
+    width: 4rem;
+    height: 4rem;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 1rem;
+
+    background: var(--color-highlight-background);
+
+    font-size: 2rem;
+}
+
+
+.profile-details {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.2rem;
+}
+
+
+.profile-label {
+    color: var(--color-muted-text);
+
+    font-size: 0.8rem;
+    font-weight: bold;
+
+    text-transform: uppercase;
+}
+
+
+.profile-name {
+    color: var(--color-text);
+
+    font-size: 1.25rem;
+}
+
+
+/* -------------------------
+   SETTINGS GROUP
+------------------------- */
+
+.settings-group {
+    margin-bottom: 2rem;
+}
+
+
+.settings-group h2 {
+    margin:
+        0
+        0
+        0.75rem;
+
+    color: var(--color-text);
+
+    font-size: 1.1rem;
+}
+
+
+/* -------------------------
+   SETTINGS LIST
+------------------------- */
+
+.settings-list {
+    overflow: hidden;
+
+    background: var(--color-surface);
+
+    border-radius: 1rem;
+
+    box-shadow: var(--shadow);
+}
+
+
+/* -------------------------
+   SETTING
+------------------------- */
+
+.setting {
+    min-height: 4.5rem;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 1rem;
+
+    padding:
+        0.9rem
+        1.15rem;
+}
+
+
+.setting + .setting {
+    border-top:
+        1px solid
+        var(--color-border);
+}
+
+
+.setting-icon {
+    width: 2.75rem;
+    height: 2.75rem;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    border-radius: 0.75rem;
+
+    background: var(--color-secondary);
+
+    font-size: 1.2rem;
+}
+
+
+.setting-content {
+    flex: 1;
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 0.2rem;
+}
+
+
+.setting-content strong {
+    color: var(--color-text);
+
+    font-size: 0.95rem;
+}
+
+
+.setting-content span {
+    color: var(--color-muted-text);
+
+    font-size: 0.8rem;
+}
+
+
+/* -------------------------
+   NAME INPUT
+------------------------- */
+
+.name-input {
+    width: 10rem;
+
+    padding:
+        0.6rem
+        0.75rem;
+
+    border:
+        2px solid
+        var(--color-input-border);
+
+    border-radius: 0.65rem;
+
+    background: var(--color-background);
+
+    color: var(--color-text);
+
+    font: inherit;
+
+    text-align: right;
+}
+
+
+.name-input:focus {
+    outline: none;
+
+    border-color:
+        var(--color-primary);
+}
+
+
+/* -------------------------
+   LANGUAGE
+------------------------- */
+
+.language-option {
+    width: 100%;
+
+    min-height: 4rem;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.9rem;
+
+    padding:
+        0.8rem
+        1.15rem;
+
+    border: none;
+
+    background: var(--color-surface);
+
+    color: var(--color-text);
+
+    font: inherit;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s;
+}
+
+
+.language-option + .language-option {
+    border-top:
+        1px solid
+        var(--color-border);
+}
+
+
+.language-option:hover {
+    background: var(--color-background);
+}
+
+
+.language-option.active {
+    background:
+        var(--color-highlight-background);
+}
+
+
+.language-flag {
+    font-size: 1.5rem;
+}
+
+
+.language-name {
+    flex: 1;
+
+    font-weight: bold;
+}
+
+
+.language-check {
+    color: var(--color-primary);
+
+    font-size: 1.1rem;
+    font-weight: bold;
+
+    opacity: 0;
+}
+
+
+.language-option.active .language-check {
+    opacity: 1;
+}
+
+
+/* -------------------------
+   LINKS
+------------------------- */
+
+.setting-link {
+    color: inherit;
+
+    text-decoration: none;
+
+    transition:
+        background 0.15s;
+}
+
+
+.setting-link:hover {
+    background: var(--color-background);
+}
+
+
+.setting-arrow {
+    color: var(--color-muted-text);
+
+    font-size: 1.2rem;
+
+    opacity: 0.5;
+}
+
+
+/* -------------------------
+   DANGER
+------------------------- */
+
+.danger-group {
+    margin-top: 3rem;
+}
+
+
+.setting-danger {
+    width: 100%;
+
+    border: none;
+
+    background: var(--color-surface);
+
+    color: var(--color-text);
+
+    font: inherit;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        background 0.15s;
+}
+
+
+.setting-danger:hover {
+    background:
+        color-mix(
+            in srgb,
+            var(--color-danger) 5%,
+            var(--color-surface)
+        );
+}
+
+
+.setting-danger .setting-icon {
+    background:
+        color-mix(
+            in srgb,
+            var(--color-danger) 10%,
+            var(--color-surface)
+        );
+}
+
+
+.setting-danger strong {
+    color: var(--color-danger);
+}
+
+
+/* -------------------------
+   MOBILE
+------------------------- */
+
+@media (max-width: 600px) {
+
+    .settings-page-header h1 {
+        font-size: 1.6rem;
+    }
+
+
+    .profile-card {
+        margin-bottom: 2rem;
+    }
+
+
+    .setting {
+        padding:
+            0.8rem
+            0.9rem;
+    }
+
+
+    .setting-content span {
+        max-width: 45vw;
+    }
+
+
+    .name-input {
+        width: 8rem;
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .setting-content span {
+        display: none;
+    }
+
+
+    .name-input {
+        width: 7rem;
+    }
+
+}

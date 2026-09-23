@@ -1,6 +1,33 @@
 const TRANSLATIONS_SR = {
 
     // ========================================
+    // Settings
+    // ========================================
+    
+    settings: {
+        level: "Nivo",
+
+        title: "Podešavanja",
+        subtitle: "Prilagodi svoju matematičku pustolovinu!",
+
+        profile: "👤 Profil",
+        name: "Ime",
+        nameDescription: "Izaberi ime koje želiš da koristiš.",
+
+        language: "🌐 Jezik",
+
+        appearance: "🎨 Izgled",
+        theme: "Tema",
+        themeDescription: "Izaberi temu za svoju pustolovinu.",
+
+        data: "💾 Podaci",
+        reset: "Resetuj napredak",
+        resetDescription: "Obriši svoj napredak i počni ispočetka.",
+        resetConfirm:"Da li si siguran da želiš da obrišeš sav napredak?",
+        resetConfirmButton:"Resetuj"
+    },
+
+    // ========================================
     // Navigation
     // ========================================
 
@@ -25,7 +52,9 @@ const TRANSLATIONS_SR = {
         todaysProgress: "Današnji napredak",
         xpEarned: "Osvojeni XP",
         problems: "Rešeni zadaci",
-        dayStreak: "Niz dana"
+        dayStreak: "Niz dana",
+        settings: "Podešavanja",
+        settingsDescription: "Prilagodi svoju pustolovinu."
     },
 
 

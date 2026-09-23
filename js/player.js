@@ -1,7 +1,7 @@
 const PLAYER_STORAGE_KEY = "mathAdventurePlayer";
 
 const DEFAULT_PLAYER = {
-    name: "Player",
+    name: "Adventurer",
     
     xp: 0,
     coins: 0,
@@ -139,6 +139,19 @@ function rewardLessonCompletion({
     player.xp += xp;
     player.coins += coins;
     player.problems += problemCount;
+
+    const today =
+        getTodayDate();
+
+    if (!player.dailyProgress[today]) {
+        player.dailyProgress[today] = {
+            xp: 0,
+            problems: 0
+        };
+    }
+
+    player.dailyProgress[today].xp += xp;
+    player.dailyProgress[today].problems += problemCount;
 
     savePlayer(player);
 

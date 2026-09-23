@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Settings - Math Adventure</title>
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/navigation.css">
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+
+
+<body>
+
+    <header>
+
+        <div class="logo">
+            <span class="logo-icon">🧮</span>
+            <span>Math Adventure</span>
+        </div>
+
+
+        <div class="player-info">
+
+            <div class="level">
+                ⭐
+                <span data-i18n="settings.level"></span>
+                <span data-player="level"></span>
+            </div>
+
+
+            <div class="coins">
+                🪙
+                <span data-player="coins"></span>
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <div class="settings-page-header">
+
+            <a
+                href="index.html"
+                class="back-button"
+            >
+                ←
+            </a>
+
+
+            <div>
+
+                <h1 data-i18n="settings.title"></h1>
+
+                <p data-i18n="settings.subtitle"></p>
+
+            </div>
+
+        </div>
+
+
+        <section class="profile-card">
+
+            <div class="profile-avatar">
+                👤
+            </div>
+
+
+            <div class="profile-details">
+
+                <span
+                    class="profile-label"
+                    data-i18n="settings.profile"
+                ></span>
+
+
+                <strong
+                    class="profile-name"
+                    data-player="name"
+                ></strong>
+
+            </div>
+
+        </section>
+
+
+        <section class="settings-group">
+
+            <h2 data-i18n="settings.profile"></h2>
+
+
+            <div class="settings-list">
+
+                <div class="setting">
+
+                    <div class="setting-icon">
+                        ✏️
+                    </div>
+
+
+                    <div class="setting-content">
+
+                        <strong data-i18n="settings.name"></strong>
+
+                        <span data-i18n="settings.nameDescription"></span>
+
+                    </div>
+
+
+                    <input
+                        type="text"
+                        class="name-input"
+                        data-player="name-input"
+                        value="Player"
+                        maxlength="20"
+                    >
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <section class="settings-group">
+
+            <h2 data-i18n="settings.language"></h2>
+
+
+            <div class="settings-list language-list">
+
+                <button
+                    type="button"
+                    class="language-option active"
+                    data-language="en"
+                >
+
+                    <span class="language-flag">
+                        🇬🇧
+                    </span>
+
+
+                    <span class="language-name">
+                        English
+                    </span>
+
+
+                    <span class="language-check">
+                        ✓
+                    </span>
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="language-option"
+                    data-language="sr"
+                >
+
+                    <span class="language-flag">
+                        🇷🇸
+                    </span>
+
+
+                    <span class="language-name">
+                        Srpski
+                    </span>
+
+
+                    <span class="language-check">
+                        ✓
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <section class="settings-group">
+
+            <h2 data-i18n="settings.appearance"></h2>
+
+
+            <div class="settings-list">
+
+                <a
+                    href="shop.html"
+                    class="setting setting-link"
+                >
+
+                    <div class="setting-icon">
+                        🎨
+                    </div>
+
+
+                    <div class="setting-content">
+
+                        <strong data-i18n="settings.theme"></strong>
+
+                        <span data-i18n="settings.themeDescription"></span>
+
+                    </div>
+
+
+                    <span class="setting-arrow">
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </section>
+
+
+        <section class="settings-group danger-group">
+
+            <h2 data-i18n="settings.data"></h2>
+
+
+            <div class="settings-list">
+
+                <button
+                    type="button"
+                    class="setting setting-danger"
+                >
+
+                    <div class="setting-icon">
+                        🗑️
+                    </div>
+
+
+                    <div class="setting-content">
+
+                        <strong data-i18n="settings.reset"></strong>
+
+                        <span data-i18n="settings.resetDescription"></span>
+
+                    </div>
+
+
+                    <span class="setting-arrow">
+                        →
+                    </span>
+
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <nav>
+
+        <a
+            href="index.html"
+            class="nav-item"
+        >
+            <span>🏠</span>
+            <span data-i18n="navigation.home"></span>
+        </a>
+
+
+        <a
+            href="learn.html"
+            class="nav-item"
+        >
+            <span>📚</span>
+            <span data-i18n="navigation.learn"></span>
+        </a>
+
+
+        <a
+            href="progress.html"
+            class="nav-item"
+        >
+            <span>🏆</span>
+            <span data-i18n="navigation.progress"></span>
+        </a>
+
+
+        <a
+            href="shop.html"
+            class="nav-item"
+        >
+            <span>🎁</span>
+            <span data-i18n="navigation.shop"></span>
+        </a>
+
+    </nav>
+
+
+    <script src="js/translations/en.js"></script>
+    <script src="js/translations/sr.js"></script>
+    <script src="js/i18n.js"></script>
+
+    <script src="js/player.js"></script>
+
+    <script>
+
+        updatePlayerDisplay();
+
+        applyTranslations();
+
+    </script>
+
+    <script src="js/settings.js"></script>
+
+    <script src="js/themes.js"></script>
+    <script src="js/pwa.js"></script>
+
+</body>
+
+</html>

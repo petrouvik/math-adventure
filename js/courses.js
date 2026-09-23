@@ -2889,20 +2889,6 @@ const COURSES = {
                     {
                         type: "text",
                         text: "We'll learn more about shapes, angles, lengths, and other parts of geometry in future lessons."
-                    },
-                    {
-                        type: "image-example",
-
-                        title: "Adding groups together",
-
-                        svg: createAdditionSvg(
-                            "352414",
-                            "221449",
-                            "?",
-                            [1,2,3,4,5]
-                        ),
-
-                        explanation: "We have 3 apples and add 2 more apples."
                     }
                 ]
             }

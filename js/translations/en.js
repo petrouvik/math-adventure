@@ -228,6 +228,7 @@ const TRANSLATIONS_EN = {
         firstTryCorrect:
             "{correct} of {total} were correct on the first try."
     },
+    
 
     // ========================================
     // Themes
@@ -1798,6 +1799,17 @@ const TRANSLATIONS_EN = {
                 "Which number is the largest in the {group}?",
             whichGroup:
                 "In which group does {number} belong?"
+        },
+        equationEquality: {
+            isTrue: "Is this equation true? <br> {equation}",
+            whichIsTrue: "Which equation is true?"
+        },
+        variableSubstitution: {
+            evaluate:
+                "If {variable} = {value}, what is {expression}?"
+        },
+        solveEquation: {
+            prompt: "Solve the equation"
         }
     },
     explanations: {
@@ -1975,6 +1987,13 @@ const TRANSLATIONS_EN = {
 
             answer:
                 "The answer is {answer}."
+        },
+
+        solveEquation: {
+            addition: "Add {value} to both sides.",
+            subtraction: "Subtract {value} from both sides.",
+            multiplication: "Multiply both sides by {value}.",
+            division: "Divide both sides by {value}."
         }
     },
 

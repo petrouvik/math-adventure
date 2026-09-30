@@ -1631,6 +1631,81 @@ function generateAdvancedSubtractionProblems(settings, count) {
 
     return problems;
 }
+
+
+function generateEquationEqualityProblem(settings) {
+    const equationChoiceProbability =
+        settings.equationChoiceProbability !== undefined
+            ? settings.equationChoiceProbability
+            : 0.5;
+
+    const isWhichIsTrue = Math.random() < equationChoiceProbability;
+
+    return isWhichIsTrue
+        ? generateWhichIsTrueProblem(settings)
+        : generateIsTrueProblem(settings);
+}
+
+function generateEquationEqualityProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateEquationEqualityProblem(settings)
+        );
+    }
+
+    return problems;
+}
+function generateVariableSubstitutionProblem(settings) {
+    const operations = (settings.operations && settings.operations.length)
+        ? settings.operations
+        : ["addition"];
+
+    const operation = operations[Math.floor(Math.random() * operations.length)];
+    const variableFirst = Math.random() < 0.5;
+    const variableName = pickVariableName();
+    const symbol = getOperationSymbol(operation);
+
+    const { value, other, result } = buildCase(operation, variableFirst);
+
+    const expression = variableFirst
+        ? `${variableName} ${symbol} ${other}`
+        : `${other} ${symbol} ${variableName}`;
+
+    return {
+        prompt: tf("generators.variableSubstitution.evaluate", {
+            variable: variableName,
+            value,
+            expression
+        }),
+
+        answer: result,
+
+        explanation: {
+            type: "variable-substitution",
+            variable: variableName,
+            value,
+            operation,
+            expression,
+            answer: result
+        }
+    };
+}
+
+function generateVariableSubstitutionProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateVariableSubstitutionProblem(settings)
+        );
+    }
+
+    return problems;
+}
+
+
 const GENERATORS = {
     "number-reading": {
         generate(settings, count) {
@@ -1775,7 +1850,21 @@ const GENERATORS = {
                 count
             );
         }
+    },
+    "equationEquality":{
+        generate(settings, count) {
+            return generateEquationEqualityProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "variableSubstitution":{
+        generate(settings, count) {
+            return generateVariableSubstitutionProblems(
+                settings,
+                count
+            );
+        }
     }
-
-
 };

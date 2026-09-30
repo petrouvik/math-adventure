@@ -614,3 +614,348 @@ function getGroupTypeSr(groupSize) {
 
     return "hiljada";
 }
+
+
+
+// ---------------------------------------------------------------------------
+// equationEquality generator
+//
+// Tests whether students understand that an equation means "both sides have
+// the same value". Produces either:
+//   - a single equation and asks "Is this equation true?" (true/false choice)
+//   - four equations and asks "Which equation is true?" (pick the correct one)
+// ---------------------------------------------------------------------------
+
+function randInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+function getOperationSymbol(op) {
+    switch (op) {
+        case "addition": return "+";
+        case "subtraction": return "-";
+        case "multiplication": return "×";
+        case "division": return "÷";
+        default: return "+";
+    }
+}
+
+// Builds a valid "x op y" expression with a guaranteed-correct value.
+// Always succeeds (no solving involved).
+function generateExpressionForOperation(op, bounds) {
+    const { min, max } = bounds;
+
+    if (op === "subtraction") {
+        // x >= y always, so the result never goes negative.
+        const x = randInt(min, max);
+        const y = randInt(min, x);
+        return { x, y, value: x - y };
+    }
+
+    if (op === "multiplication") {
+        const x = randInt(min, max);
+        const y = randInt(min, max);
+        return { x, y, value: x * y };
+    }
+
+    if (op === "division") {
+        // Build from the answer outward so the result is always an integer.
+        const divisorMin = Math.max(min, 1);
+        const divisorMax = Math.max(divisorMin, max);
+        const y = randInt(divisorMin, divisorMax);
+        const quotient = randInt(min, max);
+        const x = y * quotient;
+        return { x, y, value: quotient };
+    }
+
+    // addition (default)
+    const x = randInt(min, max);
+    const y = randInt(min, max);
+    return { x, y, value: x + y };
+}
+
+// Builds a valid "x op y" expression whose value equals a specific target.
+// May fail (returns null) if no operand pair in range reaches that target.
+function generateExpressionForTarget(op, target, bounds, attempts = 25) {
+    const { min, max } = bounds;
+
+    if (op === "addition") {
+        for (let i = 0; i < attempts; i++) {
+            const x = randInt(min, max);
+            const y = target - x;
+            if (y >= min && y <= max) {
+                return { x, y, value: target };
+            }
+        }
+        return null;
+    }
+
+    if (op === "subtraction") {
+        if (target < 0) return null;
+
+        for (let i = 0; i < attempts; i++) {
+            const y = randInt(min, max);
+            const x = target + y;
+            if (x >= min && x <= max) {
+                return { x, y, value: target };
+            }
+        }
+        return null;
+    }
+
+    if (op === "multiplication") {
+        if (target === 0) {
+            if (min <= 0 && 0 <= max) {
+                return Math.random() < 0.5
+                    ? { x: 0, y: randInt(min, max), value: 0 }
+                    : { x: randInt(min, max), y: 0, value: 0 };
+            }
+            return null;
+        }
+
+        const candidates = [];
+        for (let x = min; x <= max; x++) {
+            if (x === 0) continue;
+            if (target % x === 0) {
+                const y = target / x;
+                if (y >= min && y <= max) {
+                    candidates.push({ x, y, value: target });
+                }
+            }
+        }
+        if (candidates.length === 0) return null;
+        return candidates[Math.floor(Math.random() * candidates.length)];
+    }
+
+    if (op === "division") {
+        const divisorMin = Math.max(min, 1);
+        const divisorMax = Math.max(divisorMin, max);
+
+        if (target === 0) {
+            if (min <= 0 && 0 <= max) {
+                return { x: 0, y: randInt(divisorMin, divisorMax), value: 0 };
+            }
+            return null;
+        }
+
+        const upperBound = Math.max(max * max, max);
+
+        for (let i = 0; i < attempts; i++) {
+            const y = randInt(divisorMin, divisorMax);
+            const x = target * y;
+            if (x >= min && x <= upperBound) {
+                return { x, y, value: target };
+            }
+        }
+        return null;
+    }
+
+    return null;
+}
+
+// Picks a value different from `value`, never negative, close enough to
+// read as a plausible near-miss rather than an obviously wrong number.
+function pickDifferentTarget(value, bounds) {
+    const offsets = shuffle([-3, -2, -1, 1, 2, 3]);
+
+    for (const offset of offsets) {
+        const candidate = value + offset;
+        if (candidate >= 0 && candidate !== value) {
+            return candidate;
+        }
+    }
+
+    return value + 1;
+}
+
+// Generates one equation (one of the three forms), true or false as
+// requested. forceIsTrue can be true, false, or omitted for random.
+function generateEquation(settings, forceIsTrue) {
+    const operations = (settings.operations && settings.operations.length)
+        ? settings.operations
+        : ["addition"];
+
+    const bounds = {
+        min: settings.min !== undefined ? settings.min : 1,
+        max: settings.max !== undefined ? settings.max : 10
+    };
+
+    const isTrue = forceIsTrue !== undefined
+        ? forceIsTrue
+        : Math.random() < 0.5;
+
+    const form = 1 + Math.floor(Math.random() * 3);
+
+    const op1 = operations[Math.floor(Math.random() * operations.length)];
+    const leftExpr = generateExpressionForOperation(op1, bounds);
+    const sym1 = getOperationSymbol(op1);
+
+    const target = isTrue
+        ? leftExpr.value
+        : pickDifferentTarget(leftExpr.value, bounds);
+
+    if (form === 3) {
+        const op2 = operations[Math.floor(Math.random() * operations.length)];
+        const rightExpr = generateExpressionForTarget(op2, target, bounds);
+
+        if (rightExpr) {
+            const sym2 = getOperationSymbol(op2);
+            const equationString =
+                `${leftExpr.x} ${sym1} ${leftExpr.y} = ${rightExpr.x} ${sym2} ${rightExpr.y}`;
+
+            return { equationString, isTrue, form: 3 };
+        }
+        // Target wasn't reachable with op2 in range — fall back to form 1.
+    }
+
+    if (form === 2) {
+        const equationString = `${target} = ${leftExpr.x} ${sym1} ${leftExpr.y}`;
+        return { equationString, isTrue, form: 2 };
+    }
+
+    const equationString = `${leftExpr.x} ${sym1} ${leftExpr.y} = ${target}`;
+    return { equationString, isTrue, form: 1 };
+}
+
+function generateIsTrueProblem(settings) {
+    const equation = generateEquation(settings);
+
+    return {
+        prompt: tf("generators.equationEquality.isTrue", {
+            equation: equation.equationString
+        }),
+
+        choices: [true, false],
+
+        answer: equation.isTrue,
+
+        explanation: {
+            type: "equation-equality-is-true",
+            equation: equation.equationString,
+            isTrue: equation.isTrue,
+            form: equation.form
+        }
+    };
+}
+
+function generateWhichIsTrueProblem(settings) {
+    const trueEquation = generateEquation(settings, true);
+
+    const equations = [trueEquation];
+    const usedStrings = new Set([trueEquation.equationString]);
+
+    let attempts = 0;
+    while (equations.length < 4 && attempts < 50) {
+        attempts++;
+        const falseEquation = generateEquation(settings, false);
+
+        if (!usedStrings.has(falseEquation.equationString)) {
+            usedStrings.add(falseEquation.equationString);
+            equations.push(falseEquation);
+        }
+    }
+
+    // Extremely unlikely fallback so we never infinite-loop.
+    while (equations.length < 4) {
+        equations.push(generateEquation(settings, false));
+    }
+
+    shuffle(equations);
+
+    return {
+        prompt: t("generators.equationEquality.whichIsTrue"),
+
+        choices: equations.map((equation) => equation.equationString),
+
+        answer: trueEquation.equationString,
+
+        explanation: {
+            type: "equation-equality-which-is-true",
+            equations: equations.map((equation) => ({
+                equation: equation.equationString,
+                isTrue: equation.isTrue
+            })),
+            answer: trueEquation.equationString
+        }
+    };
+}
+
+// ---------------------------------------------------------------------------
+// variableSubstitution generator
+//
+// Practices substituting a known variable's value into a two-operand
+// expression and evaluating the result, e.g. "a = 4, a + 2 = ?" -> 6.
+// Uses the existing "number-input" interaction (prompt / answer / explanation).
+// ---------------------------------------------------------------------------
+
+const VARIABLE_NAMES = ["a", "b", "c", "d", "e", "k", "m", "n", "p", "q", "r", "s", "t", "x", "y", "z"];
+
+
+function pickVariableName() {
+    return VARIABLE_NAMES[Math.floor(Math.random() * VARIABLE_NAMES.length)];
+}
+
+function getOperationSymbol(op) {
+    switch (op) {
+        case "addition": return "+";
+        case "subtraction": return "-";
+        case "multiplication": return "×";
+        case "division": return "÷";
+        default: return "+";
+    }
+}
+
+// Each case builder returns { value, other, result } such that the
+// expression is guaranteed valid (non-negative, integer division) for the
+// requested variable position. Values are built from the answer outward
+// rather than generated-then-checked, so there is no retry logic needed.
+
+function buildAdditionCase() {
+    const value = randInt(1, 10);
+    const other = randInt(1, 10);
+    return { value, other, result: value + other };
+}
+
+function buildSubtractionCase(variableFirst) {
+    if (variableFirst) {
+        // variable - other  =>  other must be <= value
+        const value = randInt(2, 12);
+        const other = randInt(1, value);
+        return { value, other, result: value - other };
+    }
+
+    // other - variable  =>  other must be >= value
+    const value = randInt(1, 10);
+    const other = randInt(value, value + 9);
+    return { value, other, result: other - value };
+}
+
+function buildMultiplicationCase() {
+    const value = randInt(1, 9);
+    const other = randInt(1, 9);
+    return { value, other, result: value * other };
+}
+
+function buildDivisionCase(variableFirst) {
+    if (variableFirst) {
+        // variable ÷ other  =>  other must divide value evenly
+        const other = randInt(2, 9);
+        const quotient = randInt(1, 9);
+        const value = other * quotient;
+        return { value, other, result: quotient };
+    }
+
+    // other ÷ variable  =>  variable must divide other evenly
+    const value = randInt(2, 9);
+    const quotient = randInt(1, 9);
+    const other = value * quotient;
+    return { value, other, result: quotient };
+}
+
+function buildCase(operation, variableFirst) {
+    if (operation === "subtraction") return buildSubtractionCase(variableFirst);
+    if (operation === "multiplication") return buildMultiplicationCase();
+    if (operation === "division") return buildDivisionCase(variableFirst);
+    return buildAdditionCase();
+}
+

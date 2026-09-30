@@ -74,7 +74,7 @@ function renderLessons() {
             isLessonUnlocked(
                 course.id,
                 lesson.id
-            );
+            ) || DEBUG_LESSON_UNLOCK;
 
         const card =
             document.createElement("div");

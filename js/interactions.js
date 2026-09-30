@@ -17,6 +17,16 @@ const INTERACTIONS = {
                 callbacks
             );
         }
+    },
+
+    "equation-step":{
+        render(container, problem, callbacks) {
+            renderEquationStep(
+                container,
+                problem,
+                callbacks
+            );
+        }
     }
 };
 
@@ -288,3 +298,4 @@ function renderMultipleChoice(
         }
     }
 }
+

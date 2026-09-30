@@ -1,5 +1,5 @@
 const PLAYER_STORAGE_KEY = "mathAdventurePlayer";
-
+const DEBUG_LESSON_UNLOCK = false;
 const DEFAULT_PLAYER = {
     name: "Adventurer",
     

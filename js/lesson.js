@@ -9,7 +9,6 @@ const lesson = course?.lessons.find(
     lesson => lesson.id === lessonId
 );
 
-
 function renderLessonHeader() {
     const header =
         document.getElementById("lesson-header");
@@ -56,7 +55,7 @@ function renderLesson() {
         return;
     }
 
-    if (!isLessonUnlocked(courseId, lessonId)) {
+    if (!DEBUG_LESSON_UNLOCK && !isLessonUnlocked(courseId, lessonId)) {
         renderLessonLocked();
         return;
     }

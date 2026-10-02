@@ -463,6 +463,10 @@ const TRANSLATIONS_EN = {
             title: "To borrow or not to borrow",
             description: "Finish the Advanced Subtraction course."
         },
+        courseEquations: {
+            title: "X for an X, 2 for a 2",
+            description: "Finish the Equations course."
+        },
 
 
         lessons10OneDay: {

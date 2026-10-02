@@ -71,6 +71,7 @@ function checkCourseAchievements(player) {
     if (isCourseCompleted(COURSES["advanced-numbers"])) track("course-advanced-numbers")
     if (isCourseCompleted(COURSES["advanced-addition"])) track("course-advanced-addition")
     if (isCourseCompleted(COURSES["advanced-subtraction"])) track("course-advanced-subtraction")
+    if (isCourseCompleted(COURSES["equations"])) track("course-equations")
     const completedCourses = courses.filter(
         course => isCourseCompleted(course)
     ).length;
@@ -502,6 +503,15 @@ const ACHIEVEMENTS = [
         title: "achievements.courseAdvancedSubtraction.title",
         description: "achievements.courseAdvancedSubtraction.description",
         icon: "−",
+        category: "progression",
+        hidden: false
+    },
+    
+    {
+        id: "course-equations",
+        title: "achievements.courseEquations.title",
+        description: "achievements.courseEquations.description",
+        icon: "=",
         category: "progression",
         hidden: false
     },

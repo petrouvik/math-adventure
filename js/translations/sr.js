@@ -499,6 +499,10 @@ const TRANSLATIONS_SR = {
             title: "Samo da pozajmim...",
             description: "Završi kurs Napredno oduzimanje."
         },
+        courseEquations: {
+            title: "Ravnoteža uspostavljena",
+            description: "Završi kurs Jednačine."
+        },
 
 
         lessons10OneDay: {

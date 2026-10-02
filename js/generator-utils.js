@@ -959,3 +959,347 @@ function buildCase(operation, variableFirst) {
     return buildAdditionCase();
 }
 
+
+//-------------------------------------
+// EQUATION STEP
+//-------------------------------------
+
+function generateVariable(settings) {
+    return "x";
+}
+
+function generateSolution(settings) {
+    const min = settings.minSolution ?? 1;
+    const max = settings.maxSolution ?? 10;
+
+    return Math.floor(
+        Math.random() * (max - min + 1)
+    ) + min;
+}
+
+function generateTransformations(solution, settings) {
+
+    const transformations = [];
+    let currentValue = solution;
+
+    for (let i = 0; i < settings.operationCount; i++) {
+
+        const transformation =
+            generateTransformation(
+                currentValue,
+                settings
+            );
+
+        transformations.push(transformation);
+
+        currentValue =
+            transformation.result;
+    }
+
+    return transformations;
+}
+function generateTransformation(currentValue, settings) {
+
+    const operation =
+        settings.operations[
+            Math.floor(
+                Math.random() *
+                settings.operations.length
+            )
+        ];
+
+    const side =
+        Math.random() < 0.5
+            ? "left"
+            : "right";
+
+    const minOperand =
+        settings.minOperand ?? 1;
+
+    const maxOperand =
+        settings.maxOperand ?? 10;
+
+    let operand;
+    let result;
+
+    switch (operation) {
+
+        case "addition":
+            operand = randomInteger(
+                minOperand,
+                maxOperand
+            );
+
+            result =
+                side === "left"
+                    ? operand + currentValue
+                    : currentValue + operand;
+
+            break;
+
+
+        case "subtraction":
+
+            if (side === "left") {
+
+                // operand − currentValue > 0
+
+                operand = randomInteger(
+                    Math.max(
+                        minOperand,
+                        currentValue + 1
+                    ),
+                    maxOperand
+                );
+
+                result =
+                    operand - currentValue;
+
+            } else {
+
+                // currentValue − operand > 0
+
+                operand = randomInteger(
+                    minOperand,
+                    Math.min(
+                        maxOperand,
+                        currentValue - 1
+                    )
+                );
+
+                result =
+                    currentValue - operand;
+            }
+
+            break;
+
+
+        case "multiplication":
+            operand = randomInteger(
+                minOperand,
+                maxOperand
+            );
+
+            result =
+                currentValue * operand;
+
+            break;
+
+
+        case "division":
+
+            if (side === "left") {
+
+                // operand ÷ currentValue
+                // must produce an integer.
+
+                const multiples = [];
+
+                for (
+                    let i = minOperand;
+                    i <= maxOperand;
+                    i++
+                ) {
+                    if (i % currentValue === 0) {
+                        multiples.push(i);
+                    }
+                }
+
+                operand =
+                    multiples[
+                        Math.floor(
+                            Math.random() *
+                            multiples.length
+                        )
+                    ];
+
+                result =
+                    operand / currentValue;
+
+            } else {
+
+                // currentValue ÷ operand
+                // must produce an integer.
+
+                const divisors = [];
+
+                for (
+                    let i = minOperand;
+                    i <= maxOperand;
+                    i++
+                ) {
+                    if (currentValue % i === 0) {
+                        divisors.push(i);
+                    }
+                }
+
+                operand =
+                    divisors[
+                        Math.floor(
+                            Math.random() *
+                            divisors.length
+                        )
+                    ];
+
+                result =
+                    currentValue / operand;
+            }
+
+            break;
+
+
+        default:
+            throw new Error(
+                `Unknown operation: ${operation}`
+            );
+    }
+
+    return {
+        operation,
+        side,
+        operand,
+        result
+    };
+}
+function randomInteger(min, max) {
+    return Math.floor(
+        Math.random() * (max - min + 1)
+    ) + min;
+}
+// buildSteps.js
+//
+// Turns a list of transformations (construction order) into student steps by
+// undoing them in reverse order. Equations are plain strings; the only
+// structured value is a tiny { text, precedence } pair used to place parentheses.
+
+// Display symbols (note the real minus sign, not a hyphen).
+const SYMBOL = { addition: "+", subtraction: "−", multiplication: "×", division: "÷" };
+// The operation a student applies to both sides to undo each operation.
+const INVERSE = { addition: "subtraction", subtraction: "addition", multiplication: "division", division: "multiplication" };
+// How tightly an operation binds; ATOM (a number or x) binds tightest.
+const PRECEDENCE = { addition: 1, subtraction: 1, multiplication: 2, division: 2 };
+const ATOM = 3;
+
+function calculate(operation, a, b) {
+    switch (operation) {
+        case "addition":       return a + b;
+        case "subtraction":    return a - b;
+        case "multiplication": return a * b;
+        case "division":       return a / b;
+        default: throw new Error(`Unknown operation: ${operation}`);
+    }
+}
+
+// Apply one operation to an expression, adding parentheses only where needed.
+// "side" says where the operand goes: left => operand ∘ expression.
+// Used both to build the equations and to build intermediate ones like "3 = 1 + x".
+function combine(expression, operation, side, operand) {
+    const outer = PRECEDENCE[operation];
+    const needsParentheses =
+        expression.precedence < outer ||
+        (expression.precedence === outer && side === "left");
+    const inner = needsParentheses ? `(${expression.text})` : expression.text;
+    const symbol = SYMBOL[operation];
+    return {
+        text: side === "left" ? `${operand} ${symbol} ${inner}` : `${inner} ${symbol} ${operand}`,
+        precedence: outer
+    };
+}
+
+// Text of x after the first `count` transformations. Computed on demand for one
+// prefix only; nothing is stored, so there is no expression history.
+function buildExpression(transformations, count) {
+    let expression = { text: "x", precedence: ATOM };
+    for (let i = 0; i < count; i++) {
+        const { operation, side, operand } = transformations[i];
+        expression = combine(expression, operation, side, operand);
+    }
+    return expression;
+}
+
+// How an expression reads inside a choice label: +x, but +(x + 2).
+function asTerm(expression) {
+    return expression.precedence === ATOM ? expression.text : `(${expression.text})`;
+}
+
+// Four choices: both operations of the answer's kind applied to the correct
+// operand and to one decoy operand (the first candidate that differs from it).
+function buildChoices(operation, answerTerm, decoyTerms) {
+    const decoyTerm = decoyTerms.map(String).find(term => term !== String(answerTerm));
+    const kind = Object.keys(PRECEDENCE).filter(op => PRECEDENCE[op] === PRECEDENCE[operation]);
+    return [answerTerm, decoyTerm].flatMap(term => kind.map(op => `${SYMBOL[op]}${term}`));
+}
+
+// Undoes ONE transformation.
+//   transformation : what to undo
+//   inner          : the expression underneath it (what remains once it is undone)
+//   state          : { value, expressionOnLeft } - the number on the other side,
+//                    and which side of "=" currently holds the transformed expression
+// Returns { steps, state } where state describes the equation after the undo.
+function buildTransformationSteps(transformation, inner, { value, expressionOnLeft }) {
+    const { operation, side, operand } = transformation;
+    const undo = INVERSE[operation];
+    const innerTerm = asTerm(inner);
+
+    // Sides are named by who sat there when this transformation started.
+    const join = (startSide, otherSide) =>
+        expressionOnLeft ? `${startSide} = ${otherSide}` : `${otherSide} = ${startSide}`;
+
+    const equation = join(combine(inner, operation, side, operand).text, value);
+
+    // n − E and n ÷ E: the expression is the subtrahend/divisor, so it must first
+    // be moved with an operation of its own (two steps). Everything else is one step.
+    const expressionIsSecondOperand =
+        side === "left" && (operation === "subtraction" || operation === "division");
+
+    if (!expressionIsSecondOperand) {
+        const newValue = calculate(undo, value, operand);
+        return {
+            steps: [{
+                equation,
+                choices: buildChoices(undo, operand, [value, innerTerm]),
+                answer: `${SYMBOL[undo]}${operand}`,
+                resultingEquation: join(inner.text, newValue)
+            }],
+            state: { value: newValue, expressionOnLeft }
+        };
+    }
+
+    // Step 1: apply `undo` with the whole expression:  n = value ⊕ E
+    // Step 2: apply the original operation with the value:  n ⊖ value = E
+    const middle = join(operand, combine(inner, undo, "left", value).text);
+    const newValue = calculate(operation, operand, value);
+    return {
+        steps: [
+            {
+                equation,
+                choices: buildChoices(undo, innerTerm, [value, operand]),
+                answer: `${SYMBOL[undo]}${innerTerm}`,
+                resultingEquation: middle
+            },
+            {
+                equation: middle,
+                choices: buildChoices(operation, value, [innerTerm, operand]),
+                answer: `${SYMBOL[operation]}${value}`,
+                resultingEquation: join(newValue, inner.text)
+            }
+        ],
+        state: { value: newValue, expressionOnLeft: !expressionOnLeft }
+    };
+}
+
+// transformations are in construction order, so they are undone last-to-first.
+// The first step's `equation` is the problem prompt.
+function buildSteps(transformations) {
+    const steps = [];
+    let state = { value: transformations[transformations.length - 1].result, expressionOnLeft: true };
+    for (let i = transformations.length - 1; i >= 0; i--) {
+        const inner = buildExpression(transformations, i);
+        const result = buildTransformationSteps(transformations[i], inner, state);
+        steps.push(...result.steps);
+        state = result.state;
+    }
+    // Cosmetic: "2 = x" -> "x = 2" (symmetry of =, not a student action).
+    steps[steps.length - 1].resultingEquation = `x = ${state.value}`;
+    return steps;
+}

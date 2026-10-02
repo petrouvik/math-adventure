@@ -226,7 +226,9 @@ const TRANSLATIONS_EN = {
             "You solved {solved} of {total} problems.",
 
         firstTryCorrect:
-            "{correct} of {total} were correct on the first try."
+            "{correct} of {total} were correct on the first try.",
+        whatIsTheNextStep:
+            "What should we do to both sides?"
     },
     
 

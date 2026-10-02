@@ -1704,7 +1704,53 @@ function generateVariableSubstitutionProblems(settings, count) {
 
     return problems;
 }
+function generateEquationProblem(settings) {
 
+    const variable =
+        generateVariable(settings);
+
+    const solution =
+        generateSolution(settings);
+
+    const transformations =
+        generateTransformations(
+            solution,
+            settings
+        );
+
+    // const steps =
+    //     buildSteps(
+    //         variable,
+    //         solution,
+    //         transformations
+    //     );
+    const steps = buildSteps(transformations);
+    // const explanation =
+    //     buildExplanation(
+    //         variable,
+    //         solution,
+    //         transformations
+    //     );
+    const explanation = {};
+
+    return {
+        prompt: steps[0].equation,
+        steps,
+        answer: solution,
+        explanation
+    };
+}
+function generateEquationProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateEquationProblem(settings)
+        );
+    }
+
+    return problems;
+}
 
 const GENERATORS = {
     "number-reading": {
@@ -1866,5 +1912,13 @@ const GENERATORS = {
                 count
             );
         }
-    }
+    },
+    "linearEquation":{
+        generate(settings, count) {
+            return generateEquationProblems(
+                settings,
+                count
+            );
+        }
+    },
 };

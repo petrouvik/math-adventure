@@ -3300,23 +3300,61 @@ const COURSES = {
                     interaction: "equation-step",
 
                     settings: {
-                        minAnswer: 1,
-                        maxAnswer: 20,
-                        minConstant: 1,
-                        maxConstant: 10,
                         operations: [
                             "addition",
                             "subtraction",
                             "multiplication",
                             "division"
                         ],
-                        variableFirstProbability: 0.5
+                        operationCount: 1,
+
+                        minSolution: 1,
+                        maxSolution: 10,
+
+                        minOperand: 1,
+                        maxOperand: 10
                     },
 
                     problemCount: 10
                 },
 
                 difficultyMultiplier: 1.3
+            },
+            {
+                id: "equations-solving-two-operations",
+
+                title: "Two-Step Equations",
+
+                description:
+                    "Solve equations that require two operations to find the unknown.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "linearEquation",
+
+                    interaction: "equation-step",
+
+                    settings: {
+                        operations: [
+                            "addition",
+                            "subtraction",
+                            "multiplication",
+                            "division"
+                        ],
+                        operationCount: 2,
+
+                        minSolution: 1,
+                        maxSolution: 10,
+
+                        minOperand: 1,
+                        maxOperand: 5
+                    },
+
+                    problemCount: 10
+                },
+
+                difficultyMultiplier: 1.5
             }
         ]
     },

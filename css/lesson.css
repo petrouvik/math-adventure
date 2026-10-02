@@ -865,3 +865,81 @@
     margin-top: 0.5rem;
 }
 
+/* ---------- Equation solving ---------- */
+
+.equation-work {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    margin: 1.5rem 0;
+}
+
+.equation-history {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.equation-history:empty {
+    display: none;
+}
+
+.equation-current {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Every row has the same 3-column grid, so all "=" signs line up
+   and each operation sits under the side it is applied to. */
+.equation-row {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    column-gap: 0.75rem;
+    align-items: baseline;
+
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: var(--color-text);
+
+    overflow-wrap: anywhere;
+}
+
+.equation-left {
+    text-align: right;
+}
+
+.equation-sign {
+    text-align: center;
+}
+
+.equation-right {
+    text-align: left;
+}
+
+/* Earlier equations fade slightly so the current one stands out. */
+.equation-row.is-past {
+    opacity: 0.6;
+}
+
+/* Operation row: "×x ↓ ×x" */
+.operation-row {
+    font-size: 1.3rem;
+    color: var(--color-primary);
+}
+
+.operation-row .equation-sign {
+    font-size: 1.1rem;
+    opacity: 0.7;
+}
+
+/* Final equation after the last step */
+.equation-row.is-solved {
+    margin-top: 0.25rem;
+    padding: 0.5rem 0;
+
+    border-top: 2px solid var(--color-primary);
+
+    font-size: 2.1rem;
+    color: var(--color-primary);
+}

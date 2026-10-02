@@ -1010,6 +1010,34 @@ function generateTransformations(solution, settings) {
     return transformations;
 }
 function generateTransformation(currentValue, settings) {
+    const minOperand = settings.minOperand ?? 1;
+    const maxOperand = settings.maxOperand ?? 10;
+
+    for (let attempt = 0; attempt < 100; attempt++) {
+        const t = tryGenerateTransformation(currentValue, settings);
+
+        const isAdditive =
+            t.operation === "addition" || t.operation === "subtraction";
+
+        const isTrivial = t.operand === (isAdditive ? 0 : 1);
+
+        const valid =
+            Number.isInteger(t.operand) &&
+            t.operand >= minOperand &&
+            t.operand <= maxOperand &&
+            Number.isInteger(t.result) &&
+            t.result > 0 &&
+            !isTrivial;
+
+        if (valid) return t;
+    }
+
+    throw new Error(
+        `No valid transformation for value ${currentValue} ` +
+        `with operations ${settings.operations.join(", ")}`
+    );
+}
+function tryGenerateTransformation(currentValue, settings) {
 
     const operation =
         settings.operations[
@@ -1172,6 +1200,7 @@ function generateTransformation(currentValue, settings) {
         result
     };
 }
+
 function randomInteger(min, max) {
     return Math.floor(
         Math.random() * (max - min + 1)

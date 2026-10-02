@@ -55,82 +55,101 @@ const APP_FILES = [
 ];
 
 
-self.addEventListener(
-    "install",
-    event => {
+
+const DEV_MODE = true;
+
+if (DEV_MODE) {
+
+    self.addEventListener("install", () => {
+        self.skipWaiting();
+    });
+
+    self.addEventListener("activate", event => {
 
         event.waitUntil(
-
-            caches
-                .open(CACHE_NAME)
-                .then(cache =>
-                    cache.addAll(APP_FILES)
-                )
-
+            self.registration.unregister()
         );
 
-    }
-);
+    });
+
+}else{
+    self.addEventListener(
+        "install",
+        event => {
+
+            event.waitUntil(
+
+                caches
+                    .open(CACHE_NAME)
+                    .then(cache =>
+                        cache.addAll(APP_FILES)
+                    )
+
+            );
+
+        }
+    );
 
 
-self.addEventListener(
-    "activate",
-    event => {
+    self.addEventListener(
+        "activate",
+        event => {
 
-        event.waitUntil(
+            event.waitUntil(
 
-            caches
-                .keys()
-                .then(cacheNames =>
+                caches
+                    .keys()
+                    .then(cacheNames =>
 
-                    Promise.all(
+                        Promise.all(
 
-                        cacheNames
-                            .filter(
-                                name =>
-                                    name !== CACHE_NAME
-                            )
-                            .map(
-                                name =>
-                                    caches.delete(name)
-                            )
+                            cacheNames
+                                .filter(
+                                    name =>
+                                        name !== CACHE_NAME
+                                )
+                                .map(
+                                    name =>
+                                        caches.delete(name)
+                                )
+
+                        )
 
                     )
 
-                )
+            );
 
-        );
-
-    }
-);
+        }
+    );
 
 
-self.addEventListener(
-    "fetch",
-    event => {
+    self.addEventListener(
+        "fetch",
+        event => {
 
-        event.respondWith(
+            event.respondWith(
 
-            caches
-                .match(
-                    event.request,
-                    {
-                        ignoreSearch: true
-                    }
-                )
-                .then(cachedResponse => {
+                caches
+                    .match(
+                        event.request,
+                        {
+                            ignoreSearch: true
+                        }
+                    )
+                    .then(cachedResponse => {
 
-                    if (cachedResponse) {
-                        return cachedResponse;
-                    }
+                        if (cachedResponse) {
+                            return cachedResponse;
+                        }
 
-                    return fetch(
-                        event.request
-                    );
+                        return fetch(
+                            event.request
+                        );
 
-                })
+                    })
 
-        );
+            );
 
-    }
-);
+        }
+    );
+}

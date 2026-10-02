@@ -44,8 +44,8 @@ const backLink =
 backLink.href =
     `course.html?id=${course.id}`;
 
-backLink.textContent =
-    `← ${t(course.title)}`;
+backLink.innerHTML =
+    `<span class="back-arrow"></span> ${t(course.title)}`;
 
 
 function renderLesson() {

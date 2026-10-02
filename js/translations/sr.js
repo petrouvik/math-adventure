@@ -160,7 +160,7 @@ const TRANSLATIONS_SR = {
             "Nivo",
 
         allCourses:
-            "← Svi kursevi",
+            "Svi kursevi",
 
         lessons:
             "Lekcije",
@@ -185,7 +185,7 @@ const TRANSLATIONS_SR = {
             "Nivo",
 
         back:
-            "← Nazad",
+            "Nazad",
 
         achievementUnlocked:
             "Dostignuće otključano!",

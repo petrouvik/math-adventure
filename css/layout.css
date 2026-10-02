@@ -40,17 +40,39 @@ main {
 ------------------------- */
 
 .back-link {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
 
-    margin-bottom: 1rem;
+    color: var(--color-text);
 
-    color: var(--color-primary);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.2;
 
     text-decoration: none;
-
-    font-weight: bold;
+    margin: 0 0 20px 4px;
 }
 
 .back-link:hover {
-    text-decoration: underline;
+    color: var(--color-primary);
+}
+
+.back-arrow {
+    display: block;
+    flex-shrink: 0;
+
+    width: 9px;
+    height: 9px;
+
+    border-left: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+
+    transform: rotate(45deg);
+}
+
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }

@@ -157,7 +157,7 @@ const TRANSLATIONS_EN = {
             "Level",
 
         allCourses:
-            "← All Courses",
+            "All Courses",
 
         lessons:
             "Lessons",
@@ -178,7 +178,7 @@ const TRANSLATIONS_EN = {
 
     lesson: {
         level: "Level",
-        back: "← Back",
+        back: "Back",
         achievementUnlocked: "Achievement unlocked!",
 
         lessonNumber: "Lesson {number}",

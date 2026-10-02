@@ -263,7 +263,9 @@ const TRANSLATIONS_SR = {
             "Rešio si {solved} od {total} zadataka.",
 
         firstTryCorrect:
-            "{correct} od {total} zadataka rešeno je tačno iz prvog pokušaja."
+            "{correct} od {total} zadataka rešeno je tačno iz prvog pokušaja.",
+        whatIsTheNextStep:
+            "Šta treba uraditi sa obe strane?"
     },
 
     // ========================================
@@ -1806,6 +1808,170 @@ const TRANSLATIONS_SR = {
                 description:
                     "Vežbaj oduzimanje brojeva do milion koristeći ceo postupak."
             }
+        },
+        equations: {
+            title: "Jednačine",
+
+            description:
+                "Nauči šta jednačine zaista znače i kako da ih rešavaš tako što obe strane ostaju jednake.",
+
+            lessons: {
+
+                meaning: {
+                    title: "Šta znači znak =?",
+
+                    description:
+                        "Nauči šta znači znak jednakosti i šta nam jednačina zapravo govori.",
+
+                    content: {
+                        text1:
+                            "Znak jednakosti = znači da leva i desna strana imaju istu vrednost. Jednačina je tvrdnja da su dva izraza jednaka.",
+
+                        example1:
+                            "Izraz sa leve strane, 4 + 3, ima istu vrednost kao izraz sa desne strane, 7.",
+
+                        text2:
+                            "Znak jednakosti ne znači „ovde dolazi odgovor“. On jednostavno govori da izrazi sa obe strane imaju istu vrednost.",
+
+                        example2:
+                            "Ovo je isto što i 4 + 3 = 7. Jednačinu možemo čitati sa obe strane.",
+
+                        example3:
+                            "Obe strane imaju vrednost 7, pa je jednačina tačna.",
+
+                        text3:
+                            "Jednačina može biti tačna ili netačna. Naš zadatak je da razumemo kada obe strane imaju istu vrednost."
+                    }
+                },
+
+                meaningPractice: {
+                    title: "Da li je jednačina tačna?",
+
+                    description:
+                        "Vežbaj prepoznavanje tačnih i netačnih jednačina."
+                },
+
+                meaningAllOperations: {
+                    title: "Jednakost sa svim operacijama",
+
+                    description:
+                        "Vežbaj prepoznavanje jednakosti koje u sebi imaju različite matematičke operacije."
+                },
+
+                variables: {
+                    title: "Šta je promenljiva?",
+
+                    description:
+                        "Nauči šta su promenljive i kako slova mogu predstavljati brojeve.",
+
+                    content: {
+                        text1:
+                            "Promenljiva je slovo koje koristimo kao naziv za neki broj. Promenljivu možemo koristiti kada još ne znamo broj ili kada želimo da govorimo o nekom broju bez zapisivanja njegove vrednosti.",
+
+                        example1:
+                            "Ovo nam govori da promenljiva a predstavlja broj 5. Gde god vidimo a, možemo ga zameniti brojem 5.",
+
+                        example2:
+                            "Pošto je a = 5, možemo zameniti a sa 5. Zato a + 3 ima vrednost 8.",
+
+                        text2:
+                            "Broj napisan neposredno uz promenljivu znači množenje. Na primer, 2a znači 2 × a, a 7c znači 7 × c.",
+
+                        example3:
+                            "Pošto je a = 4, 2a znači 2 × 4, pa je 2a = 8.",
+
+                        text3:
+                            "Možemo koristiti i više promenljivih istovremeno. Svaka promenljiva može predstavljati svoj broj.",
+
+                        example4:
+                            "Pošto je a = 2, možemo zameniti a sa 2. Zato je b = 2 × 2 = 4."
+                    }
+                },
+
+                variablesPractice: {
+                    title: "Korišćenje promenljivih",
+
+                    description:
+                        "Vežbaj zamenu promenljivih njihovim vrednostima i korišćenje promenljivih u izrazima."
+                },
+
+                preserving: {
+                    title: "Kako sačuvati tačnost jednačine?",
+
+                    description:
+                        "Nauči kako da promeniš jednačinu, a da ona ostane tačna.",
+
+                    content: {
+                        text1:
+                            "Jednačina je tačna zato što obe strane imaju istu vrednost. Ako želimo da promenimo jednačinu i da ona ostane tačna, moramo napraviti istu promenu na obe strane.",
+
+                        example1:
+                            "Obe strane su jednake. Ako dodamo 3 na obe strane, one će i dalje biti jednake.",
+
+                        example2:
+                            "Dodali smo 3 na obe strane, pa je jednačina i dalje tačna. Obe strane sada imaju vrednost 8.",
+
+                        text2:
+                            "Možemo i oduzimati, množiti ili deliti obe strane istim brojem. Važno je da uradimo isto na obe strane.",
+
+                        example3:
+                            "Oduzimanjem 2 od obe strane dobijamo 7 − 2 = 7 − 2, što je i dalje tačno.",
+
+                        example4:
+                            "Množenjem obe strane sa 4 dobijamo 3 × 4 = 3 × 4, što je i dalje tačno.",
+
+                        text3:
+                            "Ova ideja nam omogućava da pretvorimo jednačine u jednostavnije jednačine, a da one ostanu tačne."
+                    }
+                },
+
+                solving: {
+                    title: "Kako rešavamo jednačinu?",
+
+                    description:
+                        "Nauči kako suprotne operacije pomažu da promenljivu ostavimo samu.",
+
+                    content: {
+                        text1:
+                            "Kada rešavamo jednačinu, tražimo vrednost promenljive koja čini jednačinu tačnom.",
+
+                        example1:
+                            "Želimo da pronađemo vrednost promenljive x. Pošto je 3 dodato na x, možemo poništiti to dodavanje tako što ćemo oduzeti 3.",
+
+                        example2:
+                            "Oduzimamo 3 od obe strane. Leva strana postaje x, a desna strana postaje 2. Zato je x = 2.",
+
+                        text2:
+                            "Sabiranje i oduzimanje su suprotne operacije. Množenje i deljenje su suprotne operacije.",
+
+                        example3:
+                            "x je pomnoženo sa 4. To možemo poništiti tako što ćemo obe strane podeliti sa 4. Zato je x = 5.",
+
+                        text3:
+                            "Obično želimo da promenljiva ostane sama na jednoj strani, jer tada lako možemo da vidimo njenu vrednost.",
+
+                        text4:
+                            "Postoji i korisna prečica. Kada član prebacimo sa jedne strane jednačine na drugu, njegova operacija se menja u suprotnu. Tako x + 3 = 5 možemo zapisati kao x = 5 − 3.",
+
+                        text5:
+                            "Ova prečica funkcioniše zato što zapravo radimo istu operaciju na obe strane. To nije novo pravilo, već kraći način zapisivanja istih koraka."
+                    }
+                },
+
+                solvingAllPractice: {
+                    title: "Rešavanje jednačina",
+
+                    description:
+                        "Rešavaj jednačine koristeći sabiranje, oduzimanje, množenje i deljenje."
+                },
+
+                solvingTwoOperations: {
+                    title: "Jednačine u dva koraka",
+
+                    description:
+                        "Rešavaj jednačine za čije je rešavanje potrebno primeniti dve operacije."
+                }
+            }
         }
     },
 
@@ -1849,6 +2015,17 @@ const TRANSLATIONS_SR = {
                 "{group} - koji je njen najveći broj?",
             whichGroup:
                 "Kojoj grupi pripada broj {number}?"
+        },
+        equationEquality: {
+            isTrue: "Da li je ova jednačina tačna? <br> {equation}",
+            whichIsTrue: "Koja jednačina je tačna?",
+            true: "Tačno",
+            false: "Netačno"
+        },
+
+        variableSubstitution: {
+            evaluate:
+                "Ako je {variable} = {value}, koliko iznosi {expression}?"
         }
     },
 

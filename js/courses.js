@@ -2866,10 +2866,10 @@ const COURSES = {
     equations: {
         id: "equations",
 
-        title: "Equations",
+        title: "courses.equations.title",
 
         description:
-            "Learn what equations really mean and how to solve them by keeping both sides equal.",
+            "courses.equations.description",
 
         icon: "=",
 
@@ -2878,20 +2878,20 @@ const COURSES = {
             {
                 id: "equations-meaning",
 
-                title: "What Does = Mean?",
+                title:
+                    "courses.equations.lessons.meaning.title",
 
                 description:
-                    "Learn what the equal sign means and what an equation actually tells us.",
+                    "courses.equations.lessons.meaning.description",
 
                 type: "explanation",
 
                 content: [
-
                     {
                         type: "text",
 
                         text:
-                            "The equal sign = means that the two sides have the same value. An equation is a statement that two expressions are equal."
+                            "courses.equations.lessons.meaning.content.text1"
                     },
 
                     {
@@ -2900,14 +2900,14 @@ const COURSES = {
                         expression: "4 + 3 = 7",
 
                         explanation:
-                            "The expression on the left, 4 + 3, has the same value as the expression on the right, 7."
+                            "courses.equations.lessons.meaning.content.example1"
                     },
 
                     {
                         type: "text",
 
                         text:
-                            "The equal sign does not mean “the answer comes next”. It simply tells us that the expressions on both sides have the same value."
+                            "courses.equations.lessons.meaning.content.text2"
                     },
 
                     {
@@ -2916,7 +2916,7 @@ const COURSES = {
                         expression: "7 = 4 + 3",
 
                         explanation:
-                            "This is just as true as 4 + 3 = 7. We can read an equation from either side."
+                            "courses.equations.lessons.meaning.content.example2"
                     },
 
                     {
@@ -2925,14 +2925,14 @@ const COURSES = {
                         expression: "2 + 5 = 4 + 3",
 
                         explanation:
-                            "Both sides have the value 7, so the equation is true."
+                            "courses.equations.lessons.meaning.content.example3"
                     },
 
                     {
                         type: "text",
 
                         text:
-                            "An equation can be true or false. Our job is to understand when both sides have the same value."
+                            "courses.equations.lessons.meaning.content.text3"
                     }
                 ]
             },
@@ -2941,10 +2941,11 @@ const COURSES = {
             {
                 id: "equations-meaning-practice",
 
-                title: "Is the Equation True?",
+                title:
+                    "courses.equations.lessons.meaningPractice.title",
 
                 description:
-                    "Practice recognizing equations that are true and false.",
+                    "courses.equations.lessons.meaningPractice.description",
 
                 type: "practice",
 
@@ -2971,10 +2972,11 @@ const COURSES = {
             {
                 id: "equations-meaning-all-operations",
 
-                title: "Equality with All Operations",
+                title:
+                    "courses.equations.lessons.meaningAllOperations.title",
 
                 description:
-                    "Practice recognizing equality using different mathematical operations.",
+                    "courses.equations.lessons.meaningAllOperations.description",
 
                 type: "practice",
 
@@ -3004,20 +3006,20 @@ const COURSES = {
             {
                 id: "equations-variables",
 
-                title: "What Is a Variable?",
+                title:
+                    "courses.equations.lessons.variables.title",
 
                 description:
-                    "Learn what variables are and how letters can represent numbers.",
+                    "courses.equations.lessons.variables.description",
 
                 type: "explanation",
 
                 content: [
-
                     {
                         type: "text",
 
                         text:
-                            "A variable is a letter that we use as a name for a number. We can use a variable when we do not know the number yet, or when we want to talk about a number without writing its value."
+                            "courses.equations.lessons.variables.content.text1"
                     },
 
                     {
@@ -3026,7 +3028,7 @@ const COURSES = {
                         expression: "a = 5",
 
                         explanation:
-                            "This tells us that the variable a represents the number 5. Wherever we see a, we can replace it with 5."
+                            "courses.equations.lessons.variables.content.example1"
                     },
 
                     {
@@ -3035,14 +3037,14 @@ const COURSES = {
                         expression: "a + 3 = 5 + 3 = 8",
 
                         explanation:
-                            "Since a = 5, we can replace a with 5. Therefore a + 3 has the value 8."
+                            "courses.equations.lessons.variables.content.example2"
                     },
 
                     {
                         type: "text",
 
                         text:
-                            "A number written next to a variable means multiplication. For example, 2a means 2 × a, and 7c means 7 × c."
+                            "courses.equations.lessons.variables.content.text2"
                     },
 
                     {
@@ -3051,14 +3053,14 @@ const COURSES = {
                         expression: "a = 4",
 
                         explanation:
-                            "Then 2a means 2 × 4, so 2a = 8."
+                            "courses.equations.lessons.variables.content.example3"
                     },
 
                     {
                         type: "text",
 
                         text:
-                            "We can also use several variables at the same time. Each variable can represent its own number."
+                            "courses.equations.lessons.variables.content.text3"
                     },
 
                     {
@@ -3067,7 +3069,7 @@ const COURSES = {
                         expression: "a = 2,   b = 2a",
 
                         explanation:
-                            "Since a = 2, we can replace a with 2. Therefore b = 2 × 2 = 4."
+                            "courses.equations.lessons.variables.content.example4"
                     }
                 ]
             },
@@ -3076,10 +3078,11 @@ const COURSES = {
             {
                 id: "equations-variables-practice",
 
-                title: "Using Variables",
+                title:
+                    "courses.equations.lessons.variablesPractice.title",
 
                 description:
-                    "Practice replacing variables with their values and using variables in expressions.",
+                    "courses.equations.lessons.variablesPractice.description",
 
                 type: "practice",
 
@@ -3107,20 +3110,20 @@ const COURSES = {
             {
                 id: "equations-preserving",
 
-                title: "Keeping an Equation True",
+                title:
+                    "courses.equations.lessons.preserving.title",
 
                 description:
-                    "Learn how to change an equation without making it false.",
+                    "courses.equations.lessons.preserving.description",
 
                 type: "explanation",
 
                 content: [
-
                     {
                         type: "text",
 
                         text:
-                            "An equation is true because both sides have the same value. If we want to change an equation and keep it true, we must make the same change to both sides."
+                            "courses.equations.lessons.preserving.content.text1"
                     },
 
                     {
@@ -3129,7 +3132,7 @@ const COURSES = {
                         expression: "5 = 5",
 
                         explanation:
-                            "Both sides are equal. If we add 3 to both sides, they are still equal."
+                            "courses.equations.lessons.preserving.content.example1"
                     },
 
                     {
@@ -3138,14 +3141,14 @@ const COURSES = {
                         expression: "5 + 3 = 5 + 3",
 
                         explanation:
-                            "We added 3 to both sides, so the equation is still true. Both sides are now 8."
+                            "courses.equations.lessons.preserving.content.example2"
                     },
 
                     {
                         type: "text",
 
                         text:
-                            "We can also subtract, multiply, or divide both sides by the same number. The important part is that we do the same thing to both sides."
+                            "courses.equations.lessons.preserving.content.text2"
                     },
 
                     {
@@ -3154,7 +3157,7 @@ const COURSES = {
                         expression: "7 = 7",
 
                         explanation:
-                            "Subtracting 2 from both sides gives 7 − 2 = 7 − 2, which is still true."
+                            "courses.equations.lessons.preserving.content.example3"
                     },
 
                     {
@@ -3163,67 +3166,36 @@ const COURSES = {
                         expression: "3 = 3",
 
                         explanation:
-                            "Multiplying both sides by 4 gives 3 × 4 = 3 × 4, which is still true."
+                            "courses.equations.lessons.preserving.content.example4"
                     },
 
                     {
                         type: "text",
 
                         text:
-                            "This idea lets us transform equations into simpler equations while keeping them true."
+                            "courses.equations.lessons.preserving.content.text3"
                     }
                 ]
             },
 
 
-            // {
-            //     id: "equations-preserving-practice",
-
-            //     title: "Keep It True",
-
-            //     description:
-            //         "Practice recognizing changes that keep an equation true.",
-
-            //     type: "practice",
-
-            //     practice: {
-            //         generator: "equationTransformation",
-
-            //         interaction: "equation-choice",
-
-            //         settings: {
-            //             operations: [
-            //                 "addition",
-            //                 "subtraction",
-            //                 "multiplication",
-            //                 "division"
-            //             ]
-            //         },
-
-            //         problemCount: 10
-            //     },
-
-            //     difficultyMultiplier: 1.15
-            // },
-
-
             {
                 id: "equations-solving",
 
-                title: "How Do We Solve an Equation?",
+                title:
+                    "courses.equations.lessons.solving.title",
 
                 description:
-                    "Learn how inverse operations help us get the variable by itself.",
+                    "courses.equations.lessons.solving.description",
 
                 type: "explanation",
 
                 content: [
-
                     {
                         type: "text",
 
                         text:
-                            "When we solve an equation, we are looking for the value of the variable that makes the equation true."
+                            "courses.equations.lessons.solving.content.text1"
                     },
 
                     {
@@ -3232,7 +3204,7 @@ const COURSES = {
                         expression: "x + 3 = 5",
 
                         explanation:
-                            "We want to find the value of x. Since 3 was added to x, we can undo this by subtracting 3."
+                            "courses.equations.lessons.solving.content.example1"
                     },
 
                     {
@@ -3241,14 +3213,14 @@ const COURSES = {
                         expression: "x + 3 − 3 = 5 − 3",
 
                         explanation:
-                            "We subtract 3 from both sides. The left side becomes x, and the right side becomes 2. Therefore x = 2."
+                            "courses.equations.lessons.solving.content.example2"
                     },
 
                     {
                         type: "text",
 
                         text:
-                            "Addition and subtraction undo each other. Multiplication and division undo each other."
+                            "courses.equations.lessons.solving.content.text2"
                     },
 
                     {
@@ -3257,28 +3229,28 @@ const COURSES = {
                         expression: "4x = 20",
 
                         explanation:
-                            "x has been multiplied by 4. We can undo this by dividing both sides by 4. Therefore x = 5."
+                            "courses.equations.lessons.solving.content.example3"
                     },
 
                     {
                         type: "text",
 
                         text:
-                            "We usually want to get the variable by itself because then its value is easy to see."
+                            "courses.equations.lessons.solving.content.text3"
                     },
 
                     {
                         type: "text",
 
                         text:
-                            "There is also a useful shortcut. When we move a term from one side of an equation to the other, its operation is reversed. So x + 3 = 5 can become x = 5 − 3."
+                            "courses.equations.lessons.solving.content.text4"
                     },
 
                     {
                         type: "text",
 
                         text:
-                            "This shortcut works because we are really performing the same operation on both sides. The shortcut is not a new rule—it is a quicker way of writing the same steps."
+                            "courses.equations.lessons.solving.content.text5"
                     }
                 ]
             },
@@ -3287,10 +3259,11 @@ const COURSES = {
             {
                 id: "equations-solving-all-practice",
 
-                title: "Solving Equations",
+                title:
+                    "courses.equations.lessons.solvingAllPractice.title",
 
                 description:
-                    "Solve equations using addition, subtraction, multiplication, and division.",
+                    "courses.equations.lessons.solvingAllPractice.description",
 
                 type: "practice",
 
@@ -3306,6 +3279,7 @@ const COURSES = {
                             "multiplication",
                             "division"
                         ],
+
                         operationCount: 1,
 
                         minSolution: 1,
@@ -3320,13 +3294,16 @@ const COURSES = {
 
                 difficultyMultiplier: 1.3
             },
+
+
             {
                 id: "equations-solving-two-operations",
 
-                title: "Two-Step Equations",
+                title:
+                    "courses.equations.lessons.solvingTwoOperations.title",
 
                 description:
-                    "Solve equations that require two operations to find the unknown.",
+                    "courses.equations.lessons.solvingTwoOperations.description",
 
                 type: "practice",
 
@@ -3342,6 +3319,7 @@ const COURSES = {
                             "multiplication",
                             "division"
                         ],
+
                         operationCount: 2,
 
                         minSolution: 1,
@@ -3357,7 +3335,7 @@ const COURSES = {
                 difficultyMultiplier: 1.5
             }
         ]
-    },
+        },
     
     geometry: {
         id: "geometry",

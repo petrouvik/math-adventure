@@ -820,14 +820,25 @@ function generateEquation(settings, forceIsTrue) {
 function generateIsTrueProblem(settings) {
     const equation = generateEquation(settings);
 
+    const trueText =
+        t("generators.equationEquality.true");
+
+    const falseText =
+        t("generators.equationEquality.false");
+
     return {
         prompt: tf("generators.equationEquality.isTrue", {
             equation: equation.equationString
         }),
 
-        choices: [true, false],
+        choices: [
+            trueText,
+            falseText
+        ],
 
-        answer: equation.isTrue,
+        answer: equation.isTrue
+            ? trueText
+            : falseText,
 
         explanation: {
             type: "equation-equality-is-true",

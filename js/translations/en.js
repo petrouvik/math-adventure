@@ -1765,6 +1765,170 @@ const TRANSLATIONS_EN = {
                 description:
                     "Practice subtracting numbers up to one million using the complete algorithm."
             }
+        },
+        equations: {
+            title: "Equations",
+
+            description:
+                "Learn what equations really mean and how to solve them by keeping both sides equal.",
+
+            lessons: {
+
+                meaning: {
+                    title: "What Does = Mean?",
+
+                    description:
+                        "Learn what the equal sign means and what an equation actually tells us.",
+
+                    content: {
+                        text1:
+                            "The equal sign = means that the two sides have the same value. An equation is a statement that two expressions are equal.",
+
+                        example1:
+                            "The expression on the left, 4 + 3, has the same value as the expression on the right, 7.",
+
+                        text2:
+                            "The equal sign does not mean “the answer comes next”. It simply tells us that the expressions on both sides have the same value.",
+
+                        example2:
+                            "This is just as true as 4 + 3 = 7. We can read an equation from either side.",
+
+                        example3:
+                            "Both sides have the value 7, so the equation is true.",
+
+                        text3:
+                            "An equation can be true or false. Our job is to understand when both sides have the same value."
+                    }
+                },
+
+                meaningPractice: {
+                    title: "Is the Equation True?",
+
+                    description:
+                        "Practice recognizing equations that are true and false."
+                },
+
+                meaningAllOperations: {
+                    title: "Equality with All Operations",
+
+                    description:
+                        "Practice recognizing equality using different mathematical operations."
+                },
+
+                variables: {
+                    title: "What Is a Variable?",
+
+                    description:
+                        "Learn what variables are and how letters can represent numbers.",
+
+                    content: {
+                        text1:
+                            "A variable is a letter that we use as a name for a number. We can use a variable when we do not know the number yet, or when we want to talk about a number without writing its value.",
+
+                        example1:
+                            "This tells us that the variable a represents the number 5. Wherever we see a, we can replace it with 5.",
+
+                        example2:
+                            "Since a = 5, we can replace a with 5. Therefore a + 3 has the value 8.",
+
+                        text2:
+                            "A number written next to a variable means multiplication. For example, 2a means 2 × a, and 7c means 7 × c.",
+
+                        example3:
+                            "Then 2a means 2 × 4, so 2a = 8.",
+
+                        text3:
+                            "We can also use several variables at the same time. Each variable can represent its own number.",
+
+                        example4:
+                            "Since a = 2, we can replace a with 2. Therefore b = 2 × 2 = 4."
+                    }
+                },
+
+                variablesPractice: {
+                    title: "Using Variables",
+
+                    description:
+                        "Practice replacing variables with their values and using variables in expressions."
+                },
+
+                preserving: {
+                    title: "Keeping an Equation True",
+
+                    description:
+                        "Learn how to change an equation without making it false.",
+
+                    content: {
+                        text1:
+                            "An equation is true because both sides have the same value. If we want to change an equation and keep it true, we must make the same change to both sides.",
+
+                        example1:
+                            "Both sides are equal. If we add 3 to both sides, they are still equal.",
+
+                        example2:
+                            "We added 3 to both sides, so the equation is still true. Both sides are now 8.",
+
+                        text2:
+                            "We can also subtract, multiply, or divide both sides by the same number. The important part is that we do the same thing to both sides.",
+
+                        example3:
+                            "Subtracting 2 from both sides gives 7 − 2 = 7 − 2, which is still true.",
+
+                        example4:
+                            "Multiplying both sides by 4 gives 3 × 4 = 3 × 4, which is still true.",
+
+                        text3:
+                            "This idea lets us transform equations into simpler equations while keeping them true."
+                    }
+                },
+
+                solving: {
+                    title: "How Do We Solve an Equation?",
+
+                    description:
+                        "Learn how inverse operations help us get the variable by itself.",
+
+                    content: {
+                        text1:
+                            "When we solve an equation, we are looking for the value of the variable that makes the equation true.",
+
+                        example1:
+                            "We want to find the value of x. Since 3 was added to x, we can undo this by subtracting 3.",
+
+                        example2:
+                            "We subtract 3 from both sides. The left side becomes x, and the right side becomes 2. Therefore x = 2.",
+
+                        text2:
+                            "Addition and subtraction undo each other. Multiplication and division undo each other.",
+
+                        example3:
+                            "x has been multiplied by 4. We can undo this by dividing both sides by 4. Therefore x = 5.",
+
+                        text3:
+                            "We usually want to get the variable by itself because then its value is easy to see.",
+
+                        text4:
+                            "There is also a useful shortcut. When we move a term from one side of an equation to the other, its operation is reversed. So x + 3 = 5 can become x = 5 − 3.",
+
+                        text5:
+                            "This shortcut works because we are really performing the same operation on both sides. The shortcut is not a new rule—it is a quicker way of writing the same steps."
+                    }
+                },
+
+                solvingAllPractice: {
+                    title: "Solving Equations",
+
+                    description:
+                        "Solve equations using addition, subtraction, multiplication, and division."
+                },
+
+                solvingTwoOperations: {
+                    title: "Two-Step Equations",
+
+                    description:
+                        "Solve equations that require two operations to find the unknown."
+                }
+            }
         }
     },
 
@@ -1804,14 +1968,13 @@ const TRANSLATIONS_EN = {
         },
         equationEquality: {
             isTrue: "Is this equation true? <br> {equation}",
-            whichIsTrue: "Which equation is true?"
+            whichIsTrue: "Which equation is true?",
+            true: "True",
+            false: "False"
         },
         variableSubstitution: {
             evaluate:
                 "If {variable} = {value}, what is {expression}?"
-        },
-        solveEquation: {
-            prompt: "Solve the equation"
         }
     },
     explanations: {

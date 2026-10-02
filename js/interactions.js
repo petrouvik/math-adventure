@@ -45,8 +45,6 @@ function renderNumberInput(
 
             <div class="problem">
                 <span>${problem.prompt}</span>
-                <span>=</span>
-                <span class="question-mark">?</span>
             </div>
 
             <div class="answer-area">

@@ -373,7 +373,8 @@ function generateAdditionProblem(settings) {
             left,
             right,
             operator: "+",
-            prompt: `${left} + ${right}`,
+            prompt: `${left} + ${right}&nbsp;<span>=</span>
+                <span class="question-mark">?</span>`,
             answer: left + right,
             explanation
         };
@@ -500,7 +501,8 @@ function generateSubtractionProblem(settings) {
             left,
             right,
             operator: "−",
-            prompt: `${left} − ${right}`,
+            prompt: `${left} − ${right}&nbsp;<span>=</span>
+                <span class="question-mark">?</span>`,
             answer: left - right,
             explanation
         };
@@ -537,7 +539,8 @@ function generateMultiplicationTableProblem(settings) {
         left: table,
         right: multiplier,
         operator: "×",
-        prompt: `${table} × ${multiplier}`,
+        prompt: `${table} × ${multiplier}&nbsp;<span>=</span>
+                <span class="question-mark">?</span>`,
         answer: table * multiplier,
 
         explanation: {
@@ -578,7 +581,8 @@ function generateDivisionProblem(settings) {
         left: dividend,
         right: divisor,
         operator: "÷",
-        prompt: `${dividend} ÷ ${divisor}`,
+        prompt: `${dividend} ÷ ${divisor}&nbsp;<span>=</span>
+                <span class="question-mark">?</span>`,
         answer: quotient,
 
         explanation: {
@@ -671,7 +675,8 @@ function generateRomanAdditionProblem(settings) {
     const roman = arabicToRoman(number);
 
     return {
-        prompt: roman,
+        prompt: `${roman}&nbsp;<span>=</span>
+                <span class="question-mark">?</span>`,
         answer: number,
 
         explanation: {
@@ -704,7 +709,8 @@ function generateRomanToArabicProblem(settings) {
     const roman = arabicToRoman(number);
 
     return {
-        prompt: roman,
+        prompt: `${roman}&nbsp;<span>=</span>
+                <span class="question-mark">?</span>`,
         answer: number,
 
         explanation: {
@@ -1061,9 +1067,10 @@ function generateExpandedFormProblem(settings) {
     });
 
     return {
-        prompt: parts
+        prompt: `${parts
             .map(part => part.toLocaleString())
-            .join(" + "),
+            .join(" + ")}&nbsp;<span>=</span>
+                <span class="question-mark">?</span>`,
 
         answer: number,
 
@@ -1396,7 +1403,8 @@ function generateAdvancedAdditionProblem(settings) {
         }
 
         return {
-            prompt: `${top.toLocaleString()} + ${bottom.toLocaleString()}`,
+            prompt: `${top.toLocaleString()} + ${bottom.toLocaleString()}&nbsp;<span>=</span>
+                <span class="question-mark">?</span>`,
             answer: result,
 
             explanation: {
@@ -1597,7 +1605,8 @@ function generateAdvancedSubtractionProblem(settings) {
         }
 
         return {
-            prompt: `${top.toLocaleString()} − ${bottom.toLocaleString()}`,
+            prompt: `${top.toLocaleString()} − ${bottom.toLocaleString()}&nbsp;<span>=</span>
+                <span class="question-mark">?</span>`,
             answer: result,
 
             explanation: {

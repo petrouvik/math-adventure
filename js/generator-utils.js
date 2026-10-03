@@ -1343,3 +1343,180 @@ function buildSteps(transformations) {
     steps[steps.length - 1].resultingEquation = `x = ${state.value}`;
     return steps;
 }
+
+////////////////
+// GEOMETRY
+//////////////////////
+
+const POINT_NAMES   = ["A", "B", "C", "D"];
+const LINE_NAMES    = ["l", "k", "m"];
+const RAY_NAMES     = ["r", "s", "t"];
+const SEGMENT_NAMES = ["a", "b", "c", "d"];
+const KINDS         = ["point", "segment", "line", "ray"];
+
+const DIAGRAM_SIZE = { width: 300, height: 150, scale: 50 };
+
+/* ---------- helpers ---------- */
+
+function pick(items) {
+    return items[Math.floor(Math.random() * items.length)];
+}
+
+// Random subset without repeats (assumes shuffle() works in place)
+function sample(items, count) {
+    const copy = [...items];
+    shuffle(copy);
+    return copy.slice(0, count);
+}
+
+// "segment BA" and "segment AB" are the same object, so compare them
+// in a canonical form.
+function canonical(choice) {
+    const [kind, name] = choice.split(" ");
+    return kind === "segment" && /^[A-Z]{2}$/.test(name)
+        ? `segment ${[...name].sort().join("")}`
+        : choice;
+}
+
+/* ---------- decoy generation ---------- */
+
+// Makes one random answer of the given kind.
+// Cross-kind decoys prefer points that are visible in the diagram,
+// which makes them more plausible. Same-kind decoys ("fresh") use any name.
+function randomChoice(kind, { visiblePoints = [], fresh = false } = {}) {
+    const points = !fresh && visiblePoints.length
+        ? visiblePoints
+        : POINT_NAMES;
+
+    switch (kind) {
+        case "point":
+            return `point ${pick(points)}`;
+
+        case "segment":
+            return Math.random() < 0.5
+                ? `segment ${sample(POINT_NAMES, 2).sort().join("")}`
+                : `segment ${pick(SEGMENT_NAMES)}`;
+
+        case "line":
+            return `line ${pick(LINE_NAMES)}`;
+
+        case "ray":
+            return `ray ${pick(points)}${pick(RAY_NAMES)}`;
+    }
+}
+
+function buildChoices(kind, answer, { visiblePoints = [], alsoCorrect = [] } = {}) {
+    // Anything in here can never appear as a decoy.
+    const taken = new Set([answer, ...alsoCorrect].map(canonical));
+
+    function draw(decoyKind, fresh) {
+        for (let attempt = 0; attempt < 50; attempt++) {
+            const candidate = randomChoice(decoyKind, { visiblePoints, fresh });
+            const key = canonical(candidate);
+
+            if (!taken.has(key)) {
+                taken.add(key);
+                return candidate;
+            }
+        }
+        return null;
+    }
+
+    const otherKinds = sample(KINDS.filter(k => k !== kind), 2);
+
+    const decoys = [
+        draw(kind, true),                       // same type, wrong name
+        ...otherKinds.map(k => draw(k, false))  // different types
+    ].filter(Boolean);
+
+    const choices = [answer, ...decoys];
+    shuffle(choices);
+    return choices;
+}
+
+function buildProblem({ diagram, kind, answer, visiblePoints, alsoCorrect }) {
+    const svg = createGeometrySvg({ ...DIAGRAM_SIZE, ...diagram });
+
+    return {
+        prompt: `What is shown in the diagram?<br>${svg}`,
+        answer,
+        choices: buildChoices(kind, answer, { visiblePoints, alsoCorrect }),
+        explanation: {}
+    };
+}
+
+/* ---------- generators ---------- */
+
+function generatePointProblem() {
+    const name = pick(POINT_NAMES);
+
+    return buildProblem({
+        kind: "point",
+        answer: `point ${name}`,
+        visiblePoints: [name],
+        diagram: {
+            points: [{ id: name, x: 3, y: 1.5, label: name }]
+        }
+    });
+}
+
+function generateSegmentProblem() {
+    const [p, q] = sample(POINT_NAMES, 2).sort();
+    const useEndpoints = Math.random() < 0.5;
+
+    // A lowercase label must not look like a visible point (b next to B).
+    const letters = SEGMENT_NAMES.filter(
+        l => l !== p.toLowerCase() && l !== q.toLowerCase()
+    );
+    const label = useEndpoints ? `${p}${q}` : pick(letters);
+
+    return buildProblem({
+        kind: "segment",
+        answer: `segment ${label}`,
+        visiblePoints: [p, q],
+        // In "letter" mode, "segment pq" is also a correct description.
+        alsoCorrect: [`segment ${p}${q}`],
+        diagram: {
+            points: [
+                { id: p, x: 1, y: 1.5, label: p },
+                { id: q, x: 5, y: 1.5, label: q }
+            ],
+            segments: [{ from: p, to: q, label }]
+        }
+    });
+}
+
+function generateLineProblem() {
+    const label = pick(LINE_NAMES);
+
+    return buildProblem({
+        kind: "line",
+        answer: `line ${label}`,
+        visiblePoints: [],
+        diagram: {
+            points: [
+                { id: "A", x: 1, y: 1.5, visible: false },
+                { id: "B", x: 5, y: 1.5, visible: false }
+            ],
+            lines: [{ through: ["A", "B"], label }]
+        }
+    });
+}
+
+function generateRayProblem() {
+    const endpoint = pick(POINT_NAMES);
+    const name = pick(RAY_NAMES);
+
+    return buildProblem({
+        kind: "ray",
+        answer: `ray ${endpoint}${name}`,
+        visiblePoints: [endpoint],
+        diagram: {
+            points: [
+                { id: endpoint, x: 1, y: 1.5, label: endpoint },
+                { id: "direction", x: 3, y: 1.5, visible: false }
+            ],
+            rays: [{ from: endpoint, through: "direction", label: name }]
+        }
+    });
+}

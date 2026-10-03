@@ -1760,6 +1760,51 @@ function generateEquationProblems(settings, count) {
 
     return problems;
 }
+function generateGeometryBasicsProblem(settings) {
+    const types = [
+        "point",
+        "segment",
+        "line",
+        "ray"
+    ];
+
+    const type =
+        types[
+            Math.floor(
+                Math.random() * types.length
+            )
+        ];
+
+    switch (type) {
+        case "point":
+            return generatePointProblem();
+
+        case "segment":
+            return generateSegmentProblem();
+
+        case "line":
+            return generateLineProblem();
+
+        case "ray":
+            return generateRayProblem();
+    }
+}
+function generateGeometryBasicsProblems(
+    settings,
+    count
+) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateGeometryBasicsProblem(
+                settings
+            )
+        );
+    }
+
+    return problems;
+}
 
 const GENERATORS = {
     "number-reading": {
@@ -1930,4 +1975,12 @@ const GENERATORS = {
             );
         }
     },
+    "geometryBasics":{
+        generate(settings, count) {
+            return generateGeometryBasicsProblems(
+                settings,
+                count
+            );
+        }
+    }
 };

@@ -3339,90 +3339,229 @@ const COURSES = {
     
     geometry: {
         id: "geometry",
+
         title: "Geometry",
-        description: "Explore shapes, angles, and measurements.",
-        icon: "△",
+
+        description:
+            "Learn the basic ideas and building blocks of geometry.",
+
+        icon: "π",
 
         lessons: [
+
             {
-                id: "geometry-intro",
-                title: "Introduction to Geometry",
-                description: "Learn the basics of geometry.",
+                id: "geometry-basics",
+
+                title:
+                    "Geometry Basics",
+
+                description:
+                    "Learn about points, lines, segments, and rays.",
+
                 type: "explanation",
+
                 content: [
+
                     {
                         type: "text",
-                        text: "Geometry is the study of shapes, sizes, positions, and the spaces around us."
+
+                        text:
+                            "Geometry is the part of mathematics that helps us describe shapes, sizes, positions, and the space around us. We start with a few simple objects that are used to build many of the things we study in geometry."
                     },
+
+                    {
+                        type: "text",
+
+                        text:
+                            "A point represents an exact position. We draw it as a small dot. A point has no length or width."
+                    },
+
                     {
                         type: "example",
-                        expression: createGeometrySvg({
-                            width: 400,
-                            height: 400,
-                            scale: 50,
 
-                            points: [
-                                { id: "A", x: 1, y: 1, label: "A" },
-                                { id: "B", x: 5, y: 1, label: "B" },
-                                { id: "C", x: 5, y: 5, label: "C" },
-                                { id: "D", x: 1, y: 5, label: "D" },
-                                {
-                                    id: "O",
-                                    x: 6,
-                                    y: 4.5,
-                                    label: "O"
-                                }
-                            ],
+                        expression:
+                            createGeometrySvg({
+                                width: 200,
+                                height: 100,
+                                scale: 50,
 
-                            segments: [
-                                { from: "A", to: "B", label: "a = 5 cm" },
-                                { from: "B", to: "C", label: "a" },
-                                { from: "C", to: "D", label: "a" },
-                                { from: "D", to: "A", label: "a" }
-                            ],
+                                points: [
+                                    {
+                                        id: "A",
+                                        x: 2,
+                                        y: 1,
+                                        label: "A"
+                                    }
+                                ]
+                            }),
 
-                            lines: [
-                                { through: ["A", "C"], label: "l"}
-                            ],
+                        explanation:
+                            "This is point A. The letter A is its name."
+                    },
 
-                            rays: [
-                                {
-                                    from: "A",
-                                    through: "B",
-                                    label: "r"
-                                }
-                            ],
-                            angles: [
-                                {
-                                    vertex: "C",
-                                    from: "B",
-                                    to: "A",
-                                    label: "315°",
-                                    large: true
-                                },
-                                {
-                                    vertex: "B",
-                                    from: "A",
-                                    to: "C",
-                                    label: "90°"
-                                }
-                            ],
-                            circles: [
-                                {
-                                    center: "O",
-                                    radius: 3,
-                                    label: "c"
-                                }
-                            ],
-                            markers: []
-                        }),
-                            explanation: "This is a triangle. It has 3 sides and 3 corners."
-                        },
                     {
                         type: "text",
-                        text: "We'll learn more about shapes, angles, lengths, and other parts of geometry in future lessons."
+
+                        text:
+                            "A line is straight and continues forever in both directions. We can use two points on a line to describe it."
+                    },
+
+                    {
+                        type: "example",
+
+                        expression:
+                            createGeometrySvg({
+                                width: 300,
+                                height: 100,
+                                scale: 50,
+
+                                points: [
+                                    {
+                                        id: "A",
+                                        x: 1,
+                                        y: 1,
+                                        label: "A"
+                                    },
+                                    {
+                                        id: "B",
+                                        x: 5,
+                                        y: 1,
+                                        label: "B"
+                                    }
+                                ],
+
+                                lines: [
+                                    {
+                                        through: ["A", "B"],
+                                        label: "l"
+                                    }
+                                ]
+                            }),
+
+                        explanation:
+                            "This is line l. Points A and B lie on the line, so we can also describe it as the line through A and B."
+                    },
+
+                    {
+                        type: "text",
+
+                        text:
+                            "A line segment is a part of a line with two endpoints. Unlike a line, a segment does not continue forever."
+                    },
+
+                    {
+                        type: "example",
+
+                        expression:
+                            createGeometrySvg({
+                                width: 300,
+                                height: 100,
+                                scale: 50,
+
+                                points: [
+                                    {
+                                        id: "A",
+                                        x: 1,
+                                        y: 1,
+                                        label: "A"
+                                    },
+                                    {
+                                        id: "B",
+                                        x: 5,
+                                        y: 1,
+                                        label: "B"
+                                    }
+                                ],
+
+                                segments: [
+                                    {
+                                        from: "A",
+                                        to: "B",
+                                        label: "AB"
+                                    }
+                                ]
+                            }),
+
+                        explanation:
+                            "This is segment AB. The points A and B are its endpoints. A segment can be named using the letters of its endpoints."
+                    },
+
+                    {
+                        type: "text",
+
+                        text:
+                            "A ray has one endpoint and continues forever in one direction. We name a ray using its endpoint first."
+                    },
+
+                    {
+                        type: "example",
+
+                        expression:
+                            createGeometrySvg({
+                                width: 300,
+                                height: 100,
+                                scale: 50,
+
+                                points: [
+                                    {
+                                        id: "A",
+                                        x: 1,
+                                        y: 1,
+                                        label: "A"
+                                    },
+                                    {
+                                        id: "B",
+                                        x: 3,
+                                        y: 1,
+                                        visible: false
+                                    }
+                                ],
+
+                                rays: [
+                                    {
+                                        from: "A",
+                                        through: "B",
+                                        label: "r"
+                                    }
+                                ]
+                            }),
+
+                        explanation:
+                            "This is ray Ar. A is its endpoint. It continues forever in only one direction."
+                    },
+
+                    {
+                        type: "text",
+
+                        text:
+                            "Points are usually named with capital letters, such as A, B, and C. Segments can be named using letters of their points, for example AB. Segments can also be named using a single letter, which is usually lower-case, for example b. Rays are usually named using the endpoint and a lower-case letter, for example Ar."
                     }
                 ]
+            },
+
+
+            {
+                id: "geometry-basics-practice",
+
+                title:
+                    "Geometry Basics Practice",
+
+                description:
+                    "Identify points, lines, segments, and rays.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "geometryBasics",
+
+                    interaction: "multiple-choice",
+
+                    settings: {},
+
+                    problemCount: 10
+                },
+
+                difficultyMultiplier: 1
             }
         ]
     }

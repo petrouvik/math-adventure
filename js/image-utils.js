@@ -764,7 +764,7 @@ function createGeometrySvg({
             ny = -ny;
         }
 
-        const distance = 25;
+        const distance = 60;
         const offset = 12;
 
         const x =

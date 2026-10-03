@@ -3356,9 +3356,68 @@ const COURSES = {
                     },
                     {
                         type: "example",
-                        expression: "△",
-                        explanation: "This is a triangle. It has 3 sides and 3 corners."
-                    },
+                        expression: createGeometrySvg({
+                            width: 400,
+                            height: 400,
+                            scale: 50,
+
+                            points: [
+                                { id: "A", x: 1, y: 1, label: "A" },
+                                { id: "B", x: 5, y: 1, label: "B" },
+                                { id: "C", x: 5, y: 5, label: "C" },
+                                { id: "D", x: 1, y: 5, label: "D" },
+                                {
+                                    id: "O",
+                                    x: 6,
+                                    y: 4.5,
+                                    label: "O"
+                                }
+                            ],
+
+                            segments: [
+                                { from: "A", to: "B", label: "a = 5 cm" },
+                                { from: "B", to: "C", label: "a" },
+                                { from: "C", to: "D", label: "a" },
+                                { from: "D", to: "A", label: "a" }
+                            ],
+
+                            lines: [
+                                { through: ["A", "C"], label: "l"}
+                            ],
+
+                            rays: [
+                                {
+                                    from: "A",
+                                    through: "B",
+                                    label: "r"
+                                }
+                            ],
+                            angles: [
+                                {
+                                    vertex: "C",
+                                    from: "B",
+                                    to: "A",
+                                    label: "315°",
+                                    large: true
+                                },
+                                {
+                                    vertex: "B",
+                                    from: "A",
+                                    to: "C",
+                                    label: "90°"
+                                }
+                            ],
+                            circles: [
+                                {
+                                    center: "O",
+                                    radius: 3,
+                                    label: "c"
+                                }
+                            ],
+                            markers: []
+                        }),
+                            explanation: "This is a triangle. It has 3 sides and 3 corners."
+                        },
                     {
                         type: "text",
                         text: "We'll learn more about shapes, angles, lengths, and other parts of geometry in future lessons."

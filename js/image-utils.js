@@ -230,3 +230,689 @@ function createSubtractionSvg(top, bottom, result, borrows = []) {
 
   return svg;
 }
+
+function createGeometrySvg({
+    width,
+    height,
+    scale = 1,
+    points = [],
+    segments = [],
+    lines = [],
+    angles = [],
+    rays = [],
+    circles = [],
+}) {
+    const pointMap = new Map(
+        points.map(point => [point.id, point])
+    );
+
+    function toSvg(point) {
+        return {
+            x: point.x * scale,
+            y: point.y * scale
+        };
+    }
+
+    function getPoint(id) {
+        const point = pointMap.get(id);
+
+        if (!point) {
+            throw new Error(
+                `Unknown point: ${id}`
+            );
+        }
+
+        return point;
+    }
+
+    function renderPoint(point) {
+        if (point.visible === false) {
+            return "";
+        }
+
+        const { x, y } = toSvg(point);
+
+        return `
+            <circle
+                cx="${x}"
+                cy="${y}"
+                r="4"
+                fill="currentColor"
+            />
+        `;
+    }
+
+    function renderPointLabel(point) {
+        if (!point.label) {
+            return "";
+        }
+
+        const { x, y } = toSvg(point);
+
+        return `
+            <text
+                x="${x + 8}"
+                y="${y - 8}"
+                fill="currentColor"
+                font-size="16"
+            >
+                ${point.label}
+            </text>
+        `;
+    }
+
+    function renderSegment(segment) {
+        const from = toSvg(
+            getPoint(segment.from)
+        );
+
+        const to = toSvg(
+            getPoint(segment.to)
+        );
+
+        const label = segment.label
+            ? renderSegmentLabel(segment, from, to)
+            : "";
+
+        return `
+            <line
+                x1="${from.x}"
+                y1="${from.y}"
+                x2="${to.x}"
+                y2="${to.y}"
+                stroke="currentColor"
+                stroke-width="2"
+            />
+
+            ${label}
+        `;
+    }
+
+    function renderSegmentLabel(segment, from, to) {
+        const dx = to.x - from.x;
+        const dy = to.y - from.y;
+
+        const length = Math.sqrt(dx * dx + dy * dy);
+        if (length === 0) return "";
+
+        // Unit normal on the left of the direction of travel (as seen on screen,
+        // with y pointing down). No side-flipping: the side depends only on
+        // the order of from -> to.
+        const nx = dy / length;
+        const ny = -dx / length;
+
+        const offset = 12;
+
+        const x = (from.x + to.x) / 2 + nx * offset;
+        const y = (from.y + to.y) / 2 + ny * offset;
+
+        // Rotate so the text's "up" vector (sin θ, -cos θ) equals the normal.
+        // This simplifies to the segment's own direction angle.
+        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
+
+        return `
+            <text
+                x="${x}"
+                y="${y}"
+                text-anchor="middle"
+                dominant-baseline="middle"
+                fill="currentColor"
+                font-size="16"
+                transform="rotate(${angle} ${x} ${y})"
+            >
+                ${segment.label}
+            </text>
+        `;
+    }
+    function renderLine(line) {
+        const first =
+            toSvg(getPoint(line.through[0]));
+
+        const second =
+            toSvg(getPoint(line.through[1]));
+
+        const dx = second.x - first.x;
+        const dy = second.y - first.y;
+
+        if (dx === 0 && dy === 0) {
+            return "";
+        }
+
+        const intersections = [];
+
+        function addIntersection(t) {
+            const x = first.x + dx * t;
+            const y = first.y + dy * t;
+
+            if (
+                x >= 0 &&
+                x <= width &&
+                y >= 0 &&
+                y <= height
+            ) {
+                intersections.push({ x, y });
+            }
+        }
+
+        if (dx !== 0) {
+            addIntersection(
+                (0 - first.x) / dx
+            );
+
+            addIntersection(
+                (width - first.x) / dx
+            );
+        }
+
+        if (dy !== 0) {
+            addIntersection(
+                (0 - first.y) / dy
+            );
+
+            addIntersection(
+                (height - first.y) / dy
+            );
+        }
+
+        const unique =
+            intersections.filter(
+                (point, index, array) =>
+                    array.findIndex(other =>
+                        Math.abs(
+                            other.x - point.x
+                        ) < 0.001 &&
+                        Math.abs(
+                            other.y - point.y
+                        ) < 0.001
+                    ) === index
+            );
+
+        if (unique.length < 2) {
+            return "";
+        }
+
+        const start = unique[0];
+        const end = unique[1];
+
+        const label =
+            line.label
+                ? renderLineLabel(
+                    line,
+                    start,
+                    end
+                )
+                : "";
+
+        return `
+            <line
+                x1="${start.x}"
+                y1="${start.y}"
+                x2="${end.x}"
+                y2="${end.y}"
+                stroke="currentColor"
+                stroke-width="2"
+            />
+
+            ${label}
+        `;
+    }
+    function renderLineLabel(
+        line,
+        start,
+        end
+    ) {
+        const dx = end.x - start.x;
+        const dy = end.y - start.y;
+
+        const length =
+            Math.sqrt(dx * dx + dy * dy);
+
+        let nx = -dy / length;
+        let ny = dx / length;
+
+        // Keep the label on the upper side
+        if (ny > 0) {
+            nx = -nx;
+            ny = -ny;
+        }
+
+        const offset = 12;
+
+        const x =
+            (start.x + end.x) / 2 +
+            nx * offset;
+
+        const y =
+            (start.y + end.y) / 2 +
+            ny * offset;
+
+        let angle =
+            Math.atan2(dy, dx) *
+            180 / Math.PI;
+
+        // Keep text readable
+        if (
+            angle > 90 ||
+            angle < -90
+        ) {
+            angle += 180;
+        }
+
+        return `
+            <text
+                x="${x}"
+                y="${y}"
+                text-anchor="middle"
+                dominant-baseline="middle"
+                fill="currentColor"
+                font-size="16"
+                transform="
+                    rotate(
+                        ${angle}
+                        ${x}
+                        ${y}
+                    )
+                "
+            >
+                ${line.label}
+            </text>
+        `;
+    }
+    function renderAngle(angle) {
+        const vertex = toSvg(
+            getPoint(angle.vertex)
+        );
+
+        const from = toSvg(
+            getPoint(angle.from)
+        );
+
+        const to = toSvg(
+            getPoint(angle.to)
+        );
+
+        const radius = 30;
+
+        const startAngle =
+            Math.atan2(
+                from.y - vertex.y,
+                from.x - vertex.x
+            );
+
+        const endAngle =
+            Math.atan2(
+                to.y - vertex.y,
+                to.x - vertex.x
+            );
+
+        let difference =
+            endAngle - startAngle;
+
+        while (difference < 0) {
+            difference += 2 * Math.PI;
+        }
+
+        while (difference >= 2 * Math.PI) {
+            difference -= 2 * Math.PI;
+        }
+
+        /*
+        * Choose the smaller or larger angle.
+        */
+        if (angle.large) {
+            if (difference < Math.PI) {
+                difference -= 2 * Math.PI;
+            }
+        } else {
+            if (difference > Math.PI) {
+                difference -= 2 * Math.PI;
+            }
+        }
+
+        /*
+        * Special case: straight angle.
+        *
+        * There are two possible semicircles.
+        * `large` determines which side is used.
+        */
+        if (Math.abs(
+            Math.abs(difference) - Math.PI
+        ) < 0.0001) {
+            difference =
+                angle.large
+                    ? -Math.PI
+                    : Math.PI;
+        }
+
+        const endAngleActual =
+            startAngle + difference;
+
+        const startX =
+            vertex.x +
+            radius * Math.cos(startAngle);
+
+        const startY =
+            vertex.y +
+            radius * Math.sin(startAngle);
+
+        const endX =
+            vertex.x +
+            radius * Math.cos(endAngleActual);
+
+        const endY =
+            vertex.y +
+            radius * Math.sin(endAngleActual);
+
+        const largeArc =
+            Math.abs(difference) > Math.PI
+                ? 1
+                : 0;
+
+        const sweep =
+            difference > 0
+                ? 1
+                : 0;
+
+        const labelAngle =
+            startAngle +
+            difference / 2;
+
+        const labelRadius =
+            radius + 15;
+
+        const labelX =
+            vertex.x +
+            labelRadius *
+            Math.cos(labelAngle);
+
+        const labelY =
+            vertex.y +
+            labelRadius *
+            Math.sin(labelAngle);
+
+        const label =
+            angle.label
+                ? `
+                    <text
+                        x="${labelX}"
+                        y="${labelY}"
+                        text-anchor="middle"
+                        dominant-baseline="middle"
+                        fill="currentColor"
+                        font-size="16"
+                    >
+                        ${angle.label}
+                    </text>
+                `
+                : "";
+
+        return `
+            <path
+                d="
+                    M ${startX} ${startY}
+                    A ${radius} ${radius}
+                    0 ${largeArc} ${sweep}
+                    ${endX} ${endY}
+                "
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+            />
+
+            ${label}
+        `;
+    }
+    function renderRay(ray) {
+        const from = toSvg(
+            getPoint(ray.from)
+        );
+
+        const through = toSvg(
+            getPoint(ray.through)
+        );
+
+        const dx = through.x - from.x;
+        const dy = through.y - from.y;
+
+        const length =
+            Math.sqrt(dx * dx + dy * dy);
+
+        if (length === 0) {
+            return "";
+        }
+
+        const ux = dx / length;
+        const uy = dy / length;
+
+        /*
+        * Find where the ray exits the SVG.
+        */
+        const distances = [];
+
+        if (ux > 0) {
+            distances.push(
+                (width - from.x) / ux
+            );
+        } else if (ux < 0) {
+            distances.push(
+                (0 - from.x) / ux
+            );
+        }
+
+        if (uy > 0) {
+            distances.push(
+                (height - from.y) / uy
+            );
+        } else if (uy < 0) {
+            distances.push(
+                (0 - from.y) / uy
+            );
+        }
+
+        const distance =
+            Math.min(
+                ...distances.filter(d => d >= 0)
+            );
+
+        const end = {
+            x: from.x + ux * distance,
+            y: from.y + uy * distance
+        };
+
+        const label = ray.label
+            ? renderRayLabel(
+                ray,
+                from,
+                through
+            )
+            : "";
+
+        return `
+            <line
+                x1="${from.x}"
+                y1="${from.y}"
+                x2="${end.x}"
+                y2="${end.y}"
+                stroke="currentColor"
+                stroke-width="2"
+            />
+
+            ${label}
+        `;
+    }
+    function renderRayLabel(
+        ray,
+        from,
+        through
+    ) {
+        const dx = through.x - from.x;
+        const dy = through.y - from.y;
+
+        const length =
+            Math.sqrt(dx * dx + dy * dy);
+
+        const ux = dx / length;
+        const uy = dy / length;
+
+        // Normal to the ray
+        let nx = -uy;
+        let ny = ux;
+
+        // Prefer the upper side of the ray
+        if (ny > 0) {
+            nx = -nx;
+            ny = -ny;
+        }
+
+        const distance = 25;
+        const offset = 12;
+
+        const x =
+            from.x +
+            ux * distance +
+            nx * offset;
+
+        const y =
+            from.y +
+            uy * distance +
+            ny * offset;
+
+        let angle =
+            Math.atan2(dy, dx) *
+            180 / Math.PI;
+
+        if (
+            angle > 90 ||
+            angle < -90
+        ) {
+            angle += 180;
+        }
+
+        return `
+            <text
+                x="${x}"
+                y="${y}"
+                text-anchor="middle"
+                dominant-baseline="middle"
+                fill="currentColor"
+                font-size="16"
+                transform="
+                    rotate(
+                        ${angle}
+                        ${x}
+                        ${y}
+                    )
+                "
+            >
+                ${ray.label}
+            </text>
+        `;
+    }
+    function renderCircle(circle) {
+        const center = toSvg(
+            getPoint(circle.center)
+        );
+
+        const radius =
+            circle.radius * scale;
+
+        const label =
+            circle.label
+                ? renderCircleLabel(
+                    circle,
+                    center,
+                    radius
+                )
+                : "";
+
+        return `
+            <circle
+                cx="${center.x}"
+                cy="${center.y}"
+                r="${radius}"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+            />
+
+            ${label}
+        `;
+    }
+    function renderCircleLabel(
+        circle,
+        center,
+        radius
+    ) {
+        const offset = 12;
+
+        const x =
+            center.x + radius + offset;
+
+        const y =
+            center.y;
+
+        return `
+            <text
+                x="${x}"
+                y="${y}"
+                text-anchor="start"
+                dominant-baseline="middle"
+                fill="currentColor"
+                font-size="16"
+            >
+                ${circle.label}
+            </text>
+        `;
+    }
+    
+    const pointElements =
+        points
+            .map(renderPoint)
+            .join("");
+
+    const pointLabels =
+        points
+            .map(renderPointLabel)
+            .join("");
+
+    const segmentElements =
+        segments
+            .map(renderSegment)
+            .join("");
+
+    const lineElements =
+        lines
+            .map(renderLine)
+            .join("");
+    
+    const angleElements =
+        angles
+            .map(renderAngle)
+            .join("");
+    
+    const rayElements =
+        rays
+            .map(renderRay)
+            .join("");
+    const circleElements =
+        circles
+            .map(renderCircle)
+            .join("");
+
+    return `
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="${width}"
+            height="${height}"
+            viewBox="0 0 ${width} ${height}"
+        >
+            ${lineElements}
+            ${segmentElements}
+            ${rayElements}
+            ${angleElements}
+            ${circleElements}
+            ${pointElements}
+            ${pointLabels}
+        </svg>
+    `;
+}

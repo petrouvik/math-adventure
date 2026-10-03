@@ -1806,6 +1806,55 @@ function generateGeometryBasicsProblems(
     return problems;
 }
 
+function generateShapePartsProblem(settings) {
+
+    const types = [
+        "countSides",
+        "countVertices",
+        "countAngles",
+        "identifyMarkedPart",
+        "nameMarkedAngle"
+    ];
+
+    const type =
+        types[
+            Math.floor(
+                Math.random() * types.length
+            )
+        ];
+
+    const shape = generateShape();
+
+    switch (type) {
+
+        case "countSides":
+            return generateSideCountProblem(shape);
+
+        case "countVertices":
+            return generateVertexCountProblem(shape);
+
+        case "countAngles":
+            return generateAngleCountProblem(shape);
+
+        case "identifyMarkedPart":
+            return generateMarkedPartProblem(shape);
+
+        case "nameMarkedAngle":
+            return generateMarkedAngleNameProblem(shape);
+    }
+}
+function generateShapePartsProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateShapePartsProblem(settings)
+        );
+    }
+
+    return problems;
+}
+
 const GENERATORS = {
     "number-reading": {
         generate(settings, count) {
@@ -1978,6 +2027,14 @@ const GENERATORS = {
     "geometryBasics":{
         generate(settings, count) {
             return generateGeometryBasicsProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "shapeParts":{
+        generate(settings, count) {
+            return generateShapePartsProblems(
                 settings,
                 count
             );

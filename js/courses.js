@@ -3562,6 +3562,241 @@ const COURSES = {
                 },
 
                 difficultyMultiplier: 1
+            },
+
+            {
+    id: "parts-of-a-shape",
+
+    title:
+        "Parts of a Shape",
+
+    description:
+        "Learn about sides, vertices, and angles.",
+
+    type: "explanation",
+
+    content: [
+
+        {
+            type: "text",
+            text:
+                "A shape can have sides, vertices, and angles. Let's learn what each of these means."
+        },
+
+        {
+            type: "text",
+            text:
+                "A side is a line segment that forms part of the outside of a shape. It connects two vertices."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 220,
+                    scale: 40,
+
+                    points: [
+                        { id: "A", x: 1, y: 1, label: "A" },
+                        { id: "B", x: 5, y: 1, label: "B" },
+                        { id: "C", x: 5, y: 4, label: "C" },
+                        { id: "D", x: 1, y: 4, label: "D" }
+                    ],
+
+                    segments: [
+                        { from: "A", to: "B", label: "AB" },
+                        { from: "B", to: "C" },
+                        { from: "C", to: "D" },
+                        { from: "D", to: "A" }
+                    ]
+                }),
+
+            explanation:
+                "AB is a side of the shape. It connects vertices A and B."
+        },
+
+        {
+            type: "text",
+            text:
+                "A vertex is a point where two sides meet. A vertex is one of the corners of a shape."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 220,
+                    scale: 40,
+
+                    points: [
+                        { id: "A", x: 1, y: 1, label: "A" },
+                        { id: "B", x: 5, y: 1, label: "B" },
+                        { id: "C", x: 5, y: 4, label: "C" },
+                        { id: "D", x: 1, y: 4, label: "D" }
+                    ],
+
+                    segments: [
+                        { from: "A", to: "B" },
+                        { from: "B", to: "C" },
+                        { from: "C", to: "D" },
+                        { from: "D", to: "A" }
+                    ]
+                }),
+
+            explanation:
+                "B is a vertex because sides AB and BC meet at B."
+        },
+
+        {
+            type: "text",
+            text:
+                "An angle is the opening between two sides that meet at a vertex."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 220,
+                    scale: 40,
+
+                    points: [
+                        { id: "A", x: 1, y: 1, label: "A" },
+                        { id: "B", x: 5, y: 1, label: "B" },
+                        { id: "C", x: 5, y: 4, label: "C" },
+                        { id: "D", x: 1, y: 4, label: "D" }
+                    ],
+
+                    segments: [
+                        { from: "A", to: "B" },
+                        { from: "B", to: "C" },
+                        { from: "C", to: "D" },
+                        { from: "D", to: "A" }
+                    ],
+
+                    angles: [
+                        {
+                            vertex: "B",
+                            from: "A",
+                            to: "C",
+                            label: "ABC"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "Angle ABC is the angle at vertex B. It is formed by sides BA and BC."
+        },
+
+        {
+            type: "text",
+            text:
+                "We can name a side using the letters of its endpoints. For example, the side connecting A and B is side AB."
+        },
+
+        {
+            type: "text",
+            text:
+                "We can name a vertex using its letter. For example, B is the name of this vertex."
+        },
+
+        {
+            type: "text",
+            text:
+                "We can name an angle using three letters. The letter for the vertex goes in the middle. For example, angle ABC has vertex B."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 360,
+                    height: 260,
+                    scale: 45,
+
+                    points: [
+                        { id: "A", x: 1, y: 2, label: "A" },
+                        { id: "B", x: 3, y: 1, label: "B" },
+                        { id: "C", x: 6, y: 1.5, label: "C" },
+                        { id: "D", x: 5, y: 4, label: "D" },
+                        { id: "E", x: 2, y: 5, label: "E" }
+                    ],
+
+                    segments: [
+                        { from: "A", to: "B" },
+                        { from: "B", to: "C" },
+                        { from: "C", to: "D" },
+                        { from: "D", to: "E" },
+                        { from: "E", to: "A" }
+                    ],
+
+                    angles: [
+                        {
+                            vertex: "A",
+                            from: "E",
+                            to: "B",
+                            label: "EAB"
+                        },
+                        {
+                            vertex: "B",
+                            from: "A",
+                            to: "C",
+                            label: "ABC"
+                        },
+                        {
+                            vertex: "C",
+                            from: "B",
+                            to: "D",
+                            label: "BCD"
+                        },
+                        {
+                            vertex: "D",
+                            from: "C",
+                            to: "E",
+                            label: "CDE"
+                        },
+                        {
+                            vertex: "E",
+                            from: "D",
+                            to: "A",
+                            label: "DEA"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "This shape has 5 sides, 5 vertices, and 5 angles. Its vertices are A, B, C, D, and E. Its sides are AB, BC, CD, DE, and EA. Its angles are EAB, ABC, BCD, CDE, and DEA."
+        },
+
+        {
+            type: "text",
+            text:
+                "When you look at a shape, you can find its sides by following its outside boundary. The points where the sides meet are its vertices, and the openings at those vertices are its angles."
+        }
+    ]
+},
+            
+            {
+                id: "parts-of-a-shape-practice",
+
+                title:
+                    "Parts of a Shape Practice",
+
+                description:
+                    "Practice identifying sides, vertices, and angles.",
+
+                type: "practice",
+
+                practice: {
+                    generator: "shapeParts",
+                    interaction: "multiple-choice",
+                    problemCount: 10
+                },
+
+                difficultyMultiplier: 1
             }
         ]
     }

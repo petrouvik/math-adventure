@@ -1520,3 +1520,439 @@ function generateRayProblem() {
         }
     });
 }
+
+
+
+/////////////////////////////////////////////////////////
+
+function generateShape() {
+
+    const vertexCount =
+        3 + Math.floor(Math.random() * 4);
+
+    const points = [];
+
+    const centerX = 4;
+    const centerY = 3;
+
+    const radiusX = 2.5;
+    const radiusY = 2;
+
+    for (let i = 0; i < vertexCount; i++) {
+
+        const angle =
+            -Math.PI / 2 +
+            (2 * Math.PI * i) / vertexCount;
+
+        const radius =
+            0.9 + Math.random() * 0.3;
+
+        points.push({
+            id: String.fromCharCode(65 + i),
+
+            x:
+                centerX +
+                Math.cos(angle) *
+                radiusX *
+                radius,
+
+            y:
+                centerY +
+                Math.sin(angle) *
+                radiusY *
+                radius,
+
+            label:
+                String.fromCharCode(65 + i)
+        });
+    }
+
+    const segments = [];
+
+    for (let i = 0; i < vertexCount; i++) {
+
+        segments.push({
+            from:
+                points[i].id,
+
+            to:
+                points[
+                    (i + 1) % vertexCount
+                ].id
+        });
+    }
+
+    return {
+        points,
+        segments,
+        vertexCount
+    };
+}
+function generateSideCountProblem(shape) {
+
+    const expression =
+        createGeometrySvg({
+            width: 360,
+            height: 280,
+            scale: 45,
+
+            points: shape.points,
+            segments: shape.segments
+        });
+
+    return {
+        prompt: `
+            <p>
+                How many sides does this shape have?
+            </p>
+            <br>
+            ${expression}
+
+        `,
+
+        answer:
+            shape.vertexCount,
+
+        choices:
+            generateNumberChoices(
+                shape.vertexCount
+            ),
+        explanation: {}
+    };
+}
+function generateVertexCountProblem(shape) {
+
+    const expression =
+        createGeometrySvg({
+            width: 360,
+            height: 280,
+            scale: 45,
+
+            points: shape.points,
+            segments: shape.segments
+        });
+
+    return {
+        prompt: `
+            <p>
+                How many vertices does this shape have?
+            </p>
+            <br>
+            ${expression}
+
+        `,
+
+        answer:
+            shape.vertexCount,
+
+        choices:
+            generateNumberChoices(
+                shape.vertexCount
+            ),
+        explanation: {}
+            
+    };
+}
+function generateAngleCountProblem(shape) {
+
+    const expression =
+        createGeometrySvg({
+            width: 360,
+            height: 280,
+            scale: 45,
+
+            points: shape.points,
+            segments: shape.segments
+        });
+
+    return {
+        prompt: `
+            <p>
+                How many angles does this shape have?
+            </p>
+            <br>
+            ${expression}
+
+        `,
+
+        answer:
+            shape.vertexCount,
+
+        choices:
+            generateNumberChoices(
+                shape.vertexCount
+            ),
+        explanation: {}
+    };
+}
+function generateNumberChoices(answer) {
+
+    const choices = new Set();
+
+    choices.add(answer);
+
+    while (choices.size < 4) {
+
+        const offset =
+            Math.floor(
+                Math.random() * 5
+            ) - 2;
+
+        const choice =
+            answer + offset;
+
+        if (choice > 0) {
+            choices.add(choice);
+        }
+    }
+
+    return shuffle(
+        [...choices]
+    );
+}
+function generateMarkedPartProblem(shape) {
+
+    const types = [
+        "side",
+        "vertex",
+        "angle"
+    ];
+
+    const markedType =
+        types[
+            Math.floor(
+                Math.random() * types.length
+            )
+        ];
+
+    const markedIndex =
+        Math.floor(
+            Math.random() *
+            shape.vertexCount
+        );
+
+    const points =
+        shape.points.map(point => ({
+            ...point
+        }));
+
+    const segments =
+        shape.segments.map(segment => ({
+            ...segment
+        }));
+
+    const angles = [];
+
+    if (markedType === "vertex") {
+
+        points[markedIndex].label = "?";
+
+    }
+
+    if (markedType === "side") {
+
+        segments[markedIndex].label = "?";
+
+    }
+
+    if (markedType === "angle") {
+
+        for (let i = 0; i < shape.vertexCount; i++) {
+
+            angles.push(
+                createShapeAngle(
+                    shape,
+                    i,
+                    i === markedIndex
+                        ? "?"
+                        : null
+                )
+            );
+        }
+    }
+
+    const expression =
+        createGeometrySvg({
+            width: 360,
+            height: 280,
+            scale: 45,
+
+            points,
+            segments,
+            angles
+        });
+
+    return {
+        prompt: `
+            <p>
+                What is marked with a question mark?
+            </p>
+            <br>
+            ${expression}
+
+        `,
+
+        answer:
+            capitalize(markedType),
+
+        choices: [
+            "Side",
+            "Vertex",
+            "Angle"
+        ],
+        explanation: {}
+    };
+}
+function createShapeAngle(
+    shape,
+    index,
+    label = null
+) {
+    const count =
+        shape.vertexCount;
+
+    const previous =
+        shape.points[
+            (index - 1 + count) % count
+        ].id;
+
+    const current =
+        shape.points[index].id;
+
+    const next =
+        shape.points[
+            (index + 1) % count
+        ].id;
+
+    return {
+        vertex: current,
+        from: previous,
+        to: next,
+        label
+    };
+}
+function generateMarkedAngleNameProblem(shape) {
+
+    const markedIndex =
+        Math.floor(
+            Math.random() *
+            shape.vertexCount
+        );
+
+    const angles = [];
+
+    for (let i = 0; i < shape.vertexCount; i++) {
+
+        angles.push(
+            createShapeAngle(
+                shape,
+                i,
+                i === markedIndex
+                    ? "?"
+                    : null
+            )
+        );
+    }
+
+    const expression =
+        createGeometrySvg({
+            width: 360,
+            height: 280,
+            scale: 45,
+
+            points: shape.points,
+            segments: shape.segments,
+            angles
+        });
+
+    const answer =
+        getAngleName(
+            shape,
+            markedIndex
+        );
+
+    const choices =
+        generateAngleChoices(
+            shape,
+            markedIndex
+        );
+
+    return {
+        prompt: `
+            <p>
+                What is the name of the marked angle?
+            </p>
+            <br>
+            ${expression}
+
+        `,
+
+        answer,
+        choices,
+        explanation: {}
+    };
+}
+function getAngleName(shape, index) {
+
+    const count =
+        shape.vertexCount;
+
+    const previous =
+        shape.points[
+            (index - 1 + count) % count
+        ].id;
+
+    const current =
+        shape.points[index].id;
+
+    const next =
+        shape.points[
+            (index + 1) % count
+        ].id;
+
+    return (
+        previous +
+        current +
+        next
+    );
+}
+function generateAngleChoices(
+    shape,
+    answerIndex
+) {
+    const choices = new Set();
+
+    choices.add(
+        getAngleName(
+            shape,
+            answerIndex
+        )
+    );
+
+    while (choices.size < 4) {
+
+        const index =
+            Math.floor(
+                Math.random() *
+                shape.vertexCount
+            );
+
+        choices.add(
+            getAngleName(
+                shape,
+                index
+            )
+        );
+    }
+
+    return shuffle(
+        [...choices]
+    );
+}
+function capitalize(text) {
+
+    return (
+        text.charAt(0).toUpperCase() +
+        text.slice(1)
+    );
+}

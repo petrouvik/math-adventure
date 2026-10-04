@@ -4197,6 +4197,147 @@ const COURSES = {
     },
 
     difficultyMultiplier: 1
+},
+{
+    id: "length-and-units",
+
+    title:
+        "Length and Units",
+
+    description:
+        "Learn how we measure length and which units to use.",
+
+    type: "explanation",
+
+    content: [
+
+        {
+            type: "text",
+            text:
+                "Length tells us how long or short something is. We measure length using units."
+        },
+
+        {
+            type: "text",
+            text:
+                "A millimetre, written as mm, is a very small unit of length. It is useful for measuring very small things or small distances."
+        },
+
+        {
+            type: "example",
+            expression:
+                "1 mm",
+
+            explanation:
+                "A millimetre is one thousandth of a metre."
+        },
+
+        {
+            type: "text",
+            text:
+                "A centimetre, written as cm, is larger than a millimetre. There are 10 millimetres in 1 centimetre."
+        },
+
+        {
+            type: "example",
+            expression:
+                "1 cm = 10 mm",
+
+            explanation:
+                "One centimetre is equal to ten millimetres."
+        },
+
+        {
+            type: "text",
+            text:
+                "A decimetre, written as dm, is larger than a centimetre. There are 10 centimetres in 1 decimetre."
+        },
+
+        {
+            type: "example",
+            expression:
+                "1 dm = 10 cm",
+
+            explanation:
+                "One decimetre is equal to ten centimetres."
+        },
+
+        {
+            type: "text",
+            text:
+                "A metre, written as m, is a common unit for measuring the length or height of larger objects. There are 10 decimetres in 1 metre."
+        },
+
+        {
+            type: "example",
+            expression:
+                "1 m = 10 dm",
+
+            explanation:
+                "One metre is equal to ten decimetres."
+        },
+
+        {
+            type: "text",
+            text:
+                "A kilometre, written as km, is much larger than a metre. Kilometres are useful for measuring long distances, such as the distance between two places."
+        },
+
+        {
+            type: "example",
+            expression:
+                "1 km = 1000 m",
+
+            explanation:
+                "One kilometre is equal to one thousand metres."
+        },
+
+        {
+            type: "text",
+            text:
+                "We can also convert a measurement from one unit to another. When we convert a measurement, the length stays the same; only the unit changes."
+        },
+
+        {
+            type: "example",
+            expression:
+                "2 m = 20 dm = 200 cm = 2000 mm",
+
+            explanation:
+                "The same length can be written using different units."
+        },
+
+        {
+            type: "text",
+            text:
+                "The unit we choose depends on what we are measuring. Small objects are usually measured in millimetres or centimetres, larger objects in centimetres or metres, and long distances in kilometres."
+        },
+
+        {
+            type: "text",
+            text:
+                "Remember: 10 mm = 1 cm, 10 cm = 1 dm, 10 dm = 1 m, and 1000 m = 1 km."
+        }
+    ]
+},
+{
+    id: "length-and-units-practice",
+
+    title:
+        "Length and Units Practice",
+
+    description:
+        "Practice converting measurements between different units.",
+
+    type: "practice",
+
+    practice: {
+        generator: "lengthUnits",
+        interaction: "multiple-choice",
+        problemCount: 10
+    },
+
+    difficultyMultiplier: 1
 }
             
         ]

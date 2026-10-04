@@ -2149,6 +2149,211 @@ function generateAdjacentOppositeSidesProblems(
 
     return problems;
 }
+function generateLengthUnitsProblem(settings) {
+
+    /* ---------- settings ---------- */
+
+    const MAX_NUMBER = 5000;      // largest number shown anywhere (question or choices)
+    const MAX_EXPONENT_GAP = 3;   // units may be at most 10^3 apart (no km <-> mm)
+
+    // exp = power of ten of the unit, measured in mm
+    const UNITS = [
+        { name: "mm", exp: 0 },
+        { name: "cm", exp: 1 },
+        { name: "dm", exp: 2 },
+        { name: "m",  exp: 3 },
+        { name: "km", exp: 6 }
+    ];
+
+    /* ---------- number helpers ---------- */
+
+    function cleanNumber(x) {
+        return Number(x.toPrecision(12));    // removes float noise like 0.07000000000000001
+    }
+
+    // x * 10^power, with no floating-point noise
+    function shiftPower(x, power) {
+        return cleanNumber(power >= 0 ? x * 10 ** power : x / 10 ** -power);
+    }
+
+    // Positive, not above MAX_NUMBER, and at most `maxDecimals` decimal places
+    function isNiceNumber(x, maxDecimals) {
+        const scaled = cleanNumber(x * 10 ** maxDecimals);
+        return x > 0 && x <= MAX_NUMBER && scaled >= 1 && Number.isInteger(scaled);
+    }
+
+    // One place to change if you want decimal commas for Serbian
+    function formatNumber(x) {
+        return String(cleanNumber(x));
+    }
+
+    function lengthInMm(number, unit) {
+        return shiftPower(number, unit.exp);
+    }
+
+    function isAllowedPair(a, b) {
+        return a !== b && Math.abs(a.exp - b.exp) <= MAX_EXPONENT_GAP;
+    }
+
+    /* ---------- problem setup ---------- */
+
+    function randomConversion() {
+        // Pick uniformly from all allowed (source, target) pairs, so rare
+        // units like km don't show up more often than they should.
+        const pairs = [];
+        for (const from of UNITS) {
+            for (const to of UNITS) {
+                if (isAllowedPair(from, to)) pairs.push([from, to]);
+            }
+        }
+
+        const [source, target] = pick(pairs);
+
+        // 1 source unit = 10^gap target units
+        const gap = source.exp - target.exp;
+
+        // The value is chosen directly so the answer always has at most one
+        // decimal place (no rejection loop, no float checks).
+        // Converting to a smaller unit: keep the answer under MAX_NUMBER.
+        // Converting to a larger unit: use multiples that give clean decimals,
+        // e.g. 10, 20, 30 cm -> 0.1, 0.2, 0.3 m.
+        const step = gap < 0 ? 10 ** (-gap - 1) : 1;
+        const maxValue = gap > 0
+            ? Math.min(100, Math.floor(MAX_NUMBER / 10 ** gap))
+            : Math.min(MAX_NUMBER, Math.max(100, step * 20));
+
+        const value = step * (1 + Math.floor(Math.random() * Math.floor(maxValue / step)));
+        const answer = shiftPower(value, gap);
+
+        return {
+            source,
+            target,
+            gap,
+            value,
+            answer,
+            plausibleUnits: UNITS.filter(unit => isAllowedPair(source, unit))
+        };
+    }
+
+    /* ---------- decoys ---------- */
+
+    // Each decoy is a typical mistake:
+    //   - multiplied instead of divided (or the other way round)
+    //   - forgot to convert (same number, new unit)
+    //   - decimal point in the wrong place (one or two places off)
+    //   - wrong direction AND a slipped decimal point
+    // A decoy is rejected if it is too big or too small, has too many
+    // decimals, or has the same length as the correct answer or another
+    // decoy (50 cm and 500 mm are the same length).
+    function makeDecoys(problem, mode) {
+        const { target, gap, value, answer, plausibleUnits } = problem;
+
+        const seen = new Set([lengthInMm(answer, target)]);
+
+        const inverted = shiftPower(value, -gap);
+
+        const common = [
+            value,
+            shiftPower(answer, 1),
+            shiftPower(answer, -1)
+        ];
+
+        const rarer = [
+            shiftPower(answer, 2),
+            shiftPower(answer, -2),
+            shiftPower(inverted, 1),
+            shiftPower(inverted, -1),
+            shiftPower(answer, 3),
+            shiftPower(answer, -3)
+        ];
+
+        shuffle(common);
+        shuffle(rarer);
+
+        const decoys = [];
+
+        // The inverted-direction mistake always goes first when it is usable.
+        for (const number of [inverted, ...common, ...rarer]) {
+            if (decoys.length === 3) break;
+            if (!isNiceNumber(number, 2)) continue;
+
+            const length = lengthInMm(number, target);
+            if (seen.has(length)) continue;
+            seen.add(length);
+
+            if (mode === "conversion") {
+                decoys.push(`${formatNumber(number)} ${target.name}`);
+                continue;
+            }
+
+            // Equivalent-measurement mode: show the wrong length in a random
+            // plausible unit, so the student has to convert each choice.
+            const units = [...plausibleUnits];
+            shuffle(units);
+
+            const unit = units.find(
+                u => isNiceNumber(shiftPower(length, -u.exp), 2)
+            ) ?? target;
+
+            decoys.push(`${formatNumber(shiftPower(length, -unit.exp))} ${unit.name}`);
+        }
+
+        return decoys;
+    }
+
+    /* ---------- generator ---------- */
+
+    const mode = Math.random() < 0.7
+        ? "conversion"
+        : "equivalentMeasurement";
+
+    const problem = randomConversion();
+    const { source, target, value, answer } = problem;
+
+    const correctChoice = `${formatNumber(answer)} ${target.name}`;
+
+    const choices = [correctChoice, ...makeDecoys(problem, mode)];
+    shuffle(choices);
+
+    const prompt = mode === "conversion"
+        ? `
+            <p>
+                How much is
+                <strong>${formatNumber(value)} ${source.name}</strong>
+                in ${target.name}?
+            </p>
+        `
+        : `
+            <p>
+                Which measurement is equal to
+                <strong>${formatNumber(value)} ${source.name}</strong>?
+            </p>
+        `;
+
+    return {
+        prompt,
+        answer: correctChoice,
+        choices,
+        explanation: {}
+    };
+}
+function generateLengthUnitsProblems(
+    settings,
+    count
+) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+
+        problems.push(
+            generateLengthUnitsProblem(
+                settings
+            )
+        );
+    }
+
+    return problems;
+}
 
 const GENERATORS = {
     "number-reading": {
@@ -2346,6 +2551,14 @@ const GENERATORS = {
     "adjacentOppositeSides":{
         generate(settings, count) {
             return generateAdjacentOppositeSidesProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "lengthUnits":{
+        generate(settings, count) {
+            return generateLengthUnitsProblems(
                 settings,
                 count
             );

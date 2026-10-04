@@ -1854,6 +1854,201 @@ function generateShapePartsProblems(settings, count) {
 
     return problems;
 }
+function generateAngleProblem(settings) {
+
+    const types = [
+        "acute",
+        "right",
+        "obtuse",
+        "straight"
+    ];
+
+    const type =
+        types[
+            Math.floor(
+                Math.random() * types.length
+            )
+        ];
+
+
+    let degrees;
+
+    switch (type) {
+
+        case "acute":
+            degrees =
+                20 +
+                Math.random() * (89 - 20);
+            break;
+
+        case "right":
+            degrees = 90;
+            break;
+
+        case "obtuse":
+            degrees =
+                91 +
+                Math.random() * (179 - 91);
+            break;
+
+        case "straight":
+            degrees = 180;
+            break;
+    }
+
+
+    /*
+     * Show the measurement only when the angle
+     * is close to 90° or 180°.
+     */
+    const showMeasurement =
+        (degrees >= 80 && degrees <= 100) ||
+        (degrees >= 170 && degrees <= 180);
+
+
+    /*
+     * Pick a random orientation.
+     *
+     * SVG uses radians for trigonometric functions,
+     * so convert the angle to radians here.
+     */
+    const rotation =
+        Math.random() * Math.PI * 2;
+
+
+    const radians =
+        degrees * Math.PI / 180;
+
+
+    const length = 2;
+
+
+    const vertex = {
+        id: "B",
+        x: 4,
+        y: 3
+    };
+
+
+    /*
+     * The first ray points in the random direction.
+     */
+    const pointA = {
+        id: "A",
+        x:
+            vertex.x +
+            Math.cos(rotation) * length,
+        y:
+            vertex.y +
+            Math.sin(rotation) * length
+    };
+
+
+    /*
+     * The second ray is rotated by the
+     * generated angle.
+     */
+    const pointC = {
+        id: "C",
+        x:
+            vertex.x +
+            Math.cos(rotation + radians) * length,
+        y:
+            vertex.y +
+            Math.sin(rotation + radians) * length
+    };
+
+
+    const expression =
+        createGeometrySvg({
+
+            width: 360,
+            height: 280,
+            scale: 45,
+
+            points: [
+                {
+                    ...pointA,
+                    visible: false
+                },
+                {
+                    ...vertex,
+                    visible: false
+                },
+                {
+                    ...pointC,
+                    visible: false
+                }
+            ],
+
+            rays: [
+                {
+                    from: "B",
+                    through: "A"
+                },
+                {
+                    from: "B",
+                    through: "C"
+                }
+            ],
+
+            angles: [
+                {
+                    vertex: "B",
+                    from: "A",
+                    to: "C",
+                    label:
+                        showMeasurement
+                            ? `${Math.round(degrees)}°`
+                            : null
+                }
+            ]
+        });
+
+
+    const names = {
+        acute: "Acute",
+        right: "Right",
+        obtuse: "Obtuse",
+        straight: "Straight"
+    };
+
+
+    return {
+        prompt: `
+            ${expression}
+
+            <p>
+                What kind of angle is shown?
+            </p>
+        `,
+
+        answer:
+            names[type],
+
+        choices: [
+            "Acute",
+            "Right",
+            "Obtuse",
+            "Straight"
+        ],
+
+        explanation: {}
+    };
+}
+function generateAngleProblems(settings, count) {
+
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+
+        problems.push(
+            generateAngleProblem(settings)
+        );
+    }
+
+    return problems;
+}
 
 const GENERATORS = {
     "number-reading": {
@@ -2035,6 +2230,14 @@ const GENERATORS = {
     "shapeParts":{
         generate(settings, count) {
             return generateShapePartsProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "angles":{
+        generate(settings, count) {
+            return generateAngleProblems(
                 settings,
                 count
             );

@@ -906,16 +906,6 @@ function pickVariableName() {
     return VARIABLE_NAMES[Math.floor(Math.random() * VARIABLE_NAMES.length)];
 }
 
-function getOperationSymbol(op) {
-    switch (op) {
-        case "addition": return "+";
-        case "subtraction": return "-";
-        case "multiplication": return "×";
-        case "division": return "÷";
-        default: return "+";
-    }
-}
-
 // Each case builder returns { value, other, result } such that the
 // expression is guaranteed valid (non-negative, integer division) for the
 // requested variable position. Values are built from the answer outward
@@ -1264,7 +1254,7 @@ function asTerm(expression) {
 
 // Four choices: both operations of the answer's kind applied to the correct
 // operand and to one decoy operand (the first candidate that differs from it).
-function buildChoices(operation, answerTerm, decoyTerms) {
+function buildChoicesOperations(operation, answerTerm, decoyTerms) {
     const decoyTerm = decoyTerms.map(String).find(term => term !== String(answerTerm));
     const kind = Object.keys(PRECEDENCE).filter(op => PRECEDENCE[op] === PRECEDENCE[operation]);
     return [answerTerm, decoyTerm].flatMap(term => kind.map(op => `${SYMBOL[op]}${term}`));
@@ -1297,7 +1287,7 @@ function buildTransformationSteps(transformation, inner, { value, expressionOnLe
         return {
             steps: [{
                 equation,
-                choices: buildChoices(undo, operand, [value, innerTerm]),
+                choices: buildChoicesOperations(undo, operand, [value, innerTerm]),
                 answer: `${SYMBOL[undo]}${operand}`,
                 resultingEquation: join(inner.text, newValue)
             }],
@@ -1313,13 +1303,13 @@ function buildTransformationSteps(transformation, inner, { value, expressionOnLe
         steps: [
             {
                 equation,
-                choices: buildChoices(undo, innerTerm, [value, operand]),
+                choices: buildChoicesOperations(undo, innerTerm, [value, operand]),
                 answer: `${SYMBOL[undo]}${innerTerm}`,
                 resultingEquation: middle
             },
             {
                 equation: middle,
-                choices: buildChoices(operation, value, [innerTerm, operand]),
+                choices: buildChoicesOperations(operation, value, [innerTerm, operand]),
                 answer: `${SYMBOL[operation]}${value}`,
                 resultingEquation: join(newValue, inner.text)
             }
@@ -1955,4 +1945,155 @@ function capitalize(text) {
         text.charAt(0).toUpperCase() +
         text.slice(1)
     );
+}
+///////////////////////////////////////////////////////////////
+/* ---------- settings ---------- */
+
+// renderSegmentLabel puts a label on a fixed side of from -> to. Since every
+// segment here goes around the shape the same way, all labels land on the same
+// side. This constant picks the winding that puts them OUTSIDE the shape.
+// If your labels end up inside, change it to -1.
+const OUTSIDE_LABEL_WINDING = 1;
+
+const MIN_SIDE_LENGTH = 1.6;  // in diagram units, keeps side labels readable
+const MIN_ANGLE = 55;         // degrees, avoids needle-sharp corners
+const MAX_ANGLE = 130;        // degrees, avoids near-straight corners
+
+/* ---------- helpers ---------- */
+
+function pick(items) {
+    return items[Math.floor(Math.random() * items.length)];
+}
+
+function round1(value) {
+    return Math.round(value * 10) / 10;
+}
+
+// Four consecutive letters (ABCD, EFGH, PQRS, WXYZ...), skipping I and O
+// because they look like 1 and 0.
+function randomLetterRun(length) {
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    const runs = [];
+
+    for (let start = 0; start + length <= alphabet.length; start++) {
+        const run = alphabet.slice(start, start + length).split("");
+        if (!run.includes("I") && !run.includes("O")) runs.push(run);
+    }
+
+    return pick(runs);
+}
+
+function signedArea(points) {
+    let sum = 0;
+    for (let i = 0; i < points.length; i++) {
+        const a = points[i];
+        const b = points[(i + 1) % points.length];
+        sum += a.x * b.y - b.x * a.y;
+    }
+    return sum / 2;
+}
+
+// Convex, no tiny sides, no extreme angles.
+function isGoodQuadrilateral(p) {
+    let turn = 0;
+
+    for (let i = 0; i < p.length; i++) {
+        const a = p[i];
+        const b = p[(i + 1) % p.length];
+        const c = p[(i + 2) % p.length];
+
+        const abx = b.x - a.x, aby = b.y - a.y;
+        const bcx = c.x - b.x, bcy = c.y - b.y;
+        const abLen = Math.hypot(abx, aby);
+        const bcLen = Math.hypot(bcx, bcy);
+
+        if (abLen < MIN_SIDE_LENGTH) return false;
+
+        // All corners must turn the same way (rules out dents and bow-ties)
+        const cross = abx * bcy - aby * bcx;
+        if (turn === 0) turn = Math.sign(cross);
+        else if (Math.sign(cross) !== turn) return false;
+
+        // Interior angle at b
+        const cos = (-abx * bcx - aby * bcy) / (abLen * bcLen);
+        const angle = Math.acos(cos) * 180 / Math.PI;
+        if (angle < MIN_ANGLE || angle > MAX_ANGLE) return false;
+    }
+
+    return true;
+}
+
+// Jitter the corners of a square, stretch the result to a randomly sized
+// frame that fits the 360x260 canvas, and keep it only if it looks good.
+function randomConvexQuadrilateral() {
+    const unitSquare = [[0, 0], [1, 0], [1, 1], [0, 1]];
+
+    for (let attempt = 0; attempt < 200; attempt++) {
+        const raw = unitSquare.map(([x, y]) => ({
+            x: x + (Math.random() * 2 - 1) * 0.3,
+            y: y + (Math.random() * 2 - 1) * 0.3
+        }));
+
+        const minX = Math.min(...raw.map(p => p.x));
+        const maxX = Math.max(...raw.map(p => p.x));
+        const minY = Math.min(...raw.map(p => p.y));
+        const maxY = Math.max(...raw.map(p => p.y));
+
+        const width = 4.4 + Math.random() * 1.2;
+        const height = 2.8 + Math.random() * 0.9;
+
+        const points = raw.map(p => ({
+            x: round1(4 - width / 2 + (p.x - minX) / (maxX - minX) * width),
+            y: round1(2.9 - height / 2 + (p.y - minY) / (maxY - minY) * height)
+        }));
+
+        if (isGoodQuadrilateral(points)) return points;
+    }
+
+    // Practically never reached
+    return [
+        { x: 1.5, y: 1.2 },
+        { x: 6.5, y: 1.2 },
+        { x: 6.5, y: 4.5 },
+        { x: 1.5, y: 4.5 }
+    ];
+}
+
+/* ---------- answer choices ---------- */
+
+// "Which pair is adjacent to items[index]?"
+// Decoys: the two near-misses (one neighbour plus the opposite item) and
+// one pair that includes the item itself.
+// Every pair is written in the same order (position around the shape), so
+// the formatting never gives the answer away.
+function adjacentPairChoices(items, index) {
+    const n = items.length;
+    const key = pair => pair.join(",");
+
+    const correct = [(index + n - 1) % n, (index + 1) % n].sort((a, b) => a - b);
+
+    const decoys = [];
+    for (let a = 0; a < n; a++) {
+        for (let b = a + 1; b < n; b++) {
+            if (key([a, b]) !== key(correct)) decoys.push([a, b]);
+        }
+    }
+
+    const nearMisses = decoys.filter(pair => !pair.includes(index));
+    const weak = decoys.filter(pair => pair.includes(index));
+    shuffle(nearMisses);
+    shuffle(weak);
+
+    const format = pair => pair.map(i => items[i]).join(" and ");
+    const choices = [correct, ...[...nearMisses, ...weak].slice(0, 3)].map(format);
+
+    shuffle(choices);
+    return { answer: format(correct), choices };
+}
+
+// "Which one is opposite to items[index]?" The four items are the choices.
+function oppositeChoices(items, index) {
+    const choices = [...items];
+    shuffle(choices);
+    return { answer: items[(index + 2) % items.length], choices };
 }

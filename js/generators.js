@@ -2016,11 +2016,12 @@ function generateAngleProblem(settings) {
 
     return {
         prompt: `
-            ${expression}
-
             <p>
                 What kind of angle is shown?
             </p>
+            <br>
+            ${expression}
+
         `,
 
         answer:
@@ -2044,6 +2045,105 @@ function generateAngleProblems(settings, count) {
 
         problems.push(
             generateAngleProblem(settings)
+        );
+    }
+
+    return problems;
+}
+function generateAdjacentOppositeSidesProblem(settings) {
+    const type = pick([
+        "adjacentSide",
+        "oppositeSide",
+        "adjacentVertex",
+        "oppositeVertex"
+    ]);
+
+    const letters = randomLetterRun(4);
+    const n = letters.length;
+
+    // Shape: orient it so labels go outside, then start at a random corner
+    let shape = randomConvexQuadrilateral();
+    if (signedArea(shape) * OUTSIDE_LABEL_WINDING < 0) shape.reverse();
+
+    const shift = Math.floor(Math.random() * n);
+    shape = [...shape.slice(shift), ...shape.slice(0, shift)];
+
+    const points = shape.map((p, i) => ({
+        id: letters[i],
+        x: p.x,
+        y: p.y,
+        label: letters[i]
+    }));
+
+    // Side i joins vertex i and vertex i + 1
+    const sides = letters.map((letter, i) => letter + letters[(i + 1) % n]);
+
+    const segments = letters.map((letter, i) => ({
+        from: letter,
+        to: letters[(i + 1) % n],
+        label: sides[i]
+    }));
+
+    const svg = createGeometrySvg({
+        width: 360,
+        height: 260,
+        scale: 45,
+        points,
+        segments
+    });
+
+    const i = Math.floor(Math.random() * n);
+    let question;
+    let result;
+
+    switch (type) {
+        case "adjacentSide":
+            question = `Which pair of sides is adjacent to side ${sides[i]}?`;
+            result = adjacentPairChoices(sides, i);
+            break;
+
+        case "oppositeSide":
+            question = `Which side is opposite to side ${sides[i]}?`;
+            result = oppositeChoices(sides, i);
+            break;
+
+        case "adjacentVertex":
+            question = `Which pair of vertices is adjacent to vertex ${letters[i]}?`;
+            result = adjacentPairChoices(letters, i);
+            break;
+
+        case "oppositeVertex":
+            question = `Which vertex is opposite to vertex ${letters[i]}?`;
+            result = oppositeChoices(letters, i);
+            break;
+    }
+
+    return {
+        prompt: `
+            <p>
+                ${question}
+            </p>
+            <br>
+            ${svg}
+
+        `,
+        answer: result.answer,
+        choices: result.choices,
+        explanation: {}
+    };
+}
+function generateAdjacentOppositeSidesProblems(
+    settings,
+    count
+) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+
+        problems.push(
+            generateAdjacentOppositeSidesProblem(
+                settings
+            )
         );
     }
 
@@ -2238,6 +2338,14 @@ const GENERATORS = {
     "angles":{
         generate(settings, count) {
             return generateAngleProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "adjacentOppositeSides":{
+        generate(settings, count) {
+            return generateAdjacentOppositeSidesProblems(
                 settings,
                 count
             );

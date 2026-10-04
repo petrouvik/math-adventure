@@ -4022,6 +4022,181 @@ const COURSES = {
     },
 
     difficultyMultiplier: 1
+},
+{
+    id: "adjacent-and-opposite-sides",
+
+    title:
+        "Adjacent and Opposite Sides",
+
+    description:
+        "Learn which sides and vertices are next to each other.",
+
+    type: "explanation",
+
+    content: [
+
+        {
+            type: "text",
+            text:
+                "Some sides of a shape are next to each other, while other sides are farther apart. We can describe these relationships using the words adjacent and opposite."
+        },
+
+        {
+            type: "text",
+            text:
+                "Two sides are adjacent when they meet at a vertex. In other words, they are next to each other."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 360,
+                    height: 260,
+                    scale: 45,
+
+                    points: [
+                        { id: "A", x: 1, y: 1, label: "A" },
+                        { id: "B", x: 6, y: 1, label: "B" },
+                        { id: "C", x: 5, y: 4, label: "C" },
+                        { id: "D", x: 1, y: 4, label: "D" }
+                    ],
+
+                    segments: [
+                        { from: "A", to: "B", label: "AB" },
+                        { from: "B", to: "C", label: "BC" },
+                        { from: "C", to: "D", label: "CD" },
+                        { from: "D", to: "A", label: "DA" }
+                    ]
+                }),
+
+            explanation:
+                "Sides AB and BC are adjacent because they meet at vertex B. Sides AB and DA are also adjacent because they meet at vertex A."
+        },
+
+        {
+            type: "text",
+            text:
+                "Two sides are opposite when they do not meet and are not next to each other."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 360,
+                    height: 260,
+                    scale: 45,
+
+                    points: [
+                        { id: "A", x: 1, y: 1, label: "A" },
+                        { id: "B", x: 6, y: 1, label: "B" },
+                        { id: "C", x: 5, y: 4, label: "C" },
+                        { id: "D", x: 1, y: 4, label: "D" }
+                    ],
+
+                    segments: [
+                        { from: "A", to: "B", label: "AB" },
+                        { from: "B", to: "C", label: "BC" },
+                        { from: "C", to: "D", label: "CD" },
+                        { from: "D", to: "A", label: "DA" }
+                    ]
+                }),
+
+            explanation:
+                "Sides AB and CD are opposite. They do not meet and there are sides between them."
+        },
+
+        {
+            type: "text",
+            text:
+                "Opposite sides only exist when a shape has enough sides for some sides not to meet. A triangle does not have opposite sides."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 240,
+                    scale: 45,
+
+                    points: [
+                        { id: "A", x: 1, y: 4, label: "A" },
+                        { id: "B", x: 4, y: 1, label: "B" },
+                        { id: "C", x: 6, y: 4, label: "C" }
+                    ],
+
+                    segments: [
+                        { from: "A", to: "B", label: "AB" },
+                        { from: "B", to: "C", label: "BC" },
+                        { from: "C", to: "A", label: "CA" }
+                    ]
+                }),
+
+            explanation:
+                "A triangle has three sides, and every pair of its sides meets at a vertex. Therefore, a triangle has no opposite sides."
+        },
+
+        {
+            type: "text",
+            text:
+                "We can also talk about adjacent vertices. Two vertices are adjacent when they are connected by a side."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 360,
+                    height: 260,
+                    scale: 45,
+
+                    points: [
+                        { id: "A", x: 1, y: 1, label: "A" },
+                        { id: "B", x: 6, y: 1, label: "B" },
+                        { id: "C", x: 5, y: 4, label: "C" },
+                        { id: "D", x: 1, y: 4, label: "D" }
+                    ],
+
+                    segments: [
+                        { from: "A", to: "B" },
+                        { from: "B", to: "C" },
+                        { from: "C", to: "D" },
+                        { from: "D", to: "A" }
+                    ]
+                }),
+
+            explanation:
+                "Vertices A and B are adjacent because side AB connects them. Vertices A and C are not adjacent because there is no side connecting them."
+        },
+
+        {
+            type: "text",
+            text:
+                "Remember: adjacent sides meet, while opposite sides do not meet. Adjacent vertices are connected by a side."
+        }
+    ]
+},
+{
+    id: "adjacent-and-opposite-sides-practice",
+
+    title:
+        "Adjacent and Opposite Sides Practice",
+
+    description:
+        "Practice identifying adjacent and opposite sides and vertices.",
+
+    type: "practice",
+
+    practice: {
+        generator: "adjacentOppositeSides",
+        interaction: "multiple-choice",
+        problemCount: 10
+    },
+
+    difficultyMultiplier: 1
 }
             
         ]

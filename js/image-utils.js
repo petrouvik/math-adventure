@@ -365,83 +365,128 @@ function createGeometrySvg({
         `;
     }
     function renderLine(line) {
+
         const first =
             toSvg(getPoint(line.through[0]));
 
         const second =
             toSvg(getPoint(line.through[1]));
 
-        const dx = second.x - first.x;
-        const dy = second.y - first.y;
+        const dx =
+            second.x - first.x;
+
+        const dy =
+            second.y - first.y;
+
 
         if (dx === 0 && dy === 0) {
             return "";
         }
 
-        const intersections = [];
 
-        function addIntersection(t) {
-            const x = first.x + dx * t;
-            const y = first.y + dy * t;
+        /*
+        * Find the range of t for which:
+        *
+        * x = first.x + dx * t
+        * y = first.y + dy * t
+        *
+        * stays inside the SVG rectangle.
+        */
+        let tMin = -Infinity;
+        let tMax = Infinity;
 
-            if (
-                x >= 0 &&
-                x <= width &&
-                y >= 0 &&
-                y <= height
-            ) {
-                intersections.push({ x, y });
+
+        function clip(p, q) {
+
+            if (p === 0) {
+                return q >= 0;
             }
+
+
+            const r = q / p;
+
+
+            if (p < 0) {
+
+                if (r > tMax) {
+                    return false;
+                }
+
+                if (r > tMin) {
+                    tMin = r;
+                }
+
+            } else {
+
+                if (r < tMin) {
+                    return false;
+                }
+
+                if (r < tMax) {
+                    tMax = r;
+                }
+            }
+
+
+            return true;
         }
 
-        if (dx !== 0) {
-            addIntersection(
-                (0 - first.x) / dx
-            );
 
-            addIntersection(
-                (width - first.x) / dx
-            );
-        }
-
-        if (dy !== 0) {
-            addIntersection(
-                (0 - first.y) / dy
-            );
-
-            addIntersection(
-                (height - first.y) / dy
-            );
-        }
-
-        const unique =
-            intersections.filter(
-                (point, index, array) =>
-                    array.findIndex(other =>
-                        Math.abs(
-                            other.x - point.x
-                        ) < 0.001 &&
-                        Math.abs(
-                            other.y - point.y
-                        ) < 0.001
-                    ) === index
-            );
-
-        if (unique.length < 2) {
+        /*
+        * 0 <= x <= width
+        */
+        if (!clip(-dx, first.x)) {
             return "";
         }
 
-        const start = unique[0];
-        const end = unique[1];
+        if (!clip(dx, width - first.x)) {
+            return "";
+        }
+
+
+        /*
+        * 0 <= y <= height
+        */
+        if (!clip(-dy, first.y)) {
+            return "";
+        }
+
+        if (!clip(dy, height - first.y)) {
+            return "";
+        }
+
+
+        if (
+            !Number.isFinite(tMin) ||
+            !Number.isFinite(tMax) ||
+            tMin === tMax
+        ) {
+            return "";
+        }
+
+
+        const start = {
+            x: first.x + dx * tMin,
+            y: first.y + dy * tMin
+        };
+
+
+        const end = {
+            x: first.x + dx * tMax,
+            y: first.y + dy * tMax
+        };
+
 
         const label =
             line.label
                 ? renderLineLabel(
                     line,
                     start,
-                    end
+                    end,
+                    { width, height }
                 )
                 : "";
+
 
         return `
             <line
@@ -456,47 +501,67 @@ function createGeometrySvg({
             ${label}
         `;
     }
-    function renderLineLabel(
-        line,
-        start,
-        end
-    ) {
+    function renderLineLabel(line, start, end, bounds) {
         const dx = end.x - start.x;
         const dy = end.y - start.y;
 
-        const length =
-            Math.sqrt(dx * dx + dy * dy);
+        const length = Math.sqrt(dx * dx + dy * dy);
+        if (length === 0) return "";
 
-        let nx = -dy / length;
-        let ny = dx / length;
+        const ux = dx / length;
+        const uy = dy / length;
 
-        // Keep the label on the upper side
+        // Where the line runs inside the canvas, as distances measured from
+        // `start` along the line (they can be negative, behind `start`).
+        // Without bounds, the line is treated as just the segment start -> end.
+        function visibleRange() {
+            if (!bounds) return [0, length];
+
+            let tMin = -Infinity;
+            let tMax = Infinity;
+
+            if (ux !== 0) {
+                const t1 = (0 - start.x) / ux;
+                const t2 = (bounds.width - start.x) / ux;
+                tMin = Math.max(tMin, Math.min(t1, t2));
+                tMax = Math.min(tMax, Math.max(t1, t2));
+            }
+
+            if (uy !== 0) {
+                const t1 = (0 - start.y) / uy;
+                const t2 = (bounds.height - start.y) / uy;
+                tMin = Math.max(tMin, Math.min(t1, t2));
+                tMax = Math.min(tMax, Math.max(t1, t2));
+            }
+
+            return tMin < tMax ? [tMin, tMax] : [0, length];
+        }
+
+        const [tMin, tMax] = visibleRange();
+
+        const endMargin = 40;  // gap between the label and the end of the line
+        const offset = 12;     // distance away from the line
+
+        // Near the `end` side of the line, but never past the middle
+        // of the visible part
+        const t = Math.max(tMax - endMargin, (tMin + tMax) / 2);
+
+        // Normal to the line, preferring the upper side of the screen
+        let nx = -uy;
+        let ny = ux;
+
         if (ny > 0) {
             nx = -nx;
             ny = -ny;
         }
 
-        const offset = 12;
+        const x = start.x + ux * t + nx * offset;
+        const y = start.y + uy * t + ny * offset;
 
-        const x =
-            (start.x + end.x) / 2 +
-            nx * offset;
-
-        const y =
-            (start.y + end.y) / 2 +
-            ny * offset;
-
-        let angle =
-            Math.atan2(dy, dx) *
-            180 / Math.PI;
-
-        // Keep text readable
-        if (
-            angle > 90 ||
-            angle < -90
-        ) {
-            angle += 180;
-        }
+        // Rotate so the top of the text points along the normal, away from
+        // the line. The angle always lands in [-90°, 90°], so the text is
+        // never upside down.
+        const angle = Math.atan2(nx, -ny) * 180 / Math.PI;
 
         return `
             <text
@@ -506,13 +571,7 @@ function createGeometrySvg({
                 dominant-baseline="middle"
                 fill="currentColor"
                 font-size="16"
-                transform="
-                    rotate(
-                        ${angle}
-                        ${x}
-                        ${y}
-                    )
-                "
+                transform="rotate(${angle} ${x} ${y})"
             >
                 ${line.label}
             </text>
@@ -720,11 +779,7 @@ function createGeometrySvg({
         };
 
         const label = ray.label
-            ? renderRayLabel(
-                ray,
-                from,
-                through
-            )
+            ? renderRayLabel(ray, from, through, { width, height })
             : "";
 
         return `
@@ -740,74 +795,67 @@ function createGeometrySvg({
             ${label}
         `;
     }
-    function renderRayLabel(
-        ray,
-        from,
-        through
-    ) {
-        const dx = through.x - from.x;
-        const dy = through.y - from.y;
+    function renderRayLabel(ray, from, through, bounds) {
+    const dx = through.x - from.x;
+    const dy = through.y - from.y;
 
-        const length =
-            Math.sqrt(dx * dx + dy * dy);
+    const length = Math.sqrt(dx * dx + dy * dy);
+    if (length === 0) return "";
 
-        const ux = dx / length;
-        const uy = dy / length;
+    const ux = dx / length;
+    const uy = dy / length;
 
-        // Normal to the ray
-        let nx = -uy;
-        let ny = ux;
-
-        // Prefer the upper side of the ray
-        if (ny > 0) {
-            nx = -nx;
-            ny = -ny;
-        }
-
-        const distance = 60;
-        const offset = 12;
-
-        const x =
-            from.x +
-            ux * distance +
-            nx * offset;
-
-        const y =
-            from.y +
-            uy * distance +
-            ny * offset;
-
-        let angle =
-            Math.atan2(dy, dx) *
-            180 / Math.PI;
-
-        if (
-            angle > 90 ||
-            angle < -90
-        ) {
-            angle += 180;
-        }
-
-        return `
-            <text
-                x="${x}"
-                y="${y}"
-                text-anchor="middle"
-                dominant-baseline="middle"
-                fill="currentColor"
-                font-size="16"
-                transform="
-                    rotate(
-                        ${angle}
-                        ${x}
-                        ${y}
-                    )
-                "
-            >
-                ${ray.label}
-            </text>
-        `;
+    // How far the ray runs from its endpoint, i.e. the distance to the
+    // edge of the canvas. Without bounds, the ray is treated as ending at
+    // `through`.
+    function distanceToEdge() {
+        const ts = [];
+        if (ux > 0) ts.push((bounds.width  - from.x) / ux);
+        if (ux < 0) ts.push((0             - from.x) / ux);
+        if (uy > 0) ts.push((bounds.height - from.y) / uy);
+        if (uy < 0) ts.push((0             - from.y) / uy);
+        return Math.max(0, Math.min(...ts));
     }
+
+    const rayLength = bounds ? distanceToEdge() : length;
+
+    const endMargin = 40;  // gap between the label and the end of the ray
+    const offset = 12;     // distance away from the ray
+
+    // Near the far end, but never closer to the endpoint than the middle
+    const distance = Math.max(rayLength - endMargin, rayLength / 2);
+
+    // Normal to the ray, preferring the upper side of the screen
+    let nx = -uy;
+    let ny = ux;
+
+    if (ny > 0) {
+        nx = -nx;
+        ny = -ny;
+    }
+
+    const x = from.x + ux * distance + nx * offset;
+    const y = from.y + uy * distance + ny * offset;
+
+    // Rotate so the top of the text points along the normal, away from the
+    // ray. The angle always lands in [-90°, 90°], so the text is never
+    // upside down.
+    const angle = Math.atan2(nx, -ny) * 180 / Math.PI;
+
+    return `
+        <text
+            x="${x}"
+            y="${y}"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            fill="currentColor"
+            font-size="16"
+            transform="rotate(${angle} ${x} ${y})"
+        >
+            ${ray.label}
+        </text>
+    `;
+}
     function renderCircle(circle) {
         const center = toSvg(
             getPoint(circle.center)

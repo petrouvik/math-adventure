@@ -2354,6 +2354,384 @@ function generateLengthUnitsProblems(
 
     return problems;
 }
+function generateParallelPerpendicularLinesProblem(settings) {
+
+    const types = [
+        "parallel",
+        "perpendicular",
+        "neither"
+    ];
+
+
+    const type =
+        types[
+            Math.floor(
+                Math.random() * types.length
+            )
+        ];
+
+
+    const width = 360;
+    const height = 280;
+    const scale = 45;
+
+
+    const center = {
+        x: 4,
+        y: 3
+    };
+
+
+    /*
+     * Keep the points used to define the lines
+     * safely inside the SVG.
+     *
+     * The lines themselves are infinite, so these
+     * points only need to define their direction.
+     */
+    const halfLength = 2;
+
+
+    /*
+     * Direction of the first line.
+     */
+    const angle1 =
+        Math.random() * Math.PI;
+
+
+    let angle2;
+
+
+    switch (type) {
+
+        case "parallel":
+
+            angle2 = angle1;
+
+            break;
+
+
+        case "perpendicular":
+
+            angle2 =
+                angle1 +
+                Math.PI / 2;
+
+            break;
+
+
+        case "neither": {
+
+            /*
+             * The smaller angle must be greater
+             * than 20° and less than 90°.
+             */
+            const difference =
+                20 +
+                Math.random() * 70;
+
+            angle2 =
+                angle1 +
+                difference *
+                    Math.PI / 180;
+
+            break;
+        }
+    }
+
+
+    /*
+     * Direction vectors.
+     */
+    const direction1 = {
+        x: Math.cos(angle1),
+        y: Math.sin(angle1)
+    };
+
+
+    const direction2 = {
+        x: Math.cos(angle2),
+        y: Math.sin(angle2)
+    };
+
+
+    let points;
+    let lines;
+    let angles = [];
+
+
+    if (type === "parallel") {
+
+        /*
+         * Move the second line sideways by using
+         * a vector perpendicular to the first line.
+         */
+        const offset = 1.2;
+
+
+        const normal = {
+            x: -Math.sin(angle1),
+            y: Math.cos(angle1)
+        };
+
+
+        const secondCenter = {
+            x:
+                center.x +
+                normal.x * offset,
+
+            y:
+                center.y +
+                normal.y * offset
+        };
+
+
+        points = [
+            {
+                id: "A",
+                x:
+                    center.x -
+                    direction1.x * halfLength,
+
+                y:
+                    center.y -
+                    direction1.y * halfLength,
+
+                visible: false
+            },
+
+            {
+                id: "B",
+                x:
+                    center.x +
+                    direction1.x * halfLength,
+
+                y:
+                    center.y +
+                    direction1.y * halfLength,
+
+                visible: false
+            },
+
+            {
+                id: "C",
+                x:
+                    secondCenter.x -
+                    direction2.x * halfLength,
+
+                y:
+                    secondCenter.y -
+                    direction2.y * halfLength,
+
+                visible: false
+            },
+
+            {
+                id: "D",
+                x:
+                    secondCenter.x +
+                    direction2.x * halfLength,
+
+                y:
+                    secondCenter.y +
+                    direction2.y * halfLength,
+
+                visible: false
+            }
+        ];
+
+
+        lines = [
+            {
+                through: ["A", "B"]
+            },
+
+            {
+                through: ["C", "D"]
+            }
+        ];
+
+    } else {
+
+        /*
+         * Both lines pass through the center,
+         * guaranteeing that they intersect inside
+         * the image.
+         */
+        points = [
+            {
+                id: "A",
+                x:
+                    center.x -
+                    direction1.x * halfLength,
+
+                y:
+                    center.y -
+                    direction1.y * halfLength,
+
+                visible: false
+            },
+
+            {
+                id: "B",
+                x:
+                    center.x +
+                    direction1.x * halfLength,
+
+                y:
+                    center.y +
+                    direction1.y * halfLength,
+
+                visible: false
+            },
+
+            {
+                id: "C",
+                x:
+                    center.x -
+                    direction2.x * halfLength,
+
+                y:
+                    center.y -
+                    direction2.y * halfLength,
+
+                visible: false
+            },
+
+            {
+                id: "D",
+                x:
+                    center.x +
+                    direction2.x * halfLength,
+
+                y:
+                    center.y +
+                    direction2.y * halfLength,
+
+                visible: false
+            },
+
+            {
+                id: "O",
+                x: center.x,
+                y: center.y,
+                visible: false
+            }
+        ];
+
+
+        lines = [
+            {
+                through: ["A", "B"]
+            },
+
+            {
+                through: ["C", "D"]
+            }
+        ];
+
+
+        /*
+         * Calculate the smaller angle between
+         * the two lines.
+         */
+        let difference =
+            Math.abs(angle2 - angle1) %
+            Math.PI;
+
+
+        if (difference > Math.PI / 2) {
+            difference =
+                Math.PI - difference;
+        }
+
+
+        const degrees =
+            difference *
+            180 /
+            Math.PI;
+
+
+        /*
+         * Show the measurement when the smaller
+         * angle is close to 90°.
+         */
+        if (
+            degrees >= 75 &&
+            degrees <= 90
+        ) {
+
+            angles = [
+                {
+                    vertex: "O",
+                    from: "A",
+                    to: "C",
+                    label:
+                        `${Math.round(degrees)}°`
+                }
+            ];
+        }
+    }
+
+
+    const expression =
+        createGeometrySvg({
+            width,
+            height,
+            scale,
+            points,
+            lines,
+            angles
+        });
+
+
+    const names = {
+        parallel: "Parallel",
+        perpendicular: "Perpendicular",
+        neither: "Neither"
+    };
+
+
+    return {
+
+        prompt: `
+            ${expression}
+
+            <p>
+                What is the relationship between
+                these two lines?
+            </p>
+        `,
+
+        answer:
+            names[type],
+
+        choices: [
+            "Parallel",
+            "Perpendicular",
+            "Neither"
+        ],
+
+        explanation: {}
+    };
+}
+function generateParallelPerpendicularLinesProblems(
+    settings,
+    count
+) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+
+        problems.push(
+            generateParallelPerpendicularLinesProblem(
+                settings
+            )
+        );
+    }
+
+    return problems;
+}
 
 const GENERATORS = {
     "number-reading": {
@@ -2559,6 +2937,14 @@ const GENERATORS = {
     "lengthUnits":{
         generate(settings, count) {
             return generateLengthUnitsProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "parallelPerpendicularLines":{
+        generate(settings, count) {
+            return generateParallelPerpendicularLinesProblems(
                 settings,
                 count
             );

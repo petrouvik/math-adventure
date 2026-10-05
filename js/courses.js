@@ -3424,7 +3424,7 @@ const COURSES = {
                                     },
                                     {
                                         id: "B",
-                                        x: 5,
+                                        x: 4,
                                         y: 1,
                                         label: "B"
                                     }
@@ -4333,6 +4333,223 @@ const COURSES = {
 
     practice: {
         generator: "lengthUnits",
+        interaction: "multiple-choice",
+        problemCount: 10
+    },
+
+    difficultyMultiplier: 1
+},
+{
+    id: "parallel-and-perpendicular-lines",
+
+    title:
+        "Parallel and Perpendicular Lines",
+
+    description:
+        "Learn how to recognize parallel and perpendicular lines.",
+
+    type: "explanation",
+
+    content: [
+
+        {
+            type: "text",
+            text:
+                "Sometimes we want to describe how two lines are positioned in relation to each other. Two important relationships are parallel and perpendicular."
+        },
+
+        {
+            type: "text",
+            text:
+                "Parallel lines are lines that stay the same distance apart. They do not meet, even if we extend them farther."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 140,
+                    scale: 50,
+
+                    points: [
+                        { id: "A", x: 1, y: 1, visible: false},
+                        { id: "B", x: 5, y: 1, visible: false},
+                        { id: "C", x: 1, y: 2, visible: false},
+                        { id: "D", x: 5, y: 2, visible: false}
+                    ],
+
+                    lines: [
+                        {
+                            through: ["A", "B"],
+                            label: "n"
+                        },
+                        {
+                            through: ["C", "D"],
+                            label: "m"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "Lines n and m are parallel. They stay the same distance apart and do not meet."
+        },
+
+        {
+            type: "text",
+            text:
+                "Parallel lines can appear in familiar shapes. In a rectangle, the top and bottom sides are parallel. The left and right sides are also parallel."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 220,
+                    scale: 45,
+
+                    points: [
+                        { id: "A", x: 1, y: 1, visible: false},
+                        { id: "B", x: 5, y: 1, visible: false},
+                        { id: "C", x: 5, y: 4, visible: false},
+                        { id: "D", x: 1, y: 4, visible: false}
+                    ],
+
+                    segments: [
+                        {
+                            from: "A",
+                            to: "B"
+                        },
+                        {
+                            from: "B",
+                            to: "C"
+                        },
+                        {
+                            from: "C",
+                            to: "D"
+                        },
+                        {
+                            from: "D",
+                            to: "A"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "The top and bottom sides are parallel. The left and right sides are also parallel."
+        },
+
+        {
+            type: "text",
+            text:
+                "Perpendicular lines are lines that meet at a right angle. A right angle measures 90 degrees."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 220,
+                    scale: 45,
+
+                    points: [
+                        { id: "A", x: 3, y: 1, visible: false},
+                        { id: "B", x: 3, y: 4, visible: false},
+                        { id: "C", x: 1, y: 2.5, visible: false},
+                        { id: "D", x: 5, y: 2.5, visible: false},
+                        { id: "O", x: 3, y: 2.5, visible: false}
+                    ],
+
+                    lines: [
+                        {
+                            through: ["B", "A"],
+                            label: "n"
+                        },
+                        {
+                            through: ["C", "D"],
+                            label: "m"
+                        }
+                    ],
+
+                    angles: [
+                        {
+                            vertex: "O",
+                            from: "A",
+                            to: "C",
+                            label: "90°"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "Lines n and m are perpendicular because they meet at a right angle."
+        },
+
+        {
+            type: "text",
+            text:
+                "Perpendicular lines also appear in familiar shapes. The sides of a rectangle meet at right angles, so neighboring sides are perpendicular."
+        },
+
+        {
+            type: "text",
+            text:
+                "Not every pair of lines is parallel or perpendicular. Two lines can meet at an angle that is not a right angle. Such lines are neither parallel nor perpendicular."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 220,
+                    scale: 45,
+
+                    points: [
+                        { id: "A", x: 1, y: 1 },
+                        { id: "B", x: 5, y: 3 },
+                        { id: "C", x: 1, y: 4 },
+                        { id: "D", x: 5, y: 2 }
+                    ],
+
+                    lines: [
+                        {
+                            through: ["A", "B"],
+                            label: "n"
+                        },
+                        {
+                            through: ["C", "D"],
+                            label: "m"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "These lines meet, but they do not make a right angle. They are neither parallel nor perpendicular."
+        },
+
+        {
+            type: "text",
+            text:
+                "Remember: parallel lines do not meet, perpendicular lines meet at a right angle, and other pairs of lines may be neither."
+        }
+    ]
+},
+{
+    id: "parallel-and-perpendicular-lines-practice",
+
+    title:
+        "Parallel and Perpendicular Lines Practice",
+
+    description:
+        "Practice identifying parallel, perpendicular, and other pairs of lines.",
+
+    type: "practice",
+
+    practice: {
+        generator: "parallelPerpendicularLines",
         interaction: "multiple-choice",
         problemCount: 10
     },

@@ -4555,6 +4555,282 @@ const COURSES = {
     },
 
     difficultyMultiplier: 1
+},
+{
+    id: "triangles",
+    title:
+        "Triangles",
+
+    description:
+        "Learn about triangles and how to classify them by their side lengths.",
+
+    type: "explanation",
+
+    content: [
+
+        {
+            type: "text",
+            text:
+                "A triangle is a shape with three sides. It also has three vertices and three angles."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 240,
+                    scale: 50,
+
+                    points: [
+                        {
+                            id: "A",
+                            x: 1,
+                            y: 4,
+                            label: "A"
+                        },
+                        {
+                            id: "B",
+                            x: 5,
+                            y: 4,
+                            label: "B"
+                        },
+                        {
+                            id: "C",
+                            x: 3,
+                            y: 1,
+                            label: "C"
+                        }
+                    ],
+
+                    segments: [
+                        {
+                            from: "A",
+                            to: "B",
+                            label: "a"
+                        },
+                        {
+                            from: "C",
+                            to: "B",
+                            label: "b"
+                        },
+                        {
+                            from: "A",
+                            to: "C",
+                            label: "c"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "This triangle has three sides, three vertices, and three angles. Its vertices are A, B, and C."
+        },
+
+        {
+            type: "text",
+            text:
+                "We can classify triangles by comparing the lengths of their sides. There are three types: equilateral, isosceles, and scalene."
+        },
+
+        {
+            type: "text",
+            text:
+                "An equilateral triangle has three sides of equal length."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 240,
+                    scale: 50,
+
+                    points: [
+                        {
+                            id: "A",
+                            x: 1,
+                            y: 4,
+                            label: "A"
+                        },
+                        {
+                            id: "B",
+                            x: 5,
+                            y: 4,
+                            label: "B"
+                        },
+                        {
+                            id: "C",
+                            x: 3,
+                            y: 0.536,
+                            label: "C"
+                        }
+                    ],
+
+                    segments: [
+                        {
+                            from: "A",
+                            to: "B",
+                            label: "a"
+                        },
+                        {
+                            from: "C",
+                            to: "B",
+                            label: "a"
+                        },
+                        {
+                            from: "A",
+                            to: "C",
+                            label: "a"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "All three sides have the same length, so this is an equilateral triangle."
+        },
+
+        {
+            type: "text",
+            text:
+                "An isosceles triangle has two sides of equal length. The third side has a different length."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 240,
+                    scale: 50,
+
+                    points: [
+                        {
+                            id: "A",
+                            x: 1,
+                            y: 4,
+                            label: "A"
+                        },
+                        {
+                            id: "B",
+                            x: 5,
+                            y: 4,
+                            label: "B"
+                        },
+                        {
+                            id: "C",
+                            x: 3,
+                            y: 1.5,
+                            label: "C"
+                        }
+                    ],
+
+                    segments: [
+                        {
+                            from: "A",
+                            to: "B",
+                            label: "b"
+                        },
+                        {
+                            from: "C",
+                            to: "B",
+                            label: "a"
+                        },
+                        {
+                            from: "A",
+                            to: "C",
+                            label: "a"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "The two sides marked a have the same length, while side b has a different length. This is an isosceles triangle."
+        },
+
+        {
+            type: "text",
+            text:
+                "A scalene triangle has three sides of different lengths."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 240,
+                    scale: 50,
+
+                    points: [
+                        {
+                            id: "A",
+                            x: 1,
+                            y: 4,
+                            label: "A"
+                        },
+                        {
+                            id: "B",
+                            x: 5,
+                            y: 4,
+                            label: "B"
+                        },
+                        {
+                            id: "C",
+                            x: 4,
+                            y: 1,
+                            label: "C"
+                        }
+                    ],
+
+                    segments: [
+                        {
+                            from: "A",
+                            to: "B",
+                            label: "a"
+                        },
+                        {
+                            from: "C",
+                            to: "B",
+                            label: "b"
+                        },
+                        {
+                            from: "A",
+                            to: "C",
+                            label: "c"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "The three sides have different lengths, so this is a scalene triangle."
+        },
+
+        {
+            type: "text",
+            text:
+                "Remember: equilateral triangles have three equal sides, isosceles triangles have two equal sides, and scalene triangles have no equal sides."
+        }
+    ]
+},
+{
+    id: "triangles-practice",
+
+    title:
+        "Triangles Practice",
+
+    description:
+        "Practice classifying triangles by their side lengths.",
+
+    type: "practice",
+
+    practice: {
+        generator: "triangles",
+        interaction: "multiple-choice",
+        problemCount: 10
+    },
+
+    difficultyMultiplier: 1
 }
             
         ]

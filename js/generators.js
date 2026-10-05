@@ -2695,12 +2695,13 @@ function generateParallelPerpendicularLinesProblem(settings) {
     return {
 
         prompt: `
-            ${expression}
-
             <p>
                 What is the relationship between
                 these two lines?
             </p>
+            <br>
+            ${expression}
+
         `,
 
         answer:
@@ -2727,6 +2728,289 @@ function generateParallelPerpendicularLinesProblems(
             generateParallelPerpendicularLinesProblem(
                 settings
             )
+        );
+    }
+
+    return problems;
+}
+function generateTriangleProblem(settings) {
+
+    const types = [
+        "equilateral",
+        "isosceles",
+        "scalene"
+    ];
+
+
+    const type =
+        types[
+            Math.floor(
+                Math.random() * types.length
+            )
+        ];
+
+
+    const letterPool = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h"
+    ];
+
+
+    /*
+     * Shuffle the letter pool and take letters
+     * from the beginning as needed.
+     */
+    for (
+        let i = letterPool.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+
+        [
+            letterPool[i],
+            letterPool[j]
+        ] = [
+            letterPool[j],
+            letterPool[i]
+        ];
+    }
+
+
+    let sideLabels;
+    let points;
+
+
+    switch (type) {
+
+        case "equilateral": {
+
+            /*
+            * Equilateral triangle.
+            *
+            * All three sides have the same
+            * length.
+            */
+            const side = 4;
+
+            const height =
+                side * Math.sqrt(3) / 2;
+
+            const baseY = 4;
+
+
+            points = [
+                {
+                    id: "A",
+                    x: 1,
+                    y: baseY
+                },
+                {
+                    id: "B",
+                    x: 5,
+                    y: baseY
+                },
+                {
+                    id: "C",
+                    x: 3,
+                    y: baseY - height
+                }
+            ];
+
+
+            const letter =
+                letterPool[0];
+
+
+            sideLabels = [
+                letter,
+                letter,
+                letter
+            ];
+
+            break;
+        }
+
+
+        case "isosceles": {
+
+            /*
+             * Two equal sides.
+             *
+             * The two sides from C to A/B
+             * are equal.
+             */
+            const halfBase = 2;
+
+            const height =
+                2.5 +
+                Math.random() * 1;
+
+
+            points = [
+                {
+                    id: "A",
+                    x: 1,
+                    y: 4
+                },
+                {
+                    id: "B",
+                    x: 5,
+                    y: 4
+                },
+                {
+                    id: "C",
+                    x: 3,
+                    y:
+                        4 - height
+                }
+            ];
+
+
+            const equalLetter =
+                letterPool[0];
+
+            const differentLetter =
+                letterPool[1];
+
+
+            sideLabels = [
+                differentLetter,
+                equalLetter,
+                equalLetter
+            ];
+
+            break;
+        }
+
+
+        case "scalene": {
+
+            /*
+             * Three different side lengths.
+             *
+             * These coordinates give three
+             * different side lengths while
+             * keeping the triangle visually
+             * reasonable.
+             */
+            points = [
+                {
+                    id: "A",
+                    x: 1,
+                    y: 4
+                },
+                {
+                    id: "B",
+                    x: 5,
+                    y: 4
+                },
+                {
+                    id: "C",
+                    x:
+                        3.8 +
+                        Math.random() * 0.5,
+                    y:
+                        1 +
+                        Math.random() * 0.7
+                }
+            ];
+
+
+            sideLabels = [
+                letterPool[0],
+                letterPool[1],
+                letterPool[2]
+            ];
+
+            break;
+        }
+    }
+
+
+    /*
+     * The vertices are deliberately not
+     * displayed or labelled.
+     */
+    const expression =
+        createGeometrySvg({
+
+            width: 300,
+            height: 260,
+            scale: 50,
+
+            points: points.map(point => ({
+                ...point,
+                visible: false
+            })),
+
+            segments: [
+                {
+                    from: "A",
+                    to: "B",
+                    label: sideLabels[0]
+                },
+                {
+                    from: "B",
+                    to: "C",
+                    label: sideLabels[1]
+                },
+                {
+                    from: "C",
+                    to: "A",
+                    label: sideLabels[2]
+                }
+            ]
+        });
+
+
+    const names = {
+        equilateral: "Equilateral",
+        isosceles: "Isosceles",
+        scalene: "Scalene"
+    };
+
+
+    return {
+        prompt: `
+            ${expression}
+
+            <p>
+                What type of triangle is shown?
+            </p>
+        `,
+
+        answer:
+            names[type],
+
+        choices: [
+            "Equilateral",
+            "Isosceles",
+            "Scalene"
+        ],
+
+        explanation: {}
+    };
+}
+function generateTriangleProblems(settings, count) {
+
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+
+        problems.push(
+            generateTriangleProblem(settings)
         );
     }
 
@@ -2945,6 +3229,14 @@ const GENERATORS = {
     "parallelPerpendicularLines":{
         generate(settings, count) {
             return generateParallelPerpendicularLinesProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "triangles":{
+        generate(settings, count) {
+            return generateTriangleProblems(
                 settings,
                 count
             );

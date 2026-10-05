@@ -329,41 +329,129 @@ function createGeometrySvg({
     }
 
     function renderSegmentLabel(segment, from, to) {
-        const dx = to.x - from.x;
-        const dy = to.y - from.y;
 
-        const length = Math.sqrt(dx * dx + dy * dy);
-        if (length === 0) return "";
+    const dx = to.x - from.x;
+    const dy = to.y - from.y;
 
-        // Unit normal on the left of the direction of travel (as seen on screen,
-        // with y pointing down). No side-flipping: the side depends only on
-        // the order of from -> to.
-        const nx = dy / length;
-        const ny = -dx / length;
 
-        const offset = 12;
+    const length =
+        Math.sqrt(dx * dx + dy * dy);
 
-        const x = (from.x + to.x) / 2 + nx * offset;
-        const y = (from.y + to.y) / 2 + ny * offset;
 
-        // Rotate so the text's "up" vector (sin θ, -cos θ) equals the normal.
-        // This simplifies to the segment's own direction angle.
-        const angle = Math.atan2(dy, dx) * 180 / Math.PI;
-
-        return `
-            <text
-                x="${x}"
-                y="${y}"
-                text-anchor="middle"
-                dominant-baseline="middle"
-                fill="currentColor"
-                font-size="16"
-                transform="rotate(${angle} ${x} ${y})"
-            >
-                ${segment.label}
-            </text>
-        `;
+    if (length === 0) {
+        return "";
     }
+
+
+    const offset = 12;
+
+
+    let x;
+    let y;
+    let angle;
+
+
+    /*
+     * Vertical segment.
+     *
+     * There is no meaningful "above" side, so the
+     * direction from -> to determines which side
+     * the label is placed on.
+     */
+    if (Math.abs(dx) < 0.001) {
+
+        x =
+            (from.x + to.x) / 2 +
+            (dy > 0 ? -offset : offset);
+
+        y =
+            (from.y + to.y) / 2;
+
+
+        /*
+         * Rotate the text so that the bottom of the
+         * letters faces the segment.
+         *
+         * Top -> bottom:
+         *     label goes left  -> +90°
+         *
+         * Bottom -> top:
+         *     label goes right -> -90°
+         */
+        angle =
+            dy > 0
+                ? 90
+                : -90;
+
+    } else {
+
+        /*
+         * For non-vertical segments, put the label
+         * on the screen-top side of the segment.
+         *
+         * A perpendicular vector is:
+         *
+         *     (dy, -dx)
+         *
+         * Choose whichever of the two perpendicular
+         * directions points upward on the screen.
+         */
+        let nx = dy / length;
+        let ny = -dx / length;
+
+
+        if (ny > 0) {
+            nx = -nx;
+            ny = -ny;
+        }
+
+
+        x =
+            (from.x + to.x) / 2 +
+            nx * offset;
+
+        y =
+            (from.y + to.y) / 2 +
+            ny * offset;
+
+
+        /*
+         * Keep the text readable regardless of the
+         * order in which the endpoints were specified.
+         *
+         * This makes the text's bottom edge face the
+         * segment while avoiding upside-down labels.
+         */
+        angle =
+            Math.atan2(dy, dx) *
+            180 /
+            Math.PI;
+
+
+        if (angle > 90) {
+            angle -= 180;
+        }
+
+        if (angle < -90) {
+            angle += 180;
+        }
+    }
+
+
+    return `
+        <text
+            x="${x}"
+            y="${y}"
+            text-anchor="middle"
+            dominant-baseline="middle"
+            fill="currentColor"
+            font-size="16"
+            transform="rotate(${angle} ${x} ${y})"
+        >
+            ${segment.label}
+        </text>
+    `;
+}
     function renderLine(line) {
 
         const first =

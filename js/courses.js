@@ -4831,6 +4831,400 @@ const COURSES = {
     },
 
     difficultyMultiplier: 1
+},
+{
+    id: "common-quadrilaterals",
+
+    title:
+        "Common Quadrilaterals",
+
+    description:
+        "Learn about squares, rectangles, parallelograms, rhombuses, and trapezoids.",
+
+    type: "explanation",
+
+    content: [
+
+        {
+            type: "text",
+            text:
+                "A quadrilateral is a shape with four sides, four vertices, and four angles. There are several common types of quadrilaterals."
+        },
+
+        {
+            type: "text",
+            text:
+                "A square has four equal sides and four right angles. Its opposite sides are parallel."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 260,
+                    height: 260,
+                    scale: 50,
+
+                    points: [
+                        {
+                            id: "A",
+                            x: 1,
+                            y: 1
+                        },
+                        {
+                            id: "B",
+                            x: 5,
+                            y: 1
+                        },
+                        {
+                            id: "C",
+                            x: 5,
+                            y: 5
+                        },
+                        {
+                            id: "D",
+                            x: 1,
+                            y: 5
+                        }
+                    ],
+
+                    segments: [
+                        {
+                            from: "A",
+                            to: "B",
+                            label: "a"
+                        },
+                        {
+                            from: "B",
+                            to: "C",
+                            label: "a"
+                        },
+                        {
+                            from: "C",
+                            to: "D",
+                            label: "a"
+                        },
+                        {
+                            from: "D",
+                            to: "A",
+                            label: "a"
+                        }
+                    ],
+
+                    angles: [
+                        {
+                            vertex: "A",
+                            from: "D",
+                            to: "B",
+                            label: "90°"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "All four sides are equal, and every angle is a right angle. This is a square."
+        },
+
+        {
+            type: "text",
+            text:
+                "A rectangle has four right angles. Its opposite sides are equal and parallel."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 220,
+                    scale: 50,
+
+                    points: [
+                        {
+                            id: "A",
+                            x: 1,
+                            y: 1
+                        },
+                        {
+                            id: "B",
+                            x: 5,
+                            y: 1
+                        },
+                        {
+                            id: "C",
+                            x: 5,
+                            y: 4
+                        },
+                        {
+                            id: "D",
+                            x: 1,
+                            y: 4
+                        }
+                    ],
+
+                    segments: [
+                        {
+                            from: "A",
+                            to: "B",
+                            label: "a"
+                        },
+                        {
+                            from: "B",
+                            to: "C",
+                            label: "b"
+                        },
+                        {
+                            from: "C",
+                            to: "D",
+                            label: "a"
+                        },
+                        {
+                            from: "D",
+                            to: "A",
+                            label: "b"
+                        }
+                    ],
+
+                    angles: [
+                        {
+                            vertex: "A",
+                            from: "D",
+                            to: "B",
+                            label: "90°"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "Opposite sides have equal lengths, and all four angles are right angles. This is a rectangle."
+        },
+
+        {
+            type: "text",
+            text:
+                "A parallelogram has two pairs of opposite sides that are parallel. Each pair of opposite sides is also equal in length. Its angles do not have to be right angles."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 220,
+                    scale: 50,
+
+                    points: [
+                        {
+                            id: "A",
+                            x: 1.5,
+                            y: 1
+                        },
+                        {
+                            id: "B",
+                            x: 5.5,
+                            y: 1
+                        },
+                        {
+                            id: "C",
+                            x: 4.5,
+                            y: 4
+                        },
+                        {
+                            id: "D",
+                            x: 0.5,
+                            y: 4
+                        }
+                    ],
+
+                    segments: [
+                        {
+                            from: "A",
+                            to: "B",
+                            label: "a"
+                        },
+                        {
+                            from: "B",
+                            to: "C",
+                            label: "b"
+                        },
+                        {
+                            from: "C",
+                            to: "D",
+                            label: "a"
+                        },
+                        {
+                            from: "D",
+                            to: "A",
+                            label: "b"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "The opposite sides are equal and parallel. The angles are not right angles, so this is a parallelogram."
+        },
+
+        {
+            type: "text",
+            text:
+                "A rhombus has four equal sides. Its opposite sides are parallel. Its angles do not have to be right angles."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+    width: 300,
+    height: 260,
+    scale: 50,
+
+    points: [
+        {
+            id: "A",
+            x: 1,
+            y: 2
+        },
+        {
+            id: "B",
+            x: 4,
+            y: 2
+        },
+        {
+            id: "C",
+            x: 5,
+            y: 4
+        },
+        {
+            id: "D",
+            x: 2,
+            y: 4
+        }
+    ],
+
+    segments: [
+        {
+            from: "A",
+            to: "B",
+            label: "a"
+        },
+        {
+            from: "B",
+            to: "C",
+            label: "a"
+        },
+        {
+            from: "C",
+            to: "D",
+            label: "a"
+        },
+        {
+            from: "D",
+            to: "A",
+            label: "a"
+        }
+    ]
+}),
+
+            explanation:
+                "All four sides are equal, but the angles are not right angles. This is a rhombus."
+        },
+
+        {
+            type: "text",
+            text:
+                "A trapezoid has one pair of parallel sides. The other two sides do not have to be parallel."
+        },
+
+        {
+            type: "example",
+            expression:
+                createGeometrySvg({
+                    width: 300,
+                    height: 240,
+                    scale: 50,
+
+                    points: [
+                        {
+                            id: "A",
+                            x: 1.5,
+                            y: 1
+                        },
+                        {
+                            id: "B",
+                            x: 5.0,
+                            y: 1
+                        },
+                        {
+                            id: "C",
+                            x: 5.5,
+                            y: 4
+                        },
+                        {
+                            id: "D",
+                            x: 0.5,
+                            y: 4
+                        }
+                    ],
+
+                    segments: [
+                        {
+                            from: "A",
+                            to: "B",
+                            label: "a"
+                        },
+                        {
+                            from: "B",
+                            to: "C",
+                            label: "b"
+                        },
+                        {
+                            from: "C",
+                            to: "D",
+                            label: "c"
+                        },
+                        {
+                            from: "D",
+                            to: "A",
+                            label: "d"
+                        }
+                    ]
+                }),
+
+            explanation:
+                "The top and bottom sides are parallel. The other two sides are not parallel. This is a trapezoid."
+        },
+
+        {
+            type: "text",
+            text:
+                "The properties of these shapes can overlap. For example, a square also has the properties of a rectangle, because it has four right angles and opposite sides that are equal and parallel. That is why one could say that squares are just rectangles that happen to have four equal sides."
+        },
+
+        {
+            type: "text",
+            text:
+                "Remember: a square has four equal sides and four right angles; a rectangle has four right angles; a parallelogram has two pairs of parallel and equal opposite sides; a rhombus has four equal sides; and a trapezoid has one pair of parallel sides."
+        }
+    ]
+},
+{
+    id: "common-quadrilaterals-practice",
+
+    title:
+        "Common Quadrilaterals Practice",
+
+    description:
+        "Practice identifying common quadrilaterals.",
+
+    type: "practice",
+
+    practice: {
+        generator: "commonQuadrilaterals",
+        interaction: "multiple-choice",
+        problemCount: 10
+    },
+
+    difficultyMultiplier: 1
 }
             
         ]

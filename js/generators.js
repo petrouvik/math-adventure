@@ -3016,7 +3016,480 @@ function generateTriangleProblems(settings, count) {
 
     return problems;
 }
+function generateCommonQuadrilateralProblem(settings) {
 
+    const types = [
+        "square",
+        "rectangle",
+        "parallelogram",
+        "rhombus",
+        "trapezoid"
+    ];
+
+    const type =
+        types[
+            Math.floor(
+                Math.random() * types.length
+            )
+        ];
+
+
+    const letterPool = [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "g",
+        "h"
+    ];
+
+    /*
+     * Shuffle the letter pool so the same shape does not
+     * always use the same letters.
+     */
+    for (
+        let i = letterPool.length - 1;
+        i > 0;
+        i--
+    ) {
+
+        const j =
+            Math.floor(
+                Math.random() * (i + 1)
+            );
+
+        [
+            letterPool[i],
+            letterPool[j]
+        ] = [
+            letterPool[j],
+            letterPool[i]
+        ];
+    }
+
+
+    let points;
+    let sideGroups;
+
+
+    switch (type) {
+
+        case "square": {
+
+            const side = 4;
+
+            points = [
+                { id: "A", x: 1, y: 1 },
+                { id: "B", x: 1 + side, y: 1 },
+                { id: "C", x: 1 + side, y: 1 + side },
+                { id: "D", x: 1, y: 1 + side }
+            ];
+
+            /*
+             * All four sides have the same length.
+             */
+            sideGroups = [
+                0, 0, 0, 0
+            ];
+
+            break;
+        }
+
+
+        case "rectangle": {
+
+            const width = 5;
+            const height = 3;
+
+            points = [
+                { id: "A", x: 0.5, y: 1 },
+                { id: "B", x: 0.5 + width, y: 1 },
+                { id: "C", x: 0.5 + width, y: 1 + height },
+                { id: "D", x: 0.5, y: 1 + height }
+            ];
+
+            /*
+             * Opposite sides have equal lengths.
+             */
+            sideGroups = [
+                0, 1, 0, 1
+            ];
+
+            break;
+        }
+
+
+        case "rhombus": {
+
+            const side = 3;
+
+            // A rhombus with a 90° angle is a square, so stay away from 90°
+            let degrees;
+            do {
+                degrees = 60 + Math.random() * 60;
+            } while (Math.abs(degrees - 90) < 3);
+
+            const angle = degrees * Math.PI / 180;
+            const dx = side * Math.cos(angle);
+            const dy = side * Math.sin(angle);
+
+            points = [
+                { id: "A", x: 1,                 y: 1 },
+                { id: "B", x: 1 + side,          y: 1 },
+                { id: "C", x: 1 + side + dx,     y: 1 + dy },
+                { id: "D", x: 1 + dx,            y: 1 + dy }
+            ];
+
+            sideGroups = [0, 0, 0, 0];
+            break;
+        }
+
+
+        case "parallelogram": {
+
+            const width = 4;
+            const height = 3;
+
+            /*
+             * The horizontal shift makes the shape a
+             * parallelogram without making it a rectangle.
+             */
+            const shift =
+                0.8 +
+                Math.random() * 0.7;
+
+            points = [
+                { id: "A", x: 1, y: 1 },
+                { id: "B", x: 1 + width, y: 1 },
+                {
+                    id: "C",
+                    x: 1 + width + shift,
+                    y: 1 + height
+                },
+                {
+                    id: "D",
+                    x: 1 + shift,
+                    y: 1 + height
+                }
+            ];
+
+            /*
+             * Opposite sides have equal lengths.
+             */
+            sideGroups = [
+                0, 1, 0, 1
+            ];
+
+            break;
+        }
+
+
+        case "trapezoid": {
+
+            /*
+             * The top and bottom are parallel.
+             * The two other sides have deliberately different
+             * lengths so that no sides accidentally share a name.
+             */
+            const bottomWidth = 5;
+            const topWidth = 3;
+            const leftShift = 0.7;
+            const rightShift = 1.4;
+            const height = 3;
+
+            points = [
+                {
+                    id: "A",
+                    x: 0.5,
+                    y: 1
+                },
+                {
+                    id: "B",
+                    x: 0.5 + bottomWidth,
+                    y: 1
+                },
+                {
+                    id: "C",
+                    x: 0.5 + bottomWidth - rightShift,
+                    y: 1 + height
+                },
+                {
+                    id: "D",
+                    x: 0.5 + leftShift,
+                    y: 1 + height
+                }
+            ];
+
+            /*
+             * None of the four sides share a length group.
+             */
+            sideGroups = [
+                0, 1, 2, 3
+            ];
+
+            break;
+        }
+    }
+    const WIDTH = 360, HEIGHT = 300, SCALE = 50;
+
+    const xs = points.map(p => p.x);
+    const ys = points.map(p => p.y);
+
+    const offsetX = (WIDTH / SCALE - (Math.max(...xs) - Math.min(...xs))) / 2 - Math.min(...xs);
+    const offsetY = (HEIGHT / SCALE - (Math.max(...ys) - Math.min(...ys))) / 2 - Math.min(...ys);
+
+    points.forEach(p => {
+        p.x += offsetX;
+        p.y += offsetY;
+    });
+
+
+    /*
+     * Give each distinct side length its own letter.
+     */
+    const groupLabels = new Map();
+
+    sideGroups.forEach(group => {
+
+        if (!groupLabels.has(group)) {
+
+            groupLabels.set(
+                group,
+                letterPool[
+                    groupLabels.size
+                ]
+            );
+        }
+    });
+
+
+    const sideLabels =
+        sideGroups.map(
+            group =>
+                groupLabels.get(group)
+        );
+
+
+    /*
+     * Calculate the angle at a vertex.
+     */
+    function calculateAngle(vertex, first, second) {
+
+        const v1x =
+            first.x - vertex.x;
+
+        const v1y =
+            first.y - vertex.y;
+
+        const v2x =
+            second.x - vertex.x;
+
+        const v2y =
+            second.y - vertex.y;
+
+        const dot =
+            v1x * v2x +
+            v1y * v2y;
+
+        const length1 =
+            Math.sqrt(
+                v1x * v1x +
+                v1y * v1y
+            );
+
+        const length2 =
+            Math.sqrt(
+                v2x * v2x +
+                v2y * v2y
+            );
+
+        const cosine =
+            dot /
+            (length1 * length2);
+
+        const clamped =
+            Math.max(
+                -1,
+                Math.min(1, cosine)
+            );
+
+        return Math.acos(clamped) *
+            180 /
+            Math.PI;
+    }
+
+
+    /*
+     * Find the first angle that is close enough to 90°
+     * that showing its measurement is useful.
+     */
+    const vertexOrder = [
+        ["A", "D", "B"],
+        ["B", "A", "C"],
+        ["C", "B", "D"],
+        ["D", "C", "A"]
+    ];
+
+    let displayedAngle = null;
+
+    for (const [vertexId, firstId, secondId] of vertexOrder) {
+
+        const vertex =
+            points.find(
+                point => point.id === vertexId
+            );
+
+        const first =
+            points.find(
+                point => point.id === firstId
+            );
+
+        const second =
+            points.find(
+                point => point.id === secondId
+            );
+
+        const degrees =
+            calculateAngle(
+                vertex,
+                first,
+                second
+            );
+
+        if (
+            degrees >= 75 &&
+            degrees <= 105
+        ) {
+
+            displayedAngle = {
+                vertex: vertexId,
+                from: firstId,
+                to: secondId,
+                degrees:
+                    Math.round(degrees)
+            };
+
+            break;
+        }
+    }
+
+
+    const segments = [
+        {
+            from: "A",
+            to: "B",
+            label: sideLabels[0]
+        },
+        {
+            from: "B",
+            to: "C",
+            label: sideLabels[1]
+        },
+        {
+            from: "C",
+            to: "D",
+            label: sideLabels[2]
+        },
+        {
+            from: "D",
+            to: "A",
+            label: sideLabels[3]
+        }
+    ];
+
+
+    const angles =
+        displayedAngle
+            ? [
+                {
+                    vertex:
+                        displayedAngle.vertex,
+
+                    from:
+                        displayedAngle.from,
+
+                    to:
+                        displayedAngle.to,
+
+                    label:
+                        `${displayedAngle.degrees}°`
+                }
+            ]
+            : [];
+
+
+    const expression =
+        createGeometrySvg({
+
+            width: WIDTH,
+            height: HEIGHT,
+            scale: SCALE,
+
+            points:
+                points.map(point => ({
+                    ...point,
+                    visible: false
+                })),
+
+            segments,
+
+            angles
+        });
+
+
+    const names = {
+        square: "Square",
+        rectangle: "Rectangle",
+        parallelogram: "Parallelogram",
+        rhombus: "Rhombus",
+        trapezoid: "Trapezoid"
+    };
+
+
+    return {
+
+        prompt: `
+            ${expression}
+
+            <p>
+                What is the most fitting name for this shape?
+            </p>
+        `,
+
+        answer:
+            names[type],
+
+        choices: [
+            "Square",
+            "Rectangle",
+            "Parallelogram",
+            "Rhombus",
+            "Trapezoid"
+        ],
+
+        explanation: {}
+    };
+}
+function generateCommonQuadrilateralProblems(
+    settings,
+    count
+) {
+
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+
+        problems.push(
+            generateCommonQuadrilateralProblem(
+                settings
+            )
+        );
+    }
+
+    return problems;
+}
 const GENERATORS = {
     "number-reading": {
         generate(settings, count) {
@@ -3237,6 +3710,14 @@ const GENERATORS = {
     "triangles":{
         generate(settings, count) {
             return generateTriangleProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "commonQuadrilaterals":{
+        generate(settings, count) {
+            return generateCommonQuadrilateralProblems(
                 settings,
                 count
             );

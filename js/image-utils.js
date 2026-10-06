@@ -1038,9 +1038,15 @@ function createGeometrySvg({
     return `
         <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="${width}"
-            height="${height}"
             viewBox="0 0 ${width} ${height}"
+            width="100%"
+            height="auto"
+            style="
+                display: block;
+                width: 100%;
+                max-width: 100%;
+                height: auto;
+            "
         >
             ${lineElements}
             ${segmentElements}
@@ -1233,13 +1239,18 @@ function createNumberLineSvg({
 
 
     let svg = `
-        <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="${width}"
-            height="${height}"
-            viewBox="0 0 ${width} ${height}"
-            style="overflow: visible"
-        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 ${width} ${height}"
+                width="100%"
+                height="auto"
+                style="
+                    display: block;
+                    width: 100%;
+                    max-width: 100%;
+                    height: auto;
+                "
+            >
 
             <line
                 x1="${paddingLeft}"

@@ -5228,5 +5228,195 @@ const COURSES = {
 }
             
         ]
-    }
+    },
+"negative-numbers": {
+    id: "negative-numbers",
+
+    title: "Negative Numbers",
+    description:
+        "Learn about negative numbers and how they appear on the number line.",
+
+    icon: "−1",
+
+    lessons: [
+
+        {
+            id: "negative-numbers-intro",
+
+            title: "Negative Numbers",
+
+            description:
+                "An introduction to negative numbers and the number line.",
+
+            type: "explanation",
+
+            content: [
+
+                {
+                    type: "text",
+                    text:
+                        "Negative numbers are numbers that are less than zero. They are written with a minus sign in front of them, such as −1, −2, and −5."
+                },
+
+                {
+                    type: "example",
+
+                    expression:
+                        createNumberLineSvg({
+                            width: 500,
+                            height: 140,
+
+                            min: -5,
+                            max: 5,
+
+                            step: 1,
+
+                            ticks: {
+                                majorEvery: 1
+                            },
+
+                            numbers: {
+                                every: 1
+                            }
+                        }),
+
+                    explanation:
+                        "On a number line, negative numbers are to the left of zero, while positive numbers are to the right."
+                },
+
+                {
+                    type: "text",
+                    text:
+                        "The farther a number is to the left on the number line, the smaller it is. The farther it is to the right, the larger it is."
+                },
+
+                {
+                    type: "example",
+
+                    expression:
+                        createNumberLineSvg({
+                            width: 500,
+                            height: 140,
+
+                            min: -5,
+                            max: 5,
+
+                            step: 1,
+
+                            ticks: {
+                                majorEvery: 1
+                            },
+
+                            numbers: {
+                                every: 1
+                            },
+
+                            points: [
+                                {
+                                    value: -3,
+                                    label: "A"
+                                },
+                                {
+                                    value: 2,
+                                    label: "B"
+                                }
+                            ]
+                        }),
+
+                    explanation:
+                        "Point A is at −3 and point B is at 2. Since −3 is to the left of 2, −3 is smaller than 2."
+                },
+
+                {
+                    type: "text",
+                    text:
+                        "We can also use a number line to show movement between numbers. Moving to the right means adding, while moving to the left means subtracting."
+                },
+
+                {
+                    type: "example",
+
+                    expression:
+                        createNumberLineSvg({
+                            width: 500,
+                            height: 160,
+
+                            min: -5,
+                            max: 5,
+
+                            step: 1,
+
+                            ticks: {
+                                majorEvery: 1
+                            },
+
+                            numbers: {
+                                every: 1
+                            },
+
+                            points: [
+                            ],
+
+                            arrows: [
+                                {
+                                    from: -2,
+                                    to: 1,
+                                    label: "+3"
+                                }
+                            ]
+                        }),
+
+                    explanation:
+                        "Starting at −2 and moving 3 steps to the right takes us to 1. This represents −2 + 3 = 1."
+                },
+
+                {
+                    type: "text",
+                    text:
+                        "We can also divide the space between whole numbers into smaller parts. This lets us show values such as halves, tenths, and other fractions or decimal numbers."
+                },
+
+                {
+                    type: "example",
+
+                    expression:
+                        createNumberLineSvg({
+                            width: 500,
+                            height: 160,
+
+                            min: -2,
+                            max: 2,
+
+                            step: 0.1,
+
+                            ticks: {
+                                majorEvery: 1,
+                                mediumEvery: 0.5
+                            },
+
+                            numbers: {
+                                every: 1
+                            },
+
+                            points: [
+                                {
+                                    value: -0.5,
+                                    label: "−0.5"
+                                },
+                                {
+                                    value: 0.5,
+                                    label: "0.5"
+                                }
+                            ]
+                        }),
+
+                    explanation:
+                        "The smaller tick marks divide each whole number into tenths. This lets us locate decimal numbers between whole numbers."
+                }
+
+            ]
+        }
+
+    ]
+}
 };

@@ -1052,3 +1052,429 @@ function createGeometrySvg({
         </svg>
     `;
 }
+function createNumberLineSvg({
+    width = 500,
+    height = 120,
+
+    min = -5,
+    max = 5,
+
+    step = 1,
+
+    ticks = {},
+
+    numbers = {},
+
+    points = [],
+
+    arrows = []
+}) {
+
+    const {
+        majorEvery = step,
+        mediumEvery = null
+    } = ticks;
+
+
+    const {
+        every: numberEvery = majorEvery
+    } = numbers;
+
+
+    const slack = 0.6;
+
+    const paddingLeft = 30;
+    const paddingRight = 30;
+
+    const lineY =
+        height / 2;
+
+
+    /*
+     * Leave some room beyond min and max so the
+     * number line can continue past the endpoints.
+     */
+    const displayMin =
+        min - slack;
+
+    const displayMax =
+        max + slack;
+
+
+    const usableWidth =
+        width -
+        paddingLeft -
+        paddingRight;
+
+
+    function toX(value) {
+
+        return (
+            paddingLeft +
+            (
+                (value - displayMin) /
+                (displayMax - displayMin)
+            ) *
+            usableWidth
+        );
+    }
+
+
+    function roundValue(value) {
+
+        return Number(
+            value.toFixed(10)
+        );
+    }
+
+
+    function isMultiple(value, interval) {
+
+        if (!interval) {
+            return false;
+        }
+
+        const quotient =
+            value / interval;
+
+        return Math.abs(
+            quotient -
+            Math.round(quotient)
+        ) < 0.000001;
+    }
+
+
+    function getTickType(value) {
+
+        if (
+            isMultiple(
+                value,
+                majorEvery
+            )
+        ) {
+            return "major";
+        }
+
+        if (
+            mediumEvery &&
+            isMultiple(
+                value,
+                mediumEvery
+            )
+        ) {
+            return "medium";
+        }
+
+        return "minor";
+    }
+
+
+    function getTickHeight(type) {
+
+        switch (type) {
+
+            case "major":
+                return 24;
+
+            case "medium":
+                return 17;
+
+            default:
+                return 11;
+        }
+    }
+
+
+    function getTickWidth(type) {
+
+        switch (type) {
+
+            case "major":
+                return 3;
+
+            case "medium":
+                return 2;
+
+            default:
+                return 1;
+        }
+    }
+
+
+    /*
+     * Generate ticks from min to max, inclusive.
+     */
+    const tickValues = [];
+
+    if (step > 0) {
+
+        const firstTick =
+            Math.ceil(
+                min / step
+            ) * step;
+
+        for (
+            let value = firstTick;
+            value <= max + step * 0.000001;
+            value += step
+        ) {
+
+            value =
+                roundValue(value);
+
+            if (
+                value >= min &&
+                value <= max
+            ) {
+                tickValues.push(value);
+            }
+        }
+    }
+
+
+    let svg = `
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="${width}"
+            height="${height}"
+            viewBox="0 0 ${width} ${height}"
+            style="overflow: visible"
+        >
+
+            <line
+                x1="${paddingLeft}"
+                y1="${lineY}"
+                x2="${width - paddingRight}"
+                y2="${lineY}"
+                stroke="currentColor"
+                stroke-width="2"
+            />
+
+            <polygon
+                points="
+                    ${paddingLeft},${lineY}
+                    ${paddingLeft + 8},${lineY - 5}
+                    ${paddingLeft + 8},${lineY + 5}
+                "
+                fill="currentColor"
+            />
+
+            <polygon
+                points="
+                    ${width - paddingRight},${lineY}
+                    ${width - paddingRight - 8},${lineY - 5}
+                    ${width - paddingRight - 8},${lineY + 5}
+                "
+                fill="currentColor"
+            />
+    `;
+
+
+    /*
+     * Draw ticks.
+     */
+    for (const value of tickValues) {
+
+        const x =
+            toX(value);
+
+        const type =
+            getTickType(value);
+
+        const tickHeight =
+            getTickHeight(type);
+
+        const tickWidth =
+            getTickWidth(type);
+
+        svg += `
+            <line
+                x1="${x}"
+                y1="${lineY - tickHeight / 2}"
+                x2="${x}"
+                y2="${lineY + tickHeight / 2}"
+                stroke="currentColor"
+                stroke-width="${tickWidth}"
+            />
+        `;
+    }
+
+
+    /*
+     * Draw numerical labels.
+     */
+    if (numberEvery > 0) {
+
+        const firstNumber =
+            Math.ceil(
+                min / numberEvery
+            ) * numberEvery;
+
+        for (
+            let value = firstNumber;
+            value <= max + numberEvery * 0.000001;
+            value += numberEvery
+        ) {
+
+            value =
+                roundValue(value);
+
+            if (
+                value < min ||
+                value > max
+            ) {
+                continue;
+            }
+
+            const x =
+                toX(value);
+
+            svg += `
+                <text
+                    x="${x}"
+                    y="${lineY + 42}"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                    fill="currentColor"
+                    font-size="16"
+                >
+                    ${value}
+                </text>
+            `;
+        }
+    }
+
+
+    /*
+     * Draw marked points.
+     */
+    for (const point of points) {
+
+        if (
+            point.value < min ||
+            point.value > max
+        ) {
+            continue;
+        }
+
+        const x =
+            toX(point.value);
+
+        svg += `
+            <circle
+                cx="${x}"
+                cy="${lineY}"
+                r="4"
+                fill="currentColor"
+            />
+        `;
+
+        if (point.label !== undefined) {
+
+            svg += `
+                <text
+                    x="${x}"
+                    y="${lineY - 20}"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                    fill="currentColor"
+                    font-size="16"
+                >
+                    ${point.label}
+                </text>
+            `;
+        }
+    }
+
+
+    /*
+     * Draw arrows.
+     */
+    for (const arrow of arrows) {
+
+        const from =
+            Math.max(
+                min,
+                Math.min(
+                    max,
+                    arrow.from
+                )
+            );
+
+        const to =
+            Math.max(
+                min,
+                Math.min(
+                    max,
+                    arrow.to
+                )
+            );
+
+        if (from === to) {
+            continue;
+        }
+
+        const x1 =
+            toX(from);
+
+        const x2 =
+            toX(to);
+
+        const direction =
+            x2 > x1
+                ? 1
+                : -1;
+
+        const arrowY =
+            lineY - 32;
+
+        const arrowSize = 8;
+
+        svg += `
+            <line
+                x1="${x1}"
+                y1="${arrowY}"
+                x2="${x2}"
+                y2="${arrowY}"
+                stroke="currentColor"
+                stroke-width="2"
+            />
+
+            <polygon
+                points="
+                    ${x2},${arrowY}
+                    ${x2 - direction * arrowSize},${arrowY - 5}
+                    ${x2 - direction * arrowSize},${arrowY + 5}
+                "
+                fill="currentColor"
+            />
+        `;
+
+        if (arrow.label !== undefined) {
+
+            const labelX =
+                (x1 + x2) / 2;
+
+            svg += `
+                <text
+                    x="${labelX}"
+                    y="${arrowY - 12}"
+                    text-anchor="middle"
+                    dominant-baseline="middle"
+                    fill="currentColor"
+                    font-size="16"
+                >
+                    ${arrow.label}
+                </text>
+            `;
+        }
+    }
+
+
+    svg += `
+        </svg>
+    `;
+
+
+    return svg;
+}

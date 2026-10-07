@@ -3490,6 +3490,539 @@ function generateCommonQuadrilateralProblems(
 
     return problems;
 }
+function generateNegativeAdditionProblem(settings) {
+    const {
+        min = 1,
+        max = 10,
+        positivePositiveProbability = 0.1,
+        positiveNegativeProbability = 0.3,
+        negativePositiveProbability = 0.3,
+        negativeNegativeProbability = 0.3
+    } = settings;
+
+    for (let attempt = 0; attempt < 1000; attempt++) {
+
+        const totalProbability =
+            positivePositiveProbability +
+            positiveNegativeProbability +
+            negativePositiveProbability +
+            negativeNegativeProbability;
+
+        if (totalProbability <= 0) {
+            throw new Error(
+                "At least one sign combination must have a positive probability."
+            );
+        }
+
+        const random =
+            Math.random() * totalProbability;
+
+        let leftSign;
+        let rightSign;
+
+        if (random < positivePositiveProbability) {
+
+            leftSign = 1;
+            rightSign = 1;
+
+        } else if (
+            random <
+            positivePositiveProbability +
+            positiveNegativeProbability
+        ) {
+
+            leftSign = 1;
+            rightSign = -1;
+
+        } else if (
+            random <
+            positivePositiveProbability +
+            positiveNegativeProbability +
+            negativePositiveProbability
+        ) {
+
+            leftSign = -1;
+            rightSign = 1;
+
+        } else {
+
+            leftSign = -1;
+            rightSign = -1;
+        }
+
+        const leftMagnitude =
+            Math.floor(
+                Math.random() *
+                (max - min + 1)
+            ) + min;
+
+        const rightMagnitude =
+            Math.floor(
+                Math.random() *
+                (max - min + 1)
+            ) + min;
+
+        const left =
+            leftSign * leftMagnitude;
+
+        const right =
+            rightSign * rightMagnitude;
+
+        const answer =
+            left + right;
+
+        let explanation;
+
+        if (leftSign === rightSign) {
+
+            explanation = {
+                type: "same-sign",
+                left,
+                right,
+                magnitude:
+                    leftMagnitude + rightMagnitude,
+                sign: leftSign
+            };
+
+        } else {
+
+            const largerMagnitude =
+                Math.max(
+                    leftMagnitude,
+                    rightMagnitude
+                );
+
+            const smallerMagnitude =
+                Math.min(
+                    leftMagnitude,
+                    rightMagnitude
+                );
+
+            const resultSign =
+                leftMagnitude > rightMagnitude
+                    ? leftSign
+                    : rightMagnitude > leftMagnitude
+                        ? rightSign
+                        : 1;
+
+            explanation = {
+                type: "different-sign",
+                left,
+                right,
+                largerMagnitude,
+                smallerMagnitude,
+                sign: resultSign
+            };
+        }
+
+        const displayedRight =
+            right < 0
+                ? `(${right})`
+                : right;
+
+        return {
+            left,
+            right,
+            operator: "+",
+
+            prompt: `${left} + ${displayedRight}&nbsp;<span>=</span>
+                <span class="question-mark">?</span>`,
+
+            answer,
+
+            explanation
+        };
+    }
+
+    throw new Error(
+        "Could not generate a negative addition problem with the requested settings."
+    );
+}
+function generateNegativeAdditionProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateNegativeAdditionProblem(settings)
+        );
+    }
+
+    return problems;
+}
+function generateNegativeSubtractionProblem(settings) {
+    const {
+        min = 1,
+        max = 10,
+        positivePositiveProbability = 0.1,
+        positiveNegativeProbability = 0.3,
+        negativePositiveProbability = 0.3,
+        negativeNegativeProbability = 0.3
+    } = settings;
+
+    for (let attempt = 0; attempt < 1000; attempt++) {
+
+        const totalProbability =
+            positivePositiveProbability +
+            positiveNegativeProbability +
+            negativePositiveProbability +
+            negativeNegativeProbability;
+
+        if (totalProbability <= 0) {
+            throw new Error(
+                "At least one sign combination must have a positive probability."
+            );
+        }
+
+        const random = Math.random() * totalProbability;
+
+        let leftSign;
+        let rightSign;
+
+        if (random < positivePositiveProbability) {
+            leftSign = 1;
+            rightSign = 1;
+        } else if (
+            random <
+            positivePositiveProbability +
+            positiveNegativeProbability
+        ) {
+            leftSign = 1;
+            rightSign = -1;
+        } else if (
+            random <
+            positivePositiveProbability +
+            positiveNegativeProbability +
+            negativePositiveProbability
+        ) {
+            leftSign = -1;
+            rightSign = 1;
+        } else {
+            leftSign = -1;
+            rightSign = -1;
+        }
+
+        const leftMagnitude =
+            Math.floor(Math.random() * (max - min + 1)) + min;
+
+        const rightMagnitude =
+            Math.floor(Math.random() * (max - min + 1)) + min;
+
+        const left = leftSign * leftMagnitude;
+        const right = rightSign * rightMagnitude;
+
+        const answer = left - right;
+
+        // Subtracting a number is the same as adding its opposite:
+        // left - right = left + (-right)
+        const addend = 0 - right;
+        const addendSign = -rightSign;
+
+        let equivalent;
+
+        if (leftSign === addendSign) {
+
+            equivalent = {
+                type: "same-sign",
+                left,
+                right: addend,
+                magnitude: leftMagnitude + rightMagnitude,
+                sign: leftSign
+            };
+
+        } else {
+
+            const largerMagnitude =
+                Math.max(leftMagnitude, rightMagnitude);
+
+            const smallerMagnitude =
+                Math.min(leftMagnitude, rightMagnitude);
+
+            const resultSign =
+                leftMagnitude > rightMagnitude
+                    ? leftSign
+                    : rightMagnitude > leftMagnitude
+                        ? addendSign
+                        : 1;
+
+            equivalent = {
+                type: "different-sign",
+                left,
+                right: addend,
+                largerMagnitude,
+                smallerMagnitude,
+                sign: resultSign
+            };
+        }
+
+        const explanation = {
+            type: "subtraction",
+            left,
+            right,
+            addend,
+            equivalent
+        };
+
+        const displayedRight = right < 0 ? `(${right})` : right;
+
+        return {
+            left,
+            right,
+            operator: "−",
+
+            prompt: `${left} − ${displayedRight}&nbsp;<span>=</span>
+                <span class="question-mark">?</span>`,
+
+            answer,
+
+            explanation
+        };
+    }
+
+    throw new Error(
+        "Could not generate a negative subtraction problem with the requested settings."
+    );
+}
+
+function generateNegativeSubtractionProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateNegativeSubtractionProblem(settings)
+        );
+    }
+
+    return problems;
+}
+
+
+function generateNegativeMultiplicationProblem(settings) {
+    const {
+        min = 1,
+        max = 10,
+        positivePositiveProbability = 0.1,
+        positiveNegativeProbability = 0.3,
+        negativePositiveProbability = 0.3,
+        negativeNegativeProbability = 0.3
+    } = settings;
+
+    for (let attempt = 0; attempt < 1000; attempt++) {
+
+        const totalProbability =
+            positivePositiveProbability +
+            positiveNegativeProbability +
+            negativePositiveProbability +
+            negativeNegativeProbability;
+
+        if (totalProbability <= 0) {
+            throw new Error(
+                "At least one sign combination must have a positive probability."
+            );
+        }
+
+        const random = Math.random() * totalProbability;
+
+        let leftSign;
+        let rightSign;
+
+        if (random < positivePositiveProbability) {
+            leftSign = 1;
+            rightSign = 1;
+        } else if (
+            random <
+            positivePositiveProbability +
+            positiveNegativeProbability
+        ) {
+            leftSign = 1;
+            rightSign = -1;
+        } else if (
+            random <
+            positivePositiveProbability +
+            positiveNegativeProbability +
+            negativePositiveProbability
+        ) {
+            leftSign = -1;
+            rightSign = 1;
+        } else {
+            leftSign = -1;
+            rightSign = -1;
+        }
+
+        const leftMagnitude =
+            Math.floor(Math.random() * (max - min + 1)) + min;
+
+        const rightMagnitude =
+            Math.floor(Math.random() * (max - min + 1)) + min;
+
+        // "|| 0" avoids -0 if min is set to 0
+        const left = (leftSign * leftMagnitude) || 0;
+        const right = (rightSign * rightMagnitude) || 0;
+
+        const answer = (left * right) || 0;
+
+        const explanation = {
+            type: leftSign === rightSign ? "same-sign" : "different-sign",
+            left,
+            right,
+            leftMagnitude,
+            rightMagnitude,
+            magnitude: leftMagnitude * rightMagnitude,
+            sign: leftSign * rightSign
+        };
+
+        const displayedRight = right < 0 ? `(${right})` : right;
+
+        return {
+            left,
+            right,
+            operator: "×",
+
+            prompt: `${left} × ${displayedRight}&nbsp;<span>=</span>
+                <span class="question-mark">?</span>`,
+
+            answer,
+
+            explanation
+        };
+    }
+
+    throw new Error(
+        "Could not generate a negative multiplication problem with the requested settings."
+    );
+}
+
+function generateNegativeMultiplicationProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateNegativeMultiplicationProblem(settings)
+        );
+    }
+
+    return problems;
+}
+
+
+function generateNegativeDivisionProblem(settings) {
+    const {
+        min = 1,
+        max = 10,
+        positivePositiveProbability = 0.1,
+        positiveNegativeProbability = 0.3,
+        negativePositiveProbability = 0.3,
+        negativeNegativeProbability = 0.3
+    } = settings;
+
+    for (let attempt = 0; attempt < 1000; attempt++) {
+
+        const totalProbability =
+            positivePositiveProbability +
+            positiveNegativeProbability +
+            negativePositiveProbability +
+            negativeNegativeProbability;
+
+        if (totalProbability <= 0) {
+            throw new Error(
+                "At least one sign combination must have a positive probability."
+            );
+        }
+
+        const random = Math.random() * totalProbability;
+
+        // leftSign = sign of the dividend, rightSign = sign of the divisor
+        let leftSign;
+        let rightSign;
+
+        if (random < positivePositiveProbability) {
+            leftSign = 1;
+            rightSign = 1;
+        } else if (
+            random <
+            positivePositiveProbability +
+            positiveNegativeProbability
+        ) {
+            leftSign = 1;
+            rightSign = -1;
+        } else if (
+            random <
+            positivePositiveProbability +
+            positiveNegativeProbability +
+            negativePositiveProbability
+        ) {
+            leftSign = -1;
+            rightSign = 1;
+        } else {
+            leftSign = -1;
+            rightSign = -1;
+        }
+
+        // Build the problem backwards so the division is always exact:
+        // pick the divisor and the quotient, then multiply to get the dividend.
+        // The divisor can never be 0.
+        const divisorMin = Math.max(min, 1);
+
+        if (divisorMin > max) {
+            throw new Error(
+                "The divisor range must contain at least one non-zero value."
+            );
+        }
+
+        const divisorMagnitude =
+            Math.floor(Math.random() * (max - divisorMin + 1)) + divisorMin;
+
+        const quotientMagnitude =
+            Math.floor(Math.random() * (max - min + 1)) + min;
+
+        const dividendMagnitude = divisorMagnitude * quotientMagnitude;
+
+        const left = (leftSign * dividendMagnitude) || 0;
+        const right = rightSign * divisorMagnitude;
+
+        const answer = (left / right) || 0;
+
+        const explanation = {
+            type: leftSign === rightSign ? "same-sign" : "different-sign",
+            left,
+            right,
+            dividendMagnitude,
+            divisorMagnitude,
+            magnitude: quotientMagnitude,
+            sign: leftSign * rightSign
+        };
+
+        const displayedRight = right < 0 ? `(${right})` : right;
+
+        return {
+            left,
+            right,
+            operator: "÷",
+
+            prompt: `${left} ÷ ${displayedRight}&nbsp;<span>=</span>
+                <span class="question-mark">?</span>`,
+
+            answer,
+
+            explanation
+        };
+    }
+
+    throw new Error(
+        "Could not generate a negative division problem with the requested settings."
+    );
+}
+
+function generateNegativeDivisionProblems(settings, count) {
+    const problems = [];
+
+    for (let i = 0; i < count; i++) {
+        problems.push(
+            generateNegativeDivisionProblem(settings)
+        );
+    }
+
+    return problems;
+}
 const GENERATORS = {
     "number-reading": {
         generate(settings, count) {
@@ -3718,6 +4251,38 @@ const GENERATORS = {
     "commonQuadrilaterals":{
         generate(settings, count) {
             return generateCommonQuadrilateralProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "negativeAddition":{
+        generate(settings, count) {
+            return generateNegativeAdditionProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "negativeSubtraction":{
+        generate(settings, count) {
+            return generateNegativeSubtractionProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "negativeMultiplication":{
+        generate(settings, count) {
+            return generateNegativeMultiplicationProblems(
+                settings,
+                count
+            );
+        }
+    },
+    "negativeDivision":{
+        generate(settings, count) {
+            return generateNegativeDivisionProblems(
                 settings,
                 count
             );

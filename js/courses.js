@@ -5233,10 +5233,8 @@ const COURSES = {
     "negative-numbers": {
         id: "negative-numbers",
 
-        title: "Negative Numbers",
-
-        description:
-            "Learn how negative numbers work and how to use them in arithmetic.",
+        title: "courses.negativeNumbers.title",
+        description: "courses.negativeNumbers.description",
 
         icon: "−1",
 
@@ -5245,10 +5243,8 @@ const COURSES = {
             {
                 id: "negative-numbers-intro",
 
-                title: "Understanding Negative Numbers",
-
-                description:
-                    "Learn what negative numbers are and how they compare to other numbers.",
+                title: "courses.negativeNumbers.intro.title",
+                description: "courses.negativeNumbers.intro.description",
 
                 type: "explanation",
 
@@ -5256,8 +5252,7 @@ const COURSES = {
 
                     {
                         type: "text",
-                        text:
-                            "Negative numbers are numbers that are less than zero. They are written with a minus sign in front of them, such as −1, −2, and −5."
+                        text: "courses.negativeNumbers.intro.content.text1"
                     },
 
                     {
@@ -5283,13 +5278,12 @@ const COURSES = {
                             }),
 
                         explanation:
-                            "Zero is between the negative and positive numbers. Negative numbers are less than zero, while positive numbers are greater than zero."
+                            "courses.negativeNumbers.intro.content.example1"
                     },
 
                     {
                         type: "text",
-                        text:
-                            "The further a number is below zero, the smaller it is. For example, −5 is smaller than −2 because −5 is further below zero."
+                        text: "courses.negativeNumbers.intro.content.text2"
                     },
 
                     {
@@ -5327,13 +5321,12 @@ const COURSES = {
                             }),
 
                         explanation:
-                            "Point A represents −3 and point B represents 2. Since −3 is less than 2, −3 is the smaller number."
+                            "courses.negativeNumbers.intro.content.example2"
                     },
 
                     {
                         type: "text",
-                        text:
-                            "When comparing two negative numbers, the number closer to zero is larger. For example, −2 is greater than −6."
+                        text: "courses.negativeNumbers.intro.content.text3"
                     },
 
                     {
@@ -5342,13 +5335,12 @@ const COURSES = {
                         expression: "−2 > −6",
 
                         explanation:
-                            "Both numbers are negative, but −2 is closer to zero. Therefore, −2 is greater than −6."
+                            "courses.negativeNumbers.intro.content.example3"
                     },
 
                     {
                         type: "text",
-                        text:
-                            "Every number has an opposite number. Opposite numbers are the same distance from zero but have different signs. For example, the opposite of 4 is −4, and the opposite of −7 is 7."
+                        text: "courses.negativeNumbers.intro.content.text4"
                     },
 
                     {
@@ -5386,13 +5378,12 @@ const COURSES = {
                             }),
 
                         explanation:
-                            "−4 and 4 are opposite numbers. They are the same distance from zero, but they are on opposite sides."
+                            "courses.negativeNumbers.intro.content.example4"
                     },
 
                     {
                         type: "text",
-                        text:
-                            "Negative numbers are useful whenever we need to represent a value below zero, such as a temperature below zero or an amount below a starting point."
+                        text: "courses.negativeNumbers.intro.content.text5"
                     }
 
                 ]
@@ -5401,10 +5392,9 @@ const COURSES = {
             {
                 id: "negative-numbers-addition",
 
-                title: "Adding Negative Numbers",
-
+                title: "courses.negativeNumbers.addition.title",
                 description:
-                    "Learn how to add positive and negative numbers.",
+                    "courses.negativeNumbers.addition.description",
 
                 type: "explanation",
 
@@ -5413,7 +5403,7 @@ const COURSES = {
                     {
                         type: "text",
                         text:
-                            "Adding a positive number makes a value larger. Adding a negative number makes a value smaller."
+                            "courses.negativeNumbers.addition.content.text1"
                     },
 
                     {
@@ -5422,7 +5412,7 @@ const COURSES = {
                         expression: "−3 + 5 = 2",
 
                         explanation:
-                            "Starting at −3 and adding 5 makes the value 5 larger, giving us 2."
+                            "courses.negativeNumbers.addition.content.example1"
                     },
 
                     {
@@ -5431,13 +5421,13 @@ const COURSES = {
                         expression: "4 + (−6) = −2",
 
                         explanation:
-                            "Adding −6 makes 4 smaller by 6, so the result is −2."
+                            "courses.negativeNumbers.addition.content.example2"
                     },
 
                     {
                         type: "text",
                         text:
-                            "When both numbers have the same sign, add their distances from zero and keep that sign."
+                            "courses.negativeNumbers.addition.content.text2"
                     },
 
                     {
@@ -5446,13 +5436,13 @@ const COURSES = {
                         expression: "−4 + (−3) = −7",
 
                         explanation:
-                            "Both numbers are negative. Add 4 and 3 to get 7, then keep the negative sign."
+                            "courses.negativeNumbers.addition.content.example3"
                     },
 
                     {
                         type: "text",
                         text:
-                            "When the numbers have different signs, subtract the smaller distance from zero from the larger one. The sign of the number with the larger distance from zero stays."
+                            "courses.negativeNumbers.addition.content.text3"
                     },
 
                     {
@@ -5461,7 +5451,7 @@ const COURSES = {
                         expression: "−8 + 3 = −5",
 
                         explanation:
-                            "The distances from zero are 8 and 3. Subtract 3 from 8 to get 5. Since 8 came from the negative number, the result is −5."
+                            "courses.negativeNumbers.addition.content.example4"
                     }
 
                 ]
@@ -5470,17 +5460,20 @@ const COURSES = {
             {
                 id: "negative-numbers-addition-practice",
 
-                title: "Adding Negative Numbers Practice",
+                title:
+                    "courses.negativeNumbers.additionPractice.title",
 
                 description:
-                    "Practice adding positive and negative numbers.",
+                    "courses.negativeNumbers.additionPractice.description",
 
                 type: "practice",
 
                 practice: {
                     generator: "negativeAddition",
                     interaction: "number-input",
+
                     settings: {},
+
                     problemCount: 10
                 },
 
@@ -5490,10 +5483,11 @@ const COURSES = {
             {
                 id: "negative-numbers-subtraction",
 
-                title: "Subtracting Negative Numbers",
+                title:
+                    "courses.negativeNumbers.subtraction.title",
 
                 description:
-                    "Learn how to subtract positive and negative numbers.",
+                    "courses.negativeNumbers.subtraction.description",
 
                 type: "explanation",
 
@@ -5502,7 +5496,7 @@ const COURSES = {
                     {
                         type: "text",
                         text:
-                            "Subtracting a positive number makes a value smaller. Subtracting a negative number makes a value larger."
+                            "courses.negativeNumbers.subtraction.content.text1"
                     },
 
                     {
@@ -5511,7 +5505,7 @@ const COURSES = {
                         expression: "5 − 2 = 3",
 
                         explanation:
-                            "Subtracting 2 from 5 makes the value smaller by 2, giving us 3."
+                            "courses.negativeNumbers.subtraction.content.example1"
                     },
 
                     {
@@ -5520,37 +5514,39 @@ const COURSES = {
                         expression: "5 − (−2) = 7",
 
                         explanation:
-                            "Subtracting −2 is the same as adding 2. Therefore, 5 − (−2) = 5 + 2 = 7."
+                            "courses.negativeNumbers.subtraction.content.example2"
                     },
 
                     {
                         type: "text",
                         text:
-                            "A useful rule is that subtracting a number is the same as adding its opposite."
+                            "courses.negativeNumbers.subtraction.content.text2"
                     },
 
                     {
                         type: "example",
 
-                        expression: "−4 − 3 = −4 + (−3) = −7",
+                        expression:
+                            "−4 − 3 = −4 + (−3) = −7",
 
                         explanation:
-                            "The opposite of 3 is −3, so subtracting 3 is the same as adding −3."
+                            "courses.negativeNumbers.subtraction.content.example3"
                     },
 
                     {
                         type: "example",
 
-                        expression: "−4 − (−3) = −4 + 3 = −1",
+                        expression:
+                            "−4 − (−3) = −4 + 3 = −1",
 
                         explanation:
-                            "The opposite of −3 is 3, so subtracting −3 is the same as adding 3."
+                            "courses.negativeNumbers.subtraction.content.example4"
                     },
 
                     {
                         type: "text",
                         text:
-                            "This lets us handle every subtraction problem using the same idea: change subtraction into addition and use the opposite of the number being subtracted."
+                            "courses.negativeNumbers.subtraction.content.text3"
                     }
 
                 ]
@@ -5559,17 +5555,20 @@ const COURSES = {
             {
                 id: "negative-numbers-subtraction-practice",
 
-                title: "Subtracting Negative Numbers Practice",
+                title:
+                    "courses.negativeNumbers.subtractionPractice.title",
 
                 description:
-                    "Practice subtracting positive and negative numbers.",
+                    "courses.negativeNumbers.subtractionPractice.description",
 
                 type: "practice",
 
                 practice: {
                     generator: "negativeSubtraction",
                     interaction: "number-input",
+
                     settings: {},
+
                     problemCount: 10
                 },
 
@@ -5579,10 +5578,11 @@ const COURSES = {
             {
                 id: "negative-numbers-multiplication",
 
-                title: "Multiplying Negative Numbers",
+                title:
+                    "courses.negativeNumbers.multiplication.title",
 
                 description:
-                    "Learn how the signs of numbers affect multiplication.",
+                    "courses.negativeNumbers.multiplication.description",
 
                 type: "explanation",
 
@@ -5591,13 +5591,13 @@ const COURSES = {
                     {
                         type: "text",
                         text:
-                            "When multiplying numbers, the signs of the numbers determine whether the result is positive or negative."
+                            "courses.negativeNumbers.multiplication.content.text1"
                     },
 
                     {
                         type: "text",
                         text:
-                            "When both numbers have the same sign, the result is positive. When the numbers have different signs, the result is negative."
+                            "courses.negativeNumbers.multiplication.content.text2"
                     },
 
                     {
@@ -5606,7 +5606,7 @@ const COURSES = {
                         expression: "4 × 3 = 12",
 
                         explanation:
-                            "Both numbers are positive, so the result is positive."
+                            "courses.negativeNumbers.multiplication.content.example1"
                     },
 
                     {
@@ -5615,7 +5615,7 @@ const COURSES = {
                         expression: "−4 × −3 = 12",
 
                         explanation:
-                            "Both numbers are negative, so the result is positive."
+                            "courses.negativeNumbers.multiplication.content.example2"
                     },
 
                     {
@@ -5624,7 +5624,7 @@ const COURSES = {
                         expression: "−4 × 3 = −12",
 
                         explanation:
-                            "The numbers have different signs, so the result is negative."
+                            "courses.negativeNumbers.multiplication.content.example3"
                     },
 
                     {
@@ -5633,13 +5633,13 @@ const COURSES = {
                         expression: "4 × −3 = −12",
 
                         explanation:
-                            "The numbers have different signs, so the result is negative."
+                            "courses.negativeNumbers.multiplication.content.example4"
                     },
 
                     {
                         type: "text",
                         text:
-                            "The multiplication itself works just as it does with positive numbers. First multiply the distances from zero, then determine the sign from the two signs."
+                            "courses.negativeNumbers.multiplication.content.text3"
                     },
 
                     {
@@ -5648,7 +5648,7 @@ const COURSES = {
                         expression: "−6 × −5 = 30",
 
                         explanation:
-                            "6 × 5 = 30. Both numbers are negative, so the result is positive."
+                            "courses.negativeNumbers.multiplication.content.example5"
                     }
 
                 ]
@@ -5657,17 +5657,20 @@ const COURSES = {
             {
                 id: "negative-numbers-multiplication-practice",
 
-                title: "Multiplying Negative Numbers Practice",
+                title:
+                    "courses.negativeNumbers.multiplicationPractice.title",
 
                 description:
-                    "Practice multiplying positive and negative numbers.",
+                    "courses.negativeNumbers.multiplicationPractice.description",
 
                 type: "practice",
 
                 practice: {
                     generator: "negativeMultiplication",
                     interaction: "number-input",
+
                     settings: {},
+
                     problemCount: 10
                 },
 
@@ -5677,10 +5680,11 @@ const COURSES = {
             {
                 id: "negative-numbers-division",
 
-                title: "Dividing Negative Numbers",
+                title:
+                    "courses.negativeNumbers.division.title",
 
                 description:
-                    "Learn how the signs of numbers affect division.",
+                    "courses.negativeNumbers.division.description",
 
                 type: "explanation",
 
@@ -5689,7 +5693,7 @@ const COURSES = {
                     {
                         type: "text",
                         text:
-                            "Division follows the same sign rules as multiplication. When the two numbers have the same sign, the result is positive. When they have different signs, the result is negative."
+                            "courses.negativeNumbers.division.content.text1"
                     },
 
                     {
@@ -5698,7 +5702,7 @@ const COURSES = {
                         expression: "24 ÷ 6 = 4",
 
                         explanation:
-                            "Both numbers are positive, so the result is positive."
+                            "courses.negativeNumbers.division.content.example1"
                     },
 
                     {
@@ -5707,7 +5711,7 @@ const COURSES = {
                         expression: "−24 ÷ −6 = 4",
 
                         explanation:
-                            "Both numbers are negative, so the result is positive."
+                            "courses.negativeNumbers.division.content.example2"
                     },
 
                     {
@@ -5716,7 +5720,7 @@ const COURSES = {
                         expression: "−24 ÷ 6 = −4",
 
                         explanation:
-                            "The numbers have different signs, so the result is negative."
+                            "courses.negativeNumbers.division.content.example3"
                     },
 
                     {
@@ -5725,13 +5729,13 @@ const COURSES = {
                         expression: "24 ÷ −6 = −4",
 
                         explanation:
-                            "The numbers have different signs, so the result is negative."
+                            "courses.negativeNumbers.division.content.example4"
                     },
 
                     {
                         type: "text",
                         text:
-                            "You can use multiplication to help with division. For example, because 6 × 4 = 24, we know that 24 ÷ 6 = 4."
+                            "courses.negativeNumbers.division.content.text2"
                     },
 
                     {
@@ -5740,7 +5744,7 @@ const COURSES = {
                         expression: "−35 ÷ −5 = 7",
 
                         explanation:
-                            "Since 5 × 7 = 35 and both numbers are negative, the result is positive."
+                            "courses.negativeNumbers.division.content.example5"
                     }
 
                 ]
@@ -5749,37 +5753,20 @@ const COURSES = {
             {
                 id: "negative-numbers-division-practice",
 
-                title: "Dividing Negative Numbers Practice",
+                title:
+                    "courses.negativeNumbers.divisionPractice.title",
 
                 description:
-                    "Practice dividing positive and negative numbers.",
+                    "courses.negativeNumbers.divisionPractice.description",
 
                 type: "practice",
 
                 practice: {
                     generator: "negativeDivision",
                     interaction: "number-input",
+
                     settings: {},
-                    problemCount: 10
-                },
 
-                difficultyMultiplier: 1
-            },
-
-            {
-                id: "negative-numbers-mixed-practice",
-
-                title: "Negative Numbers Mixed Practice",
-
-                description:
-                    "Practice using all four arithmetic operations with negative numbers.",
-
-                type: "practice",
-
-                practice: {
-                    generator: "negativeMixed",
-                    interaction: "number-input",
-                    settings: {},
                     problemCount: 10
                 },
 
@@ -5788,4 +5775,6 @@ const COURSES = {
 
         ]
     }
+
+
 };

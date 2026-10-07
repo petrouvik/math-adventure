@@ -1976,7 +1976,192 @@ const TRANSLATIONS_SR = {
                         "Rešavaj jednačine za čije je rešavanje potrebno primeniti dve operacije."
                 }
             }
+        },
+        negativeNumbers: {
+            title: "Negativni brojevi",
+            description:
+                "Nauči kako funkcionišu negativni brojevi i kako se koriste u računanju.",
+
+            intro: {
+                title: "Razumevanje negativnih brojeva",
+                description:
+                    "Nauči šta su negativni brojevi i kako se porede sa drugim brojevima.",
+
+                content: {
+                    text1:
+                        "Negativni brojevi su brojevi koji su manji od nule. Pišu se sa znakom minus ispred broja, kao što su −1, −2 i −5.",
+
+                    example1:
+                        "Nula se nalazi između negativnih i pozitivnih brojeva. Negativni brojevi su manji od nule, dok su pozitivni brojevi veći od nule.",
+
+                    text2:
+                        "Što je broj dalje ispod nule, to je manji. Na primer, −5 je manje od −2 jer je −5 dalje od nule.",
+
+                    example2:
+                        "Tačka A predstavlja broj −3, a tačka B broj 2. Pošto je −3 manje od 2, broj −3 je manji.",
+
+                    text3:
+                        "Kada poredimo dva negativna broja, veći je onaj koji je bliži nuli. Na primer, −2 je veće od −6.",
+
+                    example3:
+                        "Oba broja su negativna, ali je −2 bliže nuli. Zato je −2 veće od −6.",
+
+                    text4:
+                        "Svaki broj ima svoj suprotni broj. Suprotni brojevi su na istom rastojanju od nule, ali imaju različite znakove. Na primer, suprotan broj od 4 je −4, a suprotan broj od −7 je 7.",
+
+                    example4:
+                        "−4 i 4 su suprotni brojevi. Oni su na istom rastojanju od nule, ali se nalaze sa suprotnih strana.",
+
+                    text5:
+                        "Negativni brojevi su korisni kada treba da predstavimo vrednost manju od nule, kao što je temperatura ispod nule ili vrednost manja od početne."
+                }
+            },
+
+            addition: {
+                title: "Sabiranje negativnih brojeva",
+                description:
+                    "Nauči kako se sabiraju pozitivni i negativni brojevi.",
+
+                content: {
+                    text1:
+                        "Sabiranjem pozitivnog broja vrednost se povećava. Sabiranjem negativnog broja vrednost se smanjuje.",
+
+                    example1:
+                        "Ako počnemo od −3 i dodamo 5, vrednost se povećava za 5 i dobijamo 2.",
+
+                    example2:
+                        "Sabiranjem broja −6 vrednost 4 se smanjuje za 6, pa dobijamo −2.",
+
+                    text2:
+                        "Kada brojevi imaju isti znak, saberemo njihova rastojanja od nule i zadržimo taj znak.",
+
+                    example3:
+                        "Oba broja su negativna. Saberemo 4 i 3 i dobijamo 7, a zatim zadržimo znak minus.",
+
+                    text3:
+                        "Kada brojevi imaju različite znakove, od većeg rastojanja od nule oduzmemo manje rastojanje. Zadržavamo znak broja koji ima veće rastojanje od nule.",
+
+                    example4:
+                        "Rastojanja od nule su 8 i 3. Oduzmemo 3 od 8 i dobijamo 5. Pošto je 8 rastojanje negativnog broja, rezultat je −5."
+                }
+            },
+
+            additionPractice: {
+                title: "Vežbanje sabiranja negativnih brojeva",
+                description:
+                    "Vežbaj sabiranje pozitivnih i negativnih brojeva."
+            },
+
+            subtraction: {
+                title: "Oduzimanje negativnih brojeva",
+                description:
+                    "Nauči kako se oduzimaju pozitivni i negativni brojevi.",
+
+                content: {
+                    text1:
+                        "Oduzimanjem pozitivnog broja vrednost se smanjuje. Oduzimanjem negativnog broja vrednost se povećava.",
+
+                    example1:
+                        "Oduzimanjem 2 od 5 vrednost se smanjuje za 2, pa dobijamo 3.",
+
+                    example2:
+                        "Oduzimanje broja −2 isto je što i sabiranje broja 2. Zato je 5 − (−2) = 5 + 2 = 7.",
+
+                    text2:
+                        "Korisno pravilo je da je oduzimanje nekog broja isto što i sabiranje njegovog suprotnog broja.",
+
+                    example3:
+                        "Suprotan broj od 3 je −3, pa je oduzimanje broja 3 isto što i sabiranje broja −3.",
+
+                    example4:
+                        "Suprotan broj od −3 je 3, pa je oduzimanje broja −3 isto što i sabiranje broja 3.",
+
+                    text3:
+                        "Na ovaj način svaki zadatak sa oduzimanjem možemo rešiti na isti način: pretvorimo oduzimanje u sabiranje i koristimo suprotan broj onog koji oduzimamo."
+                }
+            },
+
+            subtractionPractice: {
+                title: "Vežbanje oduzimanja negativnih brojeva",
+                description:
+                    "Vežbaj oduzimanje pozitivnih i negativnih brojeva."
+            },
+
+            multiplication: {
+                title: "Množenje negativnih brojeva",
+                description:
+                    "Nauči kako znakovi brojeva utiču na rezultat množenja.",
+
+                content: {
+                    text1:
+                        "Prilikom množenja, znakovi brojeva određuju da li će rezultat biti pozitivan ili negativan.",
+
+                    text2:
+                        "Kada oba broja imaju isti znak, rezultat je pozitivan. Kada brojevi imaju različite znakove, rezultat je negativan.",
+
+                    example1:
+                        "Oba broja su pozitivna, pa je rezultat pozitivan.",
+
+                    example2:
+                        "Oba broja su negativna, pa je rezultat pozitivan.",
+
+                    example3:
+                        "Brojevi imaju različite znakove, pa je rezultat negativan.",
+
+                    example4:
+                        "Brojevi imaju različite znakove, pa je rezultat negativan.",
+
+                    text3:
+                        "Samo množenje se odvija na isti način kao i kod pozitivnih brojeva. Najpre pomnožimo rastojanja od nule, a zatim odredimo znak rezultata na osnovu znakova činilaca.",
+
+                    example5:
+                        "6 × 5 = 30. Oba broja su negativna, pa je rezultat pozitivan."
+                }
+            },
+
+            multiplicationPractice: {
+                title: "Vežbanje množenja negativnih brojeva",
+                description:
+                    "Vežbaj množenje pozitivnih i negativnih brojeva."
+            },
+
+            division: {
+                title: "Deljenje negativnih brojeva",
+                description:
+                    "Nauči kako znakovi brojeva utiču na rezultat deljenja.",
+
+                content: {
+                    text1:
+                        "Kod deljenja važe ista pravila za znakove kao i kod množenja. Kada dva broja imaju isti znak, rezultat je pozitivan. Kada imaju različite znakove, rezultat je negativan.",
+
+                    example1:
+                        "Oba broja su pozitivna, pa je rezultat pozitivan.",
+
+                    example2:
+                        "Oba broja su negativna, pa je rezultat pozitivan.",
+
+                    example3:
+                        "Brojevi imaju različite znakove, pa je rezultat negativan.",
+
+                    example4:
+                        "Brojevi imaju različite znakove, pa je rezultat negativan.",
+
+                    text2:
+                        "Kod deljenja možemo se poslužiti množenjem. Na primer, pošto je 6 × 4 = 24, znamo da je 24 ÷ 6 = 4.",
+
+                    example5:
+                        "Pošto je 5 × 7 = 35 i oba broja su negativna, rezultat je pozitivan."
+                }
+            },
+
+            divisionPractice: {
+                title: "Vežbanje deljenja negativnih brojeva",
+                description:
+                    "Vežbaj deljenje pozitivnih i negativnih brojeva."
+            }
+
         }
+
     },
 
     // ========================================

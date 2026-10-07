@@ -1933,7 +1933,191 @@ const TRANSLATIONS_EN = {
                         "Solve equations that require two operations to find the unknown."
                 }
             }
+        },
+        negativeNumbers: {
+            title: "Negative Numbers",
+            description:
+                "Learn how negative numbers work and how to use them in arithmetic.",
+
+            intro: {
+                title: "Understanding Negative Numbers",
+                description:
+                    "Learn what negative numbers are and how they compare to other numbers.",
+
+                content: {
+                    text1:
+                        "Negative numbers are numbers that are less than zero. They are written with a minus sign in front of them, such as −1, −2, and −5.",
+
+                    example1:
+                        "Zero is between the negative and positive numbers. Negative numbers are less than zero, while positive numbers are greater than zero.",
+
+                    text2:
+                        "The further a number is below zero, the smaller it is. For example, −5 is smaller than −2 because −5 is further below zero.",
+
+                    example2:
+                        "Point A represents −3 and point B represents 2. Since −3 is less than 2, −3 is the smaller number.",
+
+                    text3:
+                        "When comparing two negative numbers, the number closer to zero is larger. For example, −2 is greater than −6.",
+
+                    example3:
+                        "Both numbers are negative, but −2 is closer to zero. Therefore, −2 is greater than −6.",
+
+                    text4:
+                        "Every number has an opposite number. Opposite numbers are the same distance from zero but have different signs. For example, the opposite of 4 is −4, and the opposite of −7 is 7.",
+
+                    example4:
+                        "−4 and 4 are opposite numbers. They are the same distance from zero, but they are on opposite sides.",
+
+                    text5:
+                        "Negative numbers are useful whenever we need to represent a value below zero, such as a temperature below zero or an amount below a starting point."
+                }
+            },
+
+            addition: {
+                title: "Adding Negative Numbers",
+                description:
+                    "Learn how to add positive and negative numbers.",
+
+                content: {
+                    text1:
+                        "Adding a positive number makes a value larger. Adding a negative number makes a value smaller.",
+
+                    example1:
+                        "Starting at −3 and adding 5 makes the value 5 larger, giving us 2.",
+
+                    example2:
+                        "Adding −6 makes 4 smaller by 6, so the result is −2.",
+
+                    text2:
+                        "When both numbers have the same sign, add their distances from zero and keep that sign.",
+
+                    example3:
+                        "Both numbers are negative. Add 4 and 3 to get 7, then keep the negative sign.",
+
+                    text3:
+                        "When the numbers have different signs, subtract the smaller distance from zero from the larger one. The sign of the number with the larger distance from zero stays.",
+
+                    example4:
+                        "The distances from zero are 8 and 3. Subtract 3 from 8 to get 5. Since 8 came from the negative number, the result is −5."
+                }
+            },
+
+            additionPractice: {
+                title: "Adding Negative Numbers Practice",
+                description:
+                    "Practice adding positive and negative numbers."
+            },
+
+            subtraction: {
+                title: "Subtracting Negative Numbers",
+                description:
+                    "Learn how to subtract positive and negative numbers.",
+
+                content: {
+                    text1:
+                        "Subtracting a positive number makes a value smaller. Subtracting a negative number makes a value larger.",
+
+                    example1:
+                        "Subtracting 2 from 5 makes the value smaller by 2, giving us 3.",
+
+                    example2:
+                        "Subtracting −2 is the same as adding 2. Therefore, 5 − (−2) = 5 + 2 = 7.",
+
+                    text2:
+                        "A useful rule is that subtracting a number is the same as adding its opposite.",
+
+                    example3:
+                        "The opposite of 3 is −3, so subtracting 3 is the same as adding −3.",
+
+                    example4:
+                        "The opposite of −3 is 3, so subtracting −3 is the same as adding 3.",
+
+                    text3:
+                        "This lets us handle every subtraction problem using the same idea: change subtraction into addition and use the opposite of the number being subtracted."
+                }
+            },
+
+            subtractionPractice: {
+                title: "Subtracting Negative Numbers Practice",
+                description:
+                    "Practice subtracting positive and negative numbers."
+            },
+
+            multiplication: {
+                title: "Multiplying Negative Numbers",
+                description:
+                    "Learn how the signs of numbers affect multiplication.",
+
+                content: {
+                    text1:
+                        "When multiplying numbers, the signs of the numbers determine whether the result is positive or negative.",
+
+                    text2:
+                        "When both numbers have the same sign, the result is positive. When the numbers have different signs, the result is negative.",
+
+                    example1:
+                        "Both numbers are positive, so the result is positive.",
+
+                    example2:
+                        "Both numbers are negative, so the result is positive.",
+
+                    example3:
+                        "The numbers have different signs, so the result is negative.",
+
+                    example4:
+                        "The numbers have different signs, so the result is negative.",
+
+                    text3:
+                        "The multiplication itself works just as it does with positive numbers. First multiply the distances from zero, then determine the sign from the two signs.",
+
+                    example5:
+                        "6 × 5 = 30. Both numbers are negative, so the result is positive."
+                }
+            },
+
+            multiplicationPractice: {
+                title: "Multiplying Negative Numbers Practice",
+                description:
+                    "Practice multiplying positive and negative numbers."
+            },
+
+            division: {
+                title: "Dividing Negative Numbers",
+                description:
+                    "Learn how the signs of numbers affect division.",
+
+                content: {
+                    text1:
+                        "Division follows the same sign rules as multiplication. When the two numbers have the same sign, the result is positive. When they have different signs, the result is negative.",
+
+                    example1:
+                        "Both numbers are positive, so the result is positive.",
+
+                    example2:
+                        "Both numbers are negative, so the result is positive.",
+
+                    example3:
+                        "The numbers have different signs, so the result is negative.",
+
+                    example4:
+                        "The numbers have different signs, so the result is negative.",
+
+                    text2:
+                        "You can use multiplication to help with division. For example, because 6 × 4 = 24, we know that 24 ÷ 6 = 4.",
+
+                    example5:
+                        "Since 5 × 7 = 35 and both numbers are negative, the result is positive."
+                }
+            },
+
+            divisionPractice: {
+                title: "Dividing Negative Numbers Practice",
+                description:
+                    "Practice dividing positive and negative numbers."
+            }
         }
+
     },
 
     // ========================================

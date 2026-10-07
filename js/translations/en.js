@@ -1934,6 +1934,216 @@ const TRANSLATIONS_EN = {
                 }
             }
         },
+        geometry: {
+
+            title: "Geometry",
+
+            description:
+                "Learn the basic ideas and building blocks of geometry.",
+
+
+            geometryBasics: {
+                title: "Geometry Basics",
+                description: "Learn about points, lines, segments, and rays.",
+                content: {
+                    text1: "Geometry is the part of mathematics that helps us describe shapes, sizes, positions, and the space around us. We start with a few simple objects that are used to build many of the things we study in geometry.",
+                    text2: "A point represents an exact position. We draw it as a small dot. A point has no length or width.",
+                    example1: "This is point A. The letter A is its name.",
+                    text3: "A line is straight and continues forever in both directions. We can use two points on a line to describe it.",
+                    example2: "This is line l. Points A and B lie on the line, so we can also describe it as the line through A and B.",
+                    text4: "A line segment is a part of a line with two endpoints. Unlike a line, a segment does not continue forever.",
+                    example3: "This is segment AB. The points A and B are its endpoints. A segment can be named using the letters of its endpoints.",
+                    text5: "A ray has one endpoint and continues forever in one direction. We name a ray using its endpoint first.",
+                    example4: "This is ray Ar. A is its endpoint. It continues forever in only one direction.",
+                    text6: "Points are usually named with capital letters, such as A, B, and C. Segments can be named using letters of their points, for example AB. Segments can also be named using a single letter, which is usually lower-case, for example b. Rays are usually named using the endpoint and a lower-case letter, for example Ar."
+                }
+            },
+
+
+            geometryBasicsPractice: {
+                title: "Geometry Basics Practice",
+                description: "Identify points, lines, segments, and rays."
+            },
+
+
+            partsOfAShape: {
+                title: "Parts of a Shape",
+                description: "Learn about sides, vertices, and angles.",
+                content: {
+                    text1: "A shape can have sides, vertices, and angles. Let's learn what each of these means.",
+                    text2: "A side is a line segment that forms part of the outside of a shape. It connects two vertices.",
+                    example1: "AB is a side of the shape. It connects vertices A and B.",
+                    text3: "A vertex is a point where two sides meet. A vertex is one of the corners of a shape.",
+                    example2: "B is a vertex because sides AB and BC meet at B.",
+                    text4: "An angle is the opening between two sides that meet at a vertex.",
+                    example3: "Angle ABC is the angle at vertex B. It is formed by sides BA and BC.",
+                    text5: "We can name a side using the letters of its endpoints. For example, the side connecting A and B is side AB.",
+                    text6: "We can name a vertex using its letter. For example, B is the name of this vertex.",
+                    text7: "We can name an angle using three letters. The letter for the vertex goes in the middle. For example, angle ABC has vertex B.",
+                    example4: "This shape has 5 sides, 5 vertices, and 5 angles. Its vertices are A, B, C, D, and E. Its sides are AB, BC, CD, DE, and EA. Its angles are EAB, ABC, BCD, CDE, and DEA.",
+                    text8: "When you look at a shape, you can find its sides by following its outside boundary. The points where the sides meet are its vertices, and the openings at those vertices are its angles."
+                }
+            },
+
+
+            partsOfAShapePractice: {
+                title: "Parts of a Shape Practice",
+                description: "Practice identifying sides, vertices, and angles."
+            },
+
+
+            angles: {
+                title: "Angles",
+                description: "Learn about acute, right, obtuse, and straight angles.",
+                content: {
+                    text1: "An angle is formed when two sides meet at a vertex. We can describe an angle by how wide its opening is.",
+                    text2: "An acute angle is smaller than a right angle. Its opening is less than 90°.",
+                    example1: "This is an acute angle. Its opening is smaller than 90°.",
+                    text3: "A right angle is exactly 90°. It looks like the corner of a square.",
+                    example2: "This is a right angle. Its opening is exactly 90°.",
+                    text4: "An obtuse angle is larger than a right angle but smaller than a straight angle. Its opening is between 90° and 180°.",
+                    example3: "This is an obtuse angle. Its opening is between 90° and 180°.",
+                    text5: "A straight angle is exactly 180°. Its two sides point in opposite directions and form a straight line.",
+                    example4: "This is a straight angle. Its opening is exactly 180°.",
+                    text6: "Remember: acute angles are less than 90°, right angles are 90°, obtuse angles are between 90° and 180°, and straight angles are 180°."
+                }
+            },
+
+
+            anglesPractice: {
+                title: "Angles Practice",
+                description: "Practice classifying angles."
+            },
+
+
+            adjacentAndOppositeSides: {
+                title: "Adjacent and Opposite Sides",
+                description: "Learn which sides and vertices are next to each other.",
+                content: {
+                    text1: "Some sides of a shape are next to each other, while other sides are farther apart. We can describe these relationships using the words adjacent and opposite.",
+                    text2: "Two sides are adjacent when they meet at a vertex. In other words, they are next to each other.",
+                    example1: "Sides AB and BC are adjacent because they meet at vertex B. Sides AB and DA are also adjacent because they meet at vertex A.",
+                    text3: "Two sides are opposite when they do not meet and are not next to each other.",
+                    example2: "Sides AB and CD are opposite. They do not meet and there are sides between them.",
+                    text4: "Opposite sides only exist when a shape has enough sides for some sides not to meet. A triangle does not have opposite sides.",
+                    example3: "A triangle has three sides, and every pair of its sides meets at a vertex. Therefore, a triangle has no opposite sides.",
+                    text5: "We can also talk about adjacent vertices. Two vertices are adjacent when they are connected by a side.",
+                    example4: "Vertices A and B are adjacent because side AB connects them. Vertices A and C are not adjacent because there is no side connecting them.",
+                    text6: "Remember: adjacent sides meet, while opposite sides do not meet. Adjacent vertices are connected by a side."
+                }
+            },
+
+
+            adjacentAndOppositeSidesPractice: {
+                title: "Adjacent and Opposite Sides Practice",
+                description: "Practice identifying adjacent and opposite sides and vertices."
+            },
+
+
+            lengthAndUnits: {
+                title: "Length and Units",
+                description: "Learn how we measure length and which units to use.",
+                content: {
+                    text1: "Length tells us how long or short something is. We measure length using units.",
+                    text2: "A millimetre, written as mm, is a very small unit of length. It is useful for measuring very small things or small distances.",
+                    example1: "A millimetre is one thousandth of a metre.",
+                    text3: "A centimetre, written as cm, is larger than a millimetre. There are 10 millimetres in 1 centimetre.",
+                    example2: "One centimetre is equal to ten millimetres.",
+                    text4: "A decimetre, written as dm, is larger than a centimetre. There are 10 centimetres in 1 decimetre.",
+                    example3: "One decimetre is equal to ten centimetres.",
+                    text5: "A metre, written as m, is a common unit for measuring the length or height of larger objects. There are 10 decimetres in 1 metre.",
+                    example4: "One metre is equal to ten decimetres.",
+                    text6: "A kilometre, written as km, is much larger than a metre. Kilometres are useful for measuring long distances, such as the distance between two places.",
+                    example5: "One kilometre is equal to one thousand metres.",
+                    text7: "We can also convert a measurement from one unit to another. When we convert a measurement, the length stays the same; only the unit changes.",
+                    example6: "The same length can be written using different units.",
+                    text8: "The unit we choose depends on what we are measuring. Small objects are usually measured in millimetres or centimetres, larger objects in centimetres or metres, and long distances in kilometres.",
+                    text9: "Remember: 10 mm = 1 cm, 10 cm = 1 dm, 10 dm = 1 m, and 1000 m = 1 km."
+                }
+            },
+
+
+            lengthAndUnitsPractice: {
+                title: "Length and Units Practice",
+                description: "Practice converting measurements between different units."
+            },
+
+
+            parallelAndPerpendicularLines: {
+                title: "Parallel and Perpendicular Lines",
+                description: "Learn how to recognize parallel and perpendicular lines.",
+                content: {
+                    text1: "Sometimes we want to describe how two lines are positioned in relation to each other. Two important relationships are parallel and perpendicular.",
+                    text2: "Parallel lines are lines that stay the same distance apart. They do not meet, even if we extend them farther.",
+                    example1: "Lines n and m are parallel. They stay the same distance apart and do not meet.",
+                    text3: "Parallel lines can appear in familiar shapes. In a rectangle, the top and bottom sides are parallel. The left and right sides are also parallel.",
+                    example2: "The top and bottom sides are parallel. The left and right sides are also parallel.",
+                    text4: "Perpendicular lines are lines that meet at a right angle. A right angle measures 90 degrees.",
+                    example3: "Lines n and m are perpendicular because they meet at a right angle.",
+                    text5: "Perpendicular lines also appear in familiar shapes. The sides of a rectangle meet at right angles, so neighboring sides are perpendicular.",
+                    text6: "Not every pair of lines is parallel or perpendicular. Two lines can meet at an angle that is not a right angle. Such lines are neither parallel nor perpendicular.",
+                    example4: "These lines meet, but they do not make a right angle. They are neither parallel nor perpendicular.",
+                    text7: "Remember: parallel lines do not meet, perpendicular lines meet at a right angle, and other pairs of lines may be neither."
+                }
+            },
+
+
+            parallelAndPerpendicularLinesPractice: {
+                title: "Parallel and Perpendicular Lines Practice",
+                description: "Practice identifying parallel, perpendicular, and other pairs of lines."
+            },
+
+
+            triangles: {
+                title: "Triangles",
+                description: "Learn about triangles and how to classify them by their side lengths.",
+                content: {
+                    text1: "A triangle is a shape with three sides. It also has three vertices and three angles.",
+                    example1: "This triangle has three sides, three vertices, and three angles. Its vertices are A, B, and C.",
+                    text2: "We can classify triangles by comparing the lengths of their sides. There are three types: equilateral, isosceles, and scalene.",
+                    text3: "An equilateral triangle has three sides of equal length.",
+                    example2: "All three sides have the same length, so this is an equilateral triangle.",
+                    text4: "An isosceles triangle has two sides of equal length. The third side has a different length.",
+                    example3: "The two sides marked a have the same length, while side b has a different length. This is an isosceles triangle.",
+                    text5: "A scalene triangle has three sides of different lengths.",
+                    example4: "The three sides have different lengths, so this is a scalene triangle.",
+                    text6: "Remember: equilateral triangles have three equal sides, isosceles triangles have two equal sides, and scalene triangles have no equal sides."
+                }
+            },
+
+
+            trianglesPractice: {
+                title: "Triangles Practice",
+                description: "Practice classifying triangles by their side lengths."
+            },
+
+
+            commonQuadrilaterals: {
+                title: "Common Quadrilaterals",
+                description: "Learn about squares, rectangles, parallelograms, rhombuses, and trapezoids.",
+                content: {
+                    text1: "A quadrilateral is a shape with four sides, four vertices, and four angles. There are several common types of quadrilaterals.",
+                    text2: "A square has four equal sides and four right angles. Its opposite sides are parallel.",
+                    example1: "All four sides are equal, and every angle is a right angle. This is a square.",
+                    text3: "A rectangle has four right angles. Its opposite sides are equal and parallel.",
+                    example2: "Opposite sides have equal lengths, and all four angles are right angles. This is a rectangle.",
+                    text4: "A parallelogram has two pairs of opposite sides that are parallel. Each pair of opposite sides is also equal in length. Its angles do not have to be right angles.",
+                    example3: "The opposite sides are equal and parallel. The angles are not right angles, so this is a parallelogram.",
+                    text5: "A rhombus has four equal sides. Its opposite sides are parallel. Its angles do not have to be right angles.",
+                    example4: "All four sides are equal, but the angles are not right angles. This is a rhombus.",
+                    text6: "A trapezoid has one pair of parallel sides. The other two sides do not have to be parallel.",
+                    example5: "The top and bottom sides are parallel. The other two sides are not parallel. This is a trapezoid.",
+                    text7: "The properties of these shapes can overlap. For example, a square also has the properties of a rectangle, because it has four right angles and opposite sides that are equal and parallel. That is why one could say that squares are just rectangles that happen to have four equal sides.",
+                    text8: "Remember: a square has four equal sides and four right angles; a rectangle has four right angles; a parallelogram has two pairs of parallel and equal opposite sides; a rhombus has four equal sides; and a trapezoid has one pair of parallel sides."
+                }
+            },
+
+
+            commonQuadrilateralsPractice: {
+                title: "Common Quadrilaterals Practice",
+                description: "Practice identifying common quadrilaterals."
+            }
+        },
         negativeNumbers: {
             title: "Negative Numbers",
             description:
@@ -2163,6 +2373,62 @@ const TRANSLATIONS_EN = {
         variableSubstitution: {
             evaluate:
                 "If {variable} = {value}, what is {expression}?"
+        },
+        geometryBasics: {
+            whatIsShown: "What is shown in the diagram?",
+            point: "point",
+            segment: "segment",
+            line: "line",
+            ray: "ray"
+        },
+        shapeParts: {
+            sideCount: "How many sides does this shape have?",
+            vertexCount: "How many vertices does this shape have?",
+            angleCount: "How many angles does this shape have?",
+            markedPart: "What is marked with a question mark?",
+            side: "Side",
+            vertex: "Vertex",
+            angle: "Angle",
+            markedAngleName: "What is the name of the marked angle?"
+
+        },
+        angle: {
+            whatIsShown: "What kind of angle is shown?",
+            acute: "Acute",
+            right: "Right",
+            obtuse: "Obtuse",
+            straight: "Straight"
+        },
+        adjacentOppositeSides: {
+            adjacentSide: "Which pair of sides is adjacent to side {side}?",
+            oppositeSide: "Which side is opposite to side {side}?",
+            adjacentVertex: "Which pair of vertices is adjacent to vertex {letter}?",
+            oppositeVertex: "Which vertex is opposite to vertex {letter}?",
+            and: "and"
+        },
+        lengthUnits: {
+            conversionPrompt: "How much is <strong>{value} {source}</strong> in {target}?",
+            equivalentPrompt: "Which measurement is equal to <strong>{value} {source}</strong>?"
+        },
+        parallelPerpendicularLines: {
+            whatIsShown: "What is the relationship between these two lines?",
+            parallel: "Parallel",
+            perpendicular: "Perpendicular",
+            neither: "Neither"
+        },
+        triangle: {
+            whatIsShown: "What type of triangle is shown?",
+            equilateral: "Equilateral",
+            isosceles: "Isosceles",
+            scalene: "Scalene"
+        },
+        commonQuadrilateral: {
+            whatIsShown: "What is the most fitting name for this shape?",
+            square: "Square",
+            rectangle: "Rectangle",
+            parallelogram: "Parallelogram",
+            rhombus: "Rhombus",
+            trapezoid: "Trapezoid"
         }
     },
     explanations: {

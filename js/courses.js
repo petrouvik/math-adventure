@@ -5230,551 +5230,766 @@ const COURSES = {
         ]
     },
 
-    "negative-numbers": {
-        id: "negative-numbers",
+    geometry: {
+        id: "geometry",
 
-        title: "courses.negativeNumbers.title",
-        description: "courses.negativeNumbers.description",
+        title: "courses.geometry.title",
+        description: "courses.geometry.description",
 
-        icon: "−1",
+        icon: "π",
 
         lessons: [
 
             {
-                id: "negative-numbers-intro",
-
-                title: "courses.negativeNumbers.intro.title",
-                description: "courses.negativeNumbers.intro.description",
-
+                id: "geometry-basics",
+                title: "courses.geometry.geometryBasics.title",
+                description: "courses.geometry.geometryBasics.description",
                 type: "explanation",
-
                 content: [
-
-                    {
-                        type: "text",
-                        text: "courses.negativeNumbers.intro.content.text1"
-                    },
-
+                    { type: "text", text: "courses.geometry.geometryBasics.content.text1" },
+                    { type: "text", text: "courses.geometry.geometryBasics.content.text2" },
                     {
                         type: "example",
-
-                        expression:
-                            createNumberLineSvg({
-                                width: 500,
-                                height: 140,
-
-                                min: -5,
-                                max: 5,
-
-                                step: 1,
-
-                                ticks: {
-                                    majorEvery: 1
-                                },
-
-                                numbers: {
-                                    every: 1
-                                }
-                            }),
-
-                        explanation:
-                            "courses.negativeNumbers.intro.content.example1"
+                        expression: createGeometrySvg({
+                            width: 200, height: 100, scale: 50,
+                            points: [{ id: "A", x: 2, y: 1, label: "A" }]
+                        }),
+                        explanation: "courses.geometry.geometryBasics.content.example1"
                     },
-
-                    {
-                        type: "text",
-                        text: "courses.negativeNumbers.intro.content.text2"
-                    },
-
+                    { type: "text", text: "courses.geometry.geometryBasics.content.text3" },
                     {
                         type: "example",
-
-                        expression:
-                            createNumberLineSvg({
-                                width: 500,
-                                height: 140,
-
-                                min: -5,
-                                max: 5,
-
-                                step: 1,
-
-                                ticks: {
-                                    majorEvery: 1
-                                },
-
-                                numbers: {
-                                    every: 1
-                                },
-
-                                points: [
-                                    {
-                                        value: -3,
-                                        label: "A"
-                                    },
-
-                                    {
-                                        value: 2,
-                                        label: "B"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "courses.negativeNumbers.intro.content.example2"
+                        expression: createGeometrySvg({
+                            width: 300, height: 100, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 1, label: "A" },
+                                { id: "B", x: 4, y: 1, label: "B" }
+                            ],
+                            lines: [{ through: ["A", "B"], label: "l" }]
+                        }),
+                        explanation: "courses.geometry.geometryBasics.content.example2"
                     },
-
-                    {
-                        type: "text",
-                        text: "courses.negativeNumbers.intro.content.text3"
-                    },
-
+                    { type: "text", text: "courses.geometry.geometryBasics.content.text4" },
                     {
                         type: "example",
-
-                        expression: "−2 > −6",
-
-                        explanation:
-                            "courses.negativeNumbers.intro.content.example3"
+                        expression: createGeometrySvg({
+                            width: 300, height: 100, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 1, label: "A" },
+                                { id: "B", x: 5, y: 1, label: "B" }
+                            ],
+                            segments: [{ from: "A", to: "B", label: "AB" }]
+                        }),
+                        explanation: "courses.geometry.geometryBasics.content.example3"
                     },
-
-                    {
-                        type: "text",
-                        text: "courses.negativeNumbers.intro.content.text4"
-                    },
-
+                    { type: "text", text: "courses.geometry.geometryBasics.content.text5" },
                     {
                         type: "example",
-
-                        expression:
-                            createNumberLineSvg({
-                                width: 500,
-                                height: 140,
-
-                                min: -5,
-                                max: 5,
-
-                                step: 1,
-
-                                ticks: {
-                                    majorEvery: 1
-                                },
-
-                                numbers: {
-                                    every: 1
-                                },
-
-                                points: [
-                                    {
-                                        value: -4,
-                                        label: "−4"
-                                    },
-
-                                    {
-                                        value: 4,
-                                        label: "4"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "courses.negativeNumbers.intro.content.example4"
+                        expression: createGeometrySvg({
+                            width: 300, height: 100, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 1, label: "A" },
+                                { id: "B", x: 3, y: 1, visible: false }
+                            ],
+                            rays: [{ from: "A", through: "B", label: "r" }]
+                        }),
+                        explanation: "courses.geometry.geometryBasics.content.example4"
                     },
-
-                    {
-                        type: "text",
-                        text: "courses.negativeNumbers.intro.content.text5"
-                    }
-
+                    { type: "text", text: "courses.geometry.geometryBasics.content.text6" }
                 ]
             },
 
             {
-                id: "negative-numbers-addition",
-
-                title: "courses.negativeNumbers.addition.title",
-                description:
-                    "courses.negativeNumbers.addition.description",
-
-                type: "explanation",
-
-                content: [
-
-                    {
-                        type: "text",
-                        text:
-                            "courses.negativeNumbers.addition.content.text1"
-                    },
-
-                    {
-                        type: "example",
-
-                        expression: "−3 + 5 = 2",
-
-                        explanation:
-                            "courses.negativeNumbers.addition.content.example1"
-                    },
-
-                    {
-                        type: "example",
-
-                        expression: "4 + (−6) = −2",
-
-                        explanation:
-                            "courses.negativeNumbers.addition.content.example2"
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "courses.negativeNumbers.addition.content.text2"
-                    },
-
-                    {
-                        type: "example",
-
-                        expression: "−4 + (−3) = −7",
-
-                        explanation:
-                            "courses.negativeNumbers.addition.content.example3"
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "courses.negativeNumbers.addition.content.text3"
-                    },
-
-                    {
-                        type: "example",
-
-                        expression: "−8 + 3 = −5",
-
-                        explanation:
-                            "courses.negativeNumbers.addition.content.example4"
-                    }
-
-                ]
-            },
-
-            {
-                id: "negative-numbers-addition-practice",
-
-                title:
-                    "courses.negativeNumbers.additionPractice.title",
-
-                description:
-                    "courses.negativeNumbers.additionPractice.description",
-
+                id: "geometry-basics-practice",
+                title: "courses.geometry.geometryBasicsPractice.title",
+                description: "courses.geometry.geometryBasicsPractice.description",
                 type: "practice",
-
                 practice: {
-                    generator: "negativeAddition",
-                    interaction: "number-input",
-
+                    generator: "geometryBasics",
+                    interaction: "multiple-choice",
                     settings: {},
-
                     problemCount: 10
                 },
-
                 difficultyMultiplier: 1
             },
 
             {
-                id: "negative-numbers-subtraction",
-
-                title:
-                    "courses.negativeNumbers.subtraction.title",
-
-                description:
-                    "courses.negativeNumbers.subtraction.description",
-
+                id: "parts-of-a-shape",
+                title: "courses.geometry.partsOfAShape.title",
+                description: "courses.geometry.partsOfAShape.description",
                 type: "explanation",
-
                 content: [
-
-                    {
-                        type: "text",
-                        text:
-                            "courses.negativeNumbers.subtraction.content.text1"
-                    },
-
+                    { type: "text", text: "courses.geometry.partsOfAShape.content.text1" },
+                    { type: "text", text: "courses.geometry.partsOfAShape.content.text2" },
                     {
                         type: "example",
-
-                        expression: "5 − 2 = 3",
-
-                        explanation:
-                            "courses.negativeNumbers.subtraction.content.example1"
+                        expression: createGeometrySvg({
+                            width: 300, height: 220, scale: 40,
+                            points: [
+                                { id: "A", x: 1, y: 1, label: "A" },
+                                { id: "B", x: 5, y: 1, label: "B" },
+                                { id: "C", x: 5, y: 4, label: "C" },
+                                { id: "D", x: 1, y: 4, label: "D" }
+                            ],
+                            segments: [
+                                { from: "A", to: "B", label: "AB" },
+                                { from: "B", to: "C" },
+                                { from: "C", to: "D" },
+                                { from: "D", to: "A" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.partsOfAShape.content.example1"
                     },
-
+                    { type: "text", text: "courses.geometry.partsOfAShape.content.text3" },
                     {
                         type: "example",
-
-                        expression: "5 − (−2) = 7",
-
-                        explanation:
-                            "courses.negativeNumbers.subtraction.content.example2"
+                        expression: createGeometrySvg({
+                            width: 300, height: 220, scale: 40,
+                            points: [
+                                { id: "A", x: 1, y: 1, label: "A" },
+                                { id: "B", x: 5, y: 1, label: "B" },
+                                { id: "C", x: 5, y: 4, label: "C" },
+                                { id: "D", x: 1, y: 4, label: "D" }
+                            ],
+                            segments: [
+                                { from: "A", to: "B" },
+                                { from: "B", to: "C" },
+                                { from: "C", to: "D" },
+                                { from: "D", to: "A" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.partsOfAShape.content.example2"
                     },
-
-                    {
-                        type: "text",
-                        text:
-                            "courses.negativeNumbers.subtraction.content.text2"
-                    },
-
-                    {
-                        type: "example",
-
-                        expression:
-                            "−4 − 3 = −4 + (−3) = −7",
-
-                        explanation:
-                            "courses.negativeNumbers.subtraction.content.example3"
-                    },
-
+                    { type: "text", text: "courses.geometry.partsOfAShape.content.text4" },
                     {
                         type: "example",
-
-                        expression:
-                            "−4 − (−3) = −4 + 3 = −1",
-
-                        explanation:
-                            "courses.negativeNumbers.subtraction.content.example4"
+                        expression: createGeometrySvg({
+                            width: 300, height: 220, scale: 40,
+                            points: [
+                                { id: "A", x: 1, y: 1, label: "A" },
+                                { id: "B", x: 5, y: 1, label: "B" },
+                                { id: "C", x: 5, y: 4, label: "C" },
+                                { id: "D", x: 1, y: 4, label: "D" }
+                            ],
+                            segments: [
+                                { from: "A", to: "B" },
+                                { from: "B", to: "C" },
+                                { from: "C", to: "D" },
+                                { from: "D", to: "A" }
+                            ],
+                            angles: [{ vertex: "B", from: "A", to: "C", label: "ABC" }]
+                        }),
+                        explanation: "courses.geometry.partsOfAShape.content.example3"
                     },
-
+                    { type: "text", text: "courses.geometry.partsOfAShape.content.text5" },
+                    { type: "text", text: "courses.geometry.partsOfAShape.content.text6" },
+                    { type: "text", text: "courses.geometry.partsOfAShape.content.text7" },
                     {
-                        type: "text",
-                        text:
-                            "courses.negativeNumbers.subtraction.content.text3"
-                    }
-
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 360, height: 260, scale: 45,
+                            points: [
+                                { id: "A", x: 1, y: 2, label: "A" },
+                                { id: "B", x: 3, y: 1, label: "B" },
+                                { id: "C", x: 6, y: 1.5, label: "C" },
+                                { id: "D", x: 5, y: 4, label: "D" },
+                                { id: "E", x: 2, y: 5, label: "E" }
+                            ],
+                            segments: [
+                                { from: "A", to: "B" },
+                                { from: "B", to: "C" },
+                                { from: "C", to: "D" },
+                                { from: "D", to: "E" },
+                                { from: "E", to: "A" }
+                            ],
+                            angles: [
+                                { vertex: "A", from: "E", to: "B", label: "EAB" },
+                                { vertex: "B", from: "A", to: "C", label: "ABC" },
+                                { vertex: "C", from: "B", to: "D", label: "BCD" },
+                                { vertex: "D", from: "C", to: "E", label: "CDE" },
+                                { vertex: "E", from: "D", to: "A", label: "DEA" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.partsOfAShape.content.example4"
+                    },
+                    { type: "text", text: "courses.geometry.partsOfAShape.content.text8" }
                 ]
             },
 
             {
-                id: "negative-numbers-subtraction-practice",
-
-                title:
-                    "courses.negativeNumbers.subtractionPractice.title",
-
-                description:
-                    "courses.negativeNumbers.subtractionPractice.description",
-
+                id: "parts-of-a-shape-practice",
+                title: "courses.geometry.partsOfAShapePractice.title",
+                description: "courses.geometry.partsOfAShapePractice.description",
                 type: "practice",
-
                 practice: {
-                    generator: "negativeSubtraction",
-                    interaction: "number-input",
-
-                    settings: {},
-
+                    generator: "shapeParts",
+                    interaction: "multiple-choice",
                     problemCount: 10
                 },
-
                 difficultyMultiplier: 1
             },
 
             {
-                id: "negative-numbers-multiplication",
-
-                title:
-                    "courses.negativeNumbers.multiplication.title",
-
-                description:
-                    "courses.negativeNumbers.multiplication.description",
-
+                id: "angles",
+                title: "courses.geometry.angles.title",
+                description: "courses.geometry.angles.description",
                 type: "explanation",
-
                 content: [
-
-                    {
-                        type: "text",
-                        text:
-                            "courses.negativeNumbers.multiplication.content.text1"
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "courses.negativeNumbers.multiplication.content.text2"
-                    },
-
+                    { type: "text", text: "courses.geometry.angles.content.text1" },
+                    { type: "text", text: "courses.geometry.angles.content.text2" },
                     {
                         type: "example",
-
-                        expression: "4 × 3 = 12",
-
-                        explanation:
-                            "courses.negativeNumbers.multiplication.content.example1"
+                        expression: createGeometrySvg({
+                            width: 300, height: 200, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 3 },
+                                { id: "B", x: 3, y: 3 },
+                                { id: "C", x: 1, y: 1 }
+                            ],
+                            rays: [
+                                { from: "B", through: "A" },
+                                { from: "B", through: "C" }
+                            ],
+                            angles: [{ vertex: "B", from: "A", to: "C", label: "45°" }]
+                        }),
+                        explanation: "courses.geometry.angles.content.example1"
                     },
-
+                    { type: "text", text: "courses.geometry.angles.content.text3" },
                     {
                         type: "example",
-
-                        expression: "−4 × −3 = 12",
-
-                        explanation:
-                            "courses.negativeNumbers.multiplication.content.example2"
+                        expression: createGeometrySvg({
+                            width: 300, height: 200, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 3 },
+                                { id: "B", x: 3, y: 3 },
+                                { id: "C", x: 3, y: 1 }
+                            ],
+                            rays: [
+                                { from: "B", through: "A" },
+                                { from: "B", through: "C" }
+                            ],
+                            angles: [{ vertex: "B", from: "A", to: "C", label: "90°" }]
+                        }),
+                        explanation: "courses.geometry.angles.content.example2"
                     },
-
+                    { type: "text", text: "courses.geometry.angles.content.text4" },
                     {
                         type: "example",
-
-                        expression: "−4 × 3 = −12",
-
-                        explanation:
-                            "courses.negativeNumbers.multiplication.content.example3"
+                        expression: createGeometrySvg({
+                            width: 300, height: 200, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 2 },
+                                { id: "B", x: 3, y: 3 },
+                                { id: "C", x: 5, y: 1 }
+                            ],
+                            rays: [
+                                { from: "B", through: "A" },
+                                { from: "B", through: "C" }
+                            ],
+                            angles: [{ vertex: "B", from: "A", to: "C", label: "120°" }]
+                        }),
+                        explanation: "courses.geometry.angles.content.example3"
                     },
-
+                    { type: "text", text: "courses.geometry.angles.content.text5" },
                     {
                         type: "example",
-
-                        expression: "4 × −3 = −12",
-
-                        explanation:
-                            "courses.negativeNumbers.multiplication.content.example4"
+                        expression: createGeometrySvg({
+                            width: 300, height: 200, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 2, label: "A" },
+                                { id: "B", x: 3, y: 2, label: "B" },
+                                { id: "C", x: 5, y: 2, label: "C" }
+                            ],
+                            rays: [
+                                { from: "B", through: "A" },
+                                { from: "B", through: "C" }
+                            ],
+                            angles: [{ vertex: "B", from: "A", to: "C", label: "180°" }]
+                        }),
+                        explanation: "courses.geometry.angles.content.example4"
                     },
-
-                    {
-                        type: "text",
-                        text:
-                            "courses.negativeNumbers.multiplication.content.text3"
-                    },
-
-                    {
-                        type: "example",
-
-                        expression: "−6 × −5 = 30",
-
-                        explanation:
-                            "courses.negativeNumbers.multiplication.content.example5"
-                    }
-
+                    { type: "text", text: "courses.geometry.angles.content.text6" }
                 ]
             },
 
             {
-                id: "negative-numbers-multiplication-practice",
-
-                title:
-                    "courses.negativeNumbers.multiplicationPractice.title",
-
-                description:
-                    "courses.negativeNumbers.multiplicationPractice.description",
-
+                id: "angles-practice",
+                title: "courses.geometry.anglesPractice.title",
+                description: "courses.geometry.anglesPractice.description",
                 type: "practice",
-
                 practice: {
-                    generator: "negativeMultiplication",
-                    interaction: "number-input",
-
-                    settings: {},
-
+                    generator: "angles",
+                    interaction: "multiple-choice",
                     problemCount: 10
                 },
-
                 difficultyMultiplier: 1
             },
 
             {
-                id: "negative-numbers-division",
-
-                title:
-                    "courses.negativeNumbers.division.title",
-
-                description:
-                    "courses.negativeNumbers.division.description",
-
+                id: "adjacent-and-opposite-sides",
+                title: "courses.geometry.adjacentAndOppositeSides.title",
+                description: "courses.geometry.adjacentAndOppositeSides.description",
                 type: "explanation",
-
                 content: [
-
-                    {
-                        type: "text",
-                        text:
-                            "courses.negativeNumbers.division.content.text1"
-                    },
-
+                    { type: "text", text: "courses.geometry.adjacentAndOppositeSides.content.text1" },
+                    { type: "text", text: "courses.geometry.adjacentAndOppositeSides.content.text2" },
                     {
                         type: "example",
-
-                        expression: "24 ÷ 6 = 4",
-
-                        explanation:
-                            "courses.negativeNumbers.division.content.example1"
+                        expression: createGeometrySvg({
+                            width: 360, height: 260, scale: 45,
+                            points: [
+                                { id: "A", x: 1, y: 1, label: "A" },
+                                { id: "B", x: 6, y: 1, label: "B" },
+                                { id: "C", x: 5, y: 4, label: "C" },
+                                { id: "D", x: 1, y: 4, label: "D" }
+                            ],
+                            segments: [
+                                { from: "A", to: "B", label: "AB" },
+                                { from: "B", to: "C", label: "BC" },
+                                { from: "C", to: "D", label: "CD" },
+                                { from: "D", to: "A", label: "DA" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.adjacentAndOppositeSides.content.example1"
                     },
-
+                    { type: "text", text: "courses.geometry.adjacentAndOppositeSides.content.text3" },
                     {
                         type: "example",
-
-                        expression: "−24 ÷ −6 = 4",
-
-                        explanation:
-                            "courses.negativeNumbers.division.content.example2"
+                        expression: createGeometrySvg({
+                            width: 360, height: 260, scale: 45,
+                            points: [
+                                { id: "A", x: 1, y: 1, label: "A" },
+                                { id: "B", x: 6, y: 1, label: "B" },
+                                { id: "C", x: 5, y: 4, label: "C" },
+                                { id: "D", x: 1, y: 4, label: "D" }
+                            ],
+                            segments: [
+                                { from: "A", to: "B", label: "AB" },
+                                { from: "B", to: "C", label: "BC" },
+                                { from: "C", to: "D", label: "CD" },
+                                { from: "D", to: "A", label: "DA" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.adjacentAndOppositeSides.content.example2"
                     },
-
+                    { type: "text", text: "courses.geometry.adjacentAndOppositeSides.content.text4" },
                     {
                         type: "example",
-
-                        expression: "−24 ÷ 6 = −4",
-
-                        explanation:
-                            "courses.negativeNumbers.division.content.example3"
+                        expression: createGeometrySvg({
+                            width: 300, height: 240, scale: 45,
+                            points: [
+                                { id: "A", x: 1, y: 4, label: "A" },
+                                { id: "B", x: 4, y: 1, label: "B" },
+                                { id: "C", x: 6, y: 4, label: "C" }
+                            ],
+                            segments: [
+                                { from: "A", to: "B", label: "AB" },
+                                { from: "B", to: "C", label: "BC" },
+                                { from: "C", to: "A", label: "CA" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.adjacentAndOppositeSides.content.example3"
                     },
-
+                    { type: "text", text: "courses.geometry.adjacentAndOppositeSides.content.text5" },
                     {
                         type: "example",
-
-                        expression: "24 ÷ −6 = −4",
-
-                        explanation:
-                            "courses.negativeNumbers.division.content.example4"
+                        expression: createGeometrySvg({
+                            width: 360, height: 260, scale: 45,
+                            points: [
+                                { id: "A", x: 1, y: 1, label: "A" },
+                                { id: "B", x: 6, y: 1, label: "B" },
+                                { id: "C", x: 5, y: 4, label: "C" },
+                                { id: "D", x: 1, y: 4, label: "D" }
+                            ],
+                            segments: [
+                                { from: "A", to: "B" },
+                                { from: "B", to: "C" },
+                                { from: "C", to: "D" },
+                                { from: "D", to: "A" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.adjacentAndOppositeSides.content.example4"
                     },
-
-                    {
-                        type: "text",
-                        text:
-                            "courses.negativeNumbers.division.content.text2"
-                    },
-
-                    {
-                        type: "example",
-
-                        expression: "−35 ÷ −5 = 7",
-
-                        explanation:
-                            "courses.negativeNumbers.division.content.example5"
-                    }
-
+                    { type: "text", text: "courses.geometry.adjacentAndOppositeSides.content.text6" }
                 ]
             },
 
             {
-                id: "negative-numbers-division-practice",
-
-                title:
-                    "courses.negativeNumbers.divisionPractice.title",
-
-                description:
-                    "courses.negativeNumbers.divisionPractice.description",
-
+                id: "adjacent-and-opposite-sides-practice",
+                title: "courses.geometry.adjacentAndOppositeSidesPractice.title",
+                description: "courses.geometry.adjacentAndOppositeSidesPractice.description",
                 type: "practice",
-
                 practice: {
-                    generator: "negativeDivision",
-                    interaction: "number-input",
-
-                    settings: {},
-
+                    generator: "adjacentOppositeSides",
+                    interaction: "multiple-choice",
                     problemCount: 10
                 },
+                difficultyMultiplier: 1
+            },
 
+            {
+                id: "length-and-units",
+                title: "courses.geometry.lengthAndUnits.title",
+                description: "courses.geometry.lengthAndUnits.description",
+                type: "explanation",
+                content: [
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text1" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text2" },
+                    { type: "example", expression: "1 mm", explanation: "courses.geometry.lengthAndUnits.content.example1" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text3" },
+                    { type: "example", expression: "1 cm = 10 mm", explanation: "courses.geometry.lengthAndUnits.content.example2" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text4" },
+                    { type: "example", expression: "1 dm = 10 cm", explanation: "courses.geometry.lengthAndUnits.content.example3" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text5" },
+                    { type: "example", expression: "1 m = 10 dm", explanation: "courses.geometry.lengthAndUnits.content.example4" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text6" },
+                    { type: "example", expression: "1 km = 1000 m", explanation: "courses.geometry.lengthAndUnits.content.example5" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text7" },
+                    { type: "example", expression: "2 m = 20 dm = 200 cm = 2000 mm", explanation: "courses.geometry.lengthAndUnits.content.example6" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text8" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text9" }
+                ]
+            },
+
+            {
+                id: "length-and-units-practice",
+                title: "courses.geometry.lengthAndUnitsPractice.title",
+                description: "courses.geometry.lengthAndUnitsPractice.description",
+                type: "practice",
+                practice: {
+                    generator: "lengthUnits",
+                    interaction: "multiple-choice",
+                    problemCount: 10
+                },
+                difficultyMultiplier: 1
+            },
+
+            {
+                id: "parallel-and-perpendicular-lines",
+                title: "courses.geometry.parallelAndPerpendicularLines.title",
+                description: "courses.geometry.parallelAndPerpendicularLines.description",
+                type: "explanation",
+                content: [
+                    { type: "text", text: "courses.geometry.parallelAndPerpendicularLines.content.text1" },
+                    { type: "text", text: "courses.geometry.parallelAndPerpendicularLines.content.text2" },
+                    {
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 300, height: 140, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 1, visible: false },
+                                { id: "B", x: 5, y: 1, visible: false },
+                                { id: "C", x: 1, y: 2, visible: false },
+                                { id: "D", x: 5, y: 2, visible: false }
+                            ],
+                            lines: [
+                                { through: ["A", "B"], label: "n" },
+                                { through: ["C", "D"], label: "m" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.parallelAndPerpendicularLines.content.example1"
+                    },
+                    { type: "text", text: "courses.geometry.parallelAndPerpendicularLines.content.text3" },
+                    {
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 300, height: 220, scale: 45,
+                            points: [
+                                { id: "A", x: 1, y: 1, visible: false },
+                                { id: "B", x: 5, y: 1, visible: false },
+                                { id: "C", x: 5, y: 4, visible: false },
+                                { id: "D", x: 1, y: 4, visible: false }
+                            ],
+                            segments: [
+                                { from: "A", to: "B" },
+                                { from: "B", to: "C" },
+                                { from: "C", to: "D" },
+                                { from: "D", to: "A" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.parallelAndPerpendicularLines.content.example2"
+                    },
+                    { type: "text", text: "courses.geometry.parallelAndPerpendicularLines.content.text4" },
+                    {
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 300, height: 220, scale: 45,
+                            points: [
+                                { id: "A", x: 3, y: 1, visible: false },
+                                { id: "B", x: 3, y: 4, visible: false },
+                                { id: "C", x: 1, y: 2.5, visible: false },
+                                { id: "D", x: 5, y: 2.5, visible: false },
+                                { id: "O", x: 3, y: 2.5, visible: false }
+                            ],
+                            lines: [
+                                { through: ["B", "A"], label: "n" },
+                                { through: ["C", "D"], label: "m" }
+                            ],
+                            angles: [{ vertex: "O", from: "A", to: "C", label: "90°" }]
+                        }),
+                        explanation: "courses.geometry.parallelAndPerpendicularLines.content.example3"
+                    },
+                    { type: "text", text: "courses.geometry.parallelAndPerpendicularLines.content.text5" },
+                    { type: "text", text: "courses.geometry.parallelAndPerpendicularLines.content.text6" },
+                    {
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 300, height: 220, scale: 45,
+                            points: [
+                                { id: "A", x: 1, y: 1 },
+                                { id: "B", x: 5, y: 3 },
+                                { id: "C", x: 1, y: 4 },
+                                { id: "D", x: 5, y: 2 }
+                            ],
+                            lines: [
+                                { through: ["A", "B"], label: "n" },
+                                { through: ["C", "D"], label: "m" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.parallelAndPerpendicularLines.content.example4"
+                    },
+                    { type: "text", text: "courses.geometry.parallelAndPerpendicularLines.content.text7" }
+                ]
+            },
+
+            {
+                id: "parallel-and-perpendicular-lines-practice",
+                title: "courses.geometry.parallelAndPerpendicularLinesPractice.title",
+                description: "courses.geometry.parallelAndPerpendicularLinesPractice.description",
+                type: "practice",
+                practice: {
+                    generator: "parallelPerpendicularLines",
+                    interaction: "multiple-choice",
+                    problemCount: 10
+                },
+                difficultyMultiplier: 1
+            },
+
+            {
+                id: "triangles",
+                title: "courses.geometry.triangles.title",
+                description: "courses.geometry.triangles.description",
+                type: "explanation",
+                content: [
+                    { type: "text", text: "courses.geometry.triangles.content.text1" },
+                    {
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 300, height: 240, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 4, label: "A" },
+                                { id: "B", x: 5, y: 4, label: "B" },
+                                { id: "C", x: 3, y: 1, label: "C" }
+                            ],
+                            segments: [
+                                { from: "A", to: "B", label: "a" },
+                                { from: "C", to: "B", label: "b" },
+                                { from: "A", to: "C", label: "c" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.triangles.content.example1"
+                    },
+                    { type: "text", text: "courses.geometry.triangles.content.text2" },
+                    { type: "text", text: "courses.geometry.triangles.content.text3" },
+                    {
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 300, height: 240, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 4, label: "A" },
+                                { id: "B", x: 5, y: 4, label: "B" },
+                                { id: "C", x: 3, y: 0.536, label: "C" }
+                            ],
+                            segments: [
+                                { from: "A", to: "B", label: "a" },
+                                { from: "C", to: "B", label: "a" },
+                                { from: "A", to: "C", label: "a" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.triangles.content.example2"
+                    },
+                    { type: "text", text: "courses.geometry.triangles.content.text4" },
+                    {
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 300, height: 240, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 4, label: "A" },
+                                { id: "B", x: 5, y: 4, label: "B" },
+                                { id: "C", x: 3, y: 1.5, label: "C" }
+                            ],
+                            segments: [
+                                { from: "A", to: "B", label: "b" },
+                                { from: "C", to: "B", label: "a" },
+                                { from: "A", to: "C", label: "a" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.triangles.content.example3"
+                    },
+                    { type: "text", text: "courses.geometry.triangles.content.text5" },
+                    {
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 300, height: 240, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 4, label: "A" },
+                                { id: "B", x: 5, y: 4, label: "B" },
+                                { id: "C", x: 4, y: 1, label: "C" }
+                            ],
+                            segments: [
+                                { from: "A", to: "B", label: "a" },
+                                { from: "C", to: "B", label: "b" },
+                                { from: "A", to: "C", label: "c" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.triangles.content.example4"
+                    },
+                    { type: "text", text: "courses.geometry.triangles.content.text6" }
+                ]
+            },
+
+            {
+                id: "triangles-practice",
+                title: "courses.geometry.trianglesPractice.title",
+                description: "courses.geometry.trianglesPractice.description",
+                type: "practice",
+                practice: {
+                    generator: "triangles",
+                    interaction: "multiple-choice",
+                    problemCount: 10
+                },
+                difficultyMultiplier: 1
+            },
+
+            {
+                id: "common-quadrilaterals",
+                title: "courses.geometry.commonQuadrilaterals.title",
+                description: "courses.geometry.commonQuadrilaterals.description",
+                type: "explanation",
+                content: [
+                    { type: "text", text: "courses.geometry.commonQuadrilaterals.content.text1" },
+                    { type: "text", text: "courses.geometry.commonQuadrilaterals.content.text2" },
+                    {
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 260, height: 260, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 1 },
+                                { id: "B", x: 5, y: 1 },
+                                { id: "C", x: 5, y: 5 },
+                                { id: "D", x: 1, y: 5 }
+                            ],
+                            segments: [
+                                { from: "A", to: "B", label: "a" },
+                                { from: "B", to: "C", label: "a" },
+                                { from: "C", to: "D", label: "a" },
+                                { from: "D", to: "A", label: "a" }
+                            ],
+                            angles: [{ vertex: "A", from: "D", to: "B", label: "90°" }]
+                        }),
+                        explanation: "courses.geometry.commonQuadrilaterals.content.example1"
+                    },
+                    { type: "text", text: "courses.geometry.commonQuadrilaterals.content.text3" },
+                    {
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 300, height: 220, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 1 },
+                                { id: "B", x: 5, y: 1 },
+                                { id: "C", x: 5, y: 4 },
+                                { id: "D", x: 1, y: 4 }
+                            ],
+                            segments: [
+                                { from: "A", to: "B", label: "a" },
+                                { from: "B", to: "C", label: "b" },
+                                { from: "C", to: "D", label: "a" },
+                                { from: "D", to: "A", label: "b" }
+                            ],
+                            angles: [{ vertex: "A", from: "D", to: "B", label: "90°" }]
+                        }),
+                        explanation: "courses.geometry.commonQuadrilaterals.content.example2"
+                    },
+                    { type: "text", text: "courses.geometry.commonQuadrilaterals.content.text4" },
+                    {
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 300, height: 220, scale: 50,
+                            points: [
+                                { id: "A", x: 1.5, y: 1 },
+                                { id: "B", x: 5.5, y: 1 },
+                                { id: "C", x: 4.5, y: 4 },
+                                { id: "D", x: 0.5, y: 4 }
+                            ],
+                            segments: [
+                                { from: "A", to: "B", label: "a" },
+                                { from: "B", to: "C", label: "b" },
+                                { from: "C", to: "D", label: "a" },
+                                { from: "D", to: "A", label: "b" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.commonQuadrilaterals.content.example3"
+                    },
+                    { type: "text", text: "courses.geometry.commonQuadrilaterals.content.text5" },
+                    {
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 300, height: 260, scale: 50,
+                            points: [
+                                { id: "A", x: 1, y: 2 },
+                                { id: "B", x: 4, y: 2 },
+                                { id: "C", x: 5, y: 4 },
+                                { id: "D", x: 2, y: 4 }
+                            ],
+                            segments: [
+                                { from: "A", to: "B", label: "a" },
+                                { from: "B", to: "C", label: "a" },
+                                { from: "C", to: "D", label: "a" },
+                                { from: "D", to: "A", label: "a" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.commonQuadrilaterals.content.example4"
+                    },
+                    { type: "text", text: "courses.geometry.commonQuadrilaterals.content.text6" },
+                    {
+                        type: "example",
+                        expression: createGeometrySvg({
+                            width: 300, height: 240, scale: 50,
+                            points: [
+                                { id: "A", x: 1.5, y: 1 },
+                                { id: "B", x: 5.0, y: 1 },
+                                { id: "C", x: 5.5, y: 4 },
+                                { id: "D", x: 0.5, y: 4 }
+                            ],
+                            segments: [
+                                { from: "A", to: "B", label: "a" },
+                                { from: "B", to: "C", label: "b" },
+                                { from: "C", to: "D", label: "c" },
+                                { from: "D", to: "A", label: "d" }
+                            ]
+                        }),
+                        explanation: "courses.geometry.commonQuadrilaterals.content.example5"
+                    },
+                    { type: "text", text: "courses.geometry.commonQuadrilaterals.content.text7" },
+                    { type: "text", text: "courses.geometry.commonQuadrilaterals.content.text8" }
+                ]
+            },
+
+            {
+                id: "common-quadrilaterals-practice",
+                title: "courses.geometry.commonQuadrilateralsPractice.title",
+                description: "courses.geometry.commonQuadrilateralsPractice.description",
+                type: "practice",
+                practice: {
+                    generator: "commonQuadrilaterals",
+                    interaction: "multiple-choice",
+                    problemCount: 10
+                },
                 difficultyMultiplier: 1
             }
 
         ]
-    }
+    },
 
 
 };

@@ -1977,6 +1977,219 @@ const TRANSLATIONS_SR = {
                 }
             }
         },
+
+        geometry: {
+
+            title: "Geometrija",
+
+            description:
+                "Nauči osnovne pojmove i gradivne elemente geometrije.",
+
+
+            geometryBasics: {
+                title: "Osnove geometrije",
+                description: "Nauči o tačkama, pravama, dužima i polupravama.",
+                content: {
+                    text1: "Geometrija je deo matematike koji nam pomaže da opisujemo oblike, veličine, položaje i prostor koji nas okružuje. Počnimo sa nekoliko jednostavnih pojmova koji se koriste za izučavanje mnogih drugih pojmova u geometriji.",
+                    text2: "Tačka predstavlja tačan položaj. Crtamo je kao tačku, obično označenu nekim velikim štampanim slovom. Tačka nema dužinu ni širinu.",
+                    example1: "Ovo je tačka A. Slovo A je njeno ime.",
+                    text3: "Prava je prava linija koja se pruža beskonačno u oba smera. Možemo koristiti dve tačke na pravoj da bismo je opisali.",
+                    example2: "Ovo je prava l. Tačke A i B pripadaju pravoj, pa je možemo opisati i kao pravu kroz tačke A i B.",
+                    text4: "Duž je deo prave ograničen sa dve krajnje tačke. Za razliku od prave, duž se ne pruža beskonačno.",
+                    example3: "Ovo je duž AB. Tačke A i B su njene krajnje tačke. Duž možemo imenovati pomoću slova njenih krajnjih tačaka.",
+                    text5: "Poluprava ima jednu početnu tačku i pruža se beskonačno u jednom smeru. Polupravu imenujemo tako što prvo navedemo njenu početnu tačku.",
+                    example4: "Ovo je poluprava Ar. A je njena početna tačka. Ona se pruža beskonačno samo u jednom smeru.",
+                    text6: "Tačke se obično imenuju velikim slovima, kao što su A, B i C. Duži možemo imenovati slovima njihovih krajnjih tačaka, na primer AB. Duži se mogu imenovati i jednim slovom, koje je obično malo, na primer b. Poluprave se obično imenuju početnom tačkom i malim slovom, na primer Ar."
+                }
+            },
+
+
+            geometryBasicsPractice: {
+                title: "Vežbanje osnova geometrije",
+                description: "Vežbaj prepoznavanje tačaka, pravih, duži i polupravih."
+            },
+
+
+            partsOfAShape: {
+                title: "Delovi geometrijske figure",
+                description: "Nauči o stranicama, temenima i uglovima.",
+                content: {
+                    text1: "Geometrijska figura može imati stranice, temena i uglove. Hajde da naučimo šta svaki od ovih pojmova znači.",
+                    text2: "Stranica je duž koja čini deo spoljne granice geometrijske figure. Ona spaja dva temena.",
+                    example1: "AB je stranica figure. Ona spaja temena A i B.",
+                    text3: "Teme je tačka u kojoj se sastaju dve stranice. Teme je jedan od ćoškova, odnosno vrhova geometrijske figure.",
+                    example2: "B je teme jer se stranice AB i BC sastaju u tački B.",
+                    text4: "Ugao je deo ravni između dve stranice koje se sastaju u temenu.",
+                    example3: "Ugao ABC je ugao kod temena B. Formiraju ga stranice BA i BC.",
+                    text5: "Stranicu možemo imenovati pomoću slova njenih krajnjih tačaka. Na primer, stranica koja spaja A i B je stranica AB.",
+                    text6: "Teme možemo imenovati njegovim slovom. Na primer, B je ime ovog temena.",
+                    text7: "Ugao možemo imenovati pomoću tri slova. Slovo temena nalazi se u sredini. Na primer, ugao ABC ima teme B.",
+                    example4: "Ova figura ima 5 stranica, 5 temena i 5 uglova. Njena temena su A, B, C, D i E. Njene stranice su AB, BC, CD, DE i EA. Njeni uglovi su EAB, ABC, BCD, CDE i DEA.",
+                    text8: "Kada posmatraš geometrijsku figuru, njene stranice možeš pronaći prateći njenu spoljašnju granicu. Tačke u kojima se stranice sastaju su temena, a otvori kod tih temena su uglovi."
+                }
+            },
+
+
+            partsOfAShapePractice: {
+                title: "Vežbanje delova geometrijske figure",
+                description: "Vežbaj prepoznavanje stranica, temena i uglova."
+            },
+
+
+            angles: {
+                title: "Uglovi",
+                description: "Nauči o oštrim, pravim, tupim i opruženim uglovima.",
+                content: {
+                    text1: "Ugao nastaje kada se dve stranice sastanu u temenu. Ugao možemo opisati prema veličini njegovog otvora.",
+                    text2: "Oštar ugao je manji od pravog ugla. Njegova veličina je manja od 90°.",
+                    example1: "Ovo je oštar ugao. Njegova veličina je manja od 90°.",
+                    text3: "Prav ugao ima tačno 90°. Izgleda kao ugao kvadrata.",
+                    example2: "Ovo je prav ugao. Njegova veličina je tačno 90°.",
+                    text4: "Tup ugao je veći od pravog ugla, ali manji od opruženog ugla. Njegova veličina je između 90° i 180°.",
+                    example3: "Ovo je tup ugao. Njegova veličina je između 90° i 180°.",
+                    text5: "Opružen ugao ima tačno 180°. Njegovi kraci su usmereni u suprotnim smerovima i čine pravu.",
+                    example4: "Ovo je opružen ugao. Njegova veličina je tačno 180°.",
+                    text6: "Zapamti: oštri uglovi su manji od 90°, pravi uglovi imaju 90°, tupi uglovi su između 90° i 180°, a opruženi uglovi imaju 180°."
+                }
+            },
+
+
+            anglesPractice: {
+                title: "Vežbanje uglova",
+                description: "Vežbaj razvrstavanje uglova."
+            },
+
+
+            adjacentAndOppositeSides: {
+                title: "Susedne i naspramne stranice",
+                description: "Nauči koje se stranice i temena nalaze jedna pored drugih.",
+                content: {
+                    text1: "Neke stranice geometrijske figure nalaze se jedna pored druge, dok su druge udaljenije. Ove odnose možemo opisati rečima susedne i naspramne.",
+                    text2: "Dve stranice su susedne kada se sastaju u temenu. Drugim rečima, nalaze se jedna pored druge.",
+                    example1: "Stranice AB i BC su susedne jer se sastaju u temenu B. Stranice AB i DA su takođe susedne jer se sastaju u temenu A.",
+                    text3: "Dve stranice su naspramne kada se ne sastaju i nisu jedna pored druge.",
+                    example2: "Stranice AB i CD su naspramne. One se ne sastaju i između njih se nalaze druge stranice.",
+                    text4: "Naspramne stranice postoje samo kod figura koje imaju dovoljno stranica da se neke stranice ne sastaju. Trougao nema naspramne stranice.",
+                    example3: "Trougao ima tri stranice i svaki par njegovih stranica sastaje se u jednom temenu. Zato trougao nema naspramne stranice.",
+                    text5: "Možemo govoriti i o susednim temenima. Dva temena su susedna kada su povezana jednom stranicom.",
+                    example4: "Temena A i B su susedna jer ih spaja stranica AB. Temena A i C nisu susedna jer između njih ne postoji stranica.",
+                    text6: "Zapamti: susedne stranice se sastaju, dok se naspramne stranice ne sastaju. Susedna temena su povezana stranicom."
+                }
+            },
+
+
+            adjacentAndOppositeSidesPractice: {
+                title: "Vežbanje susednih i naspramnih stranica",
+                description: "Vežbaj prepoznavanje susednih i naspramnih stranica i temena."
+            },
+
+
+            lengthAndUnits: {
+                title: "Dužina i merne jedinice",
+                description: "Nauči kako merimo dužinu i koje merne jedinice koristimo.",
+                content: {
+                    text1: "Dužina nam govori koliko je nešto dugo ili kratko. Dužinu merimo pomoću mernih jedinica.",
+                    text2: "Milimetar, oznaka mm, veoma je mala merna jedinica za dužinu. Koristan je za merenje veoma malih predmeta ili malih rastojanja.",
+                    example1: "Milimetar je hiljaditi deo metra.",
+                    text3: "Centimetar, oznaka cm, veći je od milimetra. U 1 centimetru ima 10 milimetara.",
+                    example2: "Jedan centimetar jednak je deset milimetara.",
+                    text4: "Decimetar, oznaka dm, veći je od centimetra. U 1 decimetru ima 10 centimetara.",
+                    example3: "Jedan decimetar jednak je deset centimetara.",
+                    text5: "Metar, oznaka m, uobičajena je merna jedinica za merenje dužine ili visine većih predmeta. U 1 metru ima 10 decimetara.",
+                    example4: "Jedan metar jednak je deset decimetara.",
+                    text6: "Kilometar, oznaka km, mnogo je veći od metra. Kilometri su korisni za merenje velikih rastojanja, kao što je rastojanje između dva mesta.",
+                    example5: "Jedan kilometar jednak je hiljadu metara.",
+                    text7: "Merenje možemo pretvoriti iz jedne merne jedinice u drugu. Kada pretvaramo merne jedinice, dužina ostaje ista; menja se samo merna jedinica.",
+                    example6: "Ista dužina može se zapisati pomoću različitih mernih jedinica.",
+                    text8: "Merna jedinica koju biramo zavisi od toga šta merimo. Mali predmeti se obično mere u milimetrima ili centimetrima, veći predmeti u centimetrima ili metrima, a velika rastojanja u kilometrima.",
+                    text9: "Zapamti: 10 mm = 1 cm, 10 cm = 1 dm, 10 dm = 1 m i 1000 m = 1 km."
+                }
+            },
+
+
+            lengthAndUnitsPractice: {
+                title: "Vežbanje dužine i mernih jedinica",
+                description: "Vežbaj pretvaranje merenja između različitih mernih jedinica."
+            },
+
+
+            parallelAndPerpendicularLines: {
+                title: "Paralelne i normalne prave",
+                description: "Nauči kako da prepoznaš paralelne i normalne prave.",
+                content: {
+                    text1: "Ponekad želimo da opišemo položaj dve prave u odnosu jedne na drugu. Dva važna odnosa su paralelnost i normalnost.",
+                    text2: "Paralelne prave su prave koje su celom dužinom na istom rastojanju. One se ne seku, čak ni kada ih produžimo.",
+                    example1: "Prave n i m su paralelne. One su svuda na istom rastojanju i ne seku se.",
+                    text3: "Paralelne stranice možemo videti u poznatim geometrijskim figurama. Kod pravougaonika, gornja i donja stranica su paralelne. Leva i desna stranica su takođe paralelne.",
+                    example2: "Gornja i donja stranica su paralelne. Leva i desna stranica su takođe paralelne.",
+                    text4: "Normalne prave su prave koje se seku pod pravim uglom. Pravi ugao ima 90 stepeni.",
+                    example3: "Prave n i m su normalne jer se seku pod pravim uglom.",
+                    text5: "Normalne prave se takođe pojavljuju u poznatim geometrijskim figurama. Stranice pravougaonika se seku pod pravim uglovima, pa su susedne stranice međusobno normalne.",
+                    text6: "Nije svaki par pravih paralelan ili normalan. Dve prave mogu da se seku pod uglom koji nije prav. Takve prave nisu ni paralelne ni normalne.",
+                    example4: "Ove prave se seku, ali ne obrazuju pravi ugao. One nisu ni paralelne ni normalne.",
+                    text7: "Zapamti: paralelne prave se ne seku, normalne prave se seku pod pravim uglom, a može biti da se dve prave seku pod nekim uglom koji nije prav i tada te dve prave nisu ni paralelne ni normalne."
+                }
+            },
+
+
+            parallelAndPerpendicularLinesPractice: {
+                title: "Vežbanje paralelnih i normalnih pravih",
+                description: "Vežbaj prepoznavanje paralelnih, normalnih i drugih parova pravih."
+            },
+
+
+            triangles: {
+                title: "Trouglovi",
+                description: "Nauči o trouglovima i kako ih razvrstavamo prema dužinama stranica.",
+                content: {
+                    text1: "Trougao je geometrijska figura sa tri stranice. Ima i tri temena i tri ugla.",
+                    example1: "Trougao ima tri stranice, tri temena i tri ugla. Njegova temena su A, B i C.",
+                    text2: "Trouglove možemo razvrstati poređenjem dužina njihovih stranica. Postoje tri vrste: jednakostranični, jednakokraki i raznostranični.",
+                    text3: "Jednakostranični trougao ima tri stranice jednake dužine.",
+                    example2: "Sve tri stranice imaju istu dužinu, pa je ovo jednakostranični trougao.",
+                    text4: "Jednakokraki trougao ima dve stranice jednake dužine. Treća stranica ima drugačiju dužinu.",
+                    example3: "Dve stranice označene slovom a imaju istu dužinu, dok stranica b ima drugačiju dužinu. Ovo je jednakokraki trougao.",
+                    text5: "Raznostranični trougao ima tri stranice različitih dužina.",
+                    example4: "Sve tri stranice imaju različite dužine, pa je ovo raznostranični trougao.",
+                    text6: "Zapamti: jednakostranični trouglovi imaju tri jednake stranice, jednakokraki imaju dve jednake stranice, a raznostranični nemaju jednake stranice."
+                }
+            },
+
+
+            trianglesPractice: {
+                title: "Vežbanje trouglova",
+                description: "Vežbaj razvrstavanje trouglova prema dužinama stranica."
+            },
+
+
+            commonQuadrilaterals: {
+                title: "Česti četvorouglovi",
+                description: "Nauči o kvadratima, pravougaonicima, paralelogramima, rombovima i trapezima.",
+                content: {
+                    text1: "Četvorougao je geometrijska figura sa četiri stranice, četiri temena i četiri ugla. Postoji nekoliko čestih vrsta četvorouglova.",
+                    text2: "Kvadrat ima četiri jednake stranice i četiri prava ugla. Njegove naspramne stranice su paralelne.",
+                    example1: "Sve četiri stranice su jednake, a svaki ugao je prav. Ovo je kvadrat.",
+                    text3: "Pravougaonik ima četiri prava ugla. Njegove naspramne stranice su jednake i paralelne.",
+                    example2: "Naspramne stranice su jednake dužine, a sva četiri ugla su prava. Ovo je pravougaonik.",
+                    text4: "Paralelogram ima dva para naspramnih stranica koje su paralelne. Svaki par naspramnih stranica je takođe jednake dužine. Njegovi uglovi ne moraju biti pravi.",
+                    example3: "Naspramne stranice su jednake i paralelne. Uglovi nisu pravi, pa je ovo paralelogram.",
+                    text5: "Romb ima četiri jednake stranice. Njegove naspramne stranice su paralelne. Njegovi uglovi ne moraju biti pravi.",
+                    example4: "Sve četiri stranice su jednake, ali uglovi nisu pravi. Ovo je romb.",
+                    text6: "Trapez ima jedan par paralelnih stranica. Druge dve stranice ne moraju biti paralelne.",
+                    example5: "Gornja i donja stranica su paralelne. Druge dve stranice nisue paralelne. Ovo je trapez.",
+                    text7: "Osobine ovih figura mogu da se preklapaju. Na primer, kvadrat ima i osobine pravougaonika, jer ima četiri prava ugla i naspramne stranice koje su jednake i paralelne. Zato možemo reći da je kvadrat zapravo pravougaonik čije su sve četiri stranice jednake.",
+                    text8: "Zapamti: kvadrat ima četiri jednake stranice i četiri prava ugla; pravougaonik ima četiri prava ugla; paralelogram ima dva para paralelnih i jednakih naspramnih stranica; romb ima četiri jednake stranice; a trapez ima jedan par paralelnih stranica."
+                }
+            },
+
+
+            commonQuadrilateralsPractice: {
+                title: "Vežbanje četvorouglova",
+                description: "Vežbaj prepoznavanje čestih četvorouglova."
+            }
+
+        },
+
         negativeNumbers: {
             title: "Negativni brojevi",
             description:
@@ -2215,6 +2428,61 @@ const TRANSLATIONS_SR = {
         variableSubstitution: {
             evaluate:
                 "Ako je {variable} = {value}, koliko iznosi {expression}?"
+        },
+        geometryBasics: {
+            whatIsShown: "Šta je prikazano na slici?",
+            point: "tačka",
+            segment: "duž",
+            line: "prava",
+            ray: "poluprava"
+        },
+        shapeParts: {
+            sideCount: "Koliko stranica ima ova figura?",
+            vertexCount: "Koliko temena ima ova figura?",
+            angleCount: "Koliko uglova ima ova figura?",
+            markedPart: "Šta je označeno upitnikom?",
+            side: "Stranica",
+            vertex: "Teme",
+            angle: "Ugao",
+            markedAngleName: "Kako se zove označeni ugao?"
+        },
+        angle: {
+            whatIsShown: "Koja vrsta ugla je prikazana?",
+            acute: "Oštar",
+            right: "Prav",
+            obtuse: "Tup",
+            straight: "Opružen"
+        },
+        adjacentOppositeSides: {
+            adjacentSide: "Koji par stranica je susedan stranici {side}?",
+            oppositeSide: "Koja stranica je naspramna stranici {side}?",
+            adjacentVertex: "Koji par temena je susedan temenu {letter}?",
+            oppositeVertex: "Koje teme je naspramno temenu {letter}?",
+            and: "i"
+        },
+        lengthUnits: {
+            conversionPrompt: "Koliko iznosi <strong>{value} {source}</strong> u {target}?",
+            equivalentPrompt: "Koja mera je jednaka <strong>{value} {source}</strong>?"
+        },
+        parallelPerpendicularLines: {
+            whatIsShown: "Kakav je odnos između ove dve prave?",
+            parallel: "Paralelne",
+            perpendicular: "Normalne",
+            neither: "Nijedno"
+        },
+        triangle: {
+            whatIsShown: "Koja vrsta trougla je prikazana?",
+            equilateral: "Jednakostranični",
+            isosceles: "Jednakokraki",
+            scalene: "Raznostranični"
+        },
+        commonQuadrilateral: {
+            whatIsShown: "Koji naziv najbolje odgovara ovoj figuri?",
+            square: "Kvadrat",
+            rectangle: "Pravougaonik",
+            parallelogram: "Paralelogram",
+            rhombus: "Romb",
+            trapezoid: "Trapez"
         }
     },
 

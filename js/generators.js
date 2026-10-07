@@ -2009,19 +2009,10 @@ function generateAngleProblem(settings) {
             ]
         });
 
-
-    const names = {
-        acute: "Acute",
-        right: "Right",
-        obtuse: "Obtuse",
-        straight: "Straight"
-    };
-
-
     return {
         prompt: `
             <p>
-                What kind of angle is shown?
+                ${t("generators.angle.whatIsShown")}
             </p>
             <br>
             ${expression}
@@ -2029,13 +2020,13 @@ function generateAngleProblem(settings) {
         `,
 
         answer:
-            names[type],
+            t(`generators.angle.${type}`),
 
         choices: [
-            "Acute",
-            "Right",
-            "Obtuse",
-            "Straight"
+            t("generators.angle.acute"),
+            t("generators.angle.right"),
+            t("generators.angle.obtuse"),
+            t("generators.angle.straight")
         ],
 
         explanation: {}
@@ -2104,22 +2095,22 @@ function generateAdjacentOppositeSidesProblem(settings) {
 
     switch (type) {
         case "adjacentSide":
-            question = `Which pair of sides is adjacent to side ${sides[i]}?`;
+            question = tf("generators.adjacentOppositeSides.adjacentSide", { side: sides[i] });
             result = adjacentPairChoices(sides, i);
             break;
 
         case "oppositeSide":
-            question = `Which side is opposite to side ${sides[i]}?`;
+            question = tf("generators.adjacentOppositeSides.oppositeSide", { side: sides[i] });
             result = oppositeChoices(sides, i);
             break;
 
         case "adjacentVertex":
-            question = `Which pair of vertices is adjacent to vertex ${letters[i]}?`;
+            question = tf("generators.adjacentOppositeSides.adjacentVertex", { letter: letters[i] });
             result = adjacentPairChoices(letters, i);
             break;
 
         case "oppositeVertex":
-            question = `Which vertex is opposite to vertex ${letters[i]}?`;
+            question = tf("generators.adjacentOppositeSides.oppositeVertex", { letter: letters[i] });
             result = oppositeChoices(letters, i);
             break;
     }
@@ -2324,19 +2315,15 @@ function generateLengthUnitsProblem(settings) {
     shuffle(choices);
 
     const prompt = mode === "conversion"
-        ? `
-            <p>
-                How much is
-                <strong>${formatNumber(value)} ${source.name}</strong>
-                in ${target.name}?
-            </p>
-        `
-        : `
-            <p>
-                Which measurement is equal to
-                <strong>${formatNumber(value)} ${source.name}</strong>?
-            </p>
-        `;
+        ? `<p>${tf("generators.lengthUnits.conversionPrompt", {
+            value: formatNumber(value),
+            source: source.name,
+            target: target.name
+        })}</p>`
+        : `<p>${tf("generators.lengthUnits.equivalentPrompt", {
+            value: formatNumber(value),
+            source: source.name
+        })}</p>`;
 
     return {
         prompt,
@@ -2703,24 +2690,21 @@ function generateParallelPerpendicularLinesProblem(settings) {
 
 
     return {
-
         prompt: `
-            <p>
-                What is the relationship between
-                these two lines?
-            </p>
-            <br>
-            ${expression}
-
-        `,
+        <p>
+            ${t("generators.parallelPerpendicularLines.whatIsShown")}
+        </p>
+        <br>
+        ${expression}
+    `,
 
         answer:
-            names[type],
+            t(`generators.parallelPerpendicularLines.${type}`),
 
         choices: [
-            "Parallel",
-            "Perpendicular",
-            "Neither"
+            t("generators.parallelPerpendicularLines.parallel"),
+            t("generators.parallelPerpendicularLines.perpendicular"),
+            t("generators.parallelPerpendicularLines.neither")
         ],
 
         explanation: {}
@@ -2863,7 +2847,7 @@ function generateTriangleProblem(settings) {
              * The two sides from C to A/B
              * are equal.
              */
-            const halfBase = 2;
+            const halfBase = 0.5 + Math.random() * 2.5;
 
             const height =
                 2.5 +
@@ -2873,12 +2857,12 @@ function generateTriangleProblem(settings) {
             points = [
                 {
                     id: "A",
-                    x: 1,
+                    x: 3 - halfBase,
                     y: 4
                 },
                 {
                     id: "B",
-                    x: 5,
+                    x: 3 + halfBase,
                     y: 4
                 },
                 {
@@ -2987,29 +2971,23 @@ function generateTriangleProblem(settings) {
         });
 
 
-    const names = {
-        equilateral: "Equilateral",
-        isosceles: "Isosceles",
-        scalene: "Scalene"
-    };
-
-
     return {
         prompt: `
-            ${expression}
+        <p>
+            ${t("generators.triangle.whatIsShown")}
+        </p>
+        <br>
+        ${expression}
 
-            <p>
-                What type of triangle is shown?
-            </p>
-        `,
+    `,
 
         answer:
-            names[type],
+            t(`generators.triangle.${type}`),
 
         choices: [
-            "Equilateral",
-            "Isosceles",
-            "Scalene"
+            t("generators.triangle.equilateral"),
+            t("generators.triangle.isosceles"),
+            t("generators.triangle.scalene")
         ],
 
         explanation: {}
@@ -3453,34 +3431,25 @@ function generateCommonQuadrilateralProblem(settings) {
         });
 
 
-    const names = {
-        square: "Square",
-        rectangle: "Rectangle",
-        parallelogram: "Parallelogram",
-        rhombus: "Rhombus",
-        trapezoid: "Trapezoid"
-    };
-
-
     return {
-
         prompt: `
-            ${expression}
+        <p>
+            ${t("generators.commonQuadrilateral.whatIsShown")}
+        </p>
+        <br>
+        ${expression}
 
-            <p>
-                What is the most fitting name for this shape?
-            </p>
-        `,
+    `,
 
         answer:
-            names[type],
+            t(`generators.commonQuadrilateral.${type}`),
 
         choices: [
-            "Square",
-            "Rectangle",
-            "Parallelogram",
-            "Rhombus",
-            "Trapezoid"
+            t("generators.commonQuadrilateral.square"),
+            t("generators.commonQuadrilateral.rectangle"),
+            t("generators.commonQuadrilateral.parallelogram"),
+            t("generators.commonQuadrilateral.rhombus"),
+            t("generators.commonQuadrilateral.trapezoid")
         ],
 
         explanation: {}

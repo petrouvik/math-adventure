@@ -1370,6 +1370,11 @@ function canonical(choice) {
 
 /* ---------- decoy generation ---------- */
 
+function translateChoice(choice) {
+    const [kind, name] = choice.split(" ");
+
+    return `${t(`generators.geometryBasics.${kind}`)} ${name}`;
+}
 // Makes one random answer of the given kind.
 // Cross-kind decoys prefer points that are visible in the diagram,
 // which makes them more plausible. Same-kind decoys ("fresh") use any name.
@@ -1427,10 +1432,17 @@ function buildChoices(kind, answer, { visiblePoints = [], alsoCorrect = [] } = {
 function buildProblem({ diagram, kind, answer, visiblePoints, alsoCorrect }) {
     const svg = createGeometrySvg({ ...DIAGRAM_SIZE, ...diagram });
 
-    return {
-        prompt: `What is shown in the diagram?<br>${svg}`,
+    const choices = buildChoices(
+        kind,
         answer,
-        choices: buildChoices(kind, answer, { visiblePoints, alsoCorrect }),
+        { visiblePoints, alsoCorrect }
+    );
+
+    return {
+        prompt:
+            `${t("generators.geometryBasics.whatIsShown")}<br>${svg}`,
+        answer: translateChoice(answer),
+        choices: choices.map(translateChoice),
         explanation: {}
     };
 }
@@ -1593,7 +1605,7 @@ function generateSideCountProblem(shape) {
     return {
         prompt: `
             <p>
-                How many sides does this shape have?
+                ${t("generators.shapeParts.sideCount")}
             </p>
             <br>
             ${expression}
@@ -1625,7 +1637,7 @@ function generateVertexCountProblem(shape) {
     return {
         prompt: `
             <p>
-                How many vertices does this shape have?
+                ${t("generators.shapeParts.vertexCount")}  
             </p>
             <br>
             ${expression}
@@ -1658,7 +1670,7 @@ function generateAngleCountProblem(shape) {
     return {
         prompt: `
             <p>
-                How many angles does this shape have?
+                ${t("generators.shapeParts.angleCount")}
             </p>
             <br>
             ${expression}
@@ -1775,7 +1787,7 @@ function generateMarkedPartProblem(shape) {
     return {
         prompt: `
             <p>
-                What is marked with a question mark?
+                ${t("generators.shapeParts.markedPart")}
             </p>
             <br>
             ${expression}
@@ -1783,12 +1795,12 @@ function generateMarkedPartProblem(shape) {
         `,
 
         answer:
-            capitalize(markedType),
+            t(`generators.shapeParts.${markedType}`),
 
         choices: [
-            "Side",
-            "Vertex",
-            "Angle"
+            t("generators.shapeParts.side"),
+            t("generators.shapeParts.vertex"),
+            t("generators.shapeParts.angle")
         ],
         explanation: {}
     };
@@ -1870,7 +1882,7 @@ function generateMarkedAngleNameProblem(shape) {
     return {
         prompt: `
             <p>
-                What is the name of the marked angle?
+                ${t("generators.shapeParts.markedAngleName")}
             </p>
             <br>
             ${expression}
@@ -1937,13 +1949,6 @@ function generateAngleChoices(
 
     return shuffle(
         [...choices]
-    );
-}
-function capitalize(text) {
-
-    return (
-        text.charAt(0).toUpperCase() +
-        text.slice(1)
     );
 }
 ///////////////////////////////////////////////////////////////
@@ -2084,7 +2089,7 @@ function adjacentPairChoices(items, index) {
     shuffle(nearMisses);
     shuffle(weak);
 
-    const format = pair => pair.map(i => items[i]).join(" and ");
+    const format = pair => pair.map(i => items[i]).join(` ${t("generators.adjacentOppositeSides.and")} `);
     const choices = [correct, ...[...nearMisses, ...weak].slice(0, 3)].map(format);
 
     shuffle(choices);

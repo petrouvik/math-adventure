@@ -204,49 +204,49 @@ const THEMES = [
 
 
     {
-    id: "earth",
-    name: "themes.earth.name",
-    description: "themes.earth.description",
-    icon: "🌍",
-    colors: {
-        background: "#0877a8",
-        surface: "#0f5f82",
-        text: "#fff1b8",
-        mutedText: "#b9e6f2",
+        id: "earth",
+        name: "themes.earth.name",
+        description: "themes.earth.description",
+        icon: "🌍",
+        colors: {
+            background: "#0877a8",
+            surface: "#0f5f82",
+            text: "#fff1b8",
+            mutedText: "#b9e6f2",
 
-        primary: "#39c95a",
-        primaryText: "#082f18",
+            primary: "#39c95a",
+            primaryText: "#082f18",
 
-        secondary: "#176f91",
-        secondaryText: "#ffe27a",
+            secondary: "#176f91",
+            secondaryText: "#ffe27a",
 
-        border: "#36a9cf",
+            border: "#36a9cf",
 
-        success: "#65d84f",
-        danger: "#ff5b45",
+            success: "#65d84f",
+            danger: "#ff5b45",
 
-        progressBackground: "#064f73",
+            progressBackground: "#064f73",
 
-        navBackground: "#075b7f",
-        navText: "#a9dce9",
-        navActive: "#54d4ff",
+            navBackground: "#075b7f",
+            navText: "#a9dce9",
+            navActive: "#54d4ff",
 
-        highlight: "#ffd83d",
-        highlightBackground: "#6d5700",
+            highlight: "#ffd83d",
+            highlightBackground: "#6d5700",
 
-        infoBackground: "#0a668c",
-        infoBorder: "#3db9dd",
+            infoBackground: "#0a668c",
+            infoBorder: "#3db9dd",
 
-        inputBorder: "#4bb1cf"
+            inputBorder: "#4bb1cf"
+        },
+
+        shadow: "0 4px 18px rgba(0, 35, 55, 0.35)",
+
+        unlock: {
+            type: "purchase",
+            price: 500
+        }
     },
-
-    shadow: "0 4px 18px rgba(0, 35, 55, 0.35)",
-
-    unlock: {
-        type: "purchase",
-        price: 500
-    }
-},
 
 
     {
@@ -765,13 +765,11 @@ function getTheme(themeId) {
     return THEMES.find(theme => theme.id === themeId);
 }
 
-
 function isThemeUnlocked(themeId) {
     const player = getPlayer();
 
     return player.unlockedThemes.includes(themeId);
 }
-
 
 function unlockTheme(themeId) {
     const player = getPlayer();
@@ -786,7 +784,6 @@ function unlockTheme(themeId) {
 
     return true;
 }
-
 
 function setTheme(themeId) {
     const player = getPlayer();
@@ -808,7 +805,6 @@ function setTheme(themeId) {
 
     return true;
 }
-
 
 function unlockLevelThemes() {
     const player = getPlayer();
@@ -833,7 +829,6 @@ function unlockLevelThemes() {
 
     return unlocked;
 }
-
 
 function unlockAchievementThemes() {
     const player = getPlayer();
@@ -868,7 +863,6 @@ function unlockAvailableThemes() {
     ];
 }
 
-
 function purchaseTheme(themeId) {
     const player = getPlayer();
     const theme = getTheme(themeId);
@@ -896,7 +890,6 @@ function purchaseTheme(themeId) {
 
     return true;
 }
-
 
 function applyTheme(theme) {
     const root = document.documentElement;
@@ -1006,7 +999,6 @@ function applyTheme(theme) {
         theme.shadow
     );
 }
-
 
 function initializeTheme() {
     const player = getPlayer();

@@ -17,7 +17,7 @@ const EXPLANATIONS = {
             );
         }
     },
-    "decomposition":{
+    "decomposition": {
         render(container, explanation, problem) {
             renderDecompositionExplanation(
                 container,
@@ -98,7 +98,7 @@ const EXPLANATIONS = {
             );
         }
     },
-    "advanced-addition":  {
+    "advanced-addition": {
         render(container, explanation, problem) {
             renderAdvancedAdditionExplanation(
                 container,
@@ -107,7 +107,7 @@ const EXPLANATIONS = {
             );
         }
     },
-    "advanced-subtraction":  {
+    "advanced-subtraction": {
         render(container, explanation, problem) {
             renderAdvancedSubtractionExplanation(
                 container,
@@ -137,9 +137,9 @@ function renderCountingExplanation(
 
             <p>
                 ${tf("explanations.counting.start", {
-                    start,
-                    amount
-                })}
+        start,
+        amount
+    })}
             </p>
 
             <p class="counting-example">
@@ -196,8 +196,8 @@ function renderDecompositionExplanation(
 
             <p>
                 ${tf("explanations.decomposition.addRemaining", {
-                    amount: secondPart
-                })}
+            amount: secondPart
+        })}
             </p>
 
             <p class="counting-example">
@@ -211,9 +211,8 @@ function renderDecompositionExplanation(
         <div class="explanation-card">
             <h3>${t("explanations.seeHow")} 💡</h3>
 
-            ${
-                swapped
-                    ? `
+            ${swapped
+            ? `
                         <p>
                             ${t("explanations.decomposition.swap")}
                         </p>
@@ -224,29 +223,28 @@ function renderDecompositionExplanation(
                             ${larger} + ${smaller}
                         </p>
                     `
-                    : ""
-            }
+            : ""
+        }
 
-            ${
-                secondPart === 0
-                    ? `
+            ${secondPart === 0
+            ? `
                         <p>
                             ${tf("explanations.decomposition.addDirectly", {
-                                smaller,
-                                larger
-                            })}
+                smaller,
+                larger
+            })}
                         </p>
                     `
-                    : `
+            : `
                         <p>
                             ${tf("explanations.decomposition.breakNumber", {
-                                smaller,
-                                firstPart,
-                                secondPart
-                            })}
+                smaller,
+                firstPart,
+                secondPart
+            })}
                         </p>
                     `
-            }
+        }
 
             ${steps}
 
@@ -281,9 +279,9 @@ function renderCountingBackExplanation(
 
             <p>
                 ${tf("explanations.countingBack.start", {
-                    start,
-                    amount
-                })}
+        start,
+        amount
+    })}
             </p>
 
             <p class="counting-example">
@@ -341,8 +339,8 @@ function renderSubtractionDecompositionExplanation(
 
             <p>
                 ${tf("explanations.subtractionDecomposition.subtractRemaining", {
-                    amount: secondPart
-                })}
+            amount: secondPart
+        })}
             </p>
 
             <p class="counting-example">
@@ -358,8 +356,8 @@ function renderSubtractionDecompositionExplanation(
 
             <p>
                 ${tf("explanations.subtractionDecomposition.breakNumber", {
-                    amount
-                })}
+        amount
+    })}
             </p>
 
             ${steps}
@@ -395,10 +393,10 @@ function renderRepeatedAdditionExplanation(
 
             <p>
                 ${tf("explanations.repeatedAddition.means", {
-                    prompt: problem.prompt,
-                    number,
-                    amount
-                })}
+        prompt: problem.prompt,
+        number,
+        amount
+    })}
             </p>
 
             <p class="counting-example">
@@ -442,9 +440,9 @@ function renderDivisionExplanation(
 
             <p>
                 ${tf("explanations.division.repeatedSubtraction", {
-                    prompt: problem.prompt,
-                    divisor
-                })}
+        prompt: problem.prompt,
+        divisor
+    })}
             </p>
 
             <p class="counting-example">
@@ -453,17 +451,17 @@ function renderDivisionExplanation(
 
             <p>
                 ${tf("explanations.division.tookAway", {
-                    divisor,
-                    quotient
-                })}
+        divisor,
+        quotient
+    })}
             </p>
 
             <hr>
 
             <p>
                 ${tf("explanations.division.timesTable", {
-                    divisor
-                })}
+        divisor
+    })}
             </p>
 
             <p class="counting-example">
@@ -497,9 +495,9 @@ function renderRomanSymbolExplanation(
 
             <p>
                 ${tf("explanations.romanSymbol.represents", {
-                    symbol,
-                    value
-                })}
+        symbol,
+        value
+    })}
             </p>
 
             <p class="counting-example">
@@ -536,8 +534,8 @@ function renderRomanAdditionExplanation(
 
             <p>
                 ${tf("explanations.romanAddition.symbolsAdded", {
-                    roman
-                })}
+        roman
+    })}
             </p>
 
             <p class="counting-example">
@@ -551,9 +549,9 @@ function renderRomanAdditionExplanation(
 
             <p>
                 ${tf("explanations.romanAddition.result", {
-                    roman,
-                    number
-                })}
+        roman,
+        number
+    })}
             </p>
         </div>
     `;
@@ -603,8 +601,8 @@ function renderRomanToArabicExplanation(
 
             <p>
                 ${tf("explanations.romanToArabic.convert", {
-                    roman
-                })}
+        roman
+    })}
             </p>
 
             <p class="counting-example">
@@ -621,9 +619,9 @@ function renderRomanToArabicExplanation(
 
             <p>
                 ${tf("explanations.romanToArabic.result", {
-                    roman,
-                    number
-                })}
+        roman,
+        number
+    })}
             </p>
         </div>
     `;
@@ -681,8 +679,8 @@ function renderArabicToRomanExplanation(
 
             <p>
                 ${tf("explanations.arabicToRoman.build", {
-                    number
-                })}
+        number
+    })}
             </p>
 
             <p class="counting-example">
@@ -699,9 +697,9 @@ function renderArabicToRomanExplanation(
 
             <p>
                 ${tf("explanations.arabicToRoman.result", {
-                    number,
-                    roman
-                })}
+        number,
+        roman
+    })}
             </p>
         </div>
     `;
@@ -728,8 +726,8 @@ function renderEvenOddExplanation(
         content = `
             <p>
                 ${tf("explanations.evenOdd.groupPairs", {
-                    number
-                })}
+            number
+        })}
             </p>
 
             <p class="counting-example">
@@ -738,15 +736,14 @@ function renderEvenOddExplanation(
             </p>
 
             <p>
-                ${
-                    hasRemainder
-                        ? tf("explanations.evenOdd.oneLeft", {
-                            number
-                        })
-                        : tf("explanations.evenOdd.noneLeft", {
-                            number
-                        })
-                }
+                ${hasRemainder
+                ? tf("explanations.evenOdd.oneLeft", {
+                    number
+                })
+                : tf("explanations.evenOdd.noneLeft", {
+                    number
+                })
+            }
             </p>
         `;
     } else {
@@ -760,9 +757,9 @@ function renderEvenOddExplanation(
 
             <p class="counting-example">
                 ${number} → ${tf(
-                    "explanations.evenOdd.lastDigit",
-                    { lastDigit }
-                )}
+            "explanations.evenOdd.lastDigit",
+            { lastDigit }
+        )}
             </p>
 
             <p>
@@ -775,10 +772,10 @@ function renderEvenOddExplanation(
 
             <p>
                 ${tf("explanations.evenOdd.conclusion", {
-                    number,
-                    lastDigit,
-                    answer: answer.toLowerCase()
-                })}
+            number,
+            lastDigit,
+            answer: answer.toLowerCase()
+        })}
             </p>
         `;
     }

@@ -72,7 +72,7 @@ if (DEV_MODE) {
 
     });
 
-}else{
+} else {
     self.addEventListener(
         "install",
         event => {

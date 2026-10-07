@@ -38,8 +38,7 @@
     transform: translateY(-3px);
 
     box-shadow:
-        0 7px 20px
-        rgba(0, 0, 0, 0.12);
+        0 7px 20px rgba(0, 0, 0, 0.12);
 }
 
 .theme-card.selected {
@@ -117,18 +116,14 @@
 
     background: var(--preview-surface);
 
-    border: 1px solid
-        color-mix(
-            in srgb,
+    border: 1px solid color-mix(in srgb,
             var(--preview-text) 15%,
-            transparent
-        );
+            transparent);
 
     border-radius: 8px;
 
     box-shadow:
-        0 3px 8px
-        rgba(0, 0, 0, 0.08);
+        0 3px 8px rgba(0, 0, 0, 0.08);
 
     font-size: 13px;
 }
@@ -227,6 +222,7 @@
 .theme-card.selected .theme-status {
     color: var(--color-success);
 }
+
 /* -------------------------
    SHOP BALANCE
 ------------------------- */
@@ -263,7 +259,7 @@
     font-size: 27px;
 }
 
-.shop-balance > div {
+.shop-balance>div {
     display: flex;
     flex-direction: column;
 

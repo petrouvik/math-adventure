@@ -2,20 +2,20 @@ const PLAYER_STORAGE_KEY = "mathAdventurePlayer";
 const DEBUG_LESSON_UNLOCK = true;
 const DEFAULT_PLAYER = {
     name: "Adventurer",
-    
+
     xp: 0,
     coins: 0,
     problems: 0,
-    
+
     streak: 0,
     lastActivityDate: null,
-    
+
     completedLessons: [],
-    
+
     dailyProgress: {},
 
     achievements: [],
-    achievementData:{
+    achievementData: {
         dailyLessons: {},
         dailyCourses: {},
         consecutivePerfectLessons: 0,
@@ -53,7 +53,7 @@ function getLevel(xp) {
     return Math.floor(xp / 100) + 1;
 }
 
-function getNextLevelXP(xp){
+function getNextLevelXP(xp) {
     return getLevel(xp) * 100;
 }
 

@@ -26,9 +26,7 @@
 
 .level-card h2 {
     margin:
-        0.25rem
-        0
-        0;
+        0.25rem 0 0;
 
     color: var(--color-text);
 }
@@ -50,7 +48,7 @@
 }
 
 
-.total-xp > span {
+.total-xp>span {
     font-size: 0.8rem;
 
     color: var(--color-muted-text);
@@ -59,9 +57,7 @@
 
 .next-level {
     margin:
-        1rem
-        0
-        0;
+        1rem 0 0;
 
     text-align: center;
 
@@ -106,7 +102,7 @@
 }
 
 
-.course-header > div {
+.course-header>div {
     display: flex;
 
     align-items: center;
@@ -230,9 +226,7 @@
 
 .achievement-card h3 {
     margin:
-        0
-        0
-        0.25rem;
+        0 0 0.25rem;
 
     color: var(--color-text);
 }

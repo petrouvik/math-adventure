@@ -38,8 +38,8 @@ function renderCourseProgress() {
 
                 <span class="course-status ${completed ? "completed" : ""}">
                     ${completed
-                        ? t("progress.complete")
-                        : `${progress}%`}
+                ? t("progress.complete")
+                : `${progress}%`}
                 </span>
 
             </div>
@@ -119,10 +119,9 @@ function renderAchievementProgress() {
             document.createElement("div");
 
         card.className =
-            `achievement-card ${
-                unlocked
-                    ? "unlocked"
-                    : "locked"
+            `achievement-card ${unlocked
+                ? "unlocked"
+                : "locked"
             }`;
 
         card.innerHTML = `

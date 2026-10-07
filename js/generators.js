@@ -569,7 +569,7 @@ function generateDivisionProblem(settings) {
 
     const divisor =
         divisors[
-            Math.floor(Math.random() * divisors.length)
+        Math.floor(Math.random() * divisors.length)
         ];
 
     const quotient =
@@ -609,10 +609,10 @@ function generateDivisionProblems(settings, count) {
 function generateRomanSymbolProblem() {
     const selected =
         ROMAN_NUMERAL_SYMBOLS[
-            Math.floor(
-                Math.random() *
-                ROMAN_NUMERAL_SYMBOLS.length
-            )
+        Math.floor(
+            Math.random() *
+            ROMAN_NUMERAL_SYMBOLS.length
+        )
         ];
 
     const distractors =
@@ -917,6 +917,7 @@ function generateNumberComparisonProblems(settings, count) {
 
     return problems;
 }
+
 function generatePlaceValueProblem(settings) {
     const number =
         Math.floor(
@@ -934,9 +935,9 @@ function generatePlaceValueProblem(settings) {
 
     const selected =
         possibleIndices[
-            Math.floor(
-                Math.random() * possibleIndices.length
-            )
+        Math.floor(
+            Math.random() * possibleIndices.length
+        )
         ];
 
     const digit = selected.digit;
@@ -989,11 +990,11 @@ function generatePlaceValueProblem(settings) {
     shuffle(choices);
 
     const formattedNumber =
-    number
-        .toLocaleString()
-        .split("")
-        .map(character => character)
-        .join("");
+        number
+            .toLocaleString()
+            .split("")
+            .map(character => character)
+            .join("");
 
     let digitCounter = 0;
 
@@ -1103,7 +1104,7 @@ function generateNumberGroupsProblem(settings) {
 
     const groupSize =
         groupSizes[
-            Math.floor(Math.random() * groupSizes.length)
+        Math.floor(Math.random() * groupSizes.length)
         ];
 
     // Only use the first 20 groups.
@@ -1228,7 +1229,6 @@ function generateNumberGroupsProblem(settings) {
         }
     };
 }
-
 
 function generateNumberGroupsProblems(settings, count) {
     const problems = [];
@@ -1425,7 +1425,6 @@ function generateAdvancedAdditionProblem(settings) {
         "Could not generate an advanced addition problem with the requested settings."
     );
 }
-
 
 function generateAdvancedAdditionProblems(settings, count) {
     const problems = [];
@@ -1628,7 +1627,6 @@ function generateAdvancedSubtractionProblem(settings) {
     );
 }
 
-
 function generateAdvancedSubtractionProblems(settings, count) {
     const problems = [];
 
@@ -1640,7 +1638,6 @@ function generateAdvancedSubtractionProblems(settings, count) {
 
     return problems;
 }
-
 
 function generateEquationEqualityProblem(settings) {
     const equationChoiceProbability =
@@ -1666,6 +1663,7 @@ function generateEquationEqualityProblems(settings, count) {
 
     return problems;
 }
+
 function generateVariableSubstitutionProblem(settings) {
     const operations = (settings.operations && settings.operations.length)
         ? settings.operations
@@ -1713,6 +1711,7 @@ function generateVariableSubstitutionProblems(settings, count) {
 
     return problems;
 }
+
 function generateEquationProblem(settings) {
 
     const variable =
@@ -1749,6 +1748,7 @@ function generateEquationProblem(settings) {
         explanation
     };
 }
+
 function generateEquationProblems(settings, count) {
     const problems = [];
 
@@ -1760,6 +1760,7 @@ function generateEquationProblems(settings, count) {
 
     return problems;
 }
+
 function generateGeometryBasicsProblem(settings) {
     const types = [
         "point",
@@ -1770,9 +1771,9 @@ function generateGeometryBasicsProblem(settings) {
 
     const type =
         types[
-            Math.floor(
-                Math.random() * types.length
-            )
+        Math.floor(
+            Math.random() * types.length
+        )
         ];
 
     switch (type) {
@@ -1789,6 +1790,7 @@ function generateGeometryBasicsProblem(settings) {
             return generateRayProblem();
     }
 }
+
 function generateGeometryBasicsProblems(
     settings,
     count
@@ -1818,9 +1820,9 @@ function generateShapePartsProblem(settings) {
 
     const type =
         types[
-            Math.floor(
-                Math.random() * types.length
-            )
+        Math.floor(
+            Math.random() * types.length
+        )
         ];
 
     const shape = generateShape();
@@ -1843,6 +1845,7 @@ function generateShapePartsProblem(settings) {
             return generateMarkedAngleNameProblem(shape);
     }
 }
+
 function generateShapePartsProblems(settings, count) {
     const problems = [];
 
@@ -1854,6 +1857,7 @@ function generateShapePartsProblems(settings, count) {
 
     return problems;
 }
+
 function generateAngleProblem(settings) {
 
     const types = [
@@ -1865,9 +1869,9 @@ function generateAngleProblem(settings) {
 
     const type =
         types[
-            Math.floor(
-                Math.random() * types.length
-            )
+        Math.floor(
+            Math.random() * types.length
+        )
         ];
 
 
@@ -2037,6 +2041,7 @@ function generateAngleProblem(settings) {
         explanation: {}
     };
 }
+
 function generateAngleProblems(settings, count) {
 
     const problems = [];
@@ -2050,6 +2055,7 @@ function generateAngleProblems(settings, count) {
 
     return problems;
 }
+
 function generateAdjacentOppositeSidesProblem(settings) {
     const type = pick([
         "adjacentSide",
@@ -2132,6 +2138,7 @@ function generateAdjacentOppositeSidesProblem(settings) {
         explanation: {}
     };
 }
+
 function generateAdjacentOppositeSidesProblems(
     settings,
     count
@@ -2149,6 +2156,7 @@ function generateAdjacentOppositeSidesProblems(
 
     return problems;
 }
+
 function generateLengthUnitsProblem(settings) {
 
     /* ---------- settings ---------- */
@@ -2161,7 +2169,7 @@ function generateLengthUnitsProblem(settings) {
         { name: "mm", exp: 0 },
         { name: "cm", exp: 1 },
         { name: "dm", exp: 2 },
-        { name: "m",  exp: 3 },
+        { name: "m", exp: 3 },
         { name: "km", exp: 6 }
     ];
 
@@ -2337,6 +2345,7 @@ function generateLengthUnitsProblem(settings) {
         explanation: {}
     };
 }
+
 function generateLengthUnitsProblems(
     settings,
     count
@@ -2354,6 +2363,7 @@ function generateLengthUnitsProblems(
 
     return problems;
 }
+
 function generateParallelPerpendicularLinesProblem(settings) {
 
     const types = [
@@ -2365,9 +2375,9 @@ function generateParallelPerpendicularLinesProblem(settings) {
 
     const type =
         types[
-            Math.floor(
-                Math.random() * types.length
-            )
+        Math.floor(
+            Math.random() * types.length
+        )
         ];
 
 
@@ -2433,7 +2443,7 @@ function generateParallelPerpendicularLinesProblem(settings) {
             angle2 =
                 angle1 +
                 difference *
-                    Math.PI / 180;
+                Math.PI / 180;
 
             break;
         }
@@ -2716,6 +2726,7 @@ function generateParallelPerpendicularLinesProblem(settings) {
         explanation: {}
     };
 }
+
 function generateParallelPerpendicularLinesProblems(
     settings,
     count
@@ -2733,6 +2744,7 @@ function generateParallelPerpendicularLinesProblems(
 
     return problems;
 }
+
 function generateTriangleProblem(settings) {
 
     const types = [
@@ -2744,9 +2756,9 @@ function generateTriangleProblem(settings) {
 
     const type =
         types[
-            Math.floor(
-                Math.random() * types.length
-            )
+        Math.floor(
+            Math.random() * types.length
+        )
         ];
 
 
@@ -2782,9 +2794,9 @@ function generateTriangleProblem(settings) {
             letterPool[i],
             letterPool[j]
         ] = [
-            letterPool[j],
-            letterPool[i]
-        ];
+                letterPool[j],
+                letterPool[i]
+            ];
     }
 
 
@@ -3003,6 +3015,7 @@ function generateTriangleProblem(settings) {
         explanation: {}
     };
 }
+
 function generateTriangleProblems(settings, count) {
 
     const problems = [];
@@ -3016,6 +3029,7 @@ function generateTriangleProblems(settings, count) {
 
     return problems;
 }
+
 function generateCommonQuadrilateralProblem(settings) {
 
     const types = [
@@ -3028,9 +3042,9 @@ function generateCommonQuadrilateralProblem(settings) {
 
     const type =
         types[
-            Math.floor(
-                Math.random() * types.length
-            )
+        Math.floor(
+            Math.random() * types.length
+        )
         ];
 
 
@@ -3064,9 +3078,9 @@ function generateCommonQuadrilateralProblem(settings) {
             letterPool[i],
             letterPool[j]
         ] = [
-            letterPool[j],
-            letterPool[i]
-        ];
+                letterPool[j],
+                letterPool[i]
+            ];
     }
 
 
@@ -3136,10 +3150,10 @@ function generateCommonQuadrilateralProblem(settings) {
             const dy = side * Math.sin(angle);
 
             points = [
-                { id: "A", x: 1,                 y: 1 },
-                { id: "B", x: 1 + side,          y: 1 },
-                { id: "C", x: 1 + side + dx,     y: 1 + dy },
-                { id: "D", x: 1 + dx,            y: 1 + dy }
+                { id: "A", x: 1, y: 1 },
+                { id: "B", x: 1 + side, y: 1 },
+                { id: "C", x: 1 + side + dx, y: 1 + dy },
+                { id: "D", x: 1 + dx, y: 1 + dy }
             ];
 
             sideGroups = [0, 0, 0, 0];
@@ -3258,7 +3272,7 @@ function generateCommonQuadrilateralProblem(settings) {
             groupLabels.set(
                 group,
                 letterPool[
-                    groupLabels.size
+                groupLabels.size
                 ]
             );
         }
@@ -3472,6 +3486,7 @@ function generateCommonQuadrilateralProblem(settings) {
         explanation: {}
     };
 }
+
 function generateCommonQuadrilateralProblems(
     settings,
     count
@@ -3490,6 +3505,7 @@ function generateCommonQuadrilateralProblems(
 
     return problems;
 }
+
 function generateNegativeAdditionProblem(settings) {
     const {
         min = 1,
@@ -3638,6 +3654,7 @@ function generateNegativeAdditionProblem(settings) {
         "Could not generate a negative addition problem with the requested settings."
     );
 }
+
 function generateNegativeAdditionProblems(settings, count) {
     const problems = [];
 
@@ -3649,6 +3666,7 @@ function generateNegativeAdditionProblems(settings, count) {
 
     return problems;
 }
+
 function generateNegativeSubtractionProblem(settings) {
     const {
         min = 1,
@@ -3795,7 +3813,6 @@ function generateNegativeSubtractionProblems(settings, count) {
     return problems;
 }
 
-
 function generateNegativeMultiplicationProblem(settings) {
     const {
         min = 1,
@@ -3902,7 +3919,6 @@ function generateNegativeMultiplicationProblems(settings, count) {
 
     return problems;
 }
-
 
 function generateNegativeDivisionProblem(settings) {
     const {
@@ -4023,6 +4039,7 @@ function generateNegativeDivisionProblems(settings, count) {
 
     return problems;
 }
+
 const GENERATORS = {
     "number-reading": {
         generate(settings, count) {
@@ -4168,7 +4185,7 @@ const GENERATORS = {
             );
         }
     },
-    "equationEquality":{
+    "equationEquality": {
         generate(settings, count) {
             return generateEquationEqualityProblems(
                 settings,
@@ -4176,7 +4193,7 @@ const GENERATORS = {
             );
         }
     },
-    "variableSubstitution":{
+    "variableSubstitution": {
         generate(settings, count) {
             return generateVariableSubstitutionProblems(
                 settings,
@@ -4184,7 +4201,7 @@ const GENERATORS = {
             );
         }
     },
-    "linearEquation":{
+    "linearEquation": {
         generate(settings, count) {
             return generateEquationProblems(
                 settings,
@@ -4192,7 +4209,7 @@ const GENERATORS = {
             );
         }
     },
-    "geometryBasics":{
+    "geometryBasics": {
         generate(settings, count) {
             return generateGeometryBasicsProblems(
                 settings,
@@ -4200,7 +4217,7 @@ const GENERATORS = {
             );
         }
     },
-    "shapeParts":{
+    "shapeParts": {
         generate(settings, count) {
             return generateShapePartsProblems(
                 settings,
@@ -4208,7 +4225,7 @@ const GENERATORS = {
             );
         }
     },
-    "angles":{
+    "angles": {
         generate(settings, count) {
             return generateAngleProblems(
                 settings,
@@ -4216,7 +4233,7 @@ const GENERATORS = {
             );
         }
     },
-    "adjacentOppositeSides":{
+    "adjacentOppositeSides": {
         generate(settings, count) {
             return generateAdjacentOppositeSidesProblems(
                 settings,
@@ -4224,7 +4241,7 @@ const GENERATORS = {
             );
         }
     },
-    "lengthUnits":{
+    "lengthUnits": {
         generate(settings, count) {
             return generateLengthUnitsProblems(
                 settings,
@@ -4232,7 +4249,7 @@ const GENERATORS = {
             );
         }
     },
-    "parallelPerpendicularLines":{
+    "parallelPerpendicularLines": {
         generate(settings, count) {
             return generateParallelPerpendicularLinesProblems(
                 settings,
@@ -4240,7 +4257,7 @@ const GENERATORS = {
             );
         }
     },
-    "triangles":{
+    "triangles": {
         generate(settings, count) {
             return generateTriangleProblems(
                 settings,
@@ -4248,7 +4265,7 @@ const GENERATORS = {
             );
         }
     },
-    "commonQuadrilaterals":{
+    "commonQuadrilaterals": {
         generate(settings, count) {
             return generateCommonQuadrilateralProblems(
                 settings,
@@ -4256,7 +4273,7 @@ const GENERATORS = {
             );
         }
     },
-    "negativeAddition":{
+    "negativeAddition": {
         generate(settings, count) {
             return generateNegativeAdditionProblems(
                 settings,
@@ -4264,7 +4281,7 @@ const GENERATORS = {
             );
         }
     },
-    "negativeSubtraction":{
+    "negativeSubtraction": {
         generate(settings, count) {
             return generateNegativeSubtractionProblems(
                 settings,
@@ -4272,7 +4289,7 @@ const GENERATORS = {
             );
         }
     },
-    "negativeMultiplication":{
+    "negativeMultiplication": {
         generate(settings, count) {
             return generateNegativeMultiplicationProblems(
                 settings,
@@ -4280,7 +4297,7 @@ const GENERATORS = {
             );
         }
     },
-    "negativeDivision":{
+    "negativeDivision": {
         generate(settings, count) {
             return generateNegativeDivisionProblems(
                 settings,

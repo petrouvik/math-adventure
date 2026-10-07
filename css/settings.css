@@ -24,9 +24,7 @@
 
 .settings-page-header p {
     margin:
-        0.35rem
-        0
-        0;
+        0.35rem 0 0;
 
     color: var(--color-muted-text);
 }
@@ -152,9 +150,7 @@
 
 .settings-group h2 {
     margin:
-        0
-        0
-        0.75rem;
+        0 0 0.75rem;
 
     color: var(--color-text);
 
@@ -191,15 +187,13 @@
     gap: 1rem;
 
     padding:
-        0.9rem
-        1.15rem;
+        0.9rem 1.15rem;
 }
 
 
-.setting + .setting {
+.setting+.setting {
     border-top:
-        1px solid
-        var(--color-border);
+        1px solid var(--color-border);
 }
 
 
@@ -257,12 +251,10 @@
     width: 10rem;
 
     padding:
-        0.6rem
-        0.75rem;
+        0.6rem 0.75rem;
 
     border:
-        2px solid
-        var(--color-input-border);
+        2px solid var(--color-input-border);
 
     border-radius: 0.65rem;
 
@@ -300,8 +292,7 @@
     gap: 0.9rem;
 
     padding:
-        0.8rem
-        1.15rem;
+        0.8rem 1.15rem;
 
     border: none;
 
@@ -320,10 +311,9 @@
 }
 
 
-.language-option + .language-option {
+.language-option+.language-option {
     border-top:
-        1px solid
-        var(--color-border);
+        1px solid var(--color-border);
 }
 
 
@@ -424,21 +414,17 @@
 
 .setting-danger:hover {
     background:
-        color-mix(
-            in srgb,
+        color-mix(in srgb,
             var(--color-danger) 5%,
-            var(--color-surface)
-        );
+            var(--color-surface));
 }
 
 
 .setting-danger .setting-icon {
     background:
-        color-mix(
-            in srgb,
+        color-mix(in srgb,
             var(--color-danger) 10%,
-            var(--color-surface)
-        );
+            var(--color-surface));
 }
 
 
@@ -465,8 +451,7 @@
 
     .setting {
         padding:
-            0.8rem
-            0.9rem;
+            0.8rem 0.9rem;
     }
 
 

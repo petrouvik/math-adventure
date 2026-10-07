@@ -22,8 +22,8 @@ function renderLessonHeader() {
         <div>
             <p class="lesson-label">
                 ${tf("lesson.lessonNumber", {
-                    number: lessonIndex + 1
-                })}
+        number: lessonIndex + 1
+    })}
             </p>
 
             <h1>
@@ -71,7 +71,6 @@ function renderLesson() {
     }
 }
 
-
 function renderLessonLocked() {
 
     document.getElementById("lesson-content").innerHTML = `
@@ -96,7 +95,6 @@ function renderLessonLocked() {
         </section>
     `;
 }
-
 
 function renderExplanationLesson() {
 
@@ -162,7 +160,6 @@ function renderExplanationLesson() {
     completeLesson(courseId, lessonId);
 }
 
-
 function renderTextBlock(
     container,
     item
@@ -185,7 +182,6 @@ function renderTextBlock(
 
     container.appendChild(element);
 }
-
 
 function renderExampleBlock(
     container,
@@ -214,7 +210,6 @@ function renderExampleBlock(
     container.appendChild(element);
 }
 
-
 function renderImageExampleBlock(
     container,
     item
@@ -230,10 +225,9 @@ function renderImageExampleBlock(
             ✨ ${t("lesson.example")}
         </div>
 
-        ${
-            item.title
-                ? `<h3>${t(item.title)}</h3>`
-                : ""
+        ${item.title
+            ? `<h3>${t(item.title)}</h3>`
+            : ""
         }
 
         <div class="lesson-example-image">
@@ -248,7 +242,6 @@ function renderImageExampleBlock(
     container.appendChild(element);
 }
 
-
 const lessonState = {
     problems: [],
     currentProblem: 0,
@@ -256,12 +249,11 @@ const lessonState = {
     completed: false
 };
 
-
 function renderPracticeLesson() {
 
     const generator =
         GENERATORS[
-            lesson.practice.generator
+        lesson.practice.generator
         ];
 
     if (!generator) {
@@ -269,7 +261,7 @@ function renderPracticeLesson() {
         document
             .getElementById("lesson-content")
             .textContent =
-                t("lesson.generatorNotFound");
+            t("lesson.generatorNotFound");
 
         return;
     }
@@ -290,12 +282,11 @@ function renderPracticeLesson() {
     renderCurrentProblem();
 }
 
-
 function renderCurrentProblem() {
 
     const interaction =
         INTERACTIONS[
-            lesson.practice.interaction
+        lesson.practice.interaction
         ];
 
     if (!interaction) {
@@ -303,14 +294,14 @@ function renderCurrentProblem() {
         document
             .getElementById("lesson-content")
             .textContent =
-                t("lesson.interactionNotFound");
+            t("lesson.interactionNotFound");
 
         return;
     }
 
     const problem =
         lessonState.problems[
-            lessonState.currentProblem
+        lessonState.currentProblem
         ];
 
     renderPracticeProgress();
@@ -343,7 +334,6 @@ function renderCurrentProblem() {
     );
 }
 
-
 function handleCorrect(
     problem,
     answer
@@ -358,7 +348,6 @@ function handleCorrect(
         .querySelector(".next-button")
         ?.focus();
 }
-
 
 function handleIncorrect(
     problem,
@@ -375,14 +364,13 @@ function handleIncorrect(
     );
 }
 
-
 function renderExplanation(
     container,
     problem
 ) {
     const explanation =
         EXPLANATIONS[
-            problem.explanation.type
+        problem.explanation.type
         ];
 
     if (!explanation) {
@@ -395,7 +383,6 @@ function renderExplanation(
         problem
     );
 }
-
 
 function renderNextButton() {
 
@@ -438,14 +425,12 @@ function renderNextButton() {
     container.appendChild(button);
 }
 
-
 function nextProblem() {
 
     lessonState.currentProblem++;
 
     renderCurrentProblem();
 }
-
 
 function getLessonStats() {
 
@@ -544,30 +529,30 @@ function finishLesson() {
 
             <p>
                 ${tf("lesson.problemsSolved", {
-                    solved: stats.total,
-                    total: stats.total
-                })}
+        solved: stats.total,
+        total: stats.total
+    })}
             </p>
 
             <p>
                 ${tf("lesson.firstTryCorrect", {
-                    correct: stats.firstTryCorrect,
-                    total: stats.total
-                })}
+        correct: stats.firstTryCorrect,
+        total: stats.total
+    })}
             </p>
 
             <div class="lesson-rewards">
 
                 <p>
                     ⭐ ${tf("lesson.xpReward", {
-                        xp: rewards.xp
-                    })}
+        xp: rewards.xp
+    })}
                 </p>
 
                 <p>
                     🪙 ${tf("lesson.coinReward", {
-                        coins: rewards.coins
-                    })}
+        coins: rewards.coins
+    })}
                 </p>
 
             </div>
@@ -583,7 +568,6 @@ function finishLesson() {
         </section>
     `;
 }
-
 
 function renderPracticeProgress() {
 
@@ -624,9 +608,9 @@ function renderPracticeProgress() {
 
             <span>
                 ${tf("lesson.problemProgress", {
-                    current,
-                    total
-                })}
+        current,
+        total
+    })}
             </span>
 
             <span>

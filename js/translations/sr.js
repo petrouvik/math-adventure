@@ -3,7 +3,7 @@ const TRANSLATIONS_SR = {
     // ========================================
     // Settings
     // ========================================
-    
+
     settings: {
         level: "Nivo",
 
@@ -23,8 +23,8 @@ const TRANSLATIONS_SR = {
         data: "💾 Podaci",
         reset: "Resetuj napredak",
         resetDescription: "Obriši svoj napredak i počni ispočetka.",
-        resetConfirm:"Da li si siguran da želiš da obrišeš sav napredak?",
-        resetConfirmButton:"Resetuj"
+        resetConfirm: "Da li si siguran da želiš da obrišeš sav napredak?",
+        resetConfirmButton: "Resetuj"
     },
 
     // ========================================
@@ -83,8 +83,8 @@ const TRANSLATIONS_SR = {
         hiddenAchievementDescription:
             "Nastavi da istražuješ kako bi otkrio ovo dostignuće!"
     },
-        
-        // ========================================
+
+    // ========================================
     // Shop page
     // ========================================
 
@@ -258,7 +258,7 @@ const TRANSLATIONS_SR = {
 
         problemProgress:
             "Zadatak {current} / {total}",
-        
+
         problemsSolved:
             "Rešio si {solved} od {total} zadataka.",
 

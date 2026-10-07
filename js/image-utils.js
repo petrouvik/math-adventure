@@ -1,234 +1,234 @@
 function createAdditionSvg(top, bottom, result, carries = []) {
-  // Tweak these few numbers to resize the whole diagram — everything
-  // else below is derived from them, so you don't have to hunt down
-  // individual x/y values by hand.
-  const fontSize = 9;
-  const carryFontSize = 6;
-  const digitSpacing = 14;
-  const rowGap = 14;
-  const padding = 8;
+    // Tweak these few numbers to resize the whole diagram — everything
+    // else below is derived from them, so you don't have to hunt down
+    // individual x/y values by hand.
+    const fontSize = 9;
+    const carryFontSize = 6;
+    const digitSpacing = 14;
+    const rowGap = 14;
+    const padding = 8;
 
-  const strokeWidth = Math.max(1.5, fontSize * 0.1);
-  const lineOvershoot = digitSpacing * 0.33;
-  const plusGap = digitSpacing * 0.8;
-  const lineGap = rowGap * 0.55;
+    const strokeWidth = Math.max(1.5, fontSize * 0.1);
+    const lineOvershoot = digitSpacing * 0.33;
+    const plusGap = digitSpacing * 0.8;
+    const lineGap = rowGap * 0.55;
 
-  const topDigits = top.split("");
-  const bottomDigits = bottom.split("");
-  const resultDigits = result.split("");
+    const topDigits = top.split("");
+    const bottomDigits = bottom.split("");
+    const resultDigits = result.split("");
 
-  const maxDigits = Math.max(
-    topDigits.length,
-    bottomDigits.length,
-    resultDigits.length
-  );
+    const maxDigits = Math.max(
+        topDigits.length,
+        bottomDigits.length,
+        resultDigits.length
+    );
 
-  const hasCarryRow = carries.length > 0;
+    const hasCarryRow = carries.length > 0;
 
-  // Everything is first laid out around a temporary reference point
-  // (rightX = 0). Once every element's x-position is known, the real
-  // bounding box is measured and the whole diagram is shifted so it
-  // sits centered inside a viewBox sized to fit.
-  const refRightX = 0;
-  const refStartX = refRightX - (maxDigits - 1) * digitSpacing;
-  const plusX = refStartX - plusGap;
-  const lineX1 = refStartX - lineOvershoot;
-  const lineX2 = refRightX + lineOvershoot;
+    // Everything is first laid out around a temporary reference point
+    // (rightX = 0). Once every element's x-position is known, the real
+    // bounding box is measured and the whole diagram is shifted so it
+    // sits centered inside a viewBox sized to fit.
+    const refRightX = 0;
+    const refStartX = refRightX - (maxDigits - 1) * digitSpacing;
+    const plusX = refStartX - plusGap;
+    const lineX1 = refStartX - lineOvershoot;
+    const lineX2 = refRightX + lineOvershoot;
 
-  const xPositions = [plusX, lineX1, lineX2, refStartX, refRightX];
+    const xPositions = [plusX, lineX1, lineX2, refStartX, refRightX];
 
-  carries.forEach((carry, index) => {
-    if (!carry) return;
-    xPositions.push(refRightX - (index + 1) * digitSpacing);
-  });
+    carries.forEach((carry, index) => {
+        if (!carry) return;
+        xPositions.push(refRightX - (index + 1) * digitSpacing);
+    });
 
-  const minX = Math.min(...xPositions);
-  const maxX = Math.max(...xPositions);
+    const minX = Math.min(...xPositions);
+    const maxX = Math.max(...xPositions);
 
-  const offsetX = padding - minX;
-  const width = maxX - minX + padding * 2;
+    const offsetX = padding - minX;
+    const width = maxX - minX + padding * 2;
 
-  const rightX = refRightX + offsetX;
+    const rightX = refRightX + offsetX;
 
-  // Vertical layout adapts to whether a carry row was passed in at all.
-  let y = padding + carryFontSize;
-  let carryY = 0;
+    // Vertical layout adapts to whether a carry row was passed in at all.
+    let y = padding + carryFontSize;
+    let carryY = 0;
 
-  if (hasCarryRow) {
-    carryY = y;
+    if (hasCarryRow) {
+        carryY = y;
+        y += rowGap;
+    }
+
+    const topY = y;
     y += rowGap;
-  }
+    const bottomY = y;
+    const lineY = bottomY + lineGap;
+    const resultY = lineY + rowGap;
+    const height = resultY + padding;
 
-  const topY = y;
-  y += rowGap;
-  const bottomY = y;
-  const lineY = bottomY + lineGap;
-  const resultY = lineY + rowGap;
-  const height = resultY + padding;
+    let svg = `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">`;
 
-  let svg = `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">`;
+    svg += `<line x1="${lineX1 + offsetX}" y1="${lineY}" x2="${lineX2 + offsetX}" y2="${lineY}" stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="round" />`;
 
-  svg += `<line x1="${lineX1 + offsetX}" y1="${lineY}" x2="${lineX2 + offsetX}" y2="${lineY}" stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="round" />`;
+    carries.forEach((carry, index) => {
+        if (!carry) return;
+        const x = rightX - (index + 1) * digitSpacing;
+        svg += `<text x="${x}" y="${carryY}" fill="currentColor" font-size="${carryFontSize}" text-anchor="middle" opacity="0.75">${carry}</text>`;
+    });
 
-  carries.forEach((carry, index) => {
-    if (!carry) return;
-    const x = rightX - (index + 1) * digitSpacing;
-    svg += `<text x="${x}" y="${carryY}" fill="currentColor" font-size="${carryFontSize}" text-anchor="middle" opacity="0.75">${carry}</text>`;
-  });
+    topDigits.forEach((digit, index) => {
+        const position = topDigits.length - index - 1;
+        const x = rightX - position * digitSpacing;
+        svg += `<text x="${x}" y="${topY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">${digit}</text>`;
+    });
 
-  topDigits.forEach((digit, index) => {
-    const position = topDigits.length - index - 1;
-    const x = rightX - position * digitSpacing;
-    svg += `<text x="${x}" y="${topY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">${digit}</text>`;
-  });
+    bottomDigits.forEach((digit, index) => {
+        const position = bottomDigits.length - index - 1;
+        const x = rightX - position * digitSpacing;
+        svg += `<text x="${x}" y="${bottomY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">${digit}</text>`;
+    });
 
-  bottomDigits.forEach((digit, index) => {
-    const position = bottomDigits.length - index - 1;
-    const x = rightX - position * digitSpacing;
-    svg += `<text x="${x}" y="${bottomY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">${digit}</text>`;
-  });
+    svg += `<text x="${plusX + offsetX}" y="${bottomY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">+</text>`;
 
-  svg += `<text x="${plusX + offsetX}" y="${bottomY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">+</text>`;
+    resultDigits.forEach((digit, index) => {
+        const position = resultDigits.length - index - 1;
+        const x = rightX - position * digitSpacing;
+        svg += `<text x="${x}" y="${resultY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">${digit}</text>`;
+    });
 
-  resultDigits.forEach((digit, index) => {
-    const position = resultDigits.length - index - 1;
-    const x = rightX - position * digitSpacing;
-    svg += `<text x="${x}" y="${resultY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">${digit}</text>`;
-  });
+    svg += `</svg>`;
 
-  svg += `</svg>`;
-
-  return svg;
+    return svg;
 }
 
 function createSubtractionSvg(top, bottom, result, borrows = []) {
-  // Tweak these few numbers to resize the whole diagram — everything
-  // else below is derived from them, so you don't have to hunt down
-  // individual x/y values by hand.
-  const fontSize = 9;
-  const borrowFontSize = 6;
-  const digitSpacing = 14;
-  const rowGap = 14;
-  const padding = 8;
+    // Tweak these few numbers to resize the whole diagram — everything
+    // else below is derived from them, so you don't have to hunt down
+    // individual x/y values by hand.
+    const fontSize = 9;
+    const borrowFontSize = 6;
+    const digitSpacing = 14;
+    const rowGap = 14;
+    const padding = 8;
 
-  const strokeWidth = Math.max(1.5, fontSize * 0.1);
-  const lineOvershoot = digitSpacing * 0.33;
-  const minusGap = digitSpacing * 0.8;
-  const lineGap = rowGap * 0.55;
+    const strokeWidth = Math.max(1.5, fontSize * 0.1);
+    const lineOvershoot = digitSpacing * 0.33;
+    const minusGap = digitSpacing * 0.8;
+    const lineGap = rowGap * 0.55;
 
-  const topDigits = top.split("");
-  const bottomDigits = bottom.split("");
-  const resultDigits = result.split("");
+    const topDigits = top.split("");
+    const bottomDigits = bottom.split("");
+    const resultDigits = result.split("");
 
-  const maxDigits = Math.max(
-    topDigits.length,
-    bottomDigits.length,
-    resultDigits.length
-  );
-
-  const hasBorrowRow = borrows.length > 0;
-
-  // Everything is first laid out around a temporary reference point
-  // (rightX = 0). Once every element's x-position is known, the real
-  // bounding box is measured and the whole diagram is shifted so it
-  // sits centered inside a viewBox sized to fit.
-  const refRightX = 0;
-  const refStartX = refRightX - (maxDigits - 1) * digitSpacing;
-  const minusX = refStartX - minusGap;
-  const lineX1 = refStartX - lineOvershoot;
-  const lineX2 = refRightX + lineOvershoot;
-
-  const xPositions = [
-    minusX,
-    lineX1,
-    lineX2,
-    refStartX,
-    refRightX
-  ];
-
-  borrows.forEach((borrow, index) => {
-    if (!borrow) return;
-    xPositions.push(
-      refRightX - (index + 1) * digitSpacing
+    const maxDigits = Math.max(
+        topDigits.length,
+        bottomDigits.length,
+        resultDigits.length
     );
-  });
 
-  const minX = Math.min(...xPositions);
-  const maxX = Math.max(...xPositions);
+    const hasBorrowRow = borrows.length > 0;
 
-  const offsetX = padding - minX;
-  const width = maxX - minX + padding * 2;
+    // Everything is first laid out around a temporary reference point
+    // (rightX = 0). Once every element's x-position is known, the real
+    // bounding box is measured and the whole diagram is shifted so it
+    // sits centered inside a viewBox sized to fit.
+    const refRightX = 0;
+    const refStartX = refRightX - (maxDigits - 1) * digitSpacing;
+    const minusX = refStartX - minusGap;
+    const lineX1 = refStartX - lineOvershoot;
+    const lineX2 = refRightX + lineOvershoot;
 
-  const rightX = refRightX + offsetX;
+    const xPositions = [
+        minusX,
+        lineX1,
+        lineX2,
+        refStartX,
+        refRightX
+    ];
 
-  // Vertical layout adapts to whether a borrow row was passed in at all.
-  let y = padding + borrowFontSize;
-  let borrowY = 0;
+    borrows.forEach((borrow, index) => {
+        if (!borrow) return;
+        xPositions.push(
+            refRightX - (index + 1) * digitSpacing
+        );
+    });
 
-  if (hasBorrowRow) {
-    borrowY = y;
-    y += rowGap;
-  }
+    const minX = Math.min(...xPositions);
+    const maxX = Math.max(...xPositions);
 
-  const topY = y;
-  y += rowGap;
-  const bottomY = y;
-  const lineY = bottomY + lineGap;
-  const resultY = lineY + rowGap;
-  const height = resultY + padding;
+    const offsetX = padding - minX;
+    const width = maxX - minX + padding * 2;
 
-  let svg = `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">`;
+    const rightX = refRightX + offsetX;
 
-  svg += `<line x1="${lineX1 + offsetX}" y1="${lineY}" x2="${lineX2 + offsetX}" y2="${lineY}" stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="round" />`;
+    // Vertical layout adapts to whether a borrow row was passed in at all.
+    let y = padding + borrowFontSize;
+    let borrowY = 0;
 
-  borrows.forEach((borrow, index) => {
-    if (!borrow) return;
-
-    const x =
-      rightX - (index + 1) * digitSpacing;
-
-    svg += `<text x="${x}" y="${borrowY}" fill="currentColor" font-size="${borrowFontSize}" text-anchor="middle" opacity="0.75">${borrow}</text>`;
-  });
-
-  topDigits.forEach((digit, index) => {
-    const position =
-      topDigits.length - index - 1;
-
-    const x =
-      rightX - position * digitSpacing;
-
-    svg += `<text x="${x}" y="${topY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">${digit}</text>`;
-  });
-
-  bottomDigits.forEach((digit, index) => {
-    const position =
-      bottomDigits.length - index - 1;
-
-    const x =
-      rightX - position * digitSpacing;
-
-    svg += `<text x="${x}" y="${bottomY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">${digit}</text>`;
-  });
-
-  svg += `<text x="${minusX + offsetX}" y="${bottomY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">−</text>`;
-
-  resultDigits.forEach((digit, index) => {
-    if (digit === " ") {
-      return;
+    if (hasBorrowRow) {
+        borrowY = y;
+        y += rowGap;
     }
 
-    const position =
-      resultDigits.length - index - 1;
+    const topY = y;
+    y += rowGap;
+    const bottomY = y;
+    const lineY = bottomY + lineGap;
+    const resultY = lineY + rowGap;
+    const height = resultY + padding;
 
-    const x =
-      rightX - position * digitSpacing;
+    let svg = `<svg viewBox="0 0 ${width} ${height}" xmlns="http://www.w3.org/2000/svg">`;
 
-    svg += `<text x="${x}" y="${resultY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">${digit}</text>`;
-  });
+    svg += `<line x1="${lineX1 + offsetX}" y1="${lineY}" x2="${lineX2 + offsetX}" y2="${lineY}" stroke="currentColor" stroke-width="${strokeWidth}" stroke-linecap="round" />`;
 
-  svg += `</svg>`;
+    borrows.forEach((borrow, index) => {
+        if (!borrow) return;
 
-  return svg;
+        const x =
+            rightX - (index + 1) * digitSpacing;
+
+        svg += `<text x="${x}" y="${borrowY}" fill="currentColor" font-size="${borrowFontSize}" text-anchor="middle" opacity="0.75">${borrow}</text>`;
+    });
+
+    topDigits.forEach((digit, index) => {
+        const position =
+            topDigits.length - index - 1;
+
+        const x =
+            rightX - position * digitSpacing;
+
+        svg += `<text x="${x}" y="${topY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">${digit}</text>`;
+    });
+
+    bottomDigits.forEach((digit, index) => {
+        const position =
+            bottomDigits.length - index - 1;
+
+        const x =
+            rightX - position * digitSpacing;
+
+        svg += `<text x="${x}" y="${bottomY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">${digit}</text>`;
+    });
+
+    svg += `<text x="${minusX + offsetX}" y="${bottomY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">−</text>`;
+
+    resultDigits.forEach((digit, index) => {
+        if (digit === " ") {
+            return;
+        }
+
+        const position =
+            resultDigits.length - index - 1;
+
+        const x =
+            rightX - position * digitSpacing;
+
+        svg += `<text x="${x}" y="${resultY}" fill="currentColor" font-size="${fontSize}" text-anchor="middle">${digit}</text>`;
+    });
+
+    svg += `</svg>`;
+
+    return svg;
 }
 
 function createGeometrySvg({
@@ -330,115 +330,115 @@ function createGeometrySvg({
 
     function renderSegmentLabel(segment, from, to) {
 
-    const dx = to.x - from.x;
-    const dy = to.y - from.y;
+        const dx = to.x - from.x;
+        const dy = to.y - from.y;
 
 
-    const length =
-        Math.sqrt(dx * dx + dy * dy);
+        const length =
+            Math.sqrt(dx * dx + dy * dy);
 
 
-    if (length === 0) {
-        return "";
-    }
-
-
-    const offset = 12;
-
-
-    let x;
-    let y;
-    let angle;
-
-
-    /*
-     * Vertical segment.
-     *
-     * There is no meaningful "above" side, so the
-     * direction from -> to determines which side
-     * the label is placed on.
-     */
-    if (Math.abs(dx) < 0.001) {
-
-        x =
-            (from.x + to.x) / 2 +
-            (dy > 0 ? -offset : offset);
-
-        y =
-            (from.y + to.y) / 2;
-
-
-        /*
-         * Rotate the text so that the bottom of the
-         * letters faces the segment.
-         *
-         * Top -> bottom:
-         *     label goes left  -> +90°
-         *
-         * Bottom -> top:
-         *     label goes right -> -90°
-         */
-        angle =
-            dy > 0
-                ? 90
-                : -90;
-
-    } else {
-
-        /*
-         * For non-vertical segments, put the label
-         * on the screen-top side of the segment.
-         *
-         * A perpendicular vector is:
-         *
-         *     (dy, -dx)
-         *
-         * Choose whichever of the two perpendicular
-         * directions points upward on the screen.
-         */
-        let nx = dy / length;
-        let ny = -dx / length;
-
-
-        if (ny > 0) {
-            nx = -nx;
-            ny = -ny;
+        if (length === 0) {
+            return "";
         }
 
 
-        x =
-            (from.x + to.x) / 2 +
-            nx * offset;
+        const offset = 12;
 
-        y =
-            (from.y + to.y) / 2 +
-            ny * offset;
+
+        let x;
+        let y;
+        let angle;
 
 
         /*
-         * Keep the text readable regardless of the
-         * order in which the endpoints were specified.
+         * Vertical segment.
          *
-         * This makes the text's bottom edge face the
-         * segment while avoiding upside-down labels.
+         * There is no meaningful "above" side, so the
+         * direction from -> to determines which side
+         * the label is placed on.
          */
-        angle =
-            Math.atan2(dy, dx) *
-            180 /
-            Math.PI;
+        if (Math.abs(dx) < 0.001) {
+
+            x =
+                (from.x + to.x) / 2 +
+                (dy > 0 ? -offset : offset);
+
+            y =
+                (from.y + to.y) / 2;
 
 
-        if (angle > 90) {
-            angle -= 180;
+            /*
+             * Rotate the text so that the bottom of the
+             * letters faces the segment.
+             *
+             * Top -> bottom:
+             *     label goes left  -> +90°
+             *
+             * Bottom -> top:
+             *     label goes right -> -90°
+             */
+            angle =
+                dy > 0
+                    ? 90
+                    : -90;
+
+        } else {
+
+            /*
+             * For non-vertical segments, put the label
+             * on the screen-top side of the segment.
+             *
+             * A perpendicular vector is:
+             *
+             *     (dy, -dx)
+             *
+             * Choose whichever of the two perpendicular
+             * directions points upward on the screen.
+             */
+            let nx = dy / length;
+            let ny = -dx / length;
+
+
+            if (ny > 0) {
+                nx = -nx;
+                ny = -ny;
+            }
+
+
+            x =
+                (from.x + to.x) / 2 +
+                nx * offset;
+
+            y =
+                (from.y + to.y) / 2 +
+                ny * offset;
+
+
+            /*
+             * Keep the text readable regardless of the
+             * order in which the endpoints were specified.
+             *
+             * This makes the text's bottom edge face the
+             * segment while avoiding upside-down labels.
+             */
+            angle =
+                Math.atan2(dy, dx) *
+                180 /
+                Math.PI;
+
+
+            if (angle > 90) {
+                angle -= 180;
+            }
+
+            if (angle < -90) {
+                angle += 180;
+            }
         }
 
-        if (angle < -90) {
-            angle += 180;
-        }
-    }
 
-
-    return `
+        return `
         <text
             x="${x}"
             y="${y}"
@@ -451,7 +451,7 @@ function createGeometrySvg({
             ${segment.label}
         </text>
     `;
-}
+    }
     function renderLine(line) {
 
         const first =
@@ -884,53 +884,53 @@ function createGeometrySvg({
         `;
     }
     function renderRayLabel(ray, from, through, bounds) {
-    const dx = through.x - from.x;
-    const dy = through.y - from.y;
+        const dx = through.x - from.x;
+        const dy = through.y - from.y;
 
-    const length = Math.sqrt(dx * dx + dy * dy);
-    if (length === 0) return "";
+        const length = Math.sqrt(dx * dx + dy * dy);
+        if (length === 0) return "";
 
-    const ux = dx / length;
-    const uy = dy / length;
+        const ux = dx / length;
+        const uy = dy / length;
 
-    // How far the ray runs from its endpoint, i.e. the distance to the
-    // edge of the canvas. Without bounds, the ray is treated as ending at
-    // `through`.
-    function distanceToEdge() {
-        const ts = [];
-        if (ux > 0) ts.push((bounds.width  - from.x) / ux);
-        if (ux < 0) ts.push((0             - from.x) / ux);
-        if (uy > 0) ts.push((bounds.height - from.y) / uy);
-        if (uy < 0) ts.push((0             - from.y) / uy);
-        return Math.max(0, Math.min(...ts));
-    }
+        // How far the ray runs from its endpoint, i.e. the distance to the
+        // edge of the canvas. Without bounds, the ray is treated as ending at
+        // `through`.
+        function distanceToEdge() {
+            const ts = [];
+            if (ux > 0) ts.push((bounds.width - from.x) / ux);
+            if (ux < 0) ts.push((0 - from.x) / ux);
+            if (uy > 0) ts.push((bounds.height - from.y) / uy);
+            if (uy < 0) ts.push((0 - from.y) / uy);
+            return Math.max(0, Math.min(...ts));
+        }
 
-    const rayLength = bounds ? distanceToEdge() : length;
+        const rayLength = bounds ? distanceToEdge() : length;
 
-    const endMargin = 40;  // gap between the label and the end of the ray
-    const offset = 12;     // distance away from the ray
+        const endMargin = 40;  // gap between the label and the end of the ray
+        const offset = 12;     // distance away from the ray
 
-    // Near the far end, but never closer to the endpoint than the middle
-    const distance = Math.max(rayLength - endMargin, rayLength / 2);
+        // Near the far end, but never closer to the endpoint than the middle
+        const distance = Math.max(rayLength - endMargin, rayLength / 2);
 
-    // Normal to the ray, preferring the upper side of the screen
-    let nx = -uy;
-    let ny = ux;
+        // Normal to the ray, preferring the upper side of the screen
+        let nx = -uy;
+        let ny = ux;
 
-    if (ny > 0) {
-        nx = -nx;
-        ny = -ny;
-    }
+        if (ny > 0) {
+            nx = -nx;
+            ny = -ny;
+        }
 
-    const x = from.x + ux * distance + nx * offset;
-    const y = from.y + uy * distance + ny * offset;
+        const x = from.x + ux * distance + nx * offset;
+        const y = from.y + uy * distance + ny * offset;
 
-    // Rotate so the top of the text points along the normal, away from the
-    // ray. The angle always lands in [-90°, 90°], so the text is never
-    // upside down.
-    const angle = Math.atan2(nx, -ny) * 180 / Math.PI;
+        // Rotate so the top of the text points along the normal, away from the
+        // ray. The angle always lands in [-90°, 90°], so the text is never
+        // upside down.
+        const angle = Math.atan2(nx, -ny) * 180 / Math.PI;
 
-    return `
+        return `
         <text
             x="${x}"
             y="${y}"
@@ -943,7 +943,7 @@ function createGeometrySvg({
             ${ray.label}
         </text>
     `;
-}
+    }
     function renderCircle(circle) {
         const center = toSvg(
             getPoint(circle.center)
@@ -1000,7 +1000,7 @@ function createGeometrySvg({
             </text>
         `;
     }
-    
+
     const pointElements =
         points
             .map(renderPoint)
@@ -1020,12 +1020,12 @@ function createGeometrySvg({
         lines
             .map(renderLine)
             .join("");
-    
+
     const angleElements =
         angles
             .map(renderAngle)
             .join("");
-    
+
     const rayElements =
         rays
             .map(renderRay)
@@ -1058,6 +1058,7 @@ function createGeometrySvg({
         </svg>
     `;
 }
+
 function createNumberLineSvg({
     width = 500,
     height = 120,

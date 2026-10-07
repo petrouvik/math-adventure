@@ -19,7 +19,7 @@ const INTERACTIONS = {
         }
     },
 
-    "equation-step":{
+    "equation-step": {
         render(container, problem, callbacks) {
             renderEquationSolving(
                 container,
@@ -29,7 +29,6 @@ const INTERACTIONS = {
         }
     }
 };
-
 
 function renderNumberInput(
     container,
@@ -197,7 +196,6 @@ function renderNumberInput(
     input.focus();
 }
 
-
 function renderMultipleChoice(
     container,
     problem,
@@ -297,178 +295,6 @@ function renderMultipleChoice(
     }
 }
 
-// function renderEquationSolving(
-//     container,
-//     problem,
-//     callbacks
-// ) {
-//     let currentStep = 0;
-
-//     container.innerHTML = `
-//         <section class="problem-card">
-
-//             <p class="problem-instruction">
-//                 ${t("lesson.whatIsTheAnswer")}
-//             </p>
-
-//             <div class="equation-history"></div>
-
-//             <div class="equation-current">
-//             </div>
-
-//             <div class="choices"></div>
-
-//             <p class="answer-feedback"></p>
-
-//             <div class="answer-explanation"></div>
-
-//         </section>
-//     `;
-
-//     const historyContainer =
-//         container.querySelector(
-//             ".equation-history"
-//         );
-
-//     const currentEquation =
-//         container.querySelector(
-//             ".equation-current"
-//         );
-
-//     const choicesContainer =
-//         container.querySelector(".choices");
-
-//     const feedback =
-//         container.querySelector(
-//             ".answer-feedback"
-//         );
-
-//     const explanation =
-//         container.querySelector(
-//             ".answer-explanation"
-//         );
-
-
-//     renderStep();
-
-
-//     function renderStep() {
-
-//         const step =
-//             problem.steps[currentStep];
-
-//         currentEquation.innerHTML = `
-//             <div class="problem">
-//                 <span>${step.equation}</span>
-//             </div>
-//         `;
-
-//         choicesContainer.innerHTML = "";
-
-//         step.choices.forEach(choice => {
-
-//             const button =
-//                 document.createElement("button");
-
-//             button.type = "button";
-
-//             button.className =
-//                 "choice-button";
-
-//             button.textContent =
-//                 choice;
-
-//             button.addEventListener(
-//                 "click",
-//                 () => checkAnswer(choice)
-//             );
-
-//             choicesContainer.appendChild(button);
-//         });
-
-//         feedback.textContent = "";
-//         feedback.className =
-//             "answer-feedback";
-
-//         explanation.innerHTML = "";
-//     }
-
-
-//     function checkAnswer(answer) {
-
-//         const step =
-//             problem.steps[currentStep];
-
-
-//         if (answer === step.answer) {
-
-//             feedback.textContent =
-//                 t("lesson.correct");
-
-//             feedback.className =
-//                 "answer-feedback correct";
-
-
-//             historyContainer.innerHTML += `
-//                 <div class="equation-step">
-//                     <div class="equation">
-//                         ${step.equation}
-//                     </div>
-
-//                     <div class="equation-operation">
-//                         ${answer}
-//                     </div>
-
-//                     <div class="equation">
-//                         ${step.nextEquation}
-//                     </div>
-//                 </div>
-//             `;
-
-
-//             currentStep++;
-
-
-//             if (
-//                 currentStep >=
-//                 problem.steps.length
-//             ) {
-
-//                 choicesContainer
-//                     .querySelectorAll(
-//                         ".choice-button"
-//                     )
-//                     .forEach(button => {
-//                         button.disabled = true;
-//                     });
-
-//                 callbacks.onCorrect(
-//                     problem,
-//                     problem.answer
-//                 );
-
-//                 return;
-//             }
-
-
-//             renderStep();
-
-//         } else {
-
-//             feedback.textContent =
-//                 t("lesson.tryAgain");
-
-//             feedback.className =
-//                 "answer-feedback incorrect";
-
-//             callbacks.onIncorrect(
-//                 problem,
-//                 answer,
-//                 explanation
-//             );
-//         }
-//     }
-// }
 function renderEquationSolving(container, problem, callbacks) {
     let currentStep = 0;
 

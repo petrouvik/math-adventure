@@ -13,7 +13,6 @@ function getCourseProgress(course) {
     );
 }
 
-
 function renderCourses() {
 
     const container =
@@ -84,8 +83,8 @@ function renderCourses() {
                 data-course="${course.id}"
             >
                 ${completed
-                    ? t("learn.review")
-                    : t("learn.start")}
+                ? t("learn.review")
+                : t("learn.start")}
             </button>
         `;
 

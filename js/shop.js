@@ -234,11 +234,9 @@ function renderThemes() {
     });
 }
 
-
 function initializeShop() {
     updatePlayerDisplay();
     renderThemes();
 }
-
 
 initializeShop();

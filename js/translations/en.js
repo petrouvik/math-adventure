@@ -23,8 +23,8 @@ const TRANSLATIONS_EN = {
         reset: "Reset Progress",
         resetDescription: "Delete your progress and start over.",
         resetConfirm: "Are you sure you want to reset all progress?",
-        resetConfirmButton:"Reset"
-        
+        resetConfirmButton: "Reset"
+
     },
 
     // ========================================
@@ -47,9 +47,9 @@ const TRANSLATIONS_EN = {
         level: "Level",
         welcome: "Hello, {name}! 👋",
         ready: "Ready for another math adventure?",
-        currentLevel:"Current Level",
-        continueLearning:"Continue Learning",
-        todaysProgress:"Today's Progress",
+        currentLevel: "Current Level",
+        continueLearning: "Continue Learning",
+        todaysProgress: "Today's Progress",
         xpEarned: "XP Earned",
         problems: "Problems",
         dayStreak: "Day Streak",
@@ -81,7 +81,7 @@ const TRANSLATIONS_EN = {
         hiddenAchievement: "Hidden Achievement",
         hiddenAchievementDescription: "Keep exploring to discover this achievement!"
     },
-        
+
     // ========================================
     // Shop page
     // ========================================
@@ -103,22 +103,22 @@ const TRANSLATIONS_EN = {
         themes:
             "✨ Themes",
 
-        preview: 
+        preview:
             "PREVIEW",
 
-        progress: 
+        progress:
             "Progress",
 
-        selected: 
+        selected:
             "✓ Selected",
 
-        useTheme: 
+        useTheme:
             "Use theme",
 
-        achievement: 
+        achievement:
             "🔒 Achievement",
 
-        locked: 
+        locked:
             "🔒 Locked"
     },
 
@@ -136,7 +136,7 @@ const TRANSLATIONS_EN = {
 
         subtitle:
             "Choose a topic and start learning!",
-        
+
         progress:
             "Progress",
 
@@ -230,7 +230,7 @@ const TRANSLATIONS_EN = {
         whatIsTheNextStep:
             "What should we do to both sides?"
     },
-    
+
 
     // ========================================
     // Themes

@@ -506,7 +506,7 @@ const ACHIEVEMENTS = [
         category: "progression",
         hidden: false
     },
-    
+
     {
         id: "course-equations",
         title: "achievements.courseEquations.title",

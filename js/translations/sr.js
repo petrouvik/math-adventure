@@ -503,6 +503,10 @@ const TRANSLATIONS_SR = {
             title: "Ravnoteža uspostavljena",
             description: "Završi kurs Jednačine."
         },
+        courseNegativeNumbers: {
+            title: "Neprijatelj mog neprijatelja je moj prijatelj",
+            description: "Završi kurs Negativni Brojevi."
+        },
 
 
         lessons10OneDay: {

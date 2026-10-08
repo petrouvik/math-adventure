@@ -72,6 +72,7 @@ function checkCourseAchievements(player) {
     if (isCourseCompleted(COURSES["advanced-addition"])) track("course-advanced-addition")
     if (isCourseCompleted(COURSES["advanced-subtraction"])) track("course-advanced-subtraction")
     if (isCourseCompleted(COURSES["equations"])) track("course-equations")
+    if (isCourseCompleted(COURSES["negative-numbers"])) track("course-negative-numbers")
     const completedCourses = courses.filter(
         course => isCourseCompleted(course)
     ).length;
@@ -512,6 +513,14 @@ const ACHIEVEMENTS = [
         title: "achievements.courseEquations.title",
         description: "achievements.courseEquations.description",
         icon: "=",
+        category: "progression",
+        hidden: false
+    },
+    {
+        id: "course-negative-numbers",
+        title: "achievements.courseNegativeNumbers.title",
+        description: "achievements.courseNegativeNumbers.description",
+        icon: "-1",
         category: "progression",
         hidden: false
     },

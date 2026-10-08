@@ -467,6 +467,11 @@ const TRANSLATIONS_EN = {
             title: "X for an X, 2 for a 2",
             description: "Finish the Equations course."
         },
+        courseNegativeNumbers: {
+            title: "The enemy of my enemy is my friend",
+            description: "Finish the Negative Numbers course."
+        },
+
 
 
         lessons10OneDay: {

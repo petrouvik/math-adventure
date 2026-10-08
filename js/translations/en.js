@@ -562,7 +562,7 @@ const TRANSLATIONS_EN = {
 
             numbersReading: {
 
-                title: "Reading Numbers",
+                title: "Practice: Reading Numbers",
 
                 description:
                     "Practice reading numbers from 0 to 100."
@@ -595,7 +595,7 @@ const TRANSLATIONS_EN = {
 
             predecessorSuccessor: {
 
-                title: "Predecessor and Successor",
+                title: "Practice: Predecessor and Successor",
 
                 description:
                     "Practice finding the number before and after another number."
@@ -634,7 +634,7 @@ const TRANSLATIONS_EN = {
 
             evenOdd: {
 
-                title: "Even or Odd?",
+                title: "Practice: Even or Odd?",
 
                 description:
                     "Practice identifying even and odd numbers."
@@ -669,7 +669,7 @@ const TRANSLATIONS_EN = {
 
             addition10: {
 
-                title: "Adding to 10",
+                title: "Practice: Adding to 10",
 
                 description:
                     "Practice adding numbers up to 10."
@@ -677,7 +677,7 @@ const TRANSLATIONS_EN = {
 
             addition20: {
 
-                title: "Adding to 20",
+                title: "Practice: Adding to 20",
 
                 description:
                     "Practice adding numbers up to 20."
@@ -712,7 +712,7 @@ const TRANSLATIONS_EN = {
 
             subtraction10: {
 
-                title: "Subtracting to 10",
+                title: "Practice: Subtracting to 10",
 
                 description:
                     "Practice subtracting numbers up to 10."
@@ -720,7 +720,7 @@ const TRANSLATIONS_EN = {
 
             subtraction20: {
 
-                title: "Subtracting to 20",
+                title: "Practice: Subtracting to 20",
 
                 description:
                     "Practice subtracting numbers up to 20."
@@ -755,7 +755,7 @@ const TRANSLATIONS_EN = {
 
             multiplication2: {
 
-                title: "The 2 Times Table",
+                title: "Practice: The 2 Times Table",
 
                 description:
                     "Learn and practice the 2 times table."
@@ -763,7 +763,7 @@ const TRANSLATIONS_EN = {
 
             multiplication3: {
 
-                title: "The 3 Times Table",
+                title: "Practice: The 3 Times Table",
 
                 description:
                     "Learn and practice the 3 times table."
@@ -771,7 +771,7 @@ const TRANSLATIONS_EN = {
 
             multiplication4: {
 
-                title: "The 4 Times Table",
+                title: "Practice: The 4 Times Table",
 
                 description:
                     "Learn and practice the 4 times table."
@@ -779,7 +779,7 @@ const TRANSLATIONS_EN = {
 
             multiplication5: {
 
-                title: "The 5 Times Table",
+                title: "Practice: The 5 Times Table",
 
                 description:
                     "Learn and practice the 5 times table."
@@ -787,7 +787,7 @@ const TRANSLATIONS_EN = {
 
             multiplication6: {
 
-                title: "The 6 Times Table",
+                title: "Practice: The 6 Times Table",
 
                 description:
                     "Learn and practice the 6 times table."
@@ -795,7 +795,7 @@ const TRANSLATIONS_EN = {
 
             multiplication7: {
 
-                title: "The 7 Times Table",
+                title: "Practice: The 7 Times Table",
 
                 description:
                     "Learn and practice the 7 times table."
@@ -803,7 +803,7 @@ const TRANSLATIONS_EN = {
 
             multiplication8: {
 
-                title: "The 8 Times Table",
+                title: "Practice: The 8 Times Table",
 
                 description:
                     "Learn and practice the 8 times table."
@@ -811,7 +811,7 @@ const TRANSLATIONS_EN = {
 
             multiplication9: {
 
-                title: "The 9 Times Table",
+                title: "Practice: The 9 Times Table",
 
                 description:
                     "Learn and practice the 9 times table."
@@ -819,7 +819,7 @@ const TRANSLATIONS_EN = {
 
             multiplication10: {
 
-                title: "The 10 Times Table",
+                title: "Practice: The 10 Times Table",
 
                 description:
                     "Learn and practice the 10 times table."
@@ -827,7 +827,7 @@ const TRANSLATIONS_EN = {
 
             mixed: {
 
-                title: "All Times Tables, From 2 to 10",
+                title: "Practice: All Times Tables, From 2 to 10",
 
                 description:
                     "Learn and practice all multiplication tables."
@@ -862,7 +862,7 @@ const TRANSLATIONS_EN = {
 
             sharing: {
 
-                title: "Sharing Equally",
+                title: "Practice: Sharing Equally",
 
                 description:
                     "Learn how to divide by sharing things equally."
@@ -870,7 +870,7 @@ const TRANSLATIONS_EN = {
 
             facts2To5: {
 
-                title: "Division Facts 2–5",
+                title: "Practice: Division Facts 2–5",
 
                 description:
                     "Practice division facts using the 2 through 5 times tables."
@@ -878,7 +878,7 @@ const TRANSLATIONS_EN = {
 
             facts6To10: {
 
-                title: "Division Facts 6–10",
+                title: "Practice: Division Facts 6–10",
 
                 description:
                     "Practice division facts using the 6 through 10 times tables."
@@ -886,7 +886,7 @@ const TRANSLATIONS_EN = {
 
             mixed: {
 
-                title: "Mixed Division Facts",
+                title: "Practice: Mixed Division Facts",
 
                 description:
                     "Practice division facts from all the times tables."
@@ -921,7 +921,7 @@ const TRANSLATIONS_EN = {
 
             symbols: {
 
-                title: "Learn the Symbols",
+                title: "Practice: Learn the Symbols",
 
                 description:
                     "Practice recognizing Roman numeral symbols and their values."
@@ -949,7 +949,7 @@ const TRANSLATIONS_EN = {
 
             addition: {
 
-                title: "Adding Symbols",
+                title: "Practice: Adding Symbols",
 
                 description:
                     "Practice reading Roman numerals where symbols are added together."
@@ -1003,7 +1003,7 @@ const TRANSLATIONS_EN = {
 
             toArabic: {
 
-                title: "Roman to Arabic",
+                title: "Practice: Roman to Arabic",
 
                 description:
                     "Practice converting Roman numerals into ordinary numbers."
@@ -1011,7 +1011,7 @@ const TRANSLATIONS_EN = {
 
             toRoman: {
 
-                title: "Arabic to Roman",
+                title: "Practice: Arabic to Roman",
 
                 description:
                     "Practice converting ordinary numbers into Roman numerals."
@@ -1058,7 +1058,7 @@ const TRANSLATIONS_EN = {
 
             readingPractice: {
 
-                title: "Reading Large Numbers",
+                title: "Practice: Reading Large Numbers",
 
                 description:
                     "Practice reading numbers up to one million."
@@ -1089,7 +1089,7 @@ const TRANSLATIONS_EN = {
 
             writingPractice: {
 
-                title: "Writing Large Numbers",
+                title: "Practice: Writing Large Numbers",
 
                 description:
                     "Practice writing large numbers from their names."
@@ -1132,7 +1132,7 @@ const TRANSLATIONS_EN = {
 
             comparisonPractice: {
 
-                title: "Comparing Numbers",
+                title: "Practice: Comparing Numbers",
 
                 description:
                     "Practice comparing numbers using <, >, and =."
@@ -1169,7 +1169,7 @@ const TRANSLATIONS_EN = {
 
             placeValuePractice: {
 
-                title: "Place Value",
+                title: "Practice: Place Value",
 
                 description:
                     "Practice identifying the value and position of digits."
@@ -1206,7 +1206,7 @@ const TRANSLATIONS_EN = {
 
             expandedFormPractice: {
 
-                title: "Expanded Form",
+                title: "Practice: Expanded Form",
 
                 description:
                     "Practice putting expanded numbers back together."
@@ -1255,7 +1255,7 @@ const TRANSLATIONS_EN = {
 
             numberGroupsPractice: {
 
-                title: "Number Groups",
+                title: "Practice: Number Groups",
 
                 description:
                     "Practice finding the tens, hundreds, and thousands that contain a number."
@@ -1806,14 +1806,14 @@ const TRANSLATIONS_EN = {
                 },
 
                 meaningPractice: {
-                    title: "Is the Equation True?",
+                    title: "Practice: Is the Equation True?",
 
                     description:
                         "Practice recognizing equations that are true and false."
                 },
 
                 meaningAllOperations: {
-                    title: "Equality with All Operations",
+                    title: "Practice: Equality with All Operations",
 
                     description:
                         "Practice recognizing equality using different mathematical operations."
@@ -1850,7 +1850,7 @@ const TRANSLATIONS_EN = {
                 },
 
                 variablesPractice: {
-                    title: "Using Variables",
+                    title: "Practice: Using Variables",
 
                     description:
                         "Practice replacing variables with their values and using variables in expressions."
@@ -1920,14 +1920,14 @@ const TRANSLATIONS_EN = {
                 },
 
                 solvingAllPractice: {
-                    title: "Solving Equations",
+                    title: "Practice: Solving Equations",
 
                     description:
                         "Solve equations using addition, subtraction, multiplication, and division."
                 },
 
                 solvingTwoOperations: {
-                    title: "Two-Step Equations",
+                    title: "Practice: Two-Step Equations",
 
                     description:
                         "Solve equations that require two operations to find the unknown."
@@ -1961,7 +1961,7 @@ const TRANSLATIONS_EN = {
 
 
             geometryBasicsPractice: {
-                title: "Geometry Basics Practice",
+                title: "Practice: Geometry Basics",
                 description: "Identify points, lines, segments, and rays."
             },
 
@@ -1987,7 +1987,7 @@ const TRANSLATIONS_EN = {
 
 
             partsOfAShapePractice: {
-                title: "Parts of a Shape Practice",
+                title: "Practice: Parts of a Shape",
                 description: "Practice identifying sides, vertices, and angles."
             },
 
@@ -2011,7 +2011,7 @@ const TRANSLATIONS_EN = {
 
 
             anglesPractice: {
-                title: "Angles Practice",
+                title: "Practice: Angles",
                 description: "Practice classifying angles."
             },
 
@@ -2035,7 +2035,7 @@ const TRANSLATIONS_EN = {
 
 
             adjacentAndOppositeSidesPractice: {
-                title: "Adjacent and Opposite Sides Practice",
+                title: "Practice: Adjacent and Opposite Sides",
                 description: "Practice identifying adjacent and opposite sides and vertices."
             },
 
@@ -2064,7 +2064,7 @@ const TRANSLATIONS_EN = {
 
 
             lengthAndUnitsPractice: {
-                title: "Length and Units Practice",
+                title: "Practice: Length and Units",
                 description: "Practice converting measurements between different units."
             },
 
@@ -2089,7 +2089,7 @@ const TRANSLATIONS_EN = {
 
 
             parallelAndPerpendicularLinesPractice: {
-                title: "Parallel and Perpendicular Lines Practice",
+                title: "Practice: Parallel and Perpendicular Lines",
                 description: "Practice identifying parallel, perpendicular, and other pairs of lines."
             },
 
@@ -2113,7 +2113,7 @@ const TRANSLATIONS_EN = {
 
 
             trianglesPractice: {
-                title: "Triangles Practice",
+                title: "Practice: Triangles",
                 description: "Practice classifying triangles by their side lengths."
             },
 
@@ -2140,7 +2140,7 @@ const TRANSLATIONS_EN = {
 
 
             commonQuadrilateralsPractice: {
-                title: "Common Quadrilaterals Practice",
+                title: "Practice: Common Quadrilaterals",
                 description: "Practice identifying common quadrilaterals."
             }
         },
@@ -2214,7 +2214,7 @@ const TRANSLATIONS_EN = {
             },
 
             additionPractice: {
-                title: "Adding Negative Numbers Practice",
+                title: "Practice: Adding Negative Numbers",
                 description:
                     "Practice adding positive and negative numbers."
             },
@@ -2249,7 +2249,7 @@ const TRANSLATIONS_EN = {
             },
 
             subtractionPractice: {
-                title: "Subtracting Negative Numbers Practice",
+                title: "Practice: Subtracting Negative Numbers",
                 description:
                     "Practice subtracting positive and negative numbers."
             },
@@ -2287,7 +2287,7 @@ const TRANSLATIONS_EN = {
             },
 
             multiplicationPractice: {
-                title: "Multiplying Negative Numbers Practice",
+                title: "Practice: Multiplying Negative Numbers",
                 description:
                     "Practice multiplying positive and negative numbers."
             },
@@ -2322,7 +2322,7 @@ const TRANSLATIONS_EN = {
             },
 
             divisionPractice: {
-                title: "Dividing Negative Numbers Practice",
+                title: "Practice: Dividing Negative Numbers",
                 description:
                     "Practice dividing positive and negative numbers."
             }

@@ -3337,26 +3337,21 @@ const COURSES = {
         ]
     },
 
-    geometry: {
-        id: "geometry",
+    "negative-numbers": {
+        id: "negative-numbers",
 
-        title: "Geometry",
+        title: "courses.negativeNumbers.title",
+        description: "courses.negativeNumbers.description",
 
-        description:
-            "Learn the basic ideas and building blocks of geometry.",
-
-        icon: "π",
+        icon: "−1",
 
         lessons: [
 
             {
-                id: "geometry-basics",
+                id: "negative-numbers-intro",
 
-                title:
-                    "Geometry Basics",
-
-                description:
-                    "Learn about points, lines, segments, and rays.",
+                title: "courses.negativeNumbers.intro.title",
+                description: "courses.negativeNumbers.intro.description",
 
                 type: "explanation",
 
@@ -3364,197 +3359,225 @@ const COURSES = {
 
                     {
                         type: "text",
-
-                        text:
-                            "Geometry is the part of mathematics that helps us describe shapes, sizes, positions, and the space around us. We start with a few simple objects that are used to build many of the things we study in geometry."
-                    },
-
-                    {
-                        type: "text",
-
-                        text:
-                            "A point represents an exact position. We draw it as a small dot. A point has no length or width."
+                        text: "courses.negativeNumbers.intro.content.text1"
                     },
 
                     {
                         type: "example",
 
                         expression:
-                            createGeometrySvg({
-                                width: 200,
-                                height: 100,
-                                scale: 50,
+                            createNumberLineSvg({
+                                width: 500,
+                                height: 140,
 
-                                points: [
-                                    {
-                                        id: "A",
-                                        x: 2,
-                                        y: 1,
-                                        label: "A"
-                                    }
-                                ]
+                                min: -5,
+                                max: 5,
+
+                                step: 1,
+
+                                ticks: {
+                                    majorEvery: 1
+                                },
+
+                                numbers: {
+                                    every: 1
+                                }
                             }),
 
                         explanation:
-                            "This is point A. The letter A is its name."
+                            "courses.negativeNumbers.intro.content.example1"
                     },
 
                     {
                         type: "text",
-
-                        text:
-                            "A line is straight and continues forever in both directions. We can use two points on a line to describe it."
+                        text: "courses.negativeNumbers.intro.content.text2"
                     },
 
                     {
                         type: "example",
 
                         expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 100,
-                                scale: 50,
+                            createNumberLineSvg({
+                                width: 500,
+                                height: 140,
+
+                                min: -5,
+                                max: 5,
+
+                                step: 1,
+
+                                ticks: {
+                                    majorEvery: 1
+                                },
+
+                                numbers: {
+                                    every: 1
+                                },
 
                                 points: [
                                     {
-                                        id: "A",
-                                        x: 1,
-                                        y: 1,
+                                        value: -3,
                                         label: "A"
                                     },
+
                                     {
-                                        id: "B",
-                                        x: 4,
-                                        y: 1,
+                                        value: 2,
                                         label: "B"
                                     }
-                                ],
-
-                                lines: [
-                                    {
-                                        through: ["A", "B"],
-                                        label: "l"
-                                    }
                                 ]
                             }),
 
                         explanation:
-                            "This is line l. Points A and B lie on the line, so we can also describe it as the line through A and B."
+                            "courses.negativeNumbers.intro.content.example2"
                     },
 
                     {
                         type: "text",
+                        text: "courses.negativeNumbers.intro.content.text3"
+                    },
 
-                        text:
-                            "A line segment is a part of a line with two endpoints. Unlike a line, a segment does not continue forever."
+                    {
+                        type: "example",
+
+                        expression: "−2 > −6",
+
+                        explanation:
+                            "courses.negativeNumbers.intro.content.example3"
+                    },
+
+                    {
+                        type: "text",
+                        text: "courses.negativeNumbers.intro.content.text4"
                     },
 
                     {
                         type: "example",
 
                         expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 100,
-                                scale: 50,
+                            createNumberLineSvg({
+                                width: 500,
+                                height: 140,
+
+                                min: -5,
+                                max: 5,
+
+                                step: 1,
+
+                                ticks: {
+                                    majorEvery: 1
+                                },
+
+                                numbers: {
+                                    every: 1
+                                },
 
                                 points: [
                                     {
-                                        id: "A",
-                                        x: 1,
-                                        y: 1,
-                                        label: "A"
+                                        value: -4,
+                                        label: "−4"
                                     },
-                                    {
-                                        id: "B",
-                                        x: 5,
-                                        y: 1,
-                                        label: "B"
-                                    }
-                                ],
 
-                                segments: [
                                     {
-                                        from: "A",
-                                        to: "B",
-                                        label: "AB"
+                                        value: 4,
+                                        label: "4"
                                     }
                                 ]
                             }),
 
                         explanation:
-                            "This is segment AB. The points A and B are its endpoints. A segment can be named using the letters of its endpoints."
+                            "courses.negativeNumbers.intro.content.example4"
                     },
 
                     {
                         type: "text",
-
-                        text:
-                            "A ray has one endpoint and continues forever in one direction. We name a ray using its endpoint first."
-                    },
-
-                    {
-                        type: "example",
-
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 100,
-                                scale: 50,
-
-                                points: [
-                                    {
-                                        id: "A",
-                                        x: 1,
-                                        y: 1,
-                                        label: "A"
-                                    },
-                                    {
-                                        id: "B",
-                                        x: 3,
-                                        y: 1,
-                                        visible: false
-                                    }
-                                ],
-
-                                rays: [
-                                    {
-                                        from: "A",
-                                        through: "B",
-                                        label: "r"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "This is ray Ar. A is its endpoint. It continues forever in only one direction."
-                    },
-
-                    {
-                        type: "text",
-
-                        text:
-                            "Points are usually named with capital letters, such as A, B, and C. Segments can be named using letters of their points, for example AB. Segments can also be named using a single letter, which is usually lower-case, for example b. Rays are usually named using the endpoint and a lower-case letter, for example Ar."
+                        text: "courses.negativeNumbers.intro.content.text5"
                     }
+
                 ]
             },
 
+            {
+                id: "negative-numbers-addition",
+
+                title: "courses.negativeNumbers.addition.title",
+                description:
+                    "courses.negativeNumbers.addition.description",
+
+                type: "explanation",
+
+                content: [
+
+                    {
+                        type: "text",
+                        text:
+                            "courses.negativeNumbers.addition.content.text1"
+                    },
+
+                    {
+                        type: "example",
+
+                        expression: "−3 + 5 = 2",
+
+                        explanation:
+                            "courses.negativeNumbers.addition.content.example1"
+                    },
+
+                    {
+                        type: "example",
+
+                        expression: "4 + (−6) = −2",
+
+                        explanation:
+                            "courses.negativeNumbers.addition.content.example2"
+                    },
+
+                    {
+                        type: "text",
+                        text:
+                            "courses.negativeNumbers.addition.content.text2"
+                    },
+
+                    {
+                        type: "example",
+
+                        expression: "−4 + (−3) = −7",
+
+                        explanation:
+                            "courses.negativeNumbers.addition.content.example3"
+                    },
+
+                    {
+                        type: "text",
+                        text:
+                            "courses.negativeNumbers.addition.content.text3"
+                    },
+
+                    {
+                        type: "example",
+
+                        expression: "−8 + 3 = −5",
+
+                        explanation:
+                            "courses.negativeNumbers.addition.content.example4"
+                    }
+
+                ]
+            },
 
             {
-                id: "geometry-basics-practice",
+                id: "negative-numbers-addition-practice",
 
                 title:
-                    "Geometry Basics Practice",
+                    "courses.negativeNumbers.additionPractice.title",
 
                 description:
-                    "Identify points, lines, segments, and rays.",
+                    "courses.negativeNumbers.additionPractice.description",
 
                 type: "practice",
 
                 practice: {
-                    generator: "geometryBasics",
-
-                    interaction: "multiple-choice",
+                    generator: "negativeAddition",
+                    interaction: "number-input",
 
                     settings: {},
 
@@ -3565,13 +3588,13 @@ const COURSES = {
             },
 
             {
-                id: "parts-of-a-shape",
+                id: "negative-numbers-subtraction",
 
                 title:
-                    "Parts of a Shape",
+                    "courses.negativeNumbers.subtraction.title",
 
                 description:
-                    "Learn about sides, vertices, and angles.",
+                    "courses.negativeNumbers.subtraction.description",
 
                 type: "explanation",
 
@@ -3580,232 +3603,93 @@ const COURSES = {
                     {
                         type: "text",
                         text:
-                            "A shape can have sides, vertices, and angles. Let's learn what each of these means."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A side is a line segment that forms part of the outside of a shape. It connects two vertices."
+                            "courses.negativeNumbers.subtraction.content.text1"
                     },
 
                     {
                         type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 220,
-                                scale: 40,
 
-                                points: [
-                                    { id: "A", x: 1, y: 1, label: "A" },
-                                    { id: "B", x: 5, y: 1, label: "B" },
-                                    { id: "C", x: 5, y: 4, label: "C" },
-                                    { id: "D", x: 1, y: 4, label: "D" }
-                                ],
-
-                                segments: [
-                                    { from: "A", to: "B", label: "AB" },
-                                    { from: "B", to: "C" },
-                                    { from: "C", to: "D" },
-                                    { from: "D", to: "A" }
-                                ]
-                            }),
+                        expression: "5 − 2 = 3",
 
                         explanation:
-                            "AB is a side of the shape. It connects vertices A and B."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A vertex is a point where two sides meet. A vertex is one of the corners of a shape."
+                            "courses.negativeNumbers.subtraction.content.example1"
                     },
 
                     {
                         type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 220,
-                                scale: 40,
 
-                                points: [
-                                    { id: "A", x: 1, y: 1, label: "A" },
-                                    { id: "B", x: 5, y: 1, label: "B" },
-                                    { id: "C", x: 5, y: 4, label: "C" },
-                                    { id: "D", x: 1, y: 4, label: "D" }
-                                ],
-
-                                segments: [
-                                    { from: "A", to: "B" },
-                                    { from: "B", to: "C" },
-                                    { from: "C", to: "D" },
-                                    { from: "D", to: "A" }
-                                ]
-                            }),
+                        expression: "5 − (−2) = 7",
 
                         explanation:
-                            "B is a vertex because sides AB and BC meet at B."
+                            "courses.negativeNumbers.subtraction.content.example2"
                     },
 
                     {
                         type: "text",
                         text:
-                            "An angle is the opening between two sides that meet at a vertex."
+                            "courses.negativeNumbers.subtraction.content.text2"
                     },
 
                     {
                         type: "example",
+
                         expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 220,
-                                scale: 40,
-
-                                points: [
-                                    { id: "A", x: 1, y: 1, label: "A" },
-                                    { id: "B", x: 5, y: 1, label: "B" },
-                                    { id: "C", x: 5, y: 4, label: "C" },
-                                    { id: "D", x: 1, y: 4, label: "D" }
-                                ],
-
-                                segments: [
-                                    { from: "A", to: "B" },
-                                    { from: "B", to: "C" },
-                                    { from: "C", to: "D" },
-                                    { from: "D", to: "A" }
-                                ],
-
-                                angles: [
-                                    {
-                                        vertex: "B",
-                                        from: "A",
-                                        to: "C",
-                                        label: "ABC"
-                                    }
-                                ]
-                            }),
+                            "−4 − 3 = −4 + (−3) = −7",
 
                         explanation:
-                            "Angle ABC is the angle at vertex B. It is formed by sides BA and BC."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "We can name a side using the letters of its endpoints. For example, the side connecting A and B is side AB."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "We can name a vertex using its letter. For example, B is the name of this vertex."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "We can name an angle using three letters. The letter for the vertex goes in the middle. For example, angle ABC has vertex B."
+                            "courses.negativeNumbers.subtraction.content.example3"
                     },
 
                     {
                         type: "example",
+
                         expression:
-                            createGeometrySvg({
-                                width: 360,
-                                height: 260,
-                                scale: 45,
-
-                                points: [
-                                    { id: "A", x: 1, y: 2, label: "A" },
-                                    { id: "B", x: 3, y: 1, label: "B" },
-                                    { id: "C", x: 6, y: 1.5, label: "C" },
-                                    { id: "D", x: 5, y: 4, label: "D" },
-                                    { id: "E", x: 2, y: 5, label: "E" }
-                                ],
-
-                                segments: [
-                                    { from: "A", to: "B" },
-                                    { from: "B", to: "C" },
-                                    { from: "C", to: "D" },
-                                    { from: "D", to: "E" },
-                                    { from: "E", to: "A" }
-                                ],
-
-                                angles: [
-                                    {
-                                        vertex: "A",
-                                        from: "E",
-                                        to: "B",
-                                        label: "EAB"
-                                    },
-                                    {
-                                        vertex: "B",
-                                        from: "A",
-                                        to: "C",
-                                        label: "ABC"
-                                    },
-                                    {
-                                        vertex: "C",
-                                        from: "B",
-                                        to: "D",
-                                        label: "BCD"
-                                    },
-                                    {
-                                        vertex: "D",
-                                        from: "C",
-                                        to: "E",
-                                        label: "CDE"
-                                    },
-                                    {
-                                        vertex: "E",
-                                        from: "D",
-                                        to: "A",
-                                        label: "DEA"
-                                    }
-                                ]
-                            }),
+                            "−4 − (−3) = −4 + 3 = −1",
 
                         explanation:
-                            "This shape has 5 sides, 5 vertices, and 5 angles. Its vertices are A, B, C, D, and E. Its sides are AB, BC, CD, DE, and EA. Its angles are EAB, ABC, BCD, CDE, and DEA."
+                            "courses.negativeNumbers.subtraction.content.example4"
                     },
 
                     {
                         type: "text",
                         text:
-                            "When you look at a shape, you can find its sides by following its outside boundary. The points where the sides meet are its vertices, and the openings at those vertices are its angles."
+                            "courses.negativeNumbers.subtraction.content.text3"
                     }
+
                 ]
             },
 
             {
-                id: "parts-of-a-shape-practice",
+                id: "negative-numbers-subtraction-practice",
 
                 title:
-                    "Parts of a Shape Practice",
+                    "courses.negativeNumbers.subtractionPractice.title",
 
                 description:
-                    "Practice identifying sides, vertices, and angles.",
+                    "courses.negativeNumbers.subtractionPractice.description",
 
                 type: "practice",
 
                 practice: {
-                    generator: "shapeParts",
-                    interaction: "multiple-choice",
+                    generator: "negativeSubtraction",
+                    interaction: "number-input",
+
+                    settings: {},
+
                     problemCount: 10
                 },
 
                 difficultyMultiplier: 1
             },
+
             {
-                id: "angles",
+                id: "negative-numbers-multiplication",
 
                 title:
-                    "Angles",
+                    "courses.negativeNumbers.multiplication.title",
 
                 description:
-                    "Learn about acute, right, obtuse, and straight angles.",
+                    "courses.negativeNumbers.multiplication.description",
 
                 type: "explanation",
 
@@ -3814,223 +3698,100 @@ const COURSES = {
                     {
                         type: "text",
                         text:
-                            "An angle is formed when two sides meet at a vertex. We can describe an angle by how wide its opening is."
+                            "courses.negativeNumbers.multiplication.content.text1"
                     },
 
                     {
                         type: "text",
                         text:
-                            "An acute angle is smaller than a right angle. Its opening is less than 90°."
+                            "courses.negativeNumbers.multiplication.content.text2"
                     },
 
                     {
                         type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 200,
-                                scale: 50,
 
-                                points: [
-                                    { id: "A", x: 1, y: 3 },
-                                    { id: "B", x: 3, y: 3 },
-                                    { id: "C", x: 1, y: 1 }
-                                ],
-
-                                rays: [
-                                    {
-                                        from: "B",
-                                        through: "A"
-                                    },
-                                    {
-                                        from: "B",
-                                        through: "C"
-                                    }
-                                ],
-
-                                angles: [
-                                    {
-                                        vertex: "B",
-                                        from: "A",
-                                        to: "C",
-                                        label: "45°"
-                                    }
-                                ]
-                            }),
+                        expression: "4 × 3 = 12",
 
                         explanation:
-                            "This is an acute angle. Its opening is smaller than 90°."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A right angle is exactly 90°. It looks like the corner of a square."
+                            "courses.negativeNumbers.multiplication.content.example1"
                     },
 
                     {
                         type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 200,
-                                scale: 50,
 
-                                points: [
-                                    { id: "A", x: 1, y: 3 },
-                                    { id: "B", x: 3, y: 3 },
-                                    { id: "C", x: 3, y: 1 }
-                                ],
-
-                                rays: [
-                                    {
-                                        from: "B",
-                                        through: "A"
-                                    },
-                                    {
-                                        from: "B",
-                                        through: "C"
-                                    }
-                                ],
-
-                                angles: [
-                                    {
-                                        vertex: "B",
-                                        from: "A",
-                                        to: "C",
-                                        label: "90°"
-                                    }
-                                ]
-                            }),
+                        expression: "−4 × −3 = 12",
 
                         explanation:
-                            "This is a right angle. Its opening is exactly 90°."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "An obtuse angle is larger than a right angle but smaller than a straight angle. Its opening is between 90° and 180°."
+                            "courses.negativeNumbers.multiplication.content.example2"
                     },
 
                     {
                         type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 200,
-                                scale: 50,
 
-                                points: [
-                                    { id: "A", x: 1, y: 2 },
-                                    { id: "B", x: 3, y: 3 },
-                                    { id: "C", x: 5, y: 1 }
-                                ],
-
-                                rays: [
-                                    {
-                                        from: "B",
-                                        through: "A"
-                                    },
-                                    {
-                                        from: "B",
-                                        through: "C"
-                                    }
-                                ],
-
-                                angles: [
-                                    {
-                                        vertex: "B",
-                                        from: "A",
-                                        to: "C",
-                                        label: "120°"
-                                    }
-                                ]
-                            }),
+                        expression: "−4 × 3 = −12",
 
                         explanation:
-                            "This is an obtuse angle. Its opening is between 90° and 180°."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A straight angle is exactly 180°. Its two sides point in opposite directions and form a straight line."
+                            "courses.negativeNumbers.multiplication.content.example3"
                     },
 
                     {
                         type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 200,
-                                scale: 50,
 
-                                points: [
-                                    { id: "A", x: 1, y: 2, label: "A" },
-                                    { id: "B", x: 3, y: 2, label: "B" },
-                                    { id: "C", x: 5, y: 2, label: "C" }
-                                ],
-
-                                rays: [
-                                    {
-                                        from: "B",
-                                        through: "A"
-                                    },
-                                    {
-                                        from: "B",
-                                        through: "C"
-                                    }
-                                ],
-
-                                angles: [
-                                    {
-                                        vertex: "B",
-                                        from: "A",
-                                        to: "C",
-                                        label: "180°"
-                                    }
-                                ]
-                            }),
+                        expression: "4 × −3 = −12",
 
                         explanation:
-                            "This is a straight angle. Its opening is exactly 180°."
+                            "courses.negativeNumbers.multiplication.content.example4"
                     },
 
                     {
                         type: "text",
                         text:
-                            "Remember: acute angles are less than 90°, right angles are 90°, obtuse angles are between 90° and 180°, and straight angles are 180°."
+                            "courses.negativeNumbers.multiplication.content.text3"
+                    },
+
+                    {
+                        type: "example",
+
+                        expression: "−6 × −5 = 30",
+
+                        explanation:
+                            "courses.negativeNumbers.multiplication.content.example5"
                     }
+
                 ]
             },
+
             {
-                id: "angles-practice",
+                id: "negative-numbers-multiplication-practice",
 
                 title:
-                    "Angles Practice",
+                    "courses.negativeNumbers.multiplicationPractice.title",
 
                 description:
-                    "Practice classifying angles.",
+                    "courses.negativeNumbers.multiplicationPractice.description",
 
                 type: "practice",
 
                 practice: {
-                    generator: "angles",
-                    interaction: "multiple-choice",
+                    generator: "negativeMultiplication",
+                    interaction: "number-input",
+
+                    settings: {},
+
                     problemCount: 10
                 },
 
                 difficultyMultiplier: 1
             },
+
             {
-                id: "adjacent-and-opposite-sides",
+                id: "negative-numbers-division",
 
                 title:
-                    "Adjacent and Opposite Sides",
+                    "courses.negativeNumbers.division.title",
 
                 description:
-                    "Learn which sides and vertices are next to each other.",
+                    "courses.negativeNumbers.division.description",
 
                 type: "explanation",
 
@@ -4039,1188 +3800,80 @@ const COURSES = {
                     {
                         type: "text",
                         text:
-                            "Some sides of a shape are next to each other, while other sides are farther apart. We can describe these relationships using the words adjacent and opposite."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "Two sides are adjacent when they meet at a vertex. In other words, they are next to each other."
+                            "courses.negativeNumbers.division.content.text1"
                     },
 
                     {
                         type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 360,
-                                height: 260,
-                                scale: 45,
 
-                                points: [
-                                    { id: "A", x: 1, y: 1, label: "A" },
-                                    { id: "B", x: 6, y: 1, label: "B" },
-                                    { id: "C", x: 5, y: 4, label: "C" },
-                                    { id: "D", x: 1, y: 4, label: "D" }
-                                ],
-
-                                segments: [
-                                    { from: "A", to: "B", label: "AB" },
-                                    { from: "B", to: "C", label: "BC" },
-                                    { from: "C", to: "D", label: "CD" },
-                                    { from: "D", to: "A", label: "DA" }
-                                ]
-                            }),
+                        expression: "24 ÷ 6 = 4",
 
                         explanation:
-                            "Sides AB and BC are adjacent because they meet at vertex B. Sides AB and DA are also adjacent because they meet at vertex A."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "Two sides are opposite when they do not meet and are not next to each other."
+                            "courses.negativeNumbers.division.content.example1"
                     },
 
                     {
                         type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 360,
-                                height: 260,
-                                scale: 45,
 
-                                points: [
-                                    { id: "A", x: 1, y: 1, label: "A" },
-                                    { id: "B", x: 6, y: 1, label: "B" },
-                                    { id: "C", x: 5, y: 4, label: "C" },
-                                    { id: "D", x: 1, y: 4, label: "D" }
-                                ],
-
-                                segments: [
-                                    { from: "A", to: "B", label: "AB" },
-                                    { from: "B", to: "C", label: "BC" },
-                                    { from: "C", to: "D", label: "CD" },
-                                    { from: "D", to: "A", label: "DA" }
-                                ]
-                            }),
+                        expression: "−24 ÷ −6 = 4",
 
                         explanation:
-                            "Sides AB and CD are opposite. They do not meet and there are sides between them."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "Opposite sides only exist when a shape has enough sides for some sides not to meet. A triangle does not have opposite sides."
+                            "courses.negativeNumbers.division.content.example2"
                     },
 
                     {
                         type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 240,
-                                scale: 45,
 
-                                points: [
-                                    { id: "A", x: 1, y: 4, label: "A" },
-                                    { id: "B", x: 4, y: 1, label: "B" },
-                                    { id: "C", x: 6, y: 4, label: "C" }
-                                ],
-
-                                segments: [
-                                    { from: "A", to: "B", label: "AB" },
-                                    { from: "B", to: "C", label: "BC" },
-                                    { from: "C", to: "A", label: "CA" }
-                                ]
-                            }),
+                        expression: "−24 ÷ 6 = −4",
 
                         explanation:
-                            "A triangle has three sides, and every pair of its sides meets at a vertex. Therefore, a triangle has no opposite sides."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "We can also talk about adjacent vertices. Two vertices are adjacent when they are connected by a side."
+                            "courses.negativeNumbers.division.content.example3"
                     },
 
                     {
                         type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 360,
-                                height: 260,
-                                scale: 45,
 
-                                points: [
-                                    { id: "A", x: 1, y: 1, label: "A" },
-                                    { id: "B", x: 6, y: 1, label: "B" },
-                                    { id: "C", x: 5, y: 4, label: "C" },
-                                    { id: "D", x: 1, y: 4, label: "D" }
-                                ],
-
-                                segments: [
-                                    { from: "A", to: "B" },
-                                    { from: "B", to: "C" },
-                                    { from: "C", to: "D" },
-                                    { from: "D", to: "A" }
-                                ]
-                            }),
+                        expression: "24 ÷ −6 = −4",
 
                         explanation:
-                            "Vertices A and B are adjacent because side AB connects them. Vertices A and C are not adjacent because there is no side connecting them."
+                            "courses.negativeNumbers.division.content.example4"
                     },
 
                     {
                         type: "text",
                         text:
-                            "Remember: adjacent sides meet, while opposite sides do not meet. Adjacent vertices are connected by a side."
+                            "courses.negativeNumbers.division.content.text2"
+                    },
+
+                    {
+                        type: "example",
+
+                        expression: "−35 ÷ −5 = 7",
+
+                        explanation:
+                            "courses.negativeNumbers.division.content.example5"
                     }
+
                 ]
             },
+
             {
-                id: "adjacent-and-opposite-sides-practice",
+                id: "negative-numbers-division-practice",
 
                 title:
-                    "Adjacent and Opposite Sides Practice",
+                    "courses.negativeNumbers.divisionPractice.title",
 
                 description:
-                    "Practice identifying adjacent and opposite sides and vertices.",
+                    "courses.negativeNumbers.divisionPractice.description",
 
                 type: "practice",
 
                 practice: {
-                    generator: "adjacentOppositeSides",
-                    interaction: "multiple-choice",
-                    problemCount: 10
-                },
+                    generator: "negativeDivision",
+                    interaction: "number-input",
 
-                difficultyMultiplier: 1
-            },
-            {
-                id: "length-and-units",
+                    settings: {},
 
-                title:
-                    "Length and Units",
-
-                description:
-                    "Learn how we measure length and which units to use.",
-
-                type: "explanation",
-
-                content: [
-
-                    {
-                        type: "text",
-                        text:
-                            "Length tells us how long or short something is. We measure length using units."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A millimetre, written as mm, is a very small unit of length. It is useful for measuring very small things or small distances."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            "1 mm",
-
-                        explanation:
-                            "A millimetre is one thousandth of a metre."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A centimetre, written as cm, is larger than a millimetre. There are 10 millimetres in 1 centimetre."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            "1 cm = 10 mm",
-
-                        explanation:
-                            "One centimetre is equal to ten millimetres."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A decimetre, written as dm, is larger than a centimetre. There are 10 centimetres in 1 decimetre."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            "1 dm = 10 cm",
-
-                        explanation:
-                            "One decimetre is equal to ten centimetres."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A metre, written as m, is a common unit for measuring the length or height of larger objects. There are 10 decimetres in 1 metre."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            "1 m = 10 dm",
-
-                        explanation:
-                            "One metre is equal to ten decimetres."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A kilometre, written as km, is much larger than a metre. Kilometres are useful for measuring long distances, such as the distance between two places."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            "1 km = 1000 m",
-
-                        explanation:
-                            "One kilometre is equal to one thousand metres."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "We can also convert a measurement from one unit to another. When we convert a measurement, the length stays the same; only the unit changes."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            "2 m = 20 dm = 200 cm = 2000 mm",
-
-                        explanation:
-                            "The same length can be written using different units."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "The unit we choose depends on what we are measuring. Small objects are usually measured in millimetres or centimetres, larger objects in centimetres or metres, and long distances in kilometres."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "Remember: 10 mm = 1 cm, 10 cm = 1 dm, 10 dm = 1 m, and 1000 m = 1 km."
-                    }
-                ]
-            },
-            {
-                id: "length-and-units-practice",
-
-                title:
-                    "Length and Units Practice",
-
-                description:
-                    "Practice converting measurements between different units.",
-
-                type: "practice",
-
-                practice: {
-                    generator: "lengthUnits",
-                    interaction: "multiple-choice",
-                    problemCount: 10
-                },
-
-                difficultyMultiplier: 1
-            },
-            {
-                id: "parallel-and-perpendicular-lines",
-
-                title:
-                    "Parallel and Perpendicular Lines",
-
-                description:
-                    "Learn how to recognize parallel and perpendicular lines.",
-
-                type: "explanation",
-
-                content: [
-
-                    {
-                        type: "text",
-                        text:
-                            "Sometimes we want to describe how two lines are positioned in relation to each other. Two important relationships are parallel and perpendicular."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "Parallel lines are lines that stay the same distance apart. They do not meet, even if we extend them farther."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 140,
-                                scale: 50,
-
-                                points: [
-                                    { id: "A", x: 1, y: 1, visible: false },
-                                    { id: "B", x: 5, y: 1, visible: false },
-                                    { id: "C", x: 1, y: 2, visible: false },
-                                    { id: "D", x: 5, y: 2, visible: false }
-                                ],
-
-                                lines: [
-                                    {
-                                        through: ["A", "B"],
-                                        label: "n"
-                                    },
-                                    {
-                                        through: ["C", "D"],
-                                        label: "m"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "Lines n and m are parallel. They stay the same distance apart and do not meet."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "Parallel lines can appear in familiar shapes. In a rectangle, the top and bottom sides are parallel. The left and right sides are also parallel."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 220,
-                                scale: 45,
-
-                                points: [
-                                    { id: "A", x: 1, y: 1, visible: false },
-                                    { id: "B", x: 5, y: 1, visible: false },
-                                    { id: "C", x: 5, y: 4, visible: false },
-                                    { id: "D", x: 1, y: 4, visible: false }
-                                ],
-
-                                segments: [
-                                    {
-                                        from: "A",
-                                        to: "B"
-                                    },
-                                    {
-                                        from: "B",
-                                        to: "C"
-                                    },
-                                    {
-                                        from: "C",
-                                        to: "D"
-                                    },
-                                    {
-                                        from: "D",
-                                        to: "A"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "The top and bottom sides are parallel. The left and right sides are also parallel."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "Perpendicular lines are lines that meet at a right angle. A right angle measures 90 degrees."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 220,
-                                scale: 45,
-
-                                points: [
-                                    { id: "A", x: 3, y: 1, visible: false },
-                                    { id: "B", x: 3, y: 4, visible: false },
-                                    { id: "C", x: 1, y: 2.5, visible: false },
-                                    { id: "D", x: 5, y: 2.5, visible: false },
-                                    { id: "O", x: 3, y: 2.5, visible: false }
-                                ],
-
-                                lines: [
-                                    {
-                                        through: ["B", "A"],
-                                        label: "n"
-                                    },
-                                    {
-                                        through: ["C", "D"],
-                                        label: "m"
-                                    }
-                                ],
-
-                                angles: [
-                                    {
-                                        vertex: "O",
-                                        from: "A",
-                                        to: "C",
-                                        label: "90°"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "Lines n and m are perpendicular because they meet at a right angle."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "Perpendicular lines also appear in familiar shapes. The sides of a rectangle meet at right angles, so neighboring sides are perpendicular."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "Not every pair of lines is parallel or perpendicular. Two lines can meet at an angle that is not a right angle. Such lines are neither parallel nor perpendicular."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 220,
-                                scale: 45,
-
-                                points: [
-                                    { id: "A", x: 1, y: 1 },
-                                    { id: "B", x: 5, y: 3 },
-                                    { id: "C", x: 1, y: 4 },
-                                    { id: "D", x: 5, y: 2 }
-                                ],
-
-                                lines: [
-                                    {
-                                        through: ["A", "B"],
-                                        label: "n"
-                                    },
-                                    {
-                                        through: ["C", "D"],
-                                        label: "m"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "These lines meet, but they do not make a right angle. They are neither parallel nor perpendicular."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "Remember: parallel lines do not meet, perpendicular lines meet at a right angle, and other pairs of lines may be neither."
-                    }
-                ]
-            },
-            {
-                id: "parallel-and-perpendicular-lines-practice",
-
-                title:
-                    "Parallel and Perpendicular Lines Practice",
-
-                description:
-                    "Practice identifying parallel, perpendicular, and other pairs of lines.",
-
-                type: "practice",
-
-                practice: {
-                    generator: "parallelPerpendicularLines",
-                    interaction: "multiple-choice",
-                    problemCount: 10
-                },
-
-                difficultyMultiplier: 1
-            },
-            {
-                id: "triangles",
-                title:
-                    "Triangles",
-
-                description:
-                    "Learn about triangles and how to classify them by their side lengths.",
-
-                type: "explanation",
-
-                content: [
-
-                    {
-                        type: "text",
-                        text:
-                            "A triangle is a shape with three sides. It also has three vertices and three angles."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 240,
-                                scale: 50,
-
-                                points: [
-                                    {
-                                        id: "A",
-                                        x: 1,
-                                        y: 4,
-                                        label: "A"
-                                    },
-                                    {
-                                        id: "B",
-                                        x: 5,
-                                        y: 4,
-                                        label: "B"
-                                    },
-                                    {
-                                        id: "C",
-                                        x: 3,
-                                        y: 1,
-                                        label: "C"
-                                    }
-                                ],
-
-                                segments: [
-                                    {
-                                        from: "A",
-                                        to: "B",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "C",
-                                        to: "B",
-                                        label: "b"
-                                    },
-                                    {
-                                        from: "A",
-                                        to: "C",
-                                        label: "c"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "This triangle has three sides, three vertices, and three angles. Its vertices are A, B, and C."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "We can classify triangles by comparing the lengths of their sides. There are three types: equilateral, isosceles, and scalene."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "An equilateral triangle has three sides of equal length."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 240,
-                                scale: 50,
-
-                                points: [
-                                    {
-                                        id: "A",
-                                        x: 1,
-                                        y: 4,
-                                        label: "A"
-                                    },
-                                    {
-                                        id: "B",
-                                        x: 5,
-                                        y: 4,
-                                        label: "B"
-                                    },
-                                    {
-                                        id: "C",
-                                        x: 3,
-                                        y: 0.536,
-                                        label: "C"
-                                    }
-                                ],
-
-                                segments: [
-                                    {
-                                        from: "A",
-                                        to: "B",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "C",
-                                        to: "B",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "A",
-                                        to: "C",
-                                        label: "a"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "All three sides have the same length, so this is an equilateral triangle."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "An isosceles triangle has two sides of equal length. The third side has a different length."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 240,
-                                scale: 50,
-
-                                points: [
-                                    {
-                                        id: "A",
-                                        x: 1,
-                                        y: 4,
-                                        label: "A"
-                                    },
-                                    {
-                                        id: "B",
-                                        x: 5,
-                                        y: 4,
-                                        label: "B"
-                                    },
-                                    {
-                                        id: "C",
-                                        x: 3,
-                                        y: 1.5,
-                                        label: "C"
-                                    }
-                                ],
-
-                                segments: [
-                                    {
-                                        from: "A",
-                                        to: "B",
-                                        label: "b"
-                                    },
-                                    {
-                                        from: "C",
-                                        to: "B",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "A",
-                                        to: "C",
-                                        label: "a"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "The two sides marked a have the same length, while side b has a different length. This is an isosceles triangle."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A scalene triangle has three sides of different lengths."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 240,
-                                scale: 50,
-
-                                points: [
-                                    {
-                                        id: "A",
-                                        x: 1,
-                                        y: 4,
-                                        label: "A"
-                                    },
-                                    {
-                                        id: "B",
-                                        x: 5,
-                                        y: 4,
-                                        label: "B"
-                                    },
-                                    {
-                                        id: "C",
-                                        x: 4,
-                                        y: 1,
-                                        label: "C"
-                                    }
-                                ],
-
-                                segments: [
-                                    {
-                                        from: "A",
-                                        to: "B",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "C",
-                                        to: "B",
-                                        label: "b"
-                                    },
-                                    {
-                                        from: "A",
-                                        to: "C",
-                                        label: "c"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "The three sides have different lengths, so this is a scalene triangle."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "Remember: equilateral triangles have three equal sides, isosceles triangles have two equal sides, and scalene triangles have no equal sides."
-                    }
-                ]
-            },
-            {
-                id: "triangles-practice",
-
-                title:
-                    "Triangles Practice",
-
-                description:
-                    "Practice classifying triangles by their side lengths.",
-
-                type: "practice",
-
-                practice: {
-                    generator: "triangles",
-                    interaction: "multiple-choice",
-                    problemCount: 10
-                },
-
-                difficultyMultiplier: 1
-            },
-            {
-                id: "common-quadrilaterals",
-
-                title:
-                    "Common Quadrilaterals",
-
-                description:
-                    "Learn about squares, rectangles, parallelograms, rhombuses, and trapezoids.",
-
-                type: "explanation",
-
-                content: [
-
-                    {
-                        type: "text",
-                        text:
-                            "A quadrilateral is a shape with four sides, four vertices, and four angles. There are several common types of quadrilaterals."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A square has four equal sides and four right angles. Its opposite sides are parallel."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 260,
-                                height: 260,
-                                scale: 50,
-
-                                points: [
-                                    {
-                                        id: "A",
-                                        x: 1,
-                                        y: 1
-                                    },
-                                    {
-                                        id: "B",
-                                        x: 5,
-                                        y: 1
-                                    },
-                                    {
-                                        id: "C",
-                                        x: 5,
-                                        y: 5
-                                    },
-                                    {
-                                        id: "D",
-                                        x: 1,
-                                        y: 5
-                                    }
-                                ],
-
-                                segments: [
-                                    {
-                                        from: "A",
-                                        to: "B",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "B",
-                                        to: "C",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "C",
-                                        to: "D",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "D",
-                                        to: "A",
-                                        label: "a"
-                                    }
-                                ],
-
-                                angles: [
-                                    {
-                                        vertex: "A",
-                                        from: "D",
-                                        to: "B",
-                                        label: "90°"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "All four sides are equal, and every angle is a right angle. This is a square."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A rectangle has four right angles. Its opposite sides are equal and parallel."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 220,
-                                scale: 50,
-
-                                points: [
-                                    {
-                                        id: "A",
-                                        x: 1,
-                                        y: 1
-                                    },
-                                    {
-                                        id: "B",
-                                        x: 5,
-                                        y: 1
-                                    },
-                                    {
-                                        id: "C",
-                                        x: 5,
-                                        y: 4
-                                    },
-                                    {
-                                        id: "D",
-                                        x: 1,
-                                        y: 4
-                                    }
-                                ],
-
-                                segments: [
-                                    {
-                                        from: "A",
-                                        to: "B",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "B",
-                                        to: "C",
-                                        label: "b"
-                                    },
-                                    {
-                                        from: "C",
-                                        to: "D",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "D",
-                                        to: "A",
-                                        label: "b"
-                                    }
-                                ],
-
-                                angles: [
-                                    {
-                                        vertex: "A",
-                                        from: "D",
-                                        to: "B",
-                                        label: "90°"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "Opposite sides have equal lengths, and all four angles are right angles. This is a rectangle."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A parallelogram has two pairs of opposite sides that are parallel. Each pair of opposite sides is also equal in length. Its angles do not have to be right angles."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 220,
-                                scale: 50,
-
-                                points: [
-                                    {
-                                        id: "A",
-                                        x: 1.5,
-                                        y: 1
-                                    },
-                                    {
-                                        id: "B",
-                                        x: 5.5,
-                                        y: 1
-                                    },
-                                    {
-                                        id: "C",
-                                        x: 4.5,
-                                        y: 4
-                                    },
-                                    {
-                                        id: "D",
-                                        x: 0.5,
-                                        y: 4
-                                    }
-                                ],
-
-                                segments: [
-                                    {
-                                        from: "A",
-                                        to: "B",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "B",
-                                        to: "C",
-                                        label: "b"
-                                    },
-                                    {
-                                        from: "C",
-                                        to: "D",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "D",
-                                        to: "A",
-                                        label: "b"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "The opposite sides are equal and parallel. The angles are not right angles, so this is a parallelogram."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A rhombus has four equal sides. Its opposite sides are parallel. Its angles do not have to be right angles."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 260,
-                                scale: 50,
-
-                                points: [
-                                    {
-                                        id: "A",
-                                        x: 1,
-                                        y: 2
-                                    },
-                                    {
-                                        id: "B",
-                                        x: 4,
-                                        y: 2
-                                    },
-                                    {
-                                        id: "C",
-                                        x: 5,
-                                        y: 4
-                                    },
-                                    {
-                                        id: "D",
-                                        x: 2,
-                                        y: 4
-                                    }
-                                ],
-
-                                segments: [
-                                    {
-                                        from: "A",
-                                        to: "B",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "B",
-                                        to: "C",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "C",
-                                        to: "D",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "D",
-                                        to: "A",
-                                        label: "a"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "All four sides are equal, but the angles are not right angles. This is a rhombus."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "A trapezoid has one pair of parallel sides. The other two sides do not have to be parallel."
-                    },
-
-                    {
-                        type: "example",
-                        expression:
-                            createGeometrySvg({
-                                width: 300,
-                                height: 240,
-                                scale: 50,
-
-                                points: [
-                                    {
-                                        id: "A",
-                                        x: 1.5,
-                                        y: 1
-                                    },
-                                    {
-                                        id: "B",
-                                        x: 5.0,
-                                        y: 1
-                                    },
-                                    {
-                                        id: "C",
-                                        x: 5.5,
-                                        y: 4
-                                    },
-                                    {
-                                        id: "D",
-                                        x: 0.5,
-                                        y: 4
-                                    }
-                                ],
-
-                                segments: [
-                                    {
-                                        from: "A",
-                                        to: "B",
-                                        label: "a"
-                                    },
-                                    {
-                                        from: "B",
-                                        to: "C",
-                                        label: "b"
-                                    },
-                                    {
-                                        from: "C",
-                                        to: "D",
-                                        label: "c"
-                                    },
-                                    {
-                                        from: "D",
-                                        to: "A",
-                                        label: "d"
-                                    }
-                                ]
-                            }),
-
-                        explanation:
-                            "The top and bottom sides are parallel. The other two sides are not parallel. This is a trapezoid."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "The properties of these shapes can overlap. For example, a square also has the properties of a rectangle, because it has four right angles and opposite sides that are equal and parallel. That is why one could say that squares are just rectangles that happen to have four equal sides."
-                    },
-
-                    {
-                        type: "text",
-                        text:
-                            "Remember: a square has four equal sides and four right angles; a rectangle has four right angles; a parallelogram has two pairs of parallel and equal opposite sides; a rhombus has four equal sides; and a trapezoid has one pair of parallel sides."
-                    }
-                ]
-            },
-            {
-                id: "common-quadrilaterals-practice",
-
-                title:
-                    "Common Quadrilaterals Practice",
-
-                description:
-                    "Practice identifying common quadrilaterals.",
-
-                type: "practice",
-
-                practice: {
-                    generator: "commonQuadrilaterals",
-                    interaction: "multiple-choice",
                     problemCount: 10
                 },
 
@@ -5628,43 +4281,6 @@ const COURSES = {
             },
 
             {
-                id: "length-and-units",
-                title: "courses.geometry.lengthAndUnits.title",
-                description: "courses.geometry.lengthAndUnits.description",
-                type: "explanation",
-                content: [
-                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text1" },
-                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text2" },
-                    { type: "example", expression: "1 mm", explanation: "courses.geometry.lengthAndUnits.content.example1" },
-                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text3" },
-                    { type: "example", expression: "1 cm = 10 mm", explanation: "courses.geometry.lengthAndUnits.content.example2" },
-                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text4" },
-                    { type: "example", expression: "1 dm = 10 cm", explanation: "courses.geometry.lengthAndUnits.content.example3" },
-                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text5" },
-                    { type: "example", expression: "1 m = 10 dm", explanation: "courses.geometry.lengthAndUnits.content.example4" },
-                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text6" },
-                    { type: "example", expression: "1 km = 1000 m", explanation: "courses.geometry.lengthAndUnits.content.example5" },
-                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text7" },
-                    { type: "example", expression: "2 m = 20 dm = 200 cm = 2000 mm", explanation: "courses.geometry.lengthAndUnits.content.example6" },
-                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text8" },
-                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text9" }
-                ]
-            },
-
-            {
-                id: "length-and-units-practice",
-                title: "courses.geometry.lengthAndUnitsPractice.title",
-                description: "courses.geometry.lengthAndUnitsPractice.description",
-                type: "practice",
-                practice: {
-                    generator: "lengthUnits",
-                    interaction: "multiple-choice",
-                    problemCount: 10
-                },
-                difficultyMultiplier: 1
-            },
-
-            {
                 id: "parallel-and-perpendicular-lines",
                 title: "courses.geometry.parallelAndPerpendicularLines.title",
                 description: "courses.geometry.parallelAndPerpendicularLines.description",
@@ -5986,7 +4602,43 @@ const COURSES = {
                     problemCount: 10
                 },
                 difficultyMultiplier: 1
-            }
+            },
+            {
+                id: "length-and-units",
+                title: "courses.geometry.lengthAndUnits.title",
+                description: "courses.geometry.lengthAndUnits.description",
+                type: "explanation",
+                content: [
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text1" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text2" },
+                    { type: "example", expression: "1 mm", explanation: "courses.geometry.lengthAndUnits.content.example1" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text3" },
+                    { type: "example", expression: "1 cm = 10 mm", explanation: "courses.geometry.lengthAndUnits.content.example2" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text4" },
+                    { type: "example", expression: "1 dm = 10 cm", explanation: "courses.geometry.lengthAndUnits.content.example3" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text5" },
+                    { type: "example", expression: "1 m = 10 dm", explanation: "courses.geometry.lengthAndUnits.content.example4" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text6" },
+                    { type: "example", expression: "1 km = 1000 m", explanation: "courses.geometry.lengthAndUnits.content.example5" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text7" },
+                    { type: "example", expression: "2 m = 20 dm = 200 cm = 2000 mm", explanation: "courses.geometry.lengthAndUnits.content.example6" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text8" },
+                    { type: "text", text: "courses.geometry.lengthAndUnits.content.text9" }
+                ]
+            },
+
+            {
+                id: "length-and-units-practice",
+                title: "courses.geometry.lengthAndUnitsPractice.title",
+                description: "courses.geometry.lengthAndUnitsPractice.description",
+                type: "practice",
+                practice: {
+                    generator: "lengthUnits",
+                    interaction: "multiple-choice",
+                    problemCount: 10
+                },
+                difficultyMultiplier: 1
+            },
 
         ]
     },

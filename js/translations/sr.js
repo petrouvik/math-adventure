@@ -597,7 +597,7 @@ const TRANSLATIONS_SR = {
 
             numbersReading: {
 
-                title: "Čitanje brojeva",
+                title: "Vežbanje: Čitanje brojeva",
 
                 description:
                     "Vežbaj čitanje brojeva od 0 do 100."
@@ -630,7 +630,7 @@ const TRANSLATIONS_SR = {
 
             predecessorSuccessor: {
 
-                title: "Prethodnik i sledbenik",
+                title: "Vežbanje: Prethodnik i sledbenik",
 
                 description:
                     "Vežbaj pronalaženje broja koji dolazi pre ili posle drugog broja."
@@ -669,7 +669,7 @@ const TRANSLATIONS_SR = {
 
             evenOdd: {
 
-                title: "Paran ili neparan?",
+                title: "Vežbanje: Paran ili neparan?",
 
                 description:
                     "Vežbaj prepoznavanje parnih i neparnih brojeva."
@@ -705,7 +705,7 @@ const TRANSLATIONS_SR = {
 
             addition10: {
 
-                title: "Sabiranje do 10",
+                title: "Vežbanje: Sabiranje do 10",
 
                 description:
                     "Vežbaj sabiranje brojeva do 10."
@@ -713,7 +713,7 @@ const TRANSLATIONS_SR = {
 
             addition20: {
 
-                title: "Sabiranje do 20",
+                title: "Vežbanje: Sabiranje do 20",
 
                 description:
                     "Vežbaj sabiranje brojeva do 20."
@@ -749,7 +749,7 @@ const TRANSLATIONS_SR = {
 
             subtraction10: {
 
-                title: "Oduzimanje do 10",
+                title: "Vežbanje: Oduzimanje do 10",
 
                 description:
                     "Vežbaj oduzimanje brojeva do 10."
@@ -757,7 +757,7 @@ const TRANSLATIONS_SR = {
 
             subtraction20: {
 
-                title: "Oduzimanje do 20",
+                title: "Vežbanje: Oduzimanje do 20",
 
                 description:
                     "Vežbaj oduzimanje brojeva do 20."
@@ -793,7 +793,7 @@ const TRANSLATIONS_SR = {
 
             multiplication2: {
 
-                title: "Tablica množenja brojem 2",
+                title: "Vežbanje: Tablica množenja brojem 2",
 
                 description:
                     "Nauči i vežbaj tablicu množenja brojem 2."
@@ -801,7 +801,7 @@ const TRANSLATIONS_SR = {
 
             multiplication3: {
 
-                title: "Tablica množenja brojem 3",
+                title: "Vežbanje: Tablica množenja brojem 3",
 
                 description:
                     "Nauči i vežbaj tablicu množenja brojem 3."
@@ -809,7 +809,7 @@ const TRANSLATIONS_SR = {
 
             multiplication4: {
 
-                title: "Tablica množenja brojem 4",
+                title: "Vežbanje: Tablica množenja brojem 4",
 
                 description:
                     "Nauči i vežbaj tablicu množenja brojem 4."
@@ -817,7 +817,7 @@ const TRANSLATIONS_SR = {
 
             multiplication5: {
 
-                title: "Tablica množenja brojem 5",
+                title: "Vežbanje: Tablica množenja brojem 5",
 
                 description:
                     "Nauči i vežbaj tablicu množenja brojem 5."
@@ -825,7 +825,7 @@ const TRANSLATIONS_SR = {
 
             multiplication6: {
 
-                title: "Tablica množenja brojem 6",
+                title: "Vežbanje: Tablica množenja brojem 6",
 
                 description:
                     "Nauči i vežbaj tablicu množenja brojem 6."
@@ -833,7 +833,7 @@ const TRANSLATIONS_SR = {
 
             multiplication7: {
 
-                title: "Tablica množenja brojem 7",
+                title: "Vežbanje: Tablica množenja brojem 7",
 
                 description:
                     "Nauči i vežbaj tablicu množenja brojem 7."
@@ -841,7 +841,7 @@ const TRANSLATIONS_SR = {
 
             multiplication8: {
 
-                title: "Tablica množenja brojem 8",
+                title: "Vežbanje: Tablica množenja brojem 8",
 
                 description:
                     "Nauči i vežbaj tablicu množenja brojem 8."
@@ -849,7 +849,7 @@ const TRANSLATIONS_SR = {
 
             multiplication9: {
 
-                title: "Tablica množenja brojem 9",
+                title: "Vežbanje: Tablica množenja brojem 9",
 
                 description:
                     "Nauči i vežbaj tablicu množenja brojem 9."
@@ -857,7 +857,7 @@ const TRANSLATIONS_SR = {
 
             multiplication10: {
 
-                title: "Tablica množenja brojem 10",
+                title: "Vežbanje: Tablica množenja brojem 10",
 
                 description:
                     "Nauči i vežbaj tablicu množenja brojem 10."
@@ -865,7 +865,7 @@ const TRANSLATIONS_SR = {
 
             mixed: {
 
-                title: "Sve tablice množenja od 2 do 10",
+                title: "Vežbanje: Sve tablice množenja od 2 do 10",
 
                 description:
                     "Nauči i vežbaj sve tablice množenja."
@@ -901,7 +901,7 @@ const TRANSLATIONS_SR = {
 
             sharing: {
 
-                title: "Jednaka raspodela",
+                title: "Vežbanje: Jednaka raspodela",
 
                 description:
                     "Nauči kako da deliš tako što ravnomerno raspoređuješ stvari."
@@ -909,7 +909,7 @@ const TRANSLATIONS_SR = {
 
             facts2To5: {
 
-                title: "Deljenje 2–5",
+                title: "Vežbanje: Deljenje 2–5",
 
                 description:
                     "Vežbaj deljenje koristeći tablice množenja od 2 do 5."
@@ -917,7 +917,7 @@ const TRANSLATIONS_SR = {
 
             facts6To10: {
 
-                title: "Deljenje 6–10",
+                title: "Vežbanje: Deljenje 6–10",
 
                 description:
                     "Vežbaj deljenje koristeći tablice množenja od 6 do 10."
@@ -925,7 +925,7 @@ const TRANSLATIONS_SR = {
 
             mixed: {
 
-                title: "Mešoviti zadaci sa deljenjem",
+                title: "Vežbanje: Mešoviti zadaci sa deljenjem",
 
                 description:
                     "Vežbaj deljenje koristeći sve tablice množenja."
@@ -961,7 +961,7 @@ const TRANSLATIONS_SR = {
 
             symbols: {
 
-                title: "Upoznaj simbole",
+                title: "Vežbanje: Upoznaj simbole",
 
                 description:
                     "Vežbaj prepoznavanje simbola rimskih brojeva i njihovih vrednosti."
@@ -989,7 +989,7 @@ const TRANSLATIONS_SR = {
 
             addition: {
 
-                title: "Sabiranje simbola",
+                title: "Vežbanje: Sabiranje simbola",
 
                 description:
                     "Vežbaj čitanje rimskih brojeva kod kojih se simboli sabiraju."
@@ -1043,7 +1043,7 @@ const TRANSLATIONS_SR = {
 
             toArabic: {
 
-                title: "Iz rimskih u arapske brojeve",
+                title: "Vežbanje: Iz rimskih u arapske brojeve",
 
                 description:
                     "Vežbaj pretvaranje rimskih brojeva u obične brojeve."
@@ -1051,7 +1051,7 @@ const TRANSLATIONS_SR = {
 
             toRoman: {
 
-                title: "Iz arapskih u rimske brojeve",
+                title: "Vežbanje: Iz arapskih u rimske brojeve",
 
                 description:
                     "Vežbaj pretvaranje običnih brojeva u rimske brojeve."
@@ -1099,7 +1099,7 @@ const TRANSLATIONS_SR = {
 
             readingPractice: {
 
-                title: "Čitanje velikih brojeva",
+                title: "Vežbanje: Čitanje velikih brojeva",
 
                 description:
                     "Vežbaj čitanje brojeva do milion."
@@ -1130,7 +1130,7 @@ const TRANSLATIONS_SR = {
 
             writingPractice: {
 
-                title: "Pisanje velikih brojeva",
+                title: "Vežbanje: Pisanje velikih brojeva",
 
                 description:
                     "Vežbaj zapisivanje velikih brojeva na osnovu njihovih naziva."
@@ -1173,7 +1173,7 @@ const TRANSLATIONS_SR = {
 
             comparisonPractice: {
 
-                title: "Upoređivanje brojeva",
+                title: "Vežbanje: Upoređivanje brojeva",
 
                 description:
                     "Vežbaj upoređivanje brojeva pomoću znakova <, > i =."
@@ -1210,7 +1210,7 @@ const TRANSLATIONS_SR = {
 
             placeValuePractice: {
 
-                title: "Mesna vrednost",
+                title: "Vežbanje: Mesna vrednost",
 
                 description:
                     "Vežbaj određivanje vrednosti i mesta cifara."
@@ -1247,7 +1247,7 @@ const TRANSLATIONS_SR = {
 
             expandedFormPractice: {
 
-                title: "Razvijeni oblik",
+                title: "Vežbanje: Razvijeni oblik",
 
                 description:
                     "Vežbaj sastavljanje brojeva iz njihovog razvijenog oblika."
@@ -1296,7 +1296,7 @@ const TRANSLATIONS_SR = {
 
             numberGroupsPractice: {
 
-                title: "Grupe brojeva",
+                title: "Vežbanje: Grupe brojeva",
 
                 description:
                     "Vežbaj pronalaženje desetica, stotina i hiljada kojima neki broj pripada."
@@ -1341,7 +1341,7 @@ const TRANSLATIONS_SR = {
 
             noCarryPractice: {
 
-                title: "Vežba: bez prenosa",
+                title: "Vežbanje: Sabiranje bez prenosa",
 
                 description:
                     "Vežbaj sabiranje brojeva bez prenosa."
@@ -1378,7 +1378,7 @@ const TRANSLATIONS_SR = {
 
             oneCarryPractice: {
 
-                title: "Vežba: jedan prenos",
+                title: "Vežbanje: Sabiranje sa jednim prenosom",
 
                 description:
                     "Vežbaj zadatke sa sabiranjem koji zahtevaju jedan prenos."
@@ -1415,7 +1415,7 @@ const TRANSLATIONS_SR = {
 
             multipleCarriesPractice: {
 
-                title: "Vežba: više prenosa",
+                title: "Vežbanje: Sabiranje sa više prenosa",
 
                 description:
                     "Vežbaj zadatke sa sabiranjem koji zahtevaju više prenosa."
@@ -1455,7 +1455,7 @@ const TRANSLATIONS_SR = {
 
             carryThroughZeroPractice: {
 
-                title: "Vežba: prenos kroz nule",
+                title: "Vežbanje: Prenos kroz nule",
 
                 description:
                     "Vežbaj sabiranje kod kojeg prenos prolazi kroz nule."
@@ -1495,7 +1495,7 @@ const TRANSLATIONS_SR = {
 
             differentLengthsPractice: {
 
-                title: "Vežba: različite dužine",
+                title: "Vežbanje: Sabiranje brojeva različitih dužina",
 
                 description:
                     "Vežbaj sabiranje brojeva sa različitim brojem cifara."
@@ -1538,7 +1538,7 @@ const TRANSLATIONS_SR = {
 
             largeNumbersPractice: {
 
-                title: "Vežba: veliki brojevi",
+                title: "Vežba: Veliki brojevi",
 
                 description:
                     "Vežbaj sabiranje brojeva do milion koristeći ceo postupak."
@@ -1583,7 +1583,7 @@ const TRANSLATIONS_SR = {
 
             noBorrowingPractice: {
 
-                title: "Vežba: bez pozajmljivanja",
+                title: "Vežbanje: Oduzimanje bez pozajmljivanja",
 
                 description:
                     "Vežbaj oduzimanje brojeva bez pozajmljivanja."
@@ -1623,7 +1623,7 @@ const TRANSLATIONS_SR = {
 
             oneBorrowingPractice: {
 
-                title: "Vežba: jedno pozajmljivanje",
+                title: "Vežbanje: Oduzimanje sa jednim pozajmljivanjem",
 
                 description:
                     "Vežbaj zadatke sa oduzimanjem koji zahtevaju jedno pozajmljivanje."
@@ -1663,7 +1663,7 @@ const TRANSLATIONS_SR = {
 
             multipleBorrowingsPractice: {
 
-                title: "Vežba: više pozajmljivanja",
+                title: "Vežbanje: Oduzimanje sa više pozajmljivanja",
 
                 description:
                     "Vežbaj zadatke sa oduzimanjem koji zahtevaju više pozajmljivanja."
@@ -1724,7 +1724,7 @@ const TRANSLATIONS_SR = {
 
             borrowThroughZeroPractice: {
 
-                title: "Vežba: pozajmljivanje kroz nule",
+                title: "Vežbanje: Pozajmljivanje kroz nule",
 
                 description:
                     "Vežbaj zadatke sa oduzimanjem kod kojih pozajmljivanje prolazi kroz nule."
@@ -1764,7 +1764,7 @@ const TRANSLATIONS_SR = {
 
             differentLengthsPractice: {
 
-                title: "Vežba: različite dužine",
+                title: "Vežbanje: Oduzimanje brojeva različitih dužina",
 
                 description:
                     "Vežbaj oduzimanje brojeva sa različitim brojem cifara."
@@ -1807,7 +1807,7 @@ const TRANSLATIONS_SR = {
 
             largeNumbersPractice: {
 
-                title: "Vežba: veliki brojevi",
+                title: "Vežbanje: Veliki brojevi",
 
                 description:
                     "Vežbaj oduzimanje brojeva do milion koristeći ceo postupak."
@@ -1849,14 +1849,14 @@ const TRANSLATIONS_SR = {
                 },
 
                 meaningPractice: {
-                    title: "Da li je jednačina tačna?",
+                    title: "Vežbanje: Da li je jednačina tačna?",
 
                     description:
                         "Vežbaj prepoznavanje tačnih i netačnih jednačina."
                 },
 
                 meaningAllOperations: {
-                    title: "Jednakost sa svim operacijama",
+                    title: "Vežbanje: Jednakost sa svim operacijama",
 
                     description:
                         "Vežbaj prepoznavanje jednakosti koje u sebi imaju različite matematičke operacije."
@@ -1893,7 +1893,7 @@ const TRANSLATIONS_SR = {
                 },
 
                 variablesPractice: {
-                    title: "Korišćenje promenljivih",
+                    title: "Vežbanje: Korišćenje promenljivih",
 
                     description:
                         "Vežbaj zamenu promenljivih njihovim vrednostima i korišćenje promenljivih u izrazima."
@@ -1963,14 +1963,14 @@ const TRANSLATIONS_SR = {
                 },
 
                 solvingAllPractice: {
-                    title: "Rešavanje jednačina",
+                    title: "Vežbanje: Rešavanje jednačina",
 
                     description:
                         "Rešavaj jednačine koristeći sabiranje, oduzimanje, množenje i deljenje."
                 },
 
                 solvingTwoOperations: {
-                    title: "Jednačine u dva koraka",
+                    title: "Vežbanje: Jednačine u dva koraka",
 
                     description:
                         "Rešavaj jednačine za čije je rešavanje potrebno primeniti dve operacije."
@@ -2005,7 +2005,7 @@ const TRANSLATIONS_SR = {
 
 
             geometryBasicsPractice: {
-                title: "Vežbanje osnova geometrije",
+                title: "Vežbanje: Osnove geometrije",
                 description: "Vežbaj prepoznavanje tačaka, pravih, duži i polupravih."
             },
 
@@ -2031,7 +2031,7 @@ const TRANSLATIONS_SR = {
 
 
             partsOfAShapePractice: {
-                title: "Vežbanje delova geometrijske figure",
+                title: "Vežbanje: Delovi geometrijskih figura",
                 description: "Vežbaj prepoznavanje stranica, temena i uglova."
             },
 
@@ -2055,7 +2055,7 @@ const TRANSLATIONS_SR = {
 
 
             anglesPractice: {
-                title: "Vežbanje uglova",
+                title: "Vežbanje: Uglovi",
                 description: "Vežbaj razvrstavanje uglova."
             },
 
@@ -2079,7 +2079,7 @@ const TRANSLATIONS_SR = {
 
 
             adjacentAndOppositeSidesPractice: {
-                title: "Vežbanje susednih i naspramnih stranica",
+                title: "Vežbanje: Susedne i naspramne stranice",
                 description: "Vežbaj prepoznavanje susednih i naspramnih stranica i temena."
             },
 
@@ -2108,7 +2108,7 @@ const TRANSLATIONS_SR = {
 
 
             lengthAndUnitsPractice: {
-                title: "Vežbanje dužine i mernih jedinica",
+                title: "Vežbanje: Dužina i merne jedinice",
                 description: "Vežbaj pretvaranje merenja između različitih mernih jedinica."
             },
 
@@ -2133,7 +2133,7 @@ const TRANSLATIONS_SR = {
 
 
             parallelAndPerpendicularLinesPractice: {
-                title: "Vežbanje paralelnih i normalnih pravih",
+                title: "Vežbanje: Paralelne i normalne prave",
                 description: "Vežbaj prepoznavanje paralelnih, normalnih i drugih parova pravih."
             },
 
@@ -2157,7 +2157,7 @@ const TRANSLATIONS_SR = {
 
 
             trianglesPractice: {
-                title: "Vežbanje trouglova",
+                title: "Vežbanje: Trouglovi",
                 description: "Vežbaj razvrstavanje trouglova prema dužinama stranica."
             },
 
@@ -2184,7 +2184,7 @@ const TRANSLATIONS_SR = {
 
 
             commonQuadrilateralsPractice: {
-                title: "Vežbanje četvorouglova",
+                title: "Vežbanje: Četvorouglovi",
                 description: "Vežbaj prepoznavanje čestih četvorouglova."
             }
 
@@ -2260,7 +2260,7 @@ const TRANSLATIONS_SR = {
             },
 
             additionPractice: {
-                title: "Vežbanje sabiranja negativnih brojeva",
+                title: "Vežbanje: Sabiranje negativnih brojeva",
                 description:
                     "Vežbaj sabiranje pozitivnih i negativnih brojeva."
             },
@@ -2295,7 +2295,7 @@ const TRANSLATIONS_SR = {
             },
 
             subtractionPractice: {
-                title: "Vežbanje oduzimanja negativnih brojeva",
+                title: "Vežbanje: Oduzimanje negativnih brojeva",
                 description:
                     "Vežbaj oduzimanje pozitivnih i negativnih brojeva."
             },
@@ -2333,7 +2333,7 @@ const TRANSLATIONS_SR = {
             },
 
             multiplicationPractice: {
-                title: "Vežbanje množenja negativnih brojeva",
+                title: "Vežbanje: Množenje negativnih brojeva",
                 description:
                     "Vežbaj množenje pozitivnih i negativnih brojeva."
             },
@@ -2368,7 +2368,7 @@ const TRANSLATIONS_SR = {
             },
 
             divisionPractice: {
-                title: "Vežbanje deljenja negativnih brojeva",
+                title: "Vežbanje: Deljenje negativnih brojeva",
                 description:
                     "Vežbaj deljenje pozitivnih i negativnih brojeva."
             }

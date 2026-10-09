@@ -1105,7 +1105,7 @@ const COURSES = {
 
                     {
                         type: "example",
-                        expression: "1 234",
+                        expression: formatNumber(1234),
                         explanation:
                             "courses.advancedNumbers.reading.content.example1"
                     },
@@ -1118,7 +1118,7 @@ const COURSES = {
 
                     {
                         type: "example",
-                        expression: "42 305",
+                        expression: formatNumber(42305),
                         explanation:
                             "courses.advancedNumbers.reading.content.example2"
                     },
@@ -1131,7 +1131,7 @@ const COURSES = {
 
                     {
                         type: "example",
-                        expression: "507 021",
+                        expression: formatNumber(507021),
                         explanation:
                             "courses.advancedNumbers.reading.content.example3"
                     },
@@ -1188,7 +1188,7 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "3 215",
+                            formatNumber(3215),
                         explanation:
                             "courses.advancedNumbers.writing.content.example1"
                     },
@@ -1202,7 +1202,7 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "42,005",
+                            formatNumber(42005),
                         explanation:
                             "courses.advancedNumbers.writing.content.example2"
                     }
@@ -1280,7 +1280,7 @@ const COURSES = {
 
                     {
                         type: "example",
-                        expression: "9,999 < 10,000",
+                        expression: `${formatNumber(9999)} < ${formatNumber(10000)}`,
                         explanation:
                             "courses.advancedNumbers.comparison.content.example4"
                     },
@@ -1293,7 +1293,7 @@ const COURSES = {
 
                     {
                         type: "example",
-                        expression: "42,315 > 41,999",
+                        expression: `${formatNumber(42315)} > ${formatNumber(41999)}`,
                         explanation:
                             "courses.advancedNumbers.comparison.content.example5"
                     }
@@ -1343,7 +1343,7 @@ const COURSES = {
 
                     {
                         type: "example",
-                        expression: "5,432",
+                        expression: formatNumber(5432),
                         explanation:
                             "courses.advancedNumbers.placeValue.content.example1"
                     },
@@ -1356,7 +1356,7 @@ const COURSES = {
 
                     {
                         type: "example",
-                        expression: "325,407",
+                        expression: formatNumber(325407),
                         explanation:
                             "courses.advancedNumbers.placeValue.content.example2"
                     },
@@ -1369,7 +1369,7 @@ const COURSES = {
 
                     {
                         type: "example",
-                        expression: "4,052",
+                        expression: formatNumber(4052),
                         explanation:
                             "courses.advancedNumbers.placeValue.content.example3"
                     }
@@ -1420,7 +1420,7 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "3,527 = 3,000 + 500 + 20 + 7",
+                            `${formatNumber(3527)} = ${formatNumber(3000)} + ${formatNumber(500)} + ${formatNumber(20)} + ${formatNumber(7)}`,
                         explanation:
                             "courses.advancedNumbers.expandedForm.content.example1"
                     },
@@ -1434,7 +1434,7 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "4,052 = 4,000 + 50 + 2",
+                            `${formatNumber(4052)} = ${formatNumber(4000)} + ${formatNumber(50)} + ${formatNumber(2)}`,
                         explanation:
                             "courses.advancedNumbers.expandedForm.content.example2"
                     },
@@ -1448,7 +1448,7 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "20,000 + 3,000 + 400 + 6 = 23,406",
+                            "${formatNumber(20000)} + ${formatNumber(3000)} + ${formatNumber(400)} + ${formatNumber(6)} = ${formatNumber(23406)}",
                         explanation:
                             "courses.advancedNumbers.expandedForm.content.example3"
                     }
@@ -1521,7 +1521,7 @@ const COURSES = {
                     {
                         type: "example",
                         expression:
-                            "1–1,000",
+                            `1–${formatNumber(1000)}`,
                         explanation:
                             "courses.advancedNumbers.numberGroups.content.example3"
                     },

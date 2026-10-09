@@ -1124,7 +1124,7 @@ const TRANSLATIONS_SR = {
                         "Ovaj broj čitamo kao petsto sedam hiljada dvadeset jedan. Ne kažemo „nula stotina“ ili „nula desetica“.",
 
                     text4:
-                        "Najveći broj u ovom kursu je milion: 1 000 000. <br>Kada savladaš ovaj kurs, čitanje i pisanje još većih brojeva neće ti predstavljati problem."
+                        "Najveći broj u ovom kursu je milion: 1.000.000. <br>Kada savladaš ovaj kurs, čitanje i pisanje još većih brojeva neće ti predstavljati problem."
                 }
             },
 
@@ -1149,7 +1149,7 @@ const TRANSLATIONS_SR = {
                         "Možemo i obrnuto: umesto da čitamo broj zapisan ciframa, možemo da zapišemo cifre kada čujemo ili pročitamo naziv broja.",
 
                     example1:
-                        "Recimo da treba da napišemo broj tri hiljade dvesta petnaest. Tri hiljade znači 3 000, a dvesta petnaest znači 215. Zajedno daju 3 215.",
+                        "Recimo da treba da napišemo broj tri hiljade dvesta petnaest. Tri hiljade znači 3.000, a dvesta petnaest znači 215. Zajedno daju 3.215.",
 
                     text2:
                         "Obrati pažnju na grupe hiljada. Nula može biti potrebna kada neko mesto u broju nema vrednost.",
@@ -1192,13 +1192,13 @@ const TRANSLATIONS_SR = {
                         "Kada upoređujemo velike brojeve, prvo pogledamo koliko cifara imaju. Broj sa više cifara je veći.",
 
                     example4:
-                        "9 999 ima četiri cifre, dok 10 000 ima pet cifara, pa je 10 000 veće.",
+                        "9.999 ima četiri cifre, dok 10.000 ima pet cifara, pa je 10.000 veće.",
 
                     text3:
                         "Ako oba broja imaju isti broj cifara, upoređujemo cifre sleva nadesno. Prva cifra koja se razlikuje govori nam koji je broj veći.",
 
                     example5:
-                        "Oba broja imaju pet cifara. Njihove prve cifre su iste, ali je 2 veće od 1 na mestu hiljada, pa je 42 315 veće."
+                        "Oba broja imaju pet cifara. Njihove prve cifre su iste, ali je 2 veće od 1 na mestu hiljada, pa je 42.315 veće."
                 }
             },
 
@@ -1223,7 +1223,7 @@ const TRANSLATIONS_SR = {
                         "Vrednost cifre zavisi od njenog mesta u broju. To se naziva mesna vrednost.",
 
                     example1:
-                        "Cifra 5 vredi 5 000, cifra 4 vredi 400, cifra 3 vredi 30, a cifra 2 vredi 2.",
+                        "Cifra 5 vredi 5.000, cifra 4 vredi 400, cifra 3 vredi 30, a cifra 2 vredi 2.",
 
                     text2:
                         "S desna nalevo, mesta su jedinice, desetice, stotine, hiljade, desetine hiljada, stotine hiljada i milioni.",
@@ -1306,10 +1306,10 @@ const TRANSLATIONS_SR = {
                         "Ista ideja može se primeniti i na hiljade.",
 
                     example3:
-                        "Svaki broj od 1 do 1 000 pripada prvoj hiljadi.",
+                        "Svaki broj od 1 do 1.000 pripada prvoj hiljadi.",
 
                     example4:
-                        "833 je između 1 i 1 000, pa pripada prvoj hiljadi.",
+                        "833 je između 1 i 1.000, pa pripada prvoj hiljadi.",
 
                     text3:
                         "Brojeve možemo podeliti i u grupe od po deset. Prva desetica sadrži brojeve od 1 do 10, druga desetica od 11 do 20 i tako dalje.",
@@ -1428,7 +1428,7 @@ const TRANSLATIONS_SR = {
                         "Račun može zahtevati prenos u više od jedne kolone. Postupak je uvek isti: rešimo jednu kolonu, upišemo cifru jedinica i prenesemo dodatnu deseticu u sledeću kolonu.",
 
                     example1:
-                        "Počinjemo od jedinica: 7 + 4 = 11. Upišemo 1 i prenesemo 1. Zatim saberemo desetice: 8 + 9 + 1 = 18. Upišemo 8 i ponovo prenesemo 1. Na kraju je 5 + 6 + 1 = 12. Dobijamo 1 281.",
+                        "Počinjemo od jedinica: 7 + 4 = 11. Upišemo 1 i prenesemo 1. Zatim saberemo desetice: 8 + 9 + 1 = 18. Upišemo 8 i ponovo prenesemo 1. Na kraju je 5 + 6 + 1 = 12. Dobijamo 1.281.",
 
                     text2:
                         "Primeti da prenos iz jedne kolone postaje deo računa u sledećoj koloni. Nikada ne smemo zaboraviti da ga dodamo.",
@@ -1440,7 +1440,7 @@ const TRANSLATIONS_SR = {
                         "Čak i ako svaka kolona zahteva prenos, postupak se ne menja. Nastavljamo ulevo dok ne saberemo sve kolone.",
 
                     example3:
-                        "Ovde svaka kolona daje prenos. U jedinicama dobijamo 17, u deseticama 18 nakon dodavanja prenete 1, a u stotinama takođe 18. Konačan rezultat je 1 887."
+                        "Ovde svaka kolona daje prenos. U jedinicama dobijamo 17, u deseticama 18 nakon dodavanja prenete 1, a u stotinama takođe 18. Konačan rezultat je 1.887."
                 }
             },
 
@@ -1471,13 +1471,13 @@ const TRANSLATIONS_SR = {
                         "Prenos može da nastavi kroz više kolona sa nulama. Svaka nula jednostavno prima prenetu 1.",
 
                     example2:
-                        "U jedinicama dobijamo 10, pa upisujemo 0 i prenosimo 1. U deseticama takođe dobijamo 10, pa upisujemo 0 i ponovo prenosimo 1. Isto se dešava i u stotinama. Konačan prenos pravi novu kolonu hiljada, pa dobijamo 1 000.",
+                        "U jedinicama dobijamo 10, pa upisujemo 0 i prenosimo 1. U deseticama takođe dobijamo 10, pa upisujemo 0 i ponovo prenosimo 1. Isto se dešava i u stotinama. Konačan prenos pravi novu kolonu hiljada, pa dobijamo 1.000.",
 
                     text3:
                         "Ovo je važan primer jer rezultat ima više cifara nego bilo koji od brojeva sa kojima smo počeli.",
 
                     example3:
-                        "Jedinica prolazi kroz kolone jedinica, desetica i stotina pre nego što stigne do kolone hiljada. Rezultat je 5 000.",
+                        "Jedinica prolazi kroz kolone jedinica, desetica i stotina pre nego što stigne do kolone hiljada. Rezultat je 5.000.",
 
                     text4:
                         "Nemoj preskakati kolonu samo zato što je njena cifra nula. Svaka kolona i dalje ima svoje mesto, a svaki prenos mora proći kroz nju."
@@ -1517,7 +1517,7 @@ const TRANSLATIONS_SR = {
                         "Kraći broj ne moramo menjati. Važno je samo da njegove cifre budu postavljene u odgovarajuće kolone.",
 
                     example3:
-                        "Ovde je 58 mnogo kraće od 12 746. 8 pripada jedinicama, a 5 deseticama. Prazna mesta sleva jednostavno ne doprinose ništa.",
+                        "Ovde je 58 mnogo kraće od 12.746. 8 pripada jedinicama, a 5 deseticama. Prazna mesta sleva jednostavno ne doprinose ništa.",
 
                     text4:
                         "Kada pravilno poravnamo brojeve, postupak sabiranja je potpuno isti kao i ranije."
@@ -1557,7 +1557,7 @@ const TRANSLATIONS_SR = {
                         "Za veće brojeve ne treba da naučiš nikakav novi trik. Kolonama hiljada i stotina hiljada upravljamo isto kao i manjim kolonama.",
 
                     example3:
-                        "Ovde jedna jedina 1 izaziva prenos kroz svaku postojeću kolonu. Konačan prenos pravi novo mesto miliona, pa dobijamo 1 000 000.",
+                        "Ovde jedna jedina 1 izaziva prenos kroz svaku postojeću kolonu. Konačan prenos pravi novo mesto miliona, pa dobijamo 1.000.000.",
 
                     text4:
                         "Zapamti ceo postupak: poravnaj brojeve prema mesnoj vrednosti, počni s desne strane, saberi svaku kolonu, upiši cifru u tu kolonu, prenesi kada je potrebno i nastavi ulevo.",
@@ -1774,7 +1774,7 @@ const TRANSLATIONS_SR = {
                         "Dva broja ne moraju imati isti broj cifara. Jednostavno ih poravnamo prema mesnoj vrednosti.",
 
                     example1:
-                        "7 ide ispod mesta jedinica, 9 ispod mesta desetica, a 3 ispod mesta stotina. Mesto hiljada broja 397 je prazno, pa nemamo šta da oduzmemo od cifre hiljada u broju 4 826.",
+                        "7 ide ispod mesta jedinica, 9 ispod mesta desetica, a 3 ispod mesta stotina. Mesto hiljada broja 397 je prazno, pa nemamo šta da oduzmemo od cifre hiljada u broju 4.826.",
 
                     text2:
                         "Može pomoći da zamislimo kraći broj sa nulama dodatim sleva. Na primer, 397 možemo posmatrati kao 0 397.",
@@ -1786,7 +1786,7 @@ const TRANSLATIONS_SR = {
                         "Kraći broj ne moramo menjati. Važno je samo da njegove cifre budu postavljene u odgovarajuće kolone.",
 
                     example3:
-                        "Ovde je 58 mnogo kraće od 12 746. 8 pripada jedinicama, a 5 deseticama. Prazna mesta sleva jednostavno ne doprinose ništa.",
+                        "Ovde je 58 mnogo kraće od 12.746. 8 pripada jedinicama, a 5 deseticama. Prazna mesta sleva jednostavno ne doprinose ništa.",
 
                     text4:
                         "Kada pravilno poravnamo brojeve, postupak oduzimanja je potpuno isti kao i ranije. I dalje počinjemo s desne strane i pozajmljujemo kada je gornja cifra premala."
@@ -1823,10 +1823,10 @@ const TRANSLATIONS_SR = {
                         "Veliki brojevi mogu sadržati nule, različit broj cifara i više koraka pozajmljivanja. Ni za jednu od ovih situacija nije potreban novi postupak.",
 
                     example2:
-                        "U jedinicama je potrebno pozajmljivanje, ali je u svakoj koloni između jedinica i stotina hiljada nula. Pozajmljujemo od 8 i prenosimo pozajmljivanje kroz kolone sa nulama. Rezultat je 799 999.",
+                        "U jedinicama je potrebno pozajmljivanje, ali je u svakoj koloni između jedinica i stotina hiljada nula. Pozajmljujemo od 8 i prenosimo pozajmljivanje kroz kolone sa nulama. Rezultat je 799.999.",
 
                     example3:
-                        "Ovde oduzimamo 1 od milion. Pozajmljivanje prolazi kroz svaku kolonu sa nulom sve dok ne stigne do jedinica. Rezultat je 999 999.",
+                        "Ovde oduzimamo 1 od milion. Pozajmljivanje prolazi kroz svaku kolonu sa nulom sve dok ne stigne do jedinica. Rezultat je 999.999.",
 
                     text4:
                         "Zapamti ceo postupak: poravnaj brojeve prema mesnoj vrednosti, počni s desne strane, oduzmi svaku kolonu, pozajmi kada je gornja cifra premala i nastavi ulevo.",

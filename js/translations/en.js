@@ -1085,7 +1085,7 @@ const TRANSLATIONS_EN = {
                         "We read this as five hundred seven thousand twenty-one. We do not say 'zero hundreds' or 'zero tens'.",
 
                     text4:
-                        "The largest number in this course is one million: 1 000 000. <br>When you've mastered this course, learning to read and write even bigger numbers will not be a problem for you."
+                        "The largest number in this course is one million: 1,000,000. <br>When you've mastered this course, learning to read and write even bigger numbers will not be a problem for you."
                 }
             },
 

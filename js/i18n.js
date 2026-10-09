@@ -81,3 +81,11 @@ const OPERATOR_SYMBOLS = {
 function op(name) {
     return OPERATOR_SYMBOLS[getLanguage()][name];
 }
+const LOCALES = { en: "en-US", sr: "sr-Latn-RS" };
+
+function formatNumber(value, options = {}) {
+    return new Intl.NumberFormat(LOCALES[getLanguage()], {
+        maximumFractionDigits: 10,
+        ...options
+    }).format(value);
+}

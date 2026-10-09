@@ -89,3 +89,28 @@ function formatNumber(value, options = {}) {
         ...options
     }).format(value);
 }
+function getSeparators() {
+    const parts = new Intl.NumberFormat(LOCALES[getLanguage()]).formatToParts(11111.1);
+    return {
+        group: parts.find(p => p.type === "group").value,
+        decimal: parts.find(p => p.type === "decimal").value
+    };
+}
+function parseLocalizedNumber(text) {
+    const { group, decimal } = getSeparators();
+    let s = text.trim().replace(/[\s\u00A0\u202F]/g, "");
+
+    // If the student typed the "other" separator and it can't be a valid
+    // grouping (e.g. "0.5" in Serbian), treat it as the decimal mark.
+    const other = decimal === "," ? "." : ",";
+    const groupingPattern =
+        new RegExp(`^\\d{1,3}(\\${group}\\d{3})+(\\${decimal}\\d+)?$`);
+
+    if (!groupingPattern.test(s) && s.includes(other) && !s.includes(decimal)) {
+        s = s.replace(other, decimal);
+    }
+
+    s = s.split(group).join("").replace(decimal, ".");
+
+    return /^-?\d+(\.\d+)?$/.test(s) ? Number(s) : NaN;
+}

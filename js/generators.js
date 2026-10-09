@@ -919,10 +919,10 @@ function generateNumberComparisonProblems(settings, count) {
 }
 
 function generatePlaceValueProblem(settings) {
+
     const number =
         Math.floor(
-            Math.random() *
-            (settings.max - settings.min + 1)
+            Math.random() * (settings.max - settings.min + 1)
         ) + settings.min;
 
     const digits = String(number)
@@ -935,31 +935,22 @@ function generatePlaceValueProblem(settings) {
 
     const selected =
         possibleIndices[
-        Math.floor(
-            Math.random() * possibleIndices.length
-        )
+        Math.floor(Math.random() * possibleIndices.length)
         ];
 
     const digit = selected.digit;
     const digitIndex = selected.index;
 
-    const power =
-        digits.length - digitIndex - 1;
+    const power = digits.length - digitIndex - 1;
+    const value = digit * Math.pow(10, power);
 
-    const value =
-        digit * Math.pow(10, power);
-
-    const choices = [value];
-
-    // Other possible values for this digit.
+    // Other possible values for this digit in other positions.
     const possibleValues = [];
 
     for (let i = 0; i < digits.length; i++) {
+
         const possibleValue =
-            digit * Math.pow(
-                10,
-                digits.length - i - 1
-            );
+            digit * Math.pow(10, digits.length - i - 1);
 
         if (
             possibleValue !== value &&
@@ -971,6 +962,7 @@ function generatePlaceValueProblem(settings) {
 
     // Fill remaining choices if necessary.
     for (let i = 1; possibleValues.length < 3; i++) {
+
         const possibleValue = digit * i;
 
         if (
@@ -981,28 +973,24 @@ function generatePlaceValueProblem(settings) {
         }
     }
 
-    shuffle(possibleValues);
+    const choices = shuffle([
+        value,
+        ...shuffle(possibleValues).slice(0, 3)
+    ]);
 
-    choices.push(
-        ...possibleValues.slice(0, 3)
-    );
-
-    shuffle(choices);
-
+    // Group digits using the app language: 1,234 (en) or 1.234 (sr).
     const formattedNumber =
-        number
-            .toLocaleString()
-            .split("")
-            .map(character => character)
-            .join("");
+        formatNumber(number, { useGrouping: "always" });
 
+    // Highlight the chosen digit. Anything that isn't a digit
+    // (the grouping separator) is passed through untouched.
     let digitCounter = 0;
 
     const highlightedNumber =
-        formattedNumber
-            .split("")
+        [...formattedNumber]
             .map(character => {
-                if (character === ",") {
+
+                if (!/\d/.test(character)) {
                     return character;
                 }
 
@@ -1016,10 +1004,12 @@ function generatePlaceValueProblem(settings) {
                 return html;
             })
             .join("");
+
     return {
         prompt: tf("generators.placeValue.prompt", {
             number: highlightedNumber
         }),
+
         answer: value,
         choices,
 
@@ -1047,10 +1037,10 @@ function generatePlaceValueProblems(settings, count) {
 }
 
 function generateExpandedFormProblem(settings) {
+
     const number =
         Math.floor(
-            Math.random() *
-            (settings.max - settings.min + 1)
+            Math.random() * (settings.max - settings.min + 1)
         ) + settings.min;
 
     const digits = String(number).split("");
@@ -1058,6 +1048,7 @@ function generateExpandedFormProblem(settings) {
     const parts = [];
 
     digits.forEach((digit, index) => {
+
         const value =
             Number(digit) *
             Math.pow(10, digits.length - index - 1);
@@ -1069,7 +1060,7 @@ function generateExpandedFormProblem(settings) {
 
     return {
         prompt: `${parts
-            .map(part => part.toLocaleString())
+            .map(part => formatNumber(part, { useGrouping: "always" }))
             .join(" + ")}&nbsp;<span>=</span>
                 <span class="question-mark">?</span>`,
 
@@ -1096,16 +1087,11 @@ function generateExpandedFormProblems(settings, count) {
 }
 
 function generateNumberGroupsProblem(settings) {
-    const groupSizes = [
-        10,
-        100,
-        1000
-    ];
+
+    const groupSizes = [10, 100, 1000];
 
     const groupSize =
-        groupSizes[
-        Math.floor(Math.random() * groupSizes.length)
-        ];
+        groupSizes[Math.floor(Math.random() * groupSizes.length)];
 
     // Only use the first 20 groups.
     const maxGroup = Math.min(
@@ -1114,24 +1100,15 @@ function generateNumberGroupsProblem(settings) {
     );
 
     const groupNumber =
-        Math.floor(
-            Math.random() * maxGroup
-        ) + 1;
+        Math.floor(Math.random() * maxGroup) + 1;
 
-    const groupStart =
-        (groupNumber - 1) * groupSize + 1;
-
-    const groupEnd =
-        groupNumber * groupSize;
+    const groupStart = (groupNumber - 1) * groupSize + 1;
+    const groupEnd = groupNumber * groupSize;
 
     const number =
-        Math.floor(
-            Math.random() *
-            (groupEnd - groupStart + 1)
-        ) + groupStart;
+        Math.floor(Math.random() * (groupEnd - groupStart + 1)) + groupStart;
 
-    const questionType =
-        Math.floor(Math.random() * 3);
+    const questionType = Math.floor(Math.random() * 3);
 
     let prompt;
     let answer;
@@ -1139,10 +1116,10 @@ function generateNumberGroupsProblem(settings) {
 
     // Which number is the smallest?
     if (questionType === 0) {
-        prompt =
-            tf("generators.numberGroups.smallest", {
-                group: getGroupName(groupNumber, groupSize)
-            });
+
+        prompt = tf("generators.numberGroups.smallest", {
+            group: getGroupName(groupNumber, groupSize)
+        });
 
         answer = groupStart;
 
@@ -1156,10 +1133,10 @@ function generateNumberGroupsProblem(settings) {
 
     // Which number is the largest?
     else if (questionType === 1) {
-        prompt =
-            tf("generators.numberGroups.largest", {
-                group: getGroupName(groupNumber, groupSize)
-            });
+
+        prompt = tf("generators.numberGroups.largest", {
+            group: getGroupName(groupNumber, groupSize)
+        });
 
         answer = groupEnd;
 
@@ -1173,29 +1150,21 @@ function generateNumberGroupsProblem(settings) {
 
     // In which group does the number belong?
     else {
-        answer =
-            getGroupName(groupNumber, groupSize);
 
-        prompt =
-            tf("generators.numberGroups.whichGroup", {
-                number: number.toLocaleString()
-            });
+        answer = getGroupName(groupNumber, groupSize);
 
-        choices = [
-            answer
-        ];
+        prompt = tf("generators.numberGroups.whichGroup", {
+            number: formatNumber(number, { useGrouping: "always" })
+        });
 
         const possibleGroups = [];
 
         // Use nearby groups as distractors.
         for (const offset of [-2, -1, 1, 2]) {
-            const otherGroup =
-                groupNumber + offset;
 
-            if (
-                otherGroup < 1 ||
-                otherGroup > maxGroup
-            ) {
+            const otherGroup = groupNumber + offset;
+
+            if (otherGroup < 1 || otherGroup > maxGroup) {
                 continue;
             }
 
@@ -1204,19 +1173,16 @@ function generateNumberGroupsProblem(settings) {
             );
         }
 
-        shuffle(possibleGroups);
-
-        choices.push(
-            ...possibleGroups.slice(0, 3)
-        );
+        choices = [
+            answer,
+            ...shuffle(possibleGroups).slice(0, 3)
+        ];
     }
-
-    shuffle(choices);
 
     return {
         prompt,
         answer,
-        choices,
+        choices: shuffle(choices),
 
         explanation: {
             type: "number-groups",
@@ -1403,7 +1369,7 @@ function generateAdvancedAdditionProblem(settings) {
         }
 
         return {
-            prompt: `${top.toLocaleString()} + ${bottom.toLocaleString()}&nbsp;<span>=</span>
+            prompt: `${formatNumber(top, { useGrouping: "always" })} + ${formatNumber(bottom, { useGrouping: "always" })}&nbsp;<span>=</span>
                 <span class="question-mark">?</span>`,
             answer: result,
 
@@ -1604,7 +1570,7 @@ function generateAdvancedSubtractionProblem(settings) {
         }
 
         return {
-            prompt: `${top.toLocaleString()} − ${bottom.toLocaleString()}&nbsp;<span>=</span>
+            prompt: `${formatNumber(top, { useGrouping: "always" })} − ${formatNumber(bottom, { useGrouping: "always" })}&nbsp;<span>=</span>
                 <span class="question-mark">?</span>`,
             answer: result,
 
@@ -2181,9 +2147,10 @@ function generateLengthUnitsProblem(settings) {
         return x > 0 && x <= MAX_NUMBER && scaled >= 1 && Number.isInteger(scaled);
     }
 
-    // One place to change if you want decimal commas for Serbian
-    function formatNumber(x) {
-        return String(cleanNumber(x));
+    // Display text: localized separators (1.000,5 in Serbian, 1,000.5 in English).
+    // Named differently from the global formatNumber so it doesn't shadow it.
+    function formatValue(x) {
+        return formatNumber(cleanNumber(x), { useGrouping: "always" });
     }
 
     function lengthInMm(number, unit) {
@@ -2281,7 +2248,7 @@ function generateLengthUnitsProblem(settings) {
             seen.add(length);
 
             if (mode === "conversion") {
-                decoys.push(`${formatNumber(number)} ${target.name}`);
+                decoys.push(`${formatValue(number)} ${target.name}`);
                 continue;
             }
 
@@ -2294,7 +2261,7 @@ function generateLengthUnitsProblem(settings) {
                 u => isNiceNumber(shiftPower(length, -u.exp), 2)
             ) ?? target;
 
-            decoys.push(`${formatNumber(shiftPower(length, -unit.exp))} ${unit.name}`);
+            decoys.push(`${formatValue(shiftPower(length, -unit.exp))} ${unit.name}`);
         }
 
         return decoys;
@@ -2309,19 +2276,19 @@ function generateLengthUnitsProblem(settings) {
     const problem = randomConversion();
     const { source, target, value, answer } = problem;
 
-    const correctChoice = `${formatNumber(answer)} ${target.name}`;
+    const correctChoice = `${formatValue(answer)} ${target.name}`;
 
     const choices = [correctChoice, ...makeDecoys(problem, mode)];
     shuffle(choices);
 
     const prompt = mode === "conversion"
         ? `<p>${tf("generators.lengthUnits.conversionPrompt", {
-            value: formatNumber(value),
+            value: formatValue(value),
             source: source.name,
             target: target.name
         })}</p>`
         : `<p>${tf("generators.lengthUnits.equivalentPrompt", {
-            value: formatNumber(value),
+            value: formatValue(value),
             source: source.name
         })}</p>`;
 

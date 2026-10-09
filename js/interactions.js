@@ -91,6 +91,7 @@ function renderNumberInput(
         const value =
             input.value.trim();
 
+
         if (value === "") {
 
             feedback.textContent =
@@ -102,13 +103,23 @@ function renderNumberInput(
             return;
         }
 
-        const normalizedValue =
-            value.replace(/[,\s]/g, "");
+        checkAnswerAchievement(value);
 
         const answer =
-            Number(normalizedValue);
+            parseLocalizedNumber(value);
 
-        checkAnswerAchievement(normalizedValue);
+        // Not a number at all (e.g. "abc" or "1,2,3"): ask again
+        // instead of counting it as a wrong answer.
+        if (Number.isNaN(answer)) {
+
+            feedback.textContent =
+                t("lesson.enterAnswer");
+
+            feedback.className =
+                "answer-feedback incorrect";
+
+            return;
+        }
 
         // Hide the mobile keyboard after submitting.
         input.blur();

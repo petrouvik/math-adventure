@@ -1931,7 +1931,12 @@ function generateAngleChoices(
         )
     );
 
-    while (choices.size < 4) {
+    // A triangle only has 3 distinct angles, so never ask for more
+    // choices than there are angles.
+    const targetCount =
+        Math.min(4, shape.vertexCount);
+
+    while (choices.size < targetCount) {
 
         const index =
             Math.floor(

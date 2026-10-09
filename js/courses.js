@@ -2969,7 +2969,7 @@ const COURSES = {
                     problemCount: 10
                 },
 
-                difficultyMultiplier: 1
+                difficultyMultiplier: 1.3
             },
 
 
@@ -3003,7 +3003,7 @@ const COURSES = {
                     problemCount: 10
                 },
 
-                difficultyMultiplier: 1.1
+                difficultyMultiplier: 1.6
             },
 
 
@@ -3107,7 +3107,7 @@ const COURSES = {
                     problemCount: 10
                 },
 
-                difficultyMultiplier: 1.1
+                difficultyMultiplier: 1.6
             },
 
 
@@ -3296,7 +3296,7 @@ const COURSES = {
                     problemCount: 10
                 },
 
-                difficultyMultiplier: 1.3
+                difficultyMultiplier: 2.5
             },
 
 
@@ -3336,7 +3336,7 @@ const COURSES = {
                     problemCount: 10
                 },
 
-                difficultyMultiplier: 1.5
+                difficultyMultiplier: 2.8
             }
         ]
     },
@@ -3588,7 +3588,7 @@ const COURSES = {
                     problemCount: 10
                 },
 
-                difficultyMultiplier: 1
+                difficultyMultiplier: 1.5
             },
 
             {
@@ -3683,7 +3683,7 @@ const COURSES = {
                     problemCount: 10
                 },
 
-                difficultyMultiplier: 1
+                difficultyMultiplier: 1.6
             },
 
             {
@@ -3785,7 +3785,7 @@ const COURSES = {
                     problemCount: 10
                 },
 
-                difficultyMultiplier: 1
+                difficultyMultiplier: 1.7
             },
 
             {
@@ -3881,7 +3881,7 @@ const COURSES = {
                     problemCount: 10
                 },
 
-                difficultyMultiplier: 1
+                difficultyMultiplier: 1.7
             }
 
         ]
@@ -3967,7 +3967,7 @@ const COURSES = {
                     settings: {},
                     problemCount: 10
                 },
-                difficultyMultiplier: 1
+                difficultyMultiplier: 1.2
             },
 
             {
@@ -4083,7 +4083,7 @@ const COURSES = {
                     interaction: "multiple-choice",
                     problemCount: 10
                 },
-                difficultyMultiplier: 1
+                difficultyMultiplier: 1.4
             },
 
             {
@@ -4179,7 +4179,7 @@ const COURSES = {
                     interaction: "multiple-choice",
                     problemCount: 10
                 },
-                difficultyMultiplier: 1
+                difficultyMultiplier: 1.3
             },
 
             {
@@ -4281,7 +4281,7 @@ const COURSES = {
                     interaction: "multiple-choice",
                     problemCount: 10
                 },
-                difficultyMultiplier: 1
+                difficultyMultiplier: 1.3
             },
 
             {
@@ -4382,7 +4382,7 @@ const COURSES = {
                     interaction: "multiple-choice",
                     problemCount: 10
                 },
-                difficultyMultiplier: 1
+                difficultyMultiplier: 1.3
             },
 
             {
@@ -4478,7 +4478,7 @@ const COURSES = {
                     interaction: "multiple-choice",
                     problemCount: 10
                 },
-                difficultyMultiplier: 1
+                difficultyMultiplier: 1.3
             },
 
             {
@@ -4605,7 +4605,7 @@ const COURSES = {
                     interaction: "multiple-choice",
                     problemCount: 10
                 },
-                difficultyMultiplier: 1
+                difficultyMultiplier: 1.4
             },
             {
                 id: "length-and-units",
@@ -4641,7 +4641,7 @@ const COURSES = {
                     interaction: "multiple-choice",
                     problemCount: 10
                 },
-                difficultyMultiplier: 1
+                difficultyMultiplier: 1.6
             },
 
         ]

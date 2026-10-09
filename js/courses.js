@@ -4356,10 +4356,10 @@ const COURSES = {
                         expression: createGeometrySvg({
                             width: 300, height: 220, scale: 45,
                             points: [
-                                { id: "A", x: 1, y: 1 },
-                                { id: "B", x: 5, y: 3 },
-                                { id: "C", x: 1, y: 4 },
-                                { id: "D", x: 5, y: 2 }
+                                { id: "A", x: 1, y: 1, visible: false },
+                                { id: "B", x: 5, y: 3, visible: false },
+                                { id: "C", x: 1, y: 4, visible: false },
+                                { id: "D", x: 5, y: 2, visible: false }
                             ],
                             lines: [
                                 { through: ["A", "B"], label: "n" },

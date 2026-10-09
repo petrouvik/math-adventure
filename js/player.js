@@ -113,16 +113,16 @@ function rewardLessonCompletion({
     difficultyMultiplier
 }) {
     const baseXP =
-        problemCount * 5;
+        problemCount * 1;
 
     const baseCoins =
-        problemCount;
+        problemCount * 1;
 
     const firstTryBonusXP =
-        firstTryCorrect * 2;
+        firstTryCorrect * 4;
 
     const firstTryBonusCoins =
-        firstTryCorrect;
+        firstTryCorrect * 2;
 
     const xp =
         Math.round(

@@ -35,6 +35,7 @@ const APP_FILES = [
     "./js/courses.js",
     "./js/lesson.js",
     "./js/settings.js",
+    "./js/backup.js",
     "./js/course.js",
     "./js/explanations.js",
     "./js/generator-utils.js",

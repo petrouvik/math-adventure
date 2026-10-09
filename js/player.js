@@ -31,13 +31,20 @@ const DEFAULT_PLAYER = {
 function getPlayer() {
     const stored = localStorage.getItem(PLAYER_STORAGE_KEY);
 
-    if (!stored) {
-        const player = { ...DEFAULT_PLAYER };
-        savePlayer(player);
-        return player;
+    if (stored) {
+        try {
+            return JSON.parse(stored);
+        } catch {
+            // Corrupted data: fall through and start a fresh player.
+        }
     }
 
-    return JSON.parse(stored);
+    // structuredClone makes a deep copy, so the arrays and objects inside
+    // (completedLessons, achievements, dailyProgress, ...) are never shared
+    // with DEFAULT_PLAYER.
+    const player = structuredClone(DEFAULT_PLAYER);
+    savePlayer(player);
+    return player;
 }
 
 

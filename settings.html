@@ -197,6 +197,54 @@
             </div>
 
         </section>
+        <section class="settings-group">
+
+            <h2 data-i18n="settings.backup"></h2>
+
+            <div class="settings-list">
+
+                <button type="button" class="setting setting-button" id="export-button">
+                    <div class="setting-icon">⤴</div>
+                    <div class="setting-content">
+                        <strong data-i18n="settings.exportTitle"></strong>
+                        <span data-i18n="settings.exportDescription"></span>
+                    </div>
+                    <span class="setting-arrow">→</span>
+                </button>
+
+                <button type="button" class="setting setting-button" id="import-button">
+                    <div class="setting-icon">⤵</div>
+                    <div class="setting-content">
+                        <strong data-i18n="settings.importTitle"></strong>
+                        <span data-i18n="settings.importDescription"></span>
+                    </div>
+                    <span class="setting-arrow">→</span>
+                </button>
+
+            </div>
+
+            <div class="backup-panel" id="export-panel" hidden>
+                <p class="backup-hint" data-i18n="settings.exportHint"></p>
+                <textarea id="export-output" class="backup-textarea" rows="5" readonly spellcheck="false"></textarea>
+                <div class="backup-actions">
+                    <button type="button" class="backup-action" id="copy-export-button"
+                        data-i18n="settings.copy"></button>
+                </div>
+                <p class="backup-status" id="export-status" role="status"></p>
+            </div>
+
+            <div class="backup-panel" id="import-panel" hidden>
+                <p class="backup-hint" data-i18n="settings.importHint"></p>
+                <textarea id="import-input" class="backup-textarea" rows="5" spellcheck="false" autocomplete="off"
+                    autocapitalize="off"></textarea>
+                <div class="backup-actions">
+                    <button type="button" class="backup-action" id="confirm-import-button"
+                        data-i18n="settings.importButton"></button>
+                </div>
+                <p class="backup-status" id="import-status" role="status"></p>
+            </div>
+
+        </section>
 
 
         <section class="settings-group danger-group">
@@ -278,6 +326,7 @@
     </script>
 
     <script src="js/settings.js"></script>
+    <script src="js/backup.js"></script>
 
     <script src="js/themes.js"></script>
     <script src="js/pwa.js"></script>

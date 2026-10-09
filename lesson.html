@@ -5,7 +5,7 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
 
     <title>Math Adventure</title>
 
@@ -78,34 +78,6 @@
     </main>
 
 
-    <nav>
-
-        <a href="index.html" class="nav-item">
-            <span>🏠</span>
-            <span data-i18n="navigation.home"></span>
-        </a>
-
-
-        <a href="learn.html" class="nav-item active">
-            <span>📚</span>
-            <span data-i18n="navigation.learn"></span>
-        </a>
-
-
-        <a href="progress.html" class="nav-item">
-            <span>🏆</span>
-            <span data-i18n="navigation.progress"></span>
-        </a>
-
-
-        <a href="shop.html" class="nav-item">
-            <span>🎁</span>
-            <span data-i18n="navigation.shop"></span>
-        </a>
-
-    </nav>
-
-
     <div id="achievement-notification" class="achievement-notification">
 
         <div class="achievement-notification-icon"></div>
@@ -150,6 +122,27 @@
         updatePlayerDisplay();
         renderLesson();
         applyTranslations();
+        function syncViewportHeight() {
+            const vv = window.visualViewport;
+            const height = vv ? vv.height : window.innerHeight;
+
+            document.documentElement.style.setProperty("--app-height", `${height}px`);
+            document.documentElement.classList.toggle("is-compact", height < 600);
+
+            // iOS can pan the page up when the keyboard opens; snap it back.
+            if (window.scrollY !== 0) {
+                window.scrollTo(0, 0);
+            }
+        }
+
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener("resize", syncViewportHeight);
+            window.visualViewport.addEventListener("scroll", syncViewportHeight);
+        }
+        window.addEventListener("resize", syncViewportHeight);
+        window.addEventListener("orientationchange", syncViewportHeight);
+
+        syncViewportHeight();
 
     </script>
 

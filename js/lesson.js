@@ -344,7 +344,7 @@ function handleCorrect(problem, answer) {
 
     document
         .querySelector(".next-button")
-        ?.focus();
+        ?.focus({ preventScroll: true });
 }
 
 function handleIncorrect(problem, answer, explanationContainer) {
@@ -412,6 +412,12 @@ function renderNextButton() {
     );
 
     container.appendChild(button);
+    requestAnimationFrame(() => {
+        container.scrollTo({
+            top: container.scrollHeight,
+            behavior: "smooth"
+        });
+    });
 }
 
 function nextProblem() {

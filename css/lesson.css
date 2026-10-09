@@ -1,10 +1,90 @@
-/* Lesson page */
+/* =========================================================
+   VISIBLE SCREEN HEIGHT
+   --app-height is overwritten by JS (visualViewport) so it
+   shrinks when the on-screen keyboard opens.
+   ========================================================= */
+
+:root {
+    --app-height: 100vh;
+}
+
+@supports (height: 100dvh) {
+    :root {
+        --app-height: 100dvh;
+    }
+}
+
+
+/* =========================================================
+   LESSON PAGE LAYOUT
+   Page = exactly the visible screen.
+   #lesson-content = the only scroll area (last resort).
+   ========================================================= */
+
+/* The page itself never scrolls: top bar + lesson page share the
+   visible screen height, and only #lesson-content can scroll. */
+html:has(.lesson-page),
+body:has(.lesson-page) {
+    overflow: hidden;
+}
+
+body:has(.lesson-page) {
+    display: flex;
+    flex-direction: column;
+
+    height: var(--app-height);
+    min-height: 0;
+    margin: 0;
+    padding: 0;
+}
+
+body:has(.lesson-page) .top-bar {
+    position: static;
+    /* in case it is fixed/sticky in your global CSS */
+    flex: none;
+}
 
 .lesson-page {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
     max-width: 700px;
     margin: 0 auto;
-    padding: 2rem 1rem 6rem;
+    padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom));
+
+    overflow: hidden;
 }
+
+.back-link,
+#lesson-header,
+.lesson-header,
+.progress-info,
+.lesson-progress-bar,
+#practice-hint {
+    flex: none;
+}
+
+#lesson-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+
+    padding: 0.25rem;
+    /* room for card box-shadows */
+
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+
+/* =========================================================
+   HEADER AND PROGRESS
+   ========================================================= */
 
 .lesson-header {
     display: flex;
@@ -14,7 +94,7 @@
 }
 
 .lesson-label {
-    margin: 0 0 1.0rem;
+    margin: 0 0 1rem;
 
     color: var(--color-muted-text);
 
@@ -33,9 +113,6 @@
     font-weight: bold;
 }
 
-
-/* Overall lesson progress */
-
 .progress-info {
     display: flex;
     justify-content: space-between;
@@ -49,13 +126,12 @@
 
 .lesson-progress-bar {
     height: 10px;
+    margin-bottom: 0.75rem;
 
     background: var(--color-progress-background);
 
     border-radius: 999px;
     overflow: hidden;
-
-    margin-bottom: 2rem;
 }
 
 .lesson-progress-fill {
@@ -66,16 +142,36 @@
     border-radius: 999px;
 }
 
+.paper-hint {
+    margin: 0 0 0.75rem;
+    padding: 0.75rem 1rem;
 
-/* Problem */
+    background: var(--color-highlight-background);
+    color: var(--color-text);
+
+    border-radius: 0.75rem;
+
+    font-size: 0.95rem;
+    text-align: center;
+}
+
+
+/* =========================================================
+   PROBLEM CARD
+   ========================================================= */
 
 .problem-card {
+    flex: 0 0 auto;
+    box-sizing: border-box;
+    min-width: 0;
+    max-width: 100%;
+
+    padding: 1.25rem 1rem;
+
     background: var(--color-surface);
     color: var(--color-text);
 
     border-radius: 1.25rem;
-
-    padding: 2.5rem 1.5rem;
 
     text-align: center;
 
@@ -83,52 +179,63 @@
 }
 
 .problem-instruction {
-    margin: 0 0 1.5rem;
+    margin: 0 0 clamp(0.5rem, calc(var(--app-height) * 0.02), 1.5rem);
 
     color: var(--color-muted-text);
 }
 
 .problem {
-    color: var(--color-text);
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     gap: 1rem;
 
-    font-size: 3rem;
-    font-weight: bold;
+    margin-bottom: clamp(0.75rem, calc(var(--app-height) * 0.03), 2rem);
 
-    margin-bottom: 2rem;
+    color: var(--color-text);
+
+    font-size: clamp(1.8rem, calc(var(--app-height) * 0.07), 3rem);
+    font-weight: bold;
 }
 
 .question-mark {
     color: var(--color-primary);
+    font-weight: bold;
+}
+
+.place-value-digit {
+    color: var(--color-primary);
+    text-decoration: underline;
 }
 
 
-/* Answer */
+/* =========================================================
+   NUMBER INPUT
+   ========================================================= */
 
 .answer-area {
     display: flex;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
     gap: 0.7rem;
 }
 
 .answer-input {
-    width: min(180px, 45vw);
     box-sizing: border-box;
+    width: min(160px, 40vw);
 
     padding: 0.75rem;
 
-    border: 2px solid var(--color-input-border);
+    background: var(--color-surface);
+    color: var(--color-text);
 
+    border: 2px solid var(--color-input-border);
     border-radius: 0.7rem;
 
     font-size: 1.3rem;
     text-align: center;
-
-    background: var(--color-surface);
-    color: var(--color-text);
 }
 
 .answer-input:focus {
@@ -138,17 +245,16 @@
 }
 
 .check-button {
-    border: none;
+    padding: 0.75rem 1.2rem;
 
     background: var(--color-primary);
     color: var(--color-primary-text);
 
-    padding: 0.75rem 1.2rem;
-
+    border: none;
     border-radius: 0.7rem;
 
-    font-weight: bold;
     font-size: 0.9rem;
+    font-weight: bold;
 
     cursor: pointer;
 }
@@ -158,20 +264,39 @@
 }
 
 
-/* =========================
-   EXPLANATION
-========================= */
+/* =========================================================
+   ANSWER FEEDBACK
+   ========================================================= */
+
+.answer-feedback {
+    margin: 1rem 0 0;
+
+    text-align: center;
+    font-weight: bold;
+}
+
+.answer-feedback.correct {
+    color: var(--color-success);
+}
+
+.answer-feedback.incorrect {
+    color: var(--color-danger);
+}
+
+
+/* =========================================================
+   EXPLANATION SHOWN AFTER A WRONG ANSWER
+   ========================================================= */
 
 .explanation-card {
     margin-top: 1.25rem;
     padding: 1.25rem;
 
     background: var(--color-highlight-background);
+    color: var(--color-text);
 
     border: 2px solid var(--color-highlight);
     border-radius: 1rem;
-
-    color: var(--color-text);
 }
 
 .explanation-card h3 {
@@ -203,384 +328,65 @@
     padding: 1rem;
 
     background: var(--color-surface);
-
-    border-radius: 0.75rem;
-
     color: var(--color-text);
-
-    font-size: 1.15rem;
-    font-weight: bold;
-    text-align: center;
-}
-
-/* Next */
-
-.next-button {
-    width: 100%;
-
-    margin-top: 1rem;
-    padding: 0.9rem;
-
-    border: none;
-    border-radius: 0.8rem;
-
-    background: var(--color-success);
-    color: var(--color-primary-text);
-
-    font-size: 1rem;
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-.next-button:hover {
-    filter: brightness(0.9);
-}
-
-
-/* Mobile */
-
-@media (max-width: 500px) {
-    .lesson-header h1 {
-        font-size: 1.5rem;
-    }
-
-    .problem {
-        font-size: 2.3rem;
-    }
-
-    .answer-area {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .answer-input {
-        width: 120px;
-    }
-
-    .check-button {
-        width: 120px;
-    }
-
-    .counting {
-        flex-wrap: wrap;
-    }
-}
-
-
-/* =========================
-   EXPLANATION LESSON
-========================= */
-
-.explanation-lesson {
-    display: flex;
-    flex-direction: column;
-
-    gap: 1.25rem;
-}
-
-
-/* =========================
-   INTRO
-========================= */
-
-.explanation-intro {
-    display: flex;
-    align-items: center;
-
-    gap: 1rem;
-
-    padding: 1.25rem;
-
-    background: var(--color-surface);
-
-    border-radius: 1rem;
-
-    box-shadow: var(--shadow);
-}
-
-
-.explanation-intro-icon {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 3rem;
-    height: 3rem;
-
-    flex-shrink: 0;
-
-    font-size: 1.5rem;
-
-    background: var(--color-highlight-background);
-
-    border-radius: 50%;
-}
-
-
-.explanation-intro h2 {
-    margin: 0;
-
-    font-size: 1.3rem;
-}
-
-
-.explanation-intro p {
-    margin: 0.25rem 0 0;
-
-    color: var(--color-muted-text);
-
-    font-size: 0.9rem;
-}
-
-
-/* =========================
-   CONTENT
-========================= */
-
-.explanation-content {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 1rem;
-}
-
-
-/* =========================
-   TEXT CARD
-========================= */
-
-.lesson-text-card {
-    display: flex;
-
-    align-items: flex-start;
-
-    gap: 1rem;
-
-    padding: 1.25rem;
-
-    background: var(--color-surface);
-
-    border-radius: 1rem;
-
-    box-shadow: var(--shadow);
-}
-
-
-.text-card-icon {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 2.5rem;
-    height: 2.5rem;
-
-    flex-shrink: 0;
-
-    background: var(--color-info-background);
-
-    border-radius: 0.75rem;
-
-    font-size: 1.2rem;
-}
-
-
-.lesson-text-card p {
-    margin: 0;
-
-    font-size: 1rem;
-
-    line-height: 1.6;
-
-    color: var(--color-text);
-}
-
-
-/* =========================
-   EXAMPLE CARD
-========================= */
-
-.lesson-example-card {
-    padding: 1.5rem;
-
-    background: var(--color-surface);
-
-    border-radius: 1rem;
-
-    border: 2px solid var(--color-info-border);
-
-    box-shadow: var(--shadow);
-}
-
-
-.example-label {
-    display: inline-block;
-
-    padding: 0.35rem 0.7rem;
-
-    margin-bottom: 1rem;
-
-    background: var(--color-info-background);
-
-    border-radius: 999px;
-
-    color: var(--color-primary);
-
-    font-size: 0.8rem;
-
-    font-weight: bold;
-}
-
-
-.lesson-example-expression {
-    padding: 1rem;
-
-    margin-bottom: 1rem;
-
-    text-align: center;
-
-    font-size: 2rem;
-
-    font-weight: bold;
-
-    background: var(--color-background);
-
-    border-radius: 0.75rem;
-
-    color: var(--color-text);
-}
-
-
-.example-explanation {
-    margin: 0;
-
-    color: var(--color-muted-text);
-
-    line-height: 1.6;
-}
-
-
-@media (max-width: 500px) {
-
-    .explanation-intro {
-        align-items: flex-start;
-    }
-
-
-    .lesson-example-expression {
-        font-size: 1.6rem;
-    }
-
-
-    .lesson-text-card {
-        padding: 1rem;
-    }
-
-
-    .lesson-example-card {
-        padding: 1.25rem;
-    }
-
-}
-
-
-/* =========================
-   ANSWER FEEDBACK
-========================= */
-
-.answer-feedback {
-    margin: 1rem 0 0;
-
-    text-align: center;
-
-    font-weight: bold;
-}
-
-.answer-feedback.correct {
-    color: var(--color-success);
-}
-
-.answer-feedback.incorrect {
-    color: var(--color-danger);
-}
-
-
-/* =========================
-   EXPLANATION
-========================= */
-
-.explanation-card {
-    margin-top: 1.25rem;
-
-    padding: 1.25rem;
-
-    background: var(--color-highlight-background);
-
-    border: 2px solid var(--color-highlight);
-
-    border-radius: 1rem;
-}
-
-.explanation-card h3 {
-    margin-top: 0;
-}
-
-.explanation-card p:last-child {
-    margin-bottom: 0;
-}
-
-.counting-example {
-    padding: 1rem;
-
-    text-align: center;
-
-    background: var(--color-surface);
 
     border-radius: 0.75rem;
 
     font-size: 1.25rem;
     font-weight: bold;
+    text-align: center;
+}
+
+.addition-explanation-svg,
+.subtraction-explanation-svg {
+    display: flex;
+    justify-content: center;
+}
+
+.addition-explanation-svg svg,
+.subtraction-explanation-svg svg {
+    display: block;
+    width: 180px;
+    max-width: 100%;
+    height: auto;
 }
 
 
-/* =========================
+/* =========================================================
    MULTIPLE CHOICE
-========================= */
+   ========================================================= */
 
 .choices {
     display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.6rem;
 
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 1rem;
-
-    margin-top: 1.5rem;
-}
-
-.choice-button:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-
-    width: 50%;
-    justify-self: center;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    margin-top: 0;
 }
 
 .choice-button {
-    min-height: 70px;
-
-    padding: 1rem;
-
-    border: 2px solid var(--color-input-border);
-
-    border-radius: 12px;
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    min-height: clamp(44px, calc(var(--app-height) * 0.09), 70px);
+    padding: 0.5rem;
 
     background: var(--color-surface);
     color: var(--color-text);
 
-    font-size: 1.4rem;
+    border: 2px solid var(--color-input-border);
+    border-radius: 12px;
+
+    font-size: clamp(1rem, 3.2vw, 1.3rem);
     font-weight: 600;
+
+    overflow-wrap: anywhere;
+    white-space: normal;
 
     cursor: pointer;
 
@@ -588,6 +394,13 @@
         background-color 0.15s ease,
         border-color 0.15s ease,
         transform 0.1s ease;
+}
+
+/* A lone last button gets its own centered row */
+.choice-button:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: 50%;
+    justify-self: center;
 }
 
 .choice-button:hover {
@@ -605,61 +418,48 @@
     opacity: 0.7;
 }
 
-/* Prevent the card and grid from overflowing */
-.problem-card,
-.choices {
-    min-width: 0;
-    max-width: 100%;
-    box-sizing: border-box;
-}
 
-.choices {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.75rem;
+/* =========================================================
+   NEXT BUTTON
+   Sticks to the bottom of #lesson-content so it is always
+   visible, even when the content above needs scrolling.
+   ========================================================= */
+
+.next-button {
+    position: sticky;
+    bottom: 0;
+    flex: none;
+
     width: 100%;
+    margin-top: 0.75rem;
+    padding: 0.8rem 1.5rem;
+
+    background: var(--color-primary);
+    color: var(--color-primary-text);
+
+    border: none;
+    border-radius: 0.75rem;
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s,
+        filter 0.15s;
 }
 
-.choice-button {
-    box-sizing: border-box;
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    min-height: 60px;
-    padding: 0.75rem;
-    overflow-wrap: anywhere;
-    white-space: normal;
-    font-size: 1.2rem;
+.next-button:hover {
+    filter: brightness(0.9);
+
+    transform: translateY(-2px);
 }
 
-.choice-button:last-child:nth-child(odd) {
-    grid-column: 1 / -1;
-    width: 50%;
-    justify-self: center;
-}
 
-/* Use a single column on narrow phones */
-@media (max-width: 400px) {
-    .choices {
-        grid-template-columns: minmax(0, 1fr);
-        gap: 0.6rem;
-    }
-
-    .choice-button:last-child:nth-child(odd) {
-        grid-column: auto;
-        width: 100%;
-    }
-
-    .choice-button {
-        min-height: 54px;
-        padding: 0.65rem;
-        font-size: 1.1rem;
-    }
-}
-
-/* -------------------------
+/* =========================================================
    LESSON COMPLETE
-------------------------- */
+   ========================================================= */
 
 .lesson-complete {
     padding: 2rem;
@@ -674,42 +474,31 @@
     text-align: center;
 }
 
-
 .lesson-complete h2 {
-    margin:
-        0 0 1rem;
+    margin: 0 0 1rem;
 
     color: var(--color-text);
 }
-
 
 .lesson-complete p {
-    margin:
-        0 0 1rem;
+    margin: 0 0 1rem;
 
     color: var(--color-text);
 }
-
 
 .lesson-complete strong {
     color: var(--color-primary);
 }
 
-
 .lesson-rewards {
-    margin:
-        1.5rem 0;
-
+    margin: 1.5rem 0;
     padding: 1rem;
 
     background: var(--color-highlight-background);
 
-    border:
-        1px solid var(--color-highlight);
-
+    border: 1px solid var(--color-highlight);
     border-radius: 1rem;
 }
-
 
 .lesson-rewards p {
     margin: 0.4rem 0;
@@ -720,155 +509,238 @@
 }
 
 
-.next-button {
-    padding:
-        0.8rem 1.5rem;
+/* =========================================================
+   EXPLANATION LESSON
+   ========================================================= */
 
-    border: none;
-
-    border-radius: 0.75rem;
-
-    background: var(--color-primary);
-    color: var(--color-primary-text);
-
-    font-size: 1rem;
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition:
-        transform 0.15s,
-        filter 0.15s;
-}
-
-
-.next-button:hover {
-    filter: brightness(0.9);
-
-    transform:
-        translateY(-2px);
-}
-
-.lesson-example-image {
+.explanation-lesson {
     display: flex;
+    flex-direction: column;
+
+    gap: 1.25rem;
+}
+
+.explanation-intro {
+    display: flex;
+    align-items: center;
+
+    gap: 1rem;
+
+    padding: 1.25rem;
+
+    background: var(--color-surface);
+
+    border-radius: 1rem;
+
+    box-shadow: var(--shadow);
+}
+
+.explanation-intro-icon {
+    display: flex;
+    align-items: center;
     justify-content: center;
-    margin: 1rem 0;
-    padding: 1rem;
+
+    width: 3rem;
+    height: 3rem;
+
+    flex-shrink: 0;
+
+    background: var(--color-highlight-background);
+
+    border-radius: 50%;
+
+    font-size: 1.5rem;
+}
+
+.explanation-intro h2 {
+    margin: 0;
+
+    font-size: 1.3rem;
+}
+
+.explanation-intro p {
+    margin: 0.25rem 0 0;
+
+    color: var(--color-muted-text);
+
+    font-size: 0.9rem;
+}
+
+.explanation-content {
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+}
+
+/* Text card */
+
+.lesson-text-card {
+    display: flex;
+    align-items: flex-start;
+
+    gap: 1rem;
+
+    padding: 1.25rem;
+
+    background: var(--color-surface);
+
+    border-radius: 1rem;
+
+    box-shadow: var(--shadow);
+}
+
+.text-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.5rem;
+    height: 2.5rem;
+
+    flex-shrink: 0;
 
     background: var(--color-info-background);
-    color: var(--color-text);
+
     border-radius: 0.75rem;
+
+    font-size: 1.2rem;
 }
 
-.lesson-example-image svg {
-    display: block;
-    width: 100%;
-    max-width: 500px;
-    height: auto;
+.lesson-text-card p {
+    margin: 0;
+
+    color: var(--color-text);
+
+    font-size: 1rem;
+    line-height: 1.6;
 }
+
+/* Example card */
+
+.lesson-example-card {
+    padding: 1.5rem;
+
+    background: var(--color-surface);
+
+    border: 2px solid var(--color-info-border);
+    border-radius: 1rem;
+
+    box-shadow: var(--shadow);
+}
+
+.example-label {
+    display: inline-block;
+
+    margin-bottom: 1rem;
+    padding: 0.35rem 0.7rem;
+
+    background: var(--color-info-background);
+    color: var(--color-primary);
+
+    border-radius: 999px;
+
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+.lesson-example-expression {
+    margin-bottom: 1rem;
+    padding: 1rem;
+
+    background: var(--color-background);
+    color: var(--color-text);
+
+    border-radius: 0.75rem;
+
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.example-explanation {
+    margin: 0;
+
+    color: var(--color-muted-text);
+
+    line-height: 1.6;
+}
+
+/* Image example card */
 
 .lesson-image-example-card {
+    padding: 1.25rem;
+
     background: var(--color-surface);
     color: var(--color-text);
+
     border-radius: 1rem;
-    padding: 1.25rem;
+
     box-shadow: var(--shadow);
 }
 
 .lesson-image-example-card h3 {
     margin: 0 0 1rem;
+
     color: var(--color-text);
+
     font-size: 1.1rem;
 }
 
 .lesson-image-example-card .example-label {
     margin-bottom: 0.75rem;
+
     color: var(--color-primary);
+
     font-size: 0.85rem;
     font-weight: bold;
+}
+
+.lesson-image-example-card .example-explanation {
+    margin: 0;
+
+    color: var(--color-text);
+
+    line-height: 1.5;
 }
 
 .lesson-example-image {
     display: flex;
     justify-content: center;
+
+    margin: 1rem 0;
+    padding: 1rem;
+
+    background: var(--color-info-background);
+    color: var(--color-text);
+
+    border-radius: 0.75rem;
 }
 
 .lesson-example-image svg {
     display: block;
     width: 180px;
-    height: auto;
     max-width: 100%;
-}
-
-.lesson-image-example-card .example-explanation {
-    margin: 0;
-    color: var(--color-text);
-    line-height: 1.5;
-}
-
-
-.question-mark {
-    color: var(--color-primary);
-    font-weight: bold;
-}
-
-.place-value-digit {
-    color: var(--color-primary);
-    text-decoration: underline;
-}
-
-.paper-hint {
-    margin: 0 0 1rem;
-    padding: 0.75rem 1rem;
-    background: var(--color-highlight-background);
-    border-radius: 0.75rem;
-    color: var(--color-text);
-    font-size: 0.95rem;
-    text-align: center;
-}
-
-.addition-explanation-svg {
-    display: flex;
-    justify-content: center;
-}
-
-.addition-explanation-svg svg {
-    display: block;
-    width: 180px;
     height: auto;
-    max-width: 100%;
 }
 
-.subtraction-explanation-svg {
-    display: flex;
-    justify-content: center;
-}
 
-.subtraction-explanation-svg svg {
-    display: block;
-    width: 180px;
-    height: auto;
-    max-width: 100%;
-}
-
-/* =========================
+/* =========================================================
    EQUATION STEPS
-========================= */
+   ========================================================= */
 
 .equation-step-progress {
     margin-top: 1rem;
 
-    text-align: center;
+    color: var(--color-text-muted);
 
     font-size: 1rem;
     font-weight: 600;
-
-    color: var(--color-text-muted);
+    text-align: center;
 }
 
 .equation-step-history {
     display: flex;
-
     flex-direction: column;
 
     gap: 1rem;
@@ -879,9 +751,9 @@
 .equation-step-history-item {
     padding: 1rem;
 
-    border-radius: 12px;
-
     background: var(--color-surface-secondary);
+
+    border-radius: 12px;
 
     text-align: center;
 }
@@ -946,9 +818,10 @@
     column-gap: 0.75rem;
     align-items: baseline;
 
+    color: var(--color-text);
+
     font-size: 1.8rem;
     font-weight: 600;
-    color: var(--color-text);
 
     overflow-wrap: anywhere;
 }
@@ -972,8 +845,9 @@
 
 /* Operation row: "×x ↓ ×x" */
 .operation-row {
-    font-size: 1.3rem;
     color: var(--color-primary);
+
+    font-size: 1.3rem;
 }
 
 .operation-row .equation-sign {
@@ -986,8 +860,205 @@
     margin-top: 0.25rem;
     padding: 0.5rem 0;
 
+    color: var(--color-primary);
+
     border-top: 2px solid var(--color-primary);
 
     font-size: 2.1rem;
-    color: var(--color-primary);
+}
+
+
+/* =========================================================
+   NARROW SCREENS
+   ========================================================= */
+
+@media (max-width: 500px) {
+    .lesson-header h1 {
+        font-size: 1.5rem;
+    }
+
+    .problem {
+        font-size: clamp(1.7rem, calc(var(--app-height) * 0.05), 2.3rem);
+    }
+
+    .counting {
+        flex-wrap: wrap;
+    }
+
+    .explanation-intro {
+        align-items: flex-start;
+    }
+
+    .lesson-example-expression {
+        font-size: 1.6rem;
+    }
+
+    .lesson-text-card {
+        padding: 1rem;
+    }
+
+    .lesson-example-card {
+        padding: 1.25rem;
+    }
+}
+
+/* Single column of choices only on tiny phones (a 2-column grid
+   uses far less height, which matters for tall prompts) */
+@media (max-width: 340px) {
+    .choices {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.5rem;
+    }
+
+    .choice-button:last-child:nth-child(odd) {
+        grid-column: auto;
+        width: 100%;
+    }
+
+    .choice-button {
+        min-height: clamp(44px, calc(var(--app-height) * 0.07), 54px);
+        padding: 0.5rem;
+    }
+}
+
+
+/* =========================================================
+   PHONES: spend less height on chrome so the card fits
+   ========================================================= */
+
+@media (max-width: 600px) {
+    body:has(.lesson-page) .top-bar {
+        padding-top: 0.4rem;
+        padding-bottom: 0.4rem;
+    }
+
+    .lesson-page {
+        padding-top: 0.5rem;
+    }
+
+    .lesson-label,
+    .problem-instruction {
+        display: none;
+    }
+
+    .lesson-header {
+        margin-bottom: 0.4rem;
+    }
+
+    .lesson-header h1 {
+        font-size: 1.25rem;
+    }
+
+    .progress-info {
+        margin-bottom: 0.25rem;
+        font-size: 0.8rem;
+    }
+
+    .lesson-progress-bar {
+        margin-bottom: 0.5rem;
+    }
+
+    .problem-card {
+        padding: 1rem 0.75rem;
+    }
+
+    .problem {
+        margin-bottom: 0.75rem;
+    }
+
+    /* Reserve one line so the card doesn't jump when feedback appears */
+    .answer-feedback {
+        min-height: 1.3em;
+        margin-top: 0.5rem;
+    }
+
+    .choice-button {
+        min-height: clamp(44px, calc(var(--app-height) * 0.075), 60px);
+    }
+}
+
+
+/* =========================================================
+   TALL PROMPTS (e.g. geometry: text + SVG picture)
+   The picture shrinks (keeping its proportions) so the
+   question and the answer choices fit on screen together.
+   ========================================================= */
+
+/* Prompt text is a sentence here, not a big number */
+.problem:has(svg) {
+    margin-bottom: 0.75rem;
+
+    font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+}
+
+.problem svg {
+    display: block;
+    max-width: 100%;
+    max-height: clamp(110px, calc(var(--app-height) * 0.3), 280px);
+    margin: 0.5rem auto 0;
+}
+
+/* Explanations are meant to scroll; keep the picture small while
+   one is open so the reader still sees the question above it. */
+.problem-card:has(.answer-explanation:not(:empty)) .problem svg {
+    max-height: clamp(90px, calc(var(--app-height) * 0.18), 160px);
+}
+
+
+/* =========================================================
+   WHILE AN EXPLANATION IS SHOWING
+   Shrink the question part of the card to leave room for it.
+   ========================================================= */
+
+.problem-card:has(.answer-explanation:not(:empty)) .problem-instruction {
+    display: none;
+}
+
+.problem-card:has(.answer-explanation:not(:empty)) .problem {
+    margin-bottom: 0.5rem;
+
+    font-size: 1.6rem;
+}
+
+.problem-card:has(.answer-explanation:not(:empty)) .explanation-card {
+    margin-top: 0.75rem;
+    padding: 1rem;
+}
+
+/* Soft fade so content scrolling under the sticky Next button
+   reads as "more above" instead of being hard-clipped. */
+.next-button {
+    box-shadow: 0 -10px 12px 4px var(--color-background);
+}
+
+
+/* =========================================================
+   VERY SHORT VIEWPORT
+   Landscape phone, or keyboard open (class set by JS when
+   --app-height is under 600px).
+   ========================================================= */
+
+.is-compact .top-bar,
+.is-compact .back-link,
+.is-compact .lesson-label,
+.is-compact .problem-instruction {
+    display: none;
+}
+
+.is-compact .lesson-header h1 {
+    font-size: 1.1rem;
+}
+
+.is-compact .lesson-header,
+.is-compact .lesson-progress-bar {
+    margin-bottom: 0.4rem;
+}
+
+.is-compact .problem-card {
+    padding: 0.75rem;
+}
+
+.is-compact .next-button {
+    margin-top: 0.5rem;
+    padding: 0.65rem;
 }

@@ -142,15 +142,6 @@ function renderNumberInput(
                 answer,
                 explanation
             );
-
-            requestAnimationFrame(() => {
-
-                explanation.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
-
-            });
         }
     }
 

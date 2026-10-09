@@ -465,7 +465,7 @@ function renderDivisionExplanation(
             </p>
 
             <p class="counting-example">
-                ${divisor} × ${quotient} = ${dividend}
+                ${divisor} ${op("multiply")} ${quotient} = ${dividend}
             </p>
 
             <p>

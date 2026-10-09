@@ -634,8 +634,8 @@ function getOperationSymbol(op) {
     switch (op) {
         case "addition": return "+";
         case "subtraction": return "-";
-        case "multiplication": return "×";
-        case "division": return "÷";
+        case "multiplication": return op("multiply");
+        case "division": return op("divide");
         default: return "+";
     }
 }
@@ -1203,7 +1203,7 @@ function randomInteger(min, max) {
 // structured value is a tiny { text, precedence } pair used to place parentheses.
 
 // Display symbols (note the real minus sign, not a hyphen).
-const SYMBOL = { addition: "+", subtraction: "−", multiplication: "×", division: "÷" };
+const SYMBOL = { addition: "+", subtraction: "−", multiplication: op("multiply"), division: op("divide") };
 // The operation a student applies to both sides to undo each operation.
 const INVERSE = { addition: "subtraction", subtraction: "addition", multiplication: "division", division: "multiplication" };
 // How tightly an operation binds; ATOM (a number or x) binds tightest.

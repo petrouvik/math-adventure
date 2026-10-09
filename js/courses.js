@@ -415,7 +415,7 @@ const COURSES = {
 
                     {
                         type: "example",
-                        expression: "3 × 4 = 12",
+                        expression: `3 ${op("multiply")} 4 = 12`,
                         explanation:
                             "courses.multiplication.intro.content.example1"
                     },
@@ -701,7 +701,7 @@ const COURSES = {
 
                     {
                         type: "example",
-                        expression: "6 ÷ 2 = 3",
+                        expression: `6 ${op("divide")} 2 = 3`,
                         explanation:
                             "courses.division.intro.content.example1"
                     },
@@ -3710,7 +3710,7 @@ const COURSES = {
                     {
                         type: "example",
 
-                        expression: "4 × 3 = 12",
+                        expression: `4 ${op("multiply")} 3 = 12`,
 
                         explanation:
                             "courses.negativeNumbers.multiplication.content.example1"
@@ -3719,7 +3719,7 @@ const COURSES = {
                     {
                         type: "example",
 
-                        expression: "−4 × −3 = 12",
+                        expression: `−4 ${op("multiply")} −3 = 12`,
 
                         explanation:
                             "courses.negativeNumbers.multiplication.content.example2"
@@ -3728,7 +3728,7 @@ const COURSES = {
                     {
                         type: "example",
 
-                        expression: "−4 × 3 = −12",
+                        expression: `−4 ${op("multiply")} 3 = −12`,
 
                         explanation:
                             "courses.negativeNumbers.multiplication.content.example3"
@@ -3737,7 +3737,7 @@ const COURSES = {
                     {
                         type: "example",
 
-                        expression: "4 × −3 = −12",
+                        expression: `4 ${op("multiply")} −3 = −12`,
 
                         explanation:
                             "courses.negativeNumbers.multiplication.content.example4"
@@ -3752,7 +3752,7 @@ const COURSES = {
                     {
                         type: "example",
 
-                        expression: "−6 × −5 = 30",
+                        expression: `−6 ${op("multiply")} −5 = 30`,
 
                         explanation:
                             "courses.negativeNumbers.multiplication.content.example5"
@@ -3806,7 +3806,7 @@ const COURSES = {
                     {
                         type: "example",
 
-                        expression: "24 ÷ 6 = 4",
+                        expression: `24 ${op("divide")} 6 = 4`,
 
                         explanation:
                             "courses.negativeNumbers.division.content.example1"
@@ -3815,7 +3815,7 @@ const COURSES = {
                     {
                         type: "example",
 
-                        expression: "−24 ÷ −6 = 4",
+                        expression: `−24 ${op("divide")} −6 = 4`,
 
                         explanation:
                             "courses.negativeNumbers.division.content.example2"
@@ -3824,7 +3824,7 @@ const COURSES = {
                     {
                         type: "example",
 
-                        expression: "−24 ÷ 6 = −4",
+                        expression: `−24 ${op("divide")} 6 = −4`,
 
                         explanation:
                             "courses.negativeNumbers.division.content.example3"
@@ -3833,7 +3833,7 @@ const COURSES = {
                     {
                         type: "example",
 
-                        expression: "24 ÷ −6 = −4",
+                        expression: `24 ${op("divide")} −6 = −4`,
 
                         explanation:
                             "courses.negativeNumbers.division.content.example4"
@@ -3848,7 +3848,7 @@ const COURSES = {
                     {
                         type: "example",
 
-                        expression: "−35 ÷ −5 = 7",
+                        expression: `−35 ${op("divide")} −5 = 7`,
 
                         explanation:
                             "courses.negativeNumbers.division.content.example5"

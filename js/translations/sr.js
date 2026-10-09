@@ -818,7 +818,7 @@ const TRANSLATIONS_SR = {
                         "Ovo znači 3 grupe po 4. Možeš o tome razmišljati kao o 4 + 4 + 4 = 12.",
 
                     text2:
-                        "Simbol × znači pomnožiti, a simbol = znači jednako."
+                        "Simbol · znači pomnožiti, a simbol = znači jednako."
                 }
             },
 
@@ -926,7 +926,7 @@ const TRANSLATIONS_SR = {
                         "Ako podeliš 6 jabuka u 2 jednake grupe, u svakoj grupi će biti 3 jabuke.",
 
                     text2:
-                        "Simbol ÷ znači deliti, a simbol = znači jednako."
+                        "Simbol : znači deliti, a simbol = znači jednako."
                 }
             },
 
@@ -1910,16 +1910,16 @@ const TRANSLATIONS_SR = {
                             "Pošto je a = 5, možemo zameniti a sa 5. Zato a + 3 ima vrednost 8.",
 
                         text2:
-                            "Broj napisan neposredno uz promenljivu znači množenje. Na primer, 2a znači 2 × a, a 7c znači 7 × c.",
+                            "Broj napisan neposredno uz promenljivu znači množenje. Na primer, 2a znači 2 · a, a 7c znači 7 · c.",
 
                         example3:
-                            "Pošto je a = 4, 2a znači 2 × 4, pa je 2a = 8.",
+                            "Pošto je a = 4, 2a znači 2 · 4, pa je 2a = 8.",
 
                         text3:
                             "Možemo koristiti i više promenljivih istovremeno. Svaka promenljiva može predstavljati svoj broj.",
 
                         example4:
-                            "Pošto je a = 2, možemo zameniti a sa 2. Zato je b = 2 × 2 = 4."
+                            "Pošto je a = 2, možemo zameniti a sa 2. Zato je b = 2 · 2 = 4."
                     }
                 },
 
@@ -1953,7 +1953,7 @@ const TRANSLATIONS_SR = {
                             "Oduzimanjem 2 od obe strane dobijamo 7 − 2 = 7 − 2, što je i dalje tačno.",
 
                         example4:
-                            "Množenjem obe strane sa 4 dobijamo 3 × 4 = 3 × 4, što je i dalje tačno.",
+                            "Množenjem obe strane sa 4 dobijamo 3 · 4 = 3 · 4, što je i dalje tačno.",
 
                         text3:
                             "Ova ideja nam omogućava da pretvorimo jednačine u jednostavnije jednačine, a da one ostanu tačne."
@@ -2359,7 +2359,7 @@ const TRANSLATIONS_SR = {
                         "Samo množenje se odvija na isti način kao i kod pozitivnih brojeva. Najpre pomnožimo rastojanja od nule, a zatim odredimo znak rezultata na osnovu znakova činilaca.",
 
                     example5:
-                        "6 × 5 = 30. Oba broja su negativna, pa je rezultat pozitivan."
+                        "6 · 5 = 30. Oba broja su negativna, pa je rezultat pozitivan."
                 }
             },
 
@@ -2391,10 +2391,10 @@ const TRANSLATIONS_SR = {
                         "Brojevi imaju različite znakove, pa je rezultat negativan.",
 
                     text2:
-                        "Kod deljenja možemo se poslužiti množenjem. Na primer, pošto je 6 × 4 = 24, znamo da je 24 ÷ 6 = 4.",
+                        "Kod deljenja možemo se poslužiti množenjem. Na primer, pošto je 6 · 4 = 24, znamo da je 24 : 6 = 4.",
 
                     example5:
-                        "Pošto je 5 × 7 = 35 i oba broja su negativna, rezultat je pozitivan."
+                        "Pošto je 5 · 7 = 35 i oba broja su negativna, rezultat je pozitivan."
                 }
             },
 

@@ -72,3 +72,12 @@ function applyTranslations() {
 
         });
 }
+
+const OPERATOR_SYMBOLS = {
+    en: { multiply: "×", divide: "÷" },
+    sr: { multiply: "·", divide: ":" }
+};
+
+function op(name) {
+    return OPERATOR_SYMBOLS[getLanguage()][name];
+}

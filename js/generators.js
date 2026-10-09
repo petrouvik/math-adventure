@@ -538,8 +538,8 @@ function generateMultiplicationTableProblem(settings) {
     return {
         left: table,
         right: multiplier,
-        operator: "×",
-        prompt: `${table} × ${multiplier}&nbsp;<span>=</span>
+        operator: op("multiply"),
+        prompt: `${table} ${op("multiply")} ${multiplier}&nbsp;<span>=</span>
                 <span class="question-mark">?</span>`,
         answer: table * multiplier,
 
@@ -580,8 +580,8 @@ function generateDivisionProblem(settings) {
     return {
         left: dividend,
         right: divisor,
-        operator: "÷",
-        prompt: `${dividend} ÷ ${divisor}&nbsp;<span>=</span>
+        operator: op("divide"),
+        prompt: `${dividend} ${op("divide")} ${divisor}&nbsp;<span>=</span>
                 <span class="question-mark">?</span>`,
         answer: quotient,
 
@@ -3861,9 +3861,9 @@ function generateNegativeMultiplicationProblem(settings) {
         return {
             left,
             right,
-            operator: "×",
+            operator: op("multiply"),
 
-            prompt: `${left} × ${displayedRight}&nbsp;<span>=</span>
+            prompt: `${left} ${op("multiply")} ${displayedRight}&nbsp;<span>=</span>
                 <span class="question-mark">?</span>`,
 
             answer,
@@ -3981,9 +3981,9 @@ function generateNegativeDivisionProblem(settings) {
         return {
             left,
             right,
-            operator: "÷",
+            operator: op("divide"),
 
-            prompt: `${left} ÷ ${displayedRight}&nbsp;<span>=</span>
+            prompt: `${left} ${op("divide")} ${displayedRight}&nbsp;<span>=</span>
                 <span class="question-mark">?</span>`,
 
             answer,

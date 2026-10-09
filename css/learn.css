@@ -145,7 +145,15 @@
 
     background: var(--color-primary);
 
-    border-radius: 999px;
+    border-radius: inherit;
+
+    transition: width 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .course-progress-fill {
+        transition: none;
+    }
 }
 
 

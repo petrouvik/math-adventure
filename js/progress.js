@@ -1,3 +1,4 @@
+
 function renderCourseProgress() {
     const container =
         document.getElementById("course-progress");
@@ -9,23 +10,15 @@ function renderCourseProgress() {
     container.innerHTML = "";
 
     Object.values(COURSES).forEach(course => {
+        const progress = getCourseProgress(course);
+        const completed = isCourseCompleted(course);
 
-        const progress =
-            getCourseProgress(course);
-
-        const completed =
-            isCourseCompleted(course);
-
-        const card =
-            document.createElement("div");
-
+        const card = document.createElement("div");
         card.className = "course-card";
 
         card.innerHTML = `
             <div class="course-header">
-
                 <div>
-
                     <span class="course-icon">
                         ${course.icon}
                     </span>
@@ -33,7 +26,6 @@ function renderCourseProgress() {
                     <span class="course-name">
                         ${t(course.title)}
                     </span>
-
                 </div>
 
                 <span class="course-status ${completed ? "completed" : ""}">
@@ -41,20 +33,23 @@ function renderCourseProgress() {
                 ? t("progress.complete")
                 : `${progress}%`}
                 </span>
-
             </div>
 
             <div class="course-bar">
-
                 <div
-                    class="course-progress ${completed ? "complete" : ""}"
-                    style="width: ${progress}%"
+                    class="course-progress"
+                    style="width: 0%"
                 ></div>
-
             </div>
         `;
 
         container.appendChild(card);
+
+        const bar = card.querySelector(".course-progress");
+
+        requestAnimationFrame(() => {
+            bar.style.width = `${progress}%`;
+        });
     });
 }
 

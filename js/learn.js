@@ -13,15 +13,14 @@ function getCourseProgress(course) {
     );
 }
 
-function renderCourses() {
 
+function renderCourses() {
     const container =
         document.getElementById("courses");
 
     container.innerHTML = "";
 
     for (const course of Object.values(COURSES)) {
-
         const progress =
             getCourseProgress(course);
 
@@ -35,24 +34,18 @@ function renderCourses() {
 
         card.innerHTML = `
             <div class="course-header">
-
                 <div class="course-icon">
                     ${course.icon}
                 </div>
 
                 <h2>${t(course.title)}</h2>
-
             </div>
 
-
             <div class="course-content">
-
                 <p>${t(course.description)}</p>
 
                 <div class="course-progress">
-
                     <div class="course-progress-info">
-
                         <span>
                             ${t("learn.progress")}
                         </span>
@@ -60,23 +53,16 @@ function renderCourses() {
                         <span>
                             ${progress}%
                         </span>
-
                     </div>
-
 
                     <div class="course-progress-bar">
-
                         <div
                             class="course-progress-fill"
-                            style="width: ${progress}%"
+                            style="width: 0%"
                         ></div>
-
                     </div>
-
                 </div>
-
             </div>
-
 
             <button
                 class="course-button"
@@ -89,11 +75,16 @@ function renderCourses() {
         `;
 
         container.appendChild(card);
+
+        const fill =
+            card.querySelector(".course-progress-fill");
+
+        requestAnimationFrame(() => {
+            fill.style.width = `${progress}%`;
+        });
     }
 
-
     document.addEventListener("click", event => {
-
         const button =
             event.target.closest(".course-button");
 

@@ -4,66 +4,117 @@
 
 .level-card {
     padding: 1.5rem;
-
     background: var(--color-surface);
     color: var(--color-text);
-
     border-radius: 1.25rem;
-
     box-shadow: var(--shadow);
+    min-width: 0;
 }
-
 
 .level-card-top {
     display: flex;
-
     justify-content: space-between;
     align-items: center;
-
+    gap: 1rem;
     margin-bottom: 1.25rem;
 }
 
+.level-card .small-label {
+    display: block;
+    color: var(--color-muted-text);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
 
 .level-card h2 {
-    margin:
-        0.25rem 0 0;
-
-    color: var(--color-text);
-}
-
-
-.total-xp {
     display: flex;
-
-    flex-direction: column;
-
     align-items: center;
-}
-
-
-.total-xp strong {
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.3rem 0 0;
     color: var(--color-text);
-
     font-size: 1.5rem;
 }
 
-
-.total-xp>span {
-    font-size: 0.8rem;
-
-    color: var(--color-muted-text);
+.total-xp {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex-shrink: 0;
 }
 
+.total-xp strong {
+    color: var(--color-text);
+    font-size: 1.5rem;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+
+.total-xp>span {
+    margin-top: 0.25rem;
+    color: var(--color-muted-text);
+    font-size: 0.8rem;
+}
+
+/* XP progress bar */
+
+.xp-bar {
+    width: 100%;
+    height: 0.8rem;
+    overflow: hidden;
+    background: var(--color-border);
+    border-radius: 999px;
+}
+
+.xp-progress {
+    width: 0;
+    height: 100%;
+    background: var(--color-primary);
+    border-radius: inherit;
+    transition: width 0.4s ease;
+}
+
+/* Next-level message */
 
 .next-level {
-    margin:
-        1rem 0 0;
-
+    margin: 0.9rem 0 0;
+    color: var(--color-muted-text);
+    font-size: 0.9rem;
+    line-height: 1.5;
     text-align: center;
+}
 
+.next-level [data-player="xpUntilNext"],
+.next-level [data-player="nextLevel"] {
     color: var(--color-primary);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
 
-    font-weight: bold;
+/* Mobile layout */
+
+@media (max-width: 420px) {
+    .level-card {
+        padding: 1.1rem;
+    }
+
+    .level-card-top {
+        gap: 0.75rem;
+    }
+
+    .level-card h2 {
+        font-size: 1.25rem;
+    }
+
+    .total-xp strong {
+        font-size: 1.3rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .xp-progress {
+        transition: none;
+    }
 }
 
 
@@ -156,6 +207,14 @@
     background: var(--color-primary);
 
     border-radius: inherit;
+
+    transition: width 0.4s ease;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .course-progress {
+        transition: none;
+    }
 }
 
 

@@ -23,75 +23,98 @@
 }
 
 
+
 /* -------------------------
    XP CARD
 ------------------------- */
 
 .xp-card {
     padding: 1.5rem;
-
     background: var(--color-surface);
-
     color: var(--color-text);
-
     border-radius: 1.25rem;
-
     box-shadow: var(--shadow);
+    min-width: 0;
 }
-
 
 .xp-header {
     display: flex;
-
     justify-content: space-between;
     align-items: center;
-
-    margin-bottom: 1rem;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
 }
 
-
-.small-label {
-    font-size: 0.8rem;
-
+.xp-card .small-label {
+    display: block;
     color: var(--color-muted-text);
+    font-size: 0.8rem;
+    font-weight: 600;
 }
-
 
 .xp-header h2 {
-    margin:
-        0.25rem
-        0
-        0;
-
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.3rem 0 0;
     color: var(--color-text);
+    font-size: 1.5rem;
 }
-
 
 .xp-text {
-    font-weight: bold;
-
+    display: flex;
+    align-items: baseline;
+    gap: 0.25rem;
     color: var(--color-muted-text);
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
 }
 
+/* XP progress bar */
 
-.xp-bar {
-    height: 0.9rem;
-
+.xp-card .xp-bar {
+    width: 100%;
+    height: 0.8rem;
     overflow: hidden;
-
-    background: var(--color-progress-background);
-
+    background: var(--color-border);
     border-radius: 999px;
 }
 
-
-.xp-progress {
-    width: 80%;
+.xp-card .xp-progress {
+    width: 0;
     height: 100%;
-
-    background: var(--color-highlight);
-
+    background: var(--color-primary);
     border-radius: inherit;
+    transition: width 0.4s ease;
+}
+
+/* Mobile layout */
+
+@media (max-width: 420px) {
+    .xp-card {
+        padding: 1.1rem;
+    }
+
+    .xp-header {
+        gap: 0.75rem;
+    }
+
+    .xp-header h2 {
+        font-size: 1.25rem;
+    }
+
+    .xp-text {
+        font-size: 0.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .xp-card .xp-progress {
+        transition: none;
+    }
 }
 
 
@@ -122,12 +145,9 @@
     gap: 10px;
 
     box-shadow:
-        0 5px 12px
-        color-mix(
-            in srgb,
+        0 5px 12px color-mix(in srgb,
             var(--color-primary) 25%,
-            transparent
-        );
+            transparent);
 
     transition:
         transform 0.15s,
@@ -201,8 +221,7 @@
 
     .stat-card {
         padding:
-            1rem
-            0.25rem;
+            1rem 0.25rem;
     }
 
 
@@ -211,6 +230,7 @@
     }
 
 }
+
 /* -------------------------
    SETTINGS
 ------------------------- */

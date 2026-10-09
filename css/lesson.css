@@ -605,6 +605,58 @@
     opacity: 0.7;
 }
 
+/* Prevent the card and grid from overflowing */
+.problem-card,
+.choices {
+    min-width: 0;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.choices {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.choice-button {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    min-height: 60px;
+    padding: 0.75rem;
+    overflow-wrap: anywhere;
+    white-space: normal;
+    font-size: 1.2rem;
+}
+
+.choice-button:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    width: 50%;
+    justify-self: center;
+}
+
+/* Use a single column on narrow phones */
+@media (max-width: 400px) {
+    .choices {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 0.6rem;
+    }
+
+    .choice-button:last-child:nth-child(odd) {
+        grid-column: auto;
+        width: 100%;
+    }
+
+    .choice-button {
+        min-height: 54px;
+        padding: 0.65rem;
+        font-size: 1.1rem;
+    }
+}
+
 /* -------------------------
    LESSON COMPLETE
 ------------------------- */

@@ -1040,7 +1040,6 @@ function createGeometrySvg({
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 ${width} ${height}"
             width="100%"
-            height="auto"
             style="
                 display: block;
                 width: 100%;
@@ -1244,7 +1243,6 @@ function createNumberLineSvg({
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 ${width} ${height}"
                 width="100%"
-                height="auto"
                 style="
                     display: block;
                     width: 100%;

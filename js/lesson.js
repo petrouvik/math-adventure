@@ -246,7 +246,8 @@ const lessonState = {
     problems: [],
     currentProblem: 0,
     attempts: [],
-    completed: false
+    completed: false,
+    previousAnswer: null,
 };
 
 function renderPracticeLesson() {
@@ -334,13 +335,10 @@ function renderCurrentProblem() {
     );
 }
 
-function handleCorrect(
-    problem,
-    answer
-) {
-    lessonState.attempts[
-        lessonState.currentProblem
-    ]++;
+function handleCorrect(problem, answer) {
+    lessonState.attempts[lessonState.currentProblem]++;
+
+    checkDejaVu(lessonState, problem);
 
     renderNextButton();
 
@@ -349,19 +347,10 @@ function handleCorrect(
         ?.focus();
 }
 
-function handleIncorrect(
-    problem,
-    answer,
-    explanationContainer
-) {
-    lessonState.attempts[
-        lessonState.currentProblem
-    ]++;
+function handleIncorrect(problem, answer, explanationContainer) {
+    lessonState.attempts[lessonState.currentProblem]++;
 
-    renderExplanation(
-        explanationContainer,
-        problem
-    );
+    renderExplanation(explanationContainer, problem);
 }
 
 function renderExplanation(
@@ -486,7 +475,8 @@ function finishLesson() {
         checkAllAchievements(
             courseId,
             lessonId,
-            stats.incorrectAttempts > 0
+            stats.incorrectAttempts > 0,
+            { plotTwist: isPlotTwist(lessonState) }
         );
 
     showAchievementNotifications(

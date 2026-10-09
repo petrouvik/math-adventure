@@ -108,7 +108,7 @@ function renderNumberInput(
         const answer =
             Number(normalizedValue);
 
-        checkAnswerAchievement(answer);
+        checkAnswerAchievement(normalizedValue);
 
         // Hide the mobile keyboard after submitting.
         input.blur();

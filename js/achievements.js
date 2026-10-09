@@ -20,7 +20,27 @@ function unlockAchievement(id, player) {
 
     return true;
 }
+function getAchievementById(id) {
+    return ACHIEVEMENTS.find(achievement => achievement.id === id);
+}
 
+// For achievements that unlock outside the end-of-lesson check
+// (answer inputs, settings, mid-lesson events). Shows the pop-up right away.
+function unlockAndNotify(...ids) {
+    const player = getPlayer();
+
+    const unlocked = ids.filter(id => unlockAchievement(id, player));
+
+    if (unlocked.length === 0) {
+        return;
+    }
+
+    savePlayer(player);
+
+    showAchievementNotifications(
+        unlocked.map(getAchievementById).filter(Boolean)
+    );
+}
 function checkProgressionAchievements(player) {
     const unlocked = [];
 
@@ -97,7 +117,7 @@ function checkCourseAchievements(player) {
     return unlocked;
 }
 
-function checkSpecialAchievements(player, courseId, lessonId, hadMistake) {
+function checkSpecialAchievements(player, courseId, lessonId, hadMistake, lessonResult = {}) {
     const unlocked = [];
 
     const track = (id) => {
@@ -178,17 +198,34 @@ function checkSpecialAchievements(player, courseId, lessonId, hadMistake) {
     if (minutes >= 4 * 60 && minutes < 7 * 60 + 30) {
         track("early-lesson");
     }
+    // PLOT TWIST
+    if (lessonResult.plotTwist) {
+        track("plot-twist");
+    }
+
+    // TASTING MENU (a lesson completed in every course)
+    if (!player.achievementData.startedCourses) {
+        player.achievementData.startedCourses = [];
+    }
+    const startedCourses = player.achievementData.startedCourses;
+    if (!startedCourses.includes(courseId)) {
+        startedCourses.push(courseId);
+    }
+    const allCourseIds = Object.values(COURSES).map(course => course.id);
+    if (allCourseIds.every(id => startedCourses.includes(id))) {
+        track("tasting-menu");
+    }
 
     return unlocked;
 }
 
-function checkAllAchievements(courseId, lessonId, hadMistake) {
+function checkAllAchievements(courseId, lessonId, hadMistake, lessonResult = {}) {
     const player = getPlayer();
 
     const unlockedIds = [
         ...checkProgressionAchievements(player),
         ...checkCourseAchievements(player),
-        ...checkSpecialAchievements(player, courseId, lessonId, hadMistake)
+        ...checkSpecialAchievements(player, courseId, lessonId, hadMistake, lessonResult)
     ];
 
     savePlayer(player);
@@ -198,29 +235,73 @@ function checkAllAchievements(courseId, lessonId, hadMistake) {
     );
 }
 
-function checkAnswerAchievement(answer) {
-    if (String(answer).trim() !== "42") {
-        return null;
+function checkAnswerAchievement(rawAnswer) {
+    const text = String(rawAnswer).trim();
+
+    if (text === "") {
+        return;
     }
 
-    const player = getPlayer();
+    const numeric = Number(text);
+    const ids = [];
 
-    if (!unlockAchievement("answer-42", player)) {
-        return null;
+    if (numeric === 42) {
+        ids.push("answer-42");
     }
 
-    savePlayer(player);
+    // Roman year takes priority, so MMXXVI doesn't also count as "not a number".
+    if (text.toUpperCase() === arabicToRoman(new Date().getFullYear())) {
+        ids.push("roman-year");
+    } else if (!Number.isFinite(numeric)) {
+        ids.push("does-not-compute");
+    }
 
-    return ACHIEVEMENTS.find(
-        achievement => achievement.id === "answer-42"
-    );
+    unlockAndNotify(...ids);
+}
+// Call from handleCorrect.
+function checkDejaVu(lessonState, problem) {
+    const answer = problem.answer;
+    const previous = lessonState.previousAnswer;
+    lessonState.previousAnswer = answer;
+
+    if (typeof answer === "number" && answer === previous) {
+        unlockAndNotify("deja-vu");
+    }
 }
 
-async function showAchievementNotifications(achievements) {
+// True if every problem but the last was solved on the first try
+// and the last one took more than one.
+function isPlotTwist(lessonState) {
+    const attempts = lessonState.attempts;
+
+    if (attempts.length < 5) {
+        return false;
+    }
+
+    const last = attempts[attempts.length - 1];
+    const earlier = attempts.slice(0, -1);
+
+    return last > 1 && earlier.every(count => count === 1);
+}
+let notificationQueue = Promise.resolve();
+
+function showAchievementNotifications(achievements) {
+    if (!achievements || achievements.length === 0) {
+        return notificationQueue;
+    }
+
+    notificationQueue = notificationQueue
+        .then(() => playAchievementNotifications(achievements))
+        .catch(console.error);
+
+    return notificationQueue;
+}
+
+async function playAchievementNotifications(achievements) {
     const notification =
         document.getElementById("achievement-notification");
 
-    if (!notification || achievements.length === 0) {
+    if (!notification) {
         return;
     }
 
@@ -236,15 +317,11 @@ async function showAchievementNotifications(achievements) {
 
         notification.classList.add("show");
 
-        await new Promise(resolve => {
-            setTimeout(resolve, 3000);
-        });
+        await new Promise(resolve => setTimeout(resolve, 3000));
 
         notification.classList.remove("show");
 
-        await new Promise(resolve => {
-            setTimeout(resolve, 300);
-        });
+        await new Promise(resolve => setTimeout(resolve, 300));
     }
 }
 
@@ -621,6 +698,51 @@ const ACHIEVEMENTS = [
         title: "achievements.answer42.title",
         description: "achievements.answer42.description",
         icon: "🥚",
+        category: "quirky",
+        hidden: true
+    },
+
+    {
+        id: "tasting-menu",
+        title: "achievements.tastingMenu.title",
+        description: "achievements.tastingMenu.description",
+        icon: "🍽️",
+        category: "progression",
+        hidden: true
+    },
+
+    {
+        id: "plot-twist",
+        title: "achievements.plotTwist.title",
+        description: "achievements.plotTwist.description",
+        icon: "🎬",
+        category: "one-time",
+        hidden: true
+    },
+
+    {
+        id: "deja-vu",
+        title: "achievements.dejaVu.title",
+        description: "achievements.dejaVu.description",
+        icon: "🌀",
+        category: "quirky",
+        hidden: true
+    },
+
+    {
+        id: "does-not-compute",
+        title: "achievements.doesNotCompute.title",
+        description: "achievements.doesNotCompute.description",
+        icon: "🤖",
+        category: "quirky",
+        hidden: true
+    },
+
+    {
+        id: "roman-year",
+        title: "achievements.romanYear.title",
+        description: "achievements.romanYear.description",
+        icon: "📜",
         category: "quirky",
         hidden: true
     }

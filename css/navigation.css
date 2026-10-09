@@ -57,70 +57,87 @@ header {
 }
 
 
-/* -------------------------
-   BOTTOM NAVIGATION
-------------------------- */
+
 
 nav {
     position: fixed;
-
     bottom: 0;
     left: 0;
-
-    width: 100%;
-
+    z-index: 100;
     display: flex;
-    justify-content: space-around;
-
-    padding: 0.5rem 0.25rem;
-
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0;
     background: var(--color-nav-background);
-
-    border-top:
-        1px solid var(--color-border);
+    border-top: 1px solid var(--color-border);
 }
 
 .nav-item {
+    flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
-
-    gap: 0.25rem;
-
+    justify-content: center;
+    gap: 0.3rem;
+    padding: 0.75rem 0.15rem;
     border: none;
+    border-right: 1px solid var(--color-border);
+    border-radius: 0;
     background: transparent;
-
     color: var(--color-nav-text);
-
-    font-size: 0.8rem;
-
+    text-decoration: none;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
     cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.nav-item span {
-    font-size: 1.3rem;
+.nav-item:last-child {
+    border-right: none;
+}
+
+.nav-item>span:first-child {
+    font-size: 1.7rem;
+    line-height: 1.2;
+}
+
+.nav-item>span:last-child {
+    line-height: 1.2;
 }
 
 .nav-item.active {
     color: var(--color-nav-active);
-    font-weight: bold;
+    background: var(--color-progress-background);
+    font-weight: 700;
 }
 
+@media (hover: hover) {
+    .nav-item:not(.active):hover {
+        background: var(--color-progress-background);
+    }
+}
 
-/* -------------------------
-   MOBILE
-------------------------- */
+.nav-item:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -3px;
+}
 
 @media (max-width: 500px) {
-    header {
-        padding: 0.9rem 1rem;
+    .nav-item {
+        gap: 0.25rem;
+        padding: 0.65rem 0.05rem;
+        font-size: 0.85rem;
     }
 
-    .logo {
-        font-size: 1rem;
+    .nav-item>span:first-child {
+        font-size: 1.5rem;
     }
+}
 
-    .level {
-        display: none;
+@media (prefers-reduced-motion: reduce) {
+    .nav-item {
+        transition: none;
     }
 }

@@ -558,7 +558,8 @@ const TRANSLATIONS_SR = {
 
         sameLesson5Times: {
             title: "Uska specijalizacija",
-            description: "Završi istu lekciju 5 puta zaredom."
+            description: "Završi istu lekciju 5 puta zaredom.",
+            hint: "Pomoć: Postaje se ekspert tako što vežbaš nešto iznova i iznova."
         },
 
         nightLesson: {
@@ -583,12 +584,14 @@ const TRANSLATIONS_SR = {
 
         plotTwist: {
             title: "Neočekivan preokret!",
-            description: "Napravi prvu grešku u lekciji tek na poslednjem zadatku."
+            description: "Napravi prvu grešku u lekciji tek na poslednjem zadatku.",
+            hint: "Pomoć: Svaki zadatak zahteva pažnju, pa čak i poslednji."
         },
 
         dejaVu: {
             title: "Zar ovo nije već bilo?",
-            description: "Reši dva zadatka zaredom koja imaju isti rezultat."
+            description: "Reši dva zadatka zaredom koja imaju isti rezultat.",
+            hint: "Pomoć: Treba malo da ti se posreći, ali zato nećeš naučiti ništa novo."
         },
 
         doesNotCompute: {

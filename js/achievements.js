@@ -672,6 +672,7 @@ const ACHIEVEMENTS = [
         description: "achievements.sameLesson5Times.description",
         icon: "🔄",
         category: "quirky",
+        hint: "achievements.sameLesson5Times.hint"
 
     },
 
@@ -718,6 +719,7 @@ const ACHIEVEMENTS = [
         description: "achievements.plotTwist.description",
         icon: "🎬",
         category: "one-time",
+        hint: "achievements.plotTwist.hint"
 
     },
 
@@ -727,6 +729,7 @@ const ACHIEVEMENTS = [
         description: "achievements.dejaVu.description",
         icon: "🌀",
         category: "quirky",
+        hint: "achievements.dejaVu.hint"
 
     },
 

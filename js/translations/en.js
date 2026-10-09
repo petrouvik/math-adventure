@@ -523,7 +523,8 @@ const TRANSLATIONS_EN = {
 
         sameLesson5Times: {
             title: "Muscle memory",
-            description: "Complete the same lesson 5 times in a row."
+            description: "Complete the same lesson 5 times in a row.",
+            hint: "Hint: You master something by doing it over and over"
         },
 
         nightLesson: {
@@ -549,12 +550,14 @@ const TRANSLATIONS_EN = {
 
         plotTwist: {
             title: "Plot twist!",
-            description: "Make your first mistake in a lesson on its very last problem."
+            description: "Make your first mistake in a lesson on its very last problem.",
+            hint: "Hint: Don't celebrate until you finish the race - or do"
         },
 
         dejaVu: {
             title: "Haven't I answered this before?",
-            description: "Solve two problems in a row that have the same answer."
+            description: "Solve two problems in a row that have the same answer.",
+            hint: "Hint: You have to be a bit lucky to get this, but you won't learn anything new."
         },
 
         doesNotCompute: {

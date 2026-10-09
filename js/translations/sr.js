@@ -558,6 +558,30 @@ const TRANSLATIONS_SR = {
         answer42: {
             title: "Odgovor na sve (i ne baš)",
             description: "Unesi 42 u polje za odgovor."
+        },
+        tastingMenu: {
+            title: "Švedski sto",
+            description: "Završi bar jednu lekciju u svakom kursu."
+        },
+
+        plotTwist: {
+            title: "Neočekivan preokret!",
+            description: "Napravi prvu grešku u lekciji tek na poslednjem zadatku."
+        },
+
+        dejaVu: {
+            title: "Zar ovo nije već bilo?",
+            description: "Reši dva zadatka zaredom koja imaju isti rezultat."
+        },
+
+        doesNotCompute: {
+            title: "Pozvali ste nepostojeći broj",
+            description: "Unesi nešto što nije broj u polje za odgovor."
+        },
+
+        romanYear: {
+            title: "Rimski praznik",
+            description: "Unesi trenutnu godinu rimskim brojevima."
         }
 
     },

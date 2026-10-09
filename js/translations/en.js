@@ -526,28 +526,28 @@ const TRANSLATIONS_EN = {
         },
 
         tastingMenu: {
-            title: "Švedski sto",
-            description: "Završi bar jednu lekciju u svakom kursu."
+            title: "Tasting menu",
+            description: "Complete at least one lesson in every course."
         },
 
         plotTwist: {
-            title: "Neočekivan preokret!",
-            description: "Napravi prvu grešku u lekciji tek na poslednjem zadatku."
+            title: "Plot twist!",
+            description: "Make your first mistake in a lesson on its very last problem."
         },
 
         dejaVu: {
-            title: "Zar ovo nije već bilo?",
-            description: "Reši dva zadatka zaredom koja imaju isti rezultat."
+            title: "Haven't I answered this before?",
+            description: "Solve two problems in a row that have the same answer."
         },
 
         doesNotCompute: {
-            title: "Pozvali ste nepostojeći broj",
-            description: "Unesi nešto što nije broj u polje za odgovor."
+            title: "Does not compute",
+            description: "Enter something that isn't a number into an answer input."
         },
 
         romanYear: {
-            title: "Rimski praznik",
-            description: "Unesi trenutnu godinu rimskim brojevima."
+            title: "Roman holiday",
+            description: "Enter the current year in Roman numerals."
         }
 
     },

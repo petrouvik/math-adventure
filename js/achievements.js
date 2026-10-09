@@ -337,7 +337,7 @@ const ACHIEVEMENTS = [
         description: "achievements.xp100.description",
         icon: "⭐",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -346,7 +346,7 @@ const ACHIEVEMENTS = [
         description: "achievements.xp500.description",
         icon: "⭐",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -355,7 +355,7 @@ const ACHIEVEMENTS = [
         description: "achievements.xp1000.description",
         icon: "🌟",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -364,7 +364,7 @@ const ACHIEVEMENTS = [
         description: "achievements.xp5000.description",
         icon: "🏆",
         category: "progression",
-        hidden: false
+
     },
 
 
@@ -378,7 +378,7 @@ const ACHIEVEMENTS = [
         description: "achievements.problems50.description",
         icon: "🧩",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -387,7 +387,7 @@ const ACHIEVEMENTS = [
         description: "achievements.problems200.description",
         icon: "🧩",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -396,7 +396,7 @@ const ACHIEVEMENTS = [
         description: "achievements.problems1000.description",
         icon: "🧩",
         category: "progression",
-        hidden: false
+
     },
 
 
@@ -410,7 +410,7 @@ const ACHIEVEMENTS = [
         description: "achievements.streak2.description",
         icon: "🔥",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -419,7 +419,7 @@ const ACHIEVEMENTS = [
         description: "achievements.streak7.description",
         icon: "🔥",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -428,7 +428,7 @@ const ACHIEVEMENTS = [
         description: "achievements.streak14.description",
         icon: "🔥",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -437,7 +437,7 @@ const ACHIEVEMENTS = [
         description: "achievements.streak30.description",
         icon: "🔥",
         category: "progression",
-        hidden: false
+
     },
 
 
@@ -451,7 +451,7 @@ const ACHIEVEMENTS = [
         description: "achievements.lessons1.description",
         icon: "📖",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -460,7 +460,7 @@ const ACHIEVEMENTS = [
         description: "achievements.lessons10.description",
         icon: "📚",
         category: "progression",
-        hidden: false
+
     },
 
 
@@ -474,7 +474,7 @@ const ACHIEVEMENTS = [
         description: "achievements.courseNumbers.description",
         icon: "🔢",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -483,7 +483,7 @@ const ACHIEVEMENTS = [
         description: "achievements.courseAddition.description",
         icon: "+",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -492,7 +492,7 @@ const ACHIEVEMENTS = [
         description: "achievements.courseSubtraction.description",
         icon: "−",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -501,7 +501,7 @@ const ACHIEVEMENTS = [
         description: "achievements.courseMultiplication.description",
         icon: "×",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -510,7 +510,7 @@ const ACHIEVEMENTS = [
         description: "achievements.courseDivision.description",
         icon: "÷",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -519,7 +519,7 @@ const ACHIEVEMENTS = [
         description: "achievements.courseRomanNumerals.description",
         icon: "🏛️",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -528,7 +528,7 @@ const ACHIEVEMENTS = [
         description: "achievements.courseGeometry.description",
         icon: "📐",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -537,7 +537,7 @@ const ACHIEVEMENTS = [
         description: "achievements.courseFirst.description",
         icon: "🎓",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -546,7 +546,7 @@ const ACHIEVEMENTS = [
         description: "achievements.coursesAll.description",
         icon: "👑",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -555,7 +555,7 @@ const ACHIEVEMENTS = [
         description: "achievements.coursesBasicArithmetic.description",
         icon: "🧮",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -564,7 +564,7 @@ const ACHIEVEMENTS = [
         description: "achievements.courseAdvancedNumbers.description",
         icon: "🔢",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -573,7 +573,7 @@ const ACHIEVEMENTS = [
         description: "achievements.courseAdvancedAddition.description",
         icon: "+",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -582,7 +582,7 @@ const ACHIEVEMENTS = [
         description: "achievements.courseAdvancedSubtraction.description",
         icon: "−",
         category: "progression",
-        hidden: false
+
     },
 
     {
@@ -591,7 +591,7 @@ const ACHIEVEMENTS = [
         description: "achievements.courseEquations.description",
         icon: "=",
         category: "progression",
-        hidden: false
+
     },
     {
         id: "course-negative-numbers",
@@ -599,7 +599,7 @@ const ACHIEVEMENTS = [
         description: "achievements.courseNegativeNumbers.description",
         icon: "-1",
         category: "progression",
-        hidden: false
+
     },
 
 
@@ -613,7 +613,7 @@ const ACHIEVEMENTS = [
         description: "achievements.lessons10OneDay.description",
         icon: "⚡",
         category: "one-time",
-        hidden: false
+
     },
 
     {
@@ -622,7 +622,7 @@ const ACHIEVEMENTS = [
         description: "achievements.perfectLesson.description",
         icon: "💯",
         category: "one-time",
-        hidden: false
+
     },
 
     {
@@ -631,7 +631,7 @@ const ACHIEVEMENTS = [
         description: "achievements.comeback.description",
         icon: "💪",
         category: "one-time",
-        hidden: false
+
     },
 
     {
@@ -640,7 +640,7 @@ const ACHIEVEMENTS = [
         description: "achievements.perfect5InRow.description",
         icon: "🏅",
         category: "one-time",
-        hidden: false
+
     },
 
 
@@ -654,7 +654,7 @@ const ACHIEVEMENTS = [
         description: "achievements.piDay.description",
         icon: "🥧",
         category: "quirky",
-        hidden: false
+
     },
 
     {
@@ -663,7 +663,7 @@ const ACHIEVEMENTS = [
         description: "achievements.threeCoursesOneDay.description",
         icon: "🌈",
         category: "quirky",
-        hidden: false
+
     },
 
     {
@@ -672,7 +672,7 @@ const ACHIEVEMENTS = [
         description: "achievements.sameLesson5Times.description",
         icon: "🔄",
         category: "quirky",
-        hidden: false
+
     },
 
     {
@@ -681,7 +681,7 @@ const ACHIEVEMENTS = [
         description: "achievements.nightLesson.description",
         icon: "🌙",
         category: "quirky",
-        hidden: true
+
     },
 
     {
@@ -690,7 +690,7 @@ const ACHIEVEMENTS = [
         description: "achievements.earlyLesson.description",
         icon: "🌅",
         category: "quirky",
-        hidden: true
+
     },
 
     {
@@ -699,7 +699,8 @@ const ACHIEVEMENTS = [
         description: "achievements.answer42.description",
         icon: "🥚",
         category: "quirky",
-        hidden: true
+        hint: "achievements.answer42.hint",
+
     },
 
     {
@@ -708,7 +709,7 @@ const ACHIEVEMENTS = [
         description: "achievements.tastingMenu.description",
         icon: "🍽️",
         category: "progression",
-        hidden: true
+
     },
 
     {
@@ -717,7 +718,7 @@ const ACHIEVEMENTS = [
         description: "achievements.plotTwist.description",
         icon: "🎬",
         category: "one-time",
-        hidden: true
+
     },
 
     {
@@ -726,7 +727,7 @@ const ACHIEVEMENTS = [
         description: "achievements.dejaVu.description",
         icon: "🌀",
         category: "quirky",
-        hidden: true
+
     },
 
     {
@@ -735,7 +736,8 @@ const ACHIEVEMENTS = [
         description: "achievements.doesNotCompute.description",
         icon: "🤖",
         category: "quirky",
-        hidden: true
+        hint: "achievements.doesNotCompute.hint",
+
     },
 
     {
@@ -744,7 +746,8 @@ const ACHIEVEMENTS = [
         description: "achievements.romanYear.description",
         icon: "📜",
         category: "quirky",
-        hidden: true
+        hint: "achievements.romanYear.hint",
+
     }
 
 ];

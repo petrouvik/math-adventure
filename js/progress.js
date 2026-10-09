@@ -64,6 +64,15 @@ const ACHIEVEMENTS_PER_PAGE = 6;
 let showingAllAchievements = false;
 
 
+// 0 = unlocked, 1 = locked with a plain requirement, 2 = locked with a cryptic hint
+function getAchievementGroup(achievement, player) {
+    if (isAchievementUnlocked(achievement.id, player)) {
+        return 0;
+    }
+
+    return achievement.hint ? 2 : 1;
+}
+
 function renderAchievementProgress() {
     const container =
         document.getElementById("achievement-progress");
@@ -77,52 +86,48 @@ function renderAchievementProgress() {
 
     const player = getPlayer();
 
+    // sort() is stable, so each group keeps its order from ACHIEVEMENTS.
+    const sorted = [...ACHIEVEMENTS].sort(
+        (a, b) =>
+            getAchievementGroup(a, player) -
+            getAchievementGroup(b, player)
+    );
+
     const achievements =
         showingAllAchievements
-            ? ACHIEVEMENTS
-            : ACHIEVEMENTS.slice(
-                0,
-                ACHIEVEMENTS_PER_PAGE
-            );
+            ? sorted
+            : sorted.slice(0, ACHIEVEMENTS_PER_PAGE);
 
     container.innerHTML = "";
 
     achievements.forEach(achievement => {
-
         const unlocked =
-            isAchievementUnlocked(
-                achievement.id,
-                player
-            );
+            isAchievementUnlocked(achievement.id, player);
 
-        const hidden =
-            achievement.hidden && !unlocked;
+        let icon;
+        let title;
+        let description;
 
-        const icon =
-            hidden
-                ? "❓"
-                : unlocked
-                    ? achievement.icon
-                    : "🔒";
+        if (unlocked) {
+            icon = achievement.icon;
+            title = t(achievement.title);
+            description = t(achievement.description);
+        } else {
+            title = "???"
 
-        const title =
-            hidden
-                ? t("progress.hiddenAchievement")
-                : t(achievement.title);
+            if (achievement.hint) {
+                icon = "❓";
+                description = t(achievement.hint);
+            } else {
+                icon = "🔒";
+                description = t(achievement.description);
+            }
+        }
 
-        const description =
-            hidden
-                ? t("progress.hiddenAchievementDescription")
-                : t(achievement.description);
-
-        const card =
-            document.createElement("div");
+        const card = document.createElement("div");
 
         card.className =
-            `achievement-card ${unlocked
-                ? "unlocked"
-                : "locked"
-            }`;
+            `achievement-card ${unlocked ? "unlocked" : "locked"}`;
 
         card.innerHTML = `
             <span class="achievement-icon">
@@ -139,18 +144,10 @@ function renderAchievementProgress() {
         container.appendChild(card);
     });
 
-
-    if (showingAllAchievements) {
-
-        button.textContent =
-            t("progress.showLess");
-
-    } else {
-
-        button.textContent =
-            t("progress.showMore");
-    }
-
+    button.textContent =
+        showingAllAchievements
+            ? t("progress.showLess")
+            : t("progress.showMore");
 
     button.style.display =
         ACHIEVEMENTS.length > ACHIEVEMENTS_PER_PAGE

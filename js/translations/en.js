@@ -522,7 +522,8 @@ const TRANSLATIONS_EN = {
 
         answer42: {
             title: "The answer to everything (not really)",
-            description: "Enter 42 into an answer input."
+            description: "Enter 42 into an answer input.",
+            hint: "Hint: The Answer to the Ultimate Question of Life, the Universe, and Everything."
         },
 
         tastingMenu: {
@@ -542,12 +543,14 @@ const TRANSLATIONS_EN = {
 
         doesNotCompute: {
             title: "Does not compute",
-            description: "Enter something that isn't a number into an answer input."
+            description: "Enter something that isn't a number into an answer input.",
+            hint: "Hint: Those don't look like digits."
         },
 
         romanYear: {
             title: "Roman holiday",
-            description: "Enter the current year in Roman numerals."
+            description: "Enter the current year in Roman numerals.",
+            hint: "Hint: Tell a Roman what year it is."
         }
 
     },

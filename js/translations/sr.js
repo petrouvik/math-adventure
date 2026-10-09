@@ -557,7 +557,8 @@ const TRANSLATIONS_SR = {
 
         answer42: {
             title: "Odgovor na sve (i ne baš)",
-            description: "Unesi 42 u polje za odgovor."
+            description: "Unesi 42 u polje za odgovor.",
+            hint: "Pomoć: Odgovor na najvažnije pitanje o životu, svemiru i svemu ostalom."
         },
         tastingMenu: {
             title: "Švedski sto",
@@ -576,12 +577,14 @@ const TRANSLATIONS_SR = {
 
         doesNotCompute: {
             title: "Pozvali ste nepostojeći broj",
-            description: "Unesi nešto što nije broj u polje za odgovor."
+            description: "Unesi nešto što nije broj u polje za odgovor.",
+            hint: "Pomoć: Mislim da to nisu cifre."
         },
 
         romanYear: {
             title: "Rimski praznik",
-            description: "Unesi trenutnu godinu rimskim brojevima."
+            description: "Unesi trenutnu godinu rimskim brojevima.",
+            hint: "Pomoć: Reci Rimljaninu koja je godina."
         }
 
     },

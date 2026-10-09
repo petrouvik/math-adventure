@@ -1886,7 +1886,8 @@ const COURSES = {
                         }
                     },
 
-                    problemCount: 10
+                    problemCount: 10,
+                    solveOnPaper: true
                 },
                 difficultyMultiplier: 2.4
             },
@@ -1989,7 +1990,8 @@ const COURSES = {
                         carryThroughZero: true
                     },
 
-                    problemCount: 10
+                    problemCount: 10,
+                    solveOnPaper: true
                 },
                 difficultyMultiplier: 2.4
             },
@@ -2092,7 +2094,8 @@ const COURSES = {
                         sameLength: false
                     },
 
-                    problemCount: 10
+                    problemCount: 10,
+                    solveOnPaper: true
                 },
                 difficultyMultiplier: 2.4
             },
@@ -2202,7 +2205,8 @@ const COURSES = {
                         sameLength: false
                     },
 
-                    problemCount: 10
+                    problemCount: 10,
+                    solveOnPaper: true
                 },
                 difficultyMultiplier: 2.8
             }

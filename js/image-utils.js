@@ -283,22 +283,81 @@ function createGeometrySvg({
     }
 
     function renderPointLabel(point) {
+
         if (!point.label) {
             return "";
         }
 
+        const label = String(point.label);
+
+        const fontSize = 16;
+        const pointRadius = 4;
+        const gap = 6;
+
         const { x, y } = toSvg(point);
 
+        let ux;
+        let uy;
+
+        if (Number.isFinite(point.position)) {
+
+            // Manual placement, in degrees, counterclockwise like in math class:
+            // 0 = right, 90 = above, 180 = left, 270 = below.
+            // (SVG's y axis points down, hence the minus on the sine.)
+            const radians = (point.position * Math.PI) / 180;
+
+            ux = Math.cos(radians);
+            uy = -Math.sin(radians);
+
+        } else {
+
+            // Default: on the line from the center of the SVG through the point,
+            // on the far side of it.
+            const dx = x - width / 2;
+            const dy = y - height / 2;
+            const distance = Math.hypot(dx, dy);
+
+            // If the point is exactly at the center, go up and to the right.
+            ux = distance < 1 ? Math.SQRT1_2 : dx / distance;
+            uy = distance < 1 ? -Math.SQRT1_2 : dy / distance;
+        }
+
+        // Approximate half-size of the text
+        const halfWidth =
+            (Array.from(label).length * fontSize * 0.6) / 2;
+
+        const halfHeight =
+            fontSize * 0.5;
+
+        // Distance from the point to the label's center, so the label's
+        // nearest edge clears the dot in any direction
+        const offset =
+            pointRadius +
+            gap +
+            Math.abs(ux) * halfWidth +
+            Math.abs(uy) * halfHeight;
+
+        // Keep the label inside the SVG so it never gets clipped
+        const labelX = Math.min(
+            Math.max(x + ux * offset, halfWidth),
+            width - halfWidth
+        );
+
+        const labelY = Math.min(
+            Math.max(y + uy * offset, halfHeight),
+            height - halfHeight
+        );
+
         return `
-            <text
-                x="${x + 8}"
-                y="${y - 8}"
-                fill="currentColor"
-                font-size="16"
-            >
-                ${point.label}
-            </text>
-        `;
+        <text
+            x="${labelX}"
+            y="${labelY}"
+            fill="currentColor"
+            font-size="${fontSize}"
+            text-anchor="middle"
+            dominant-baseline="central"
+        >${label}</text>
+    `;
     }
 
     function renderSegment(segment) {

@@ -1,5 +1,5 @@
 const CACHE_NAME =
-    "math-adventure-v0.99.1";
+    "math-adventure-v0.99.2";
 
 const APP_FILES = [
 
@@ -62,7 +62,7 @@ const APP_FILES = [
 
 
 
-const DEV_MODE = true;
+const DEV_MODE = false;
 
 if (DEV_MODE) {
 

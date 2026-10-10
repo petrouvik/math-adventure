@@ -1,5 +1,5 @@
 const PLAYER_STORAGE_KEY = "mathAdventurePlayer";
-const DEBUG_LESSON_UNLOCK = true;
+const DEBUG_LESSON_UNLOCK = false;
 const DEFAULT_PLAYER = {
     name: "Adventurer",
 
@@ -56,19 +56,36 @@ function savePlayer(player) {
 }
 
 
-function getLevel(xp) {
-    return Math.floor(xp / 100) + 1;
+function getXPForLevel(level) {
+    if (level <= 1) {
+        return 0;
+    }
+
+    return Math.round(100 * Math.pow(level - 1, 1.5));
 }
 
-function getNextLevelXP(xp) {
-    return getLevel(xp) * 100;
+
+function getLevel(xp) {
+    let level = 1;
+
+    while (getXPForLevel(level + 1) <= xp) {
+        level++;
+    }
+
+    return level;
 }
+
+
+function getNextLevelXP(xp) {
+    return getXPForLevel(getLevel(xp) + 1);
+}
+
 
 function getLevelPercentage(xp) {
     const level = getLevel(xp);
 
-    const currentLevelXP = (level - 1) * 100;
-    const nextLevelXP = level * 100;
+    const currentLevelXP = getXPForLevel(level);
+    const nextLevelXP = getXPForLevel(level + 1);
 
     return Math.floor(
         ((xp - currentLevelXP) / (nextLevelXP - currentLevelXP)) * 100

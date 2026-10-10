@@ -70,7 +70,10 @@ const TRANSLATIONS_SR = {
         problems: "Rešeni zadaci",
         dayStreak: "Niz dana",
         settings: "Podešavanja",
-        settingsDescription: "Prilagodi svoju pustolovinu."
+        settingsDescription: "Prilagodi svoju pustolovinu.",
+        madeBy: "Napravljeno sa ❤️ za Marijanu",
+        sourceCode: "Izvorni kod",
+        version: "Verzija {version}",
     },
 
 

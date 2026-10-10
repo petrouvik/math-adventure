@@ -41,6 +41,7 @@ const TRANSLATIONS_EN = {
         importConfirm: "This will replace all current progress on this device. Continue?",
         importSuccess: "Progress imported!",
 
+
     },
 
     // ========================================
@@ -70,7 +71,10 @@ const TRANSLATIONS_EN = {
         problems: "Problems",
         dayStreak: "Day Streak",
         settings: "Settings",
-        settingsDescription: "Customize your adventure."
+        settingsDescription: "Customize your adventure.",
+        madeBy: "Made with ❤️ for Marijana",
+        sourceCode: "Source code",
+        version: "Version {version}",
     },
 
     // ========================================

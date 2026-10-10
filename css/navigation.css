@@ -1,11 +1,12 @@
-/* -------------------------
+/* =========================================================
    HEADER
-------------------------- */
+   ========================================================= */
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 0.75rem;
 
     padding: 1rem 1.5rem;
 
@@ -18,145 +19,33 @@ header {
 }
 
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-
-    color: var(--color-text);
-
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-
-.logo-icon {
-    font-size: 1.6rem;
-}
-
-
-.player-info {
-    display: flex;
-    gap: 0.75rem;
-}
-
-
-.level,
-.coins {
-    padding: 0.5rem 0.75rem;
-
-    background: var(--color-secondary);
-
-    color: var(--color-secondary-text);
-
-    border-radius: 999px;
-
-    font-weight: bold;
-
-    white-space: nowrap;
-}
-
-
-
-
-nav {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 100;
-    display: flex;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 0;
-    background: var(--color-nav-background);
-    border-top: 1px solid var(--color-border);
-}
-
-.nav-item {
-    flex: 1;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 0.3rem;
-    padding: 0.75rem 0.15rem;
-    border: none;
-    border-right: 1px solid var(--color-border);
-    border-radius: 0;
-    background: transparent;
-    color: var(--color-nav-text);
-    text-decoration: none;
-    text-align: center;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.nav-item:last-child {
-    border-right: none;
-}
-
-.nav-item>span:first-child {
-    font-size: 1.7rem;
-    line-height: 1.2;
-}
-
-.nav-item>span:last-child {
-    line-height: 1.2;
-}
-
-.nav-item.active {
-    color: var(--color-nav-active);
-    background: var(--color-progress-background);
-    font-weight: 700;
-}
-
-@media (hover: hover) {
-    .nav-item:not(.active):hover {
-        background: var(--color-progress-background);
-    }
-}
-
-.nav-item:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: -3px;
-}
-
-@media (max-width: 500px) {
-    .nav-item {
-        gap: 0.25rem;
-        padding: 0.65rem 0.05rem;
-        font-size: 0.85rem;
-    }
-
-    .nav-item>span:first-child {
-        font-size: 1.5rem;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    .nav-item {
-        transition: none;
-    }
-}
-
-header {
-    gap: 0.75rem;
-}
+/* -------------------------
+   LOGO
+------------------------- */
 
 .logo {
     display: flex;
     align-items: center;
     gap: 0.6rem;
 
+    /* The logo may shrink and clips its own content,
+       so it can never draw on top of the pills. */
     min-width: 0;
+    overflow: hidden;
 
     color: var(--color-text);
 
     text-decoration: none;
 }
+
+
+.logo:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+
+    border-radius: 0.5rem;
+}
+
 
 .logo-icon {
     display: flex;
@@ -181,6 +70,7 @@ header {
     line-height: 1;
 }
 
+
 .logo-text {
     display: flex;
     flex-direction: column;
@@ -189,11 +79,13 @@ header {
     white-space: nowrap;
 }
 
+
 .logo-math {
     font-size: 1.25rem;
     font-weight: 800;
     letter-spacing: -0.02em;
 }
+
 
 .logo-adventure {
     color: var(--color-primary);
@@ -204,9 +96,196 @@ header {
     text-transform: uppercase;
 }
 
-/* Tiny phones: the level and coin pills need the room */
-@media (max-width: 360px) {
+
+/* -------------------------
+   LEVEL AND COINS
+------------------------- */
+
+/* The pills keep their size; the logo is the one that yields. */
+.player-info {
+    display: flex;
+    flex-shrink: 0;
+    gap: 0.75rem;
+}
+
+
+.level,
+.coins {
+    padding: 0.5rem 0.75rem;
+
+    background: var(--color-secondary);
+
+    color: var(--color-secondary-text);
+
+    border-radius: 999px;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+/* -------------------------
+   HEADER ON SMALL SCREENS
+------------------------- */
+
+/* Phones: tighter header and smaller pills */
+@media (max-width: 480px) {
+
+    header {
+        gap: 0.5rem;
+
+        padding: 0.75rem 1rem;
+    }
+
+    .player-info {
+        gap: 0.4rem;
+    }
+
+    .level,
+    .coins {
+        padding: 0.4rem 0.6rem;
+
+        font-size: 0.9rem;
+    }
+}
+
+
+/* Narrow phones: "⭐ 12" instead of "⭐ Level 12"
+   (needs class="level-label" on the "Level" span) */
+@media (max-width: 400px) {
+
+    .level-label {
+        display: none;
+    }
+}
+
+
+/* Tiny phones: keep just the logo tile */
+@media (max-width: 340px) {
+
     .logo-text {
         display: none;
+    }
+}
+
+
+/* =========================================================
+   BOTTOM NAVIGATION
+   ========================================================= */
+
+nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+
+    display: flex;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 0;
+
+    background: var(--color-nav-background);
+
+    border-top: 1px solid var(--color-border);
+}
+
+
+.nav-item {
+    flex: 1;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 0.3rem;
+
+    padding: 0.75rem 0.15rem;
+
+    border: none;
+    border-right: 1px solid var(--color-border);
+    border-radius: 0;
+
+    background: transparent;
+
+    color: var(--color-nav-text);
+
+    text-decoration: none;
+    text-align: center;
+
+    font-size: 1rem;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+
+.nav-item:last-child {
+    border-right: none;
+}
+
+
+.nav-item>span:first-child {
+    font-size: 1.7rem;
+    line-height: 1.2;
+}
+
+
+.nav-item>span:last-child {
+    line-height: 1.2;
+}
+
+
+.nav-item.active {
+    color: var(--color-nav-active);
+
+    background: var(--color-progress-background);
+
+    font-weight: 700;
+}
+
+
+@media (hover: hover) {
+
+    .nav-item:not(.active):hover {
+        background: var(--color-progress-background);
+    }
+}
+
+
+.nav-item:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -3px;
+}
+
+
+@media (max-width: 500px) {
+
+    .nav-item {
+        gap: 0.25rem;
+
+        padding: 0.65rem 0.05rem;
+
+        font-size: 0.85rem;
+    }
+
+    .nav-item>span:first-child {
+        font-size: 1.5rem;
+    }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+    .nav-item {
+        transition: none;
     }
 }

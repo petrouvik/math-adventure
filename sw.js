@@ -1,5 +1,5 @@
 const CACHE_NAME =
-    "math-adventure-v0.99.3";
+    "math-adventure-v0.99.4";
 
 const APP_FILES = [
 
@@ -57,7 +57,10 @@ const APP_FILES = [
     // Fonts
     "./fonts/noto-sans-latin-400-normal.woff2",
     "./fonts/noto-sans-latin-600-normal.woff2",
-    "./fonts/noto-sans-latin-700-normal.woff2"
+    "./fonts/noto-sans-latin-700-normal.woff2",
+    "./fonts/noto-sans-latin-ext-400-normal.woff2",
+    "./fonts/noto-sans-latin-ext-600-normal.woff2",
+    "./fonts/noto-sans-latin-ext-700-normal.woff2"
 ];
 
 

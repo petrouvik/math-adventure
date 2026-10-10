@@ -52,12 +52,17 @@ const APP_FILES = [
 
     // Icons
     "./icons/icon-192.png",
-    "./icons/icon-512.png"
+    "./icons/icon-512.png",
+
+    // Fonts
+    "./fonts/noto-sans-latin-400-normal.woff2",
+    "./fonts/noto-sans-latin-600-normal.woff2",
+    "./fonts/noto-sans-latin-700-normal.woff2"
 ];
 
 
 
-const DEV_MODE = false;
+const DEV_MODE = true;
 
 if (DEV_MODE) {
 

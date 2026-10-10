@@ -32,22 +32,19 @@
 
     --shadow: 0 4px 15px rgba(0, 0, 0, 0.10);
 }
+
 * {
     box-sizing: border-box;
 }
 
 body {
     margin: 0;
-
-    font-family:
-        Arial,
-        sans-serif;
-
     background: var(--color-background);
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
+
 h1,
 h2,
 h3,
@@ -55,4 +52,40 @@ h4,
 h5,
 h6 {
     color: var(--color-text);
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    src: url("../fonts/noto-sans-latin-400-normal.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    src: url("../fonts/noto-sans-latin-600-normal.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Noto Sans";
+    src: url("../fonts/noto-sans-latin-700-normal.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+html {
+    font-family: "Noto Sans", sans-serif;
+}
+
+body,
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
 }
